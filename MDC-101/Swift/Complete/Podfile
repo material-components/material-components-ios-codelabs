@@ -1,0 +1,8 @@
+platform :ios, '11.0'
+
+target 'Shrine' do
+  use_frameworks!
+
+  # Pods for Shrine
+  pod 'MaterialComponents'
+end
