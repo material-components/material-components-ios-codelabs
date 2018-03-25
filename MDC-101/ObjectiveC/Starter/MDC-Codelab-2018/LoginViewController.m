@@ -16,7 +16,7 @@
 
 #import "LoginViewController.h"
 
-//TODO: Import Material Header here
+//TODO: Import Material Headers here
 
 @interface LoginViewController () <UITextFieldDelegate>
 
@@ -174,7 +174,6 @@
 - (void)keyboardWillHide:(NSNotification *)notif {
   self.scrollView.contentInset = UIEdgeInsetsZero;
 }
-
 
 
 @end

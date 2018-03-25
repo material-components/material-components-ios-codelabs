@@ -21,7 +21,7 @@ class LoginViewController: UIViewController {
   let scrollView: UIScrollView = {
     let scrollView = UIScrollView()
     scrollView.translatesAutoresizingMaskIntoConstraints = false;
-    scrollView.backgroundColor = UIColor.white
+    scrollView.backgroundColor = .white
     scrollView.layoutMargins = UIEdgeInsetsMake(0, 16, 0, 16)
     return scrollView
   }()

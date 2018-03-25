@@ -1,0 +1,444 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4049389C20682A5500C63F13 /* ProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4049389B20682A5500C63F13 /* ProductCell.m */; };
+		4049389F20682E3C00C63F13 /* Catalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 4049389E20682E3C00C63F13 /* Catalog.m */; };
+		40674A9120641F57001F19D9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 40674A9020641F57001F19D9 /* AppDelegate.m */; };
+		40674A9720641F57001F19D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40674A9520641F57001F19D9 /* Main.storyboard */; };
+		40674A9920641F57001F19D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40674A9820641F57001F19D9 /* Assets.xcassets */; };
+		40674A9C20641F57001F19D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40674A9A20641F57001F19D9 /* LaunchScreen.storyboard */; };
+		40674A9F20641F57001F19D9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 40674A9E20641F57001F19D9 /* main.m */; };
+		4078486F2064598C00C13D50 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4078486E2064598C00C13D50 /* LoginViewController.m */; };
+		4078487220645A1200C13D50 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4078487120645A1200C13D50 /* HomeViewController.m */; };
+		B32A6D84467916327E3938F2 /* Pods_Shrine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6E97014811A1E02372FF6C2 /* Pods_Shrine.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		104941F709FE7A815C3AD5CC /* Pods-Shrine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shrine.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shrine/Pods-Shrine.release.xcconfig"; sourceTree = "<group>"; };
+		4049389A20682A5500C63F13 /* ProductCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductCell.h; sourceTree = "<group>"; };
+		4049389B20682A5500C63F13 /* ProductCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductCell.m; sourceTree = "<group>"; };
+		4049389D20682E3C00C63F13 /* Catalog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Catalog.h; sourceTree = "<group>"; };
+		4049389E20682E3C00C63F13 /* Catalog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Catalog.m; sourceTree = "<group>"; };
+		40674A8C20641F57001F19D9 /* Shrine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shrine.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		40674A8F20641F57001F19D9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		40674A9020641F57001F19D9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		40674A9620641F57001F19D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		40674A9820641F57001F19D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		40674A9B20641F57001F19D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		40674A9D20641F57001F19D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		40674A9E20641F57001F19D9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4078486D2064598C00C13D50 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		4078486E2064598C00C13D50 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		4078487020645A1200C13D50 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		4078487120645A1200C13D50 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		C6E97014811A1E02372FF6C2 /* Pods_Shrine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shrine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF4A993F75001EEDD0E06302 /* Pods-Shrine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shrine.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Shrine/Pods-Shrine.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		40674A8920641F57001F19D9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B32A6D84467916327E3938F2 /* Pods_Shrine.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		32E989539B04191D6011516B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EF4A993F75001EEDD0E06302 /* Pods-Shrine.debug.xcconfig */,
+				104941F709FE7A815C3AD5CC /* Pods-Shrine.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		40674A8320641F57001F19D9 = {
+			isa = PBXGroup;
+			children = (
+				40674A8E20641F57001F19D9 /* Shrine */,
+				40674A8D20641F57001F19D9 /* Products */,
+				32E989539B04191D6011516B /* Pods */,
+				510FE04E4721CCE41BA2D83A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		40674A8D20641F57001F19D9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				40674A8C20641F57001F19D9 /* Shrine.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		40674A8E20641F57001F19D9 /* Shrine */ = {
+			isa = PBXGroup;
+			children = (
+				40674A8F20641F57001F19D9 /* AppDelegate.h */,
+				40674A9020641F57001F19D9 /* AppDelegate.m */,
+				4049389D20682E3C00C63F13 /* Catalog.h */,
+				4049389E20682E3C00C63F13 /* Catalog.m */,
+				4078487020645A1200C13D50 /* HomeViewController.h */,
+				4078487120645A1200C13D50 /* HomeViewController.m */,
+				4078486D2064598C00C13D50 /* LoginViewController.h */,
+				4078486E2064598C00C13D50 /* LoginViewController.m */,
+				4049389A20682A5500C63F13 /* ProductCell.h */,
+				4049389B20682A5500C63F13 /* ProductCell.m */,
+				40674A9520641F57001F19D9 /* Main.storyboard */,
+				40674A9820641F57001F19D9 /* Assets.xcassets */,
+				40674A9A20641F57001F19D9 /* LaunchScreen.storyboard */,
+				40674A9D20641F57001F19D9 /* Info.plist */,
+				40674A9E20641F57001F19D9 /* main.m */,
+			);
+			path = Shrine;
+			sourceTree = "<group>";
+		};
+		510FE04E4721CCE41BA2D83A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C6E97014811A1E02372FF6C2 /* Pods_Shrine.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		40674A8B20641F57001F19D9 /* Shrine */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 40674AA220641F57001F19D9 /* Build configuration list for PBXNativeTarget "Shrine" */;
+			buildPhases = (
+				D29D9D642CC88CD9790FB134 /* [CP] Check Pods Manifest.lock */,
+				40674A8820641F57001F19D9 /* Sources */,
+				40674A8920641F57001F19D9 /* Frameworks */,
+				40674A8A20641F57001F19D9 /* Resources */,
+				9505CDA09C43471030E39CF5 /* [CP] Embed Pods Frameworks */,
+				AD066CD88FAAA15254069CCB /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Shrine;
+			productName = Shrine;
+			productReference = 40674A8C20641F57001F19D9 /* Shrine.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		40674A8420641F57001F19D9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = Google;
+				TargetAttributes = {
+					40674A8B20641F57001F19D9 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Manual;
+					};
+				};
+			};
+			buildConfigurationList = 40674A8720641F57001F19D9 /* Build configuration list for PBXProject "Shrine" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 40674A8320641F57001F19D9;
+			productRefGroup = 40674A8D20641F57001F19D9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				40674A8B20641F57001F19D9 /* Shrine */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		40674A8A20641F57001F19D9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				40674A9C20641F57001F19D9 /* LaunchScreen.storyboard in Resources */,
+				40674A9920641F57001F19D9 /* Assets.xcassets in Resources */,
+				40674A9720641F57001F19D9 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9505CDA09C43471030E39CF5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Shrine/Pods-Shrine-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/MDFInternationalization/MDFInternationalization.framework",
+				"${BUILT_PRODUCTS_DIR}/MDFTextAccessibility/MDFTextAccessibility.framework",
+				"${BUILT_PRODUCTS_DIR}/MaterialComponents/MaterialComponents.framework",
+				"${BUILT_PRODUCTS_DIR}/MotionAnimator/MotionAnimator.framework",
+				"${BUILT_PRODUCTS_DIR}/MotionInterchange/MotionInterchange.framework",
+				"${BUILT_PRODUCTS_DIR}/MotionTransitioning/MotionTransitioning.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDFInternationalization.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDFTextAccessibility.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialComponents.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MotionAnimator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MotionInterchange.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MotionTransitioning.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Shrine/Pods-Shrine-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AD066CD88FAAA15254069CCB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Shrine/Pods-Shrine-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D29D9D642CC88CD9790FB134 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Shrine-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		40674A8820641F57001F19D9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4078486F2064598C00C13D50 /* LoginViewController.m in Sources */,
+				40674A9F20641F57001F19D9 /* main.m in Sources */,
+				4078487220645A1200C13D50 /* HomeViewController.m in Sources */,
+				40674A9120641F57001F19D9 /* AppDelegate.m in Sources */,
+				4049389C20682A5500C63F13 /* ProductCell.m in Sources */,
+				4049389F20682E3C00C63F13 /* Catalog.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		40674A9520641F57001F19D9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				40674A9620641F57001F19D9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		40674A9A20641F57001F19D9 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				40674A9B20641F57001F19D9 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		40674AA020641F57001F19D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		40674AA120641F57001F19D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		40674AA320641F57001F19D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EF4A993F75001EEDD0E06302 /* Pods-Shrine.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = EQHXZ8M8AV;
+				INFOPLIST_FILE = Shrine/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.Shrine;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "ababcf4f-b7fa-4e93-ab24-7ea27469d950";
+				PROVISIONING_PROFILE_SPECIFIER = "Google Development";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		40674AA420641F57001F19D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 104941F709FE7A815C3AD5CC /* Pods-Shrine.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = EQHXZ8M8AV;
+				INFOPLIST_FILE = Shrine/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.Shrine;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "ababcf4f-b7fa-4e93-ab24-7ea27469d950";
+				PROVISIONING_PROFILE_SPECIFIER = "Google Development";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		40674A8720641F57001F19D9 /* Build configuration list for PBXProject "Shrine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				40674AA020641F57001F19D9 /* Debug */,
+				40674AA120641F57001F19D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		40674AA220641F57001F19D9 /* Build configuration list for PBXNativeTarget "Shrine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				40674AA320641F57001F19D9 /* Debug */,
+				40674AA420641F57001F19D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 40674A8420641F57001F19D9 /* Project object */;
+}

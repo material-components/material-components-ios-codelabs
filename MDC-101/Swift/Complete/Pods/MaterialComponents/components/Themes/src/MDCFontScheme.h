@@ -24,7 +24,7 @@
 
  If a font in a scheme is nil, a component should use its default font.
  */
-@protocol MDCFontScheme <NSObject>
+@protocol MDCFontScheming <NSObject>
 
 /** The font-face to be used for Headline 1. */
 @property(nonatomic, strong, nullable, readonly) UIFont *headline1;
@@ -70,7 +70,14 @@
 /**
  A basic font scheme implements the MDCFontScheme protocol.
  */
-@interface MDCBasicFontScheme : NSObject <MDCFontScheme>
+@interface MDCFontScheme : NSObject <MDCFontScheming>
+
++ (nonnull id<MDCFontScheme>)defaultScheme;
++ (void)setDefaultScheme:(null_resettable id<MDCFontScheme>)scheme;
+
++ (nonnull id<MDCFontScheme>)baselineScheme;
+
+- (instancetype)init;
 
 @property(nonatomic, nullable) UIFont *headline1;
 @property(nonatomic, nullable) UIFont *headline2;
