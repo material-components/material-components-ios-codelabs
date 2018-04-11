@@ -1,0 +1,6 @@
+framework module Pods_MDC_111 {
+  umbrella header "Pods-MDC-111-umbrella.h"
+
+  export *
+  module * { export * }
+}
