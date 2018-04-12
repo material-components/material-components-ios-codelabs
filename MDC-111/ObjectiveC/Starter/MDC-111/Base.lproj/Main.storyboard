@@ -122,6 +122,13 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Shipping Address" id="AO4-PY-OFA"/>
+                    <connections>
+                        <outlet property="address" destination="CyL-Fo-uIP" id="97i-zx-Vct"/>
+                        <outlet property="city" destination="t51-su-knD" id="jbl-Gm-UDS"/>
+                        <outlet property="name" destination="fOy-Jj-oui" id="IsT-Eo-9xC"/>
+                        <outlet property="state" destination="yOK-Jv-I38" id="CKh-iK-5fG"/>
+                        <outlet property="zip" destination="gKG-kT-JRH" id="693-AS-kh0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
