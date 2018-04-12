@@ -88,11 +88,11 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="3XZ-bb-YHU" firstAttribute="leading" secondItem="Tvs-A0-svL" secondAttribute="leading" id="1c3-Fb-vef"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="gKG-kT-JRH" secondAttribute="bottom" constant="32" id="1tc-QI-iPI"/>
                             <constraint firstItem="CyL-Fo-uIP" firstAttribute="leading" secondItem="fOy-Jj-oui" secondAttribute="leading" id="5u6-7k-iPZ"/>
                             <constraint firstItem="t51-su-knD" firstAttribute="trailing" secondItem="CyL-Fo-uIP" secondAttribute="trailing" id="6bB-hd-PWk"/>
                             <constraint firstItem="Tvs-A0-svL" firstAttribute="leading" secondItem="oGj-BB-sdo" secondAttribute="leading" id="Ao0-vM-GDz"/>
                             <constraint firstItem="3XZ-bb-YHU" firstAttribute="top" secondItem="gKG-kT-JRH" secondAttribute="bottom" constant="10" id="BGh-Ux-ZYe"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="3XZ-bb-YHU" secondAttribute="bottom" constant="20" id="BRi-R7-fZe"/>
                             <constraint firstItem="gKG-kT-JRH" firstAttribute="trailing" secondItem="yOK-Jv-I38" secondAttribute="trailing" id="DaP-x0-n8M"/>
                             <constraint firstItem="fOy-Jj-oui" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32" id="EUF-Lw-Jvb"/>
                             <constraint firstItem="qIN-yf-ey0" firstAttribute="leading" secondItem="5om-q6-wag" secondAttribute="leading" id="FRQ-CG-ncG"/>
