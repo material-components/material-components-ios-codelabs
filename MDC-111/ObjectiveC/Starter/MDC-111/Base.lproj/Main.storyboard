@@ -87,7 +87,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NP0-i1-Mc8">
-                                <rect key="frame" x="325" y="382" width="34" height="30"/>
+                                <rect key="frame" x="321" y="379" width="34" height="30"/>
                                 <state key="normal" title="Save"/>
                                 <connections>
                                     <action selector="saveDidTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pj9-Gn-cA9"/>
@@ -96,7 +96,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NP0-i1-Mc8" secondAttribute="trailing" constant="16" id="0dX-ov-MbC"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NP0-i1-Mc8" secondAttribute="trailing" constant="20" id="0dX-ov-MbC"/>
                             <constraint firstItem="3XZ-bb-YHU" firstAttribute="leading" secondItem="Tvs-A0-svL" secondAttribute="leading" id="1c3-Fb-vef"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="gKG-kT-JRH" secondAttribute="bottom" constant="32" id="1tc-QI-iPI"/>
                             <constraint firstItem="CyL-Fo-uIP" firstAttribute="leading" secondItem="fOy-Jj-oui" secondAttribute="leading" id="5u6-7k-iPZ"/>
@@ -115,7 +115,7 @@
                             <constraint firstItem="oGj-BB-sdo" firstAttribute="trailing" secondItem="t51-su-knD" secondAttribute="trailing" id="RvR-WG-vnk"/>
                             <constraint firstItem="gKG-kT-JRH" firstAttribute="top" secondItem="Tvs-A0-svL" secondAttribute="bottom" constant="29" id="UdV-lt-hf5"/>
                             <constraint firstItem="fOy-Jj-oui" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="Wo6-l6-tDx"/>
-                            <constraint firstItem="NP0-i1-Mc8" firstAttribute="top" secondItem="gKG-kT-JRH" secondAttribute="bottom" constant="43" id="XBw-p5-rgv"/>
+                            <constraint firstItem="NP0-i1-Mc8" firstAttribute="top" secondItem="gKG-kT-JRH" secondAttribute="bottom" constant="40" id="XBw-p5-rgv"/>
                             <constraint firstItem="oGj-BB-sdo" firstAttribute="leading" secondItem="qIN-yf-ey0" secondAttribute="leading" id="YqC-Fl-7a4"/>
                             <constraint firstItem="qIN-yf-ey0" firstAttribute="top" secondItem="CyL-Fo-uIP" secondAttribute="bottom" constant="10" id="bGY-71-DgN"/>
                             <constraint firstItem="fOy-Jj-oui" firstAttribute="trailing" secondItem="CyL-Fo-uIP" secondAttribute="trailing" id="dCs-4u-Kmr"/>
