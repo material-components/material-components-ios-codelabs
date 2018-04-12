@@ -17,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		36589C84207FBF4C00AD34F7 /* Lorem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Lorem.h; sourceTree = "<group>"; };
 		36F246F6207EC3D900238A16 /* MDC-111.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MDC-111.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		36F246F9207EC3D900238A16 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		36F246FA207EC3D900238A16 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -52,6 +53,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		36589C85207FBF5200AD34F7 /* Supplemental */ = {
+			isa = PBXGroup;
+			children = (
+				36589C84207FBF4C00AD34F7 /* Lorem.h */,
+			);
+			path = Supplemental;
+			sourceTree = "<group>";
+		};
 		36F246ED207EC3D900238A16 = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +91,7 @@
 				36F24704207EC3D900238A16 /* LaunchScreen.storyboard */,
 				36F24707207EC3D900238A16 /* Info.plist */,
 				36F24708207EC3D900238A16 /* main.m */,
+				36589C85207FBF5200AD34F7 /* Supplemental */,
 			);
 			path = "MDC-111";
 			sourceTree = "<group>";

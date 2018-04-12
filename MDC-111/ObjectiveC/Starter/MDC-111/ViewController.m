@@ -12,6 +12,7 @@
  */
 
 #import "ViewController.h"
+#import "Lorem.h"
 
 @interface ViewController () <UITextFieldDelegate>
 
@@ -30,11 +31,21 @@
   // Do any additional setup after loading the view, typically from a nib.
 }
 
+- (IBAction)saveDidTouch:(id)sender {
+  [self.view endEditing:YES];
 
-- (void)didReceiveMemoryWarning {
-  [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
+  UIAlertController *saveAlert = [UIAlertController alertControllerWithTitle:@"Do you accept these terms?" message:kLorem preferredStyle:UIAlertControllerStyleAlert];
+  [saveAlert addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    self.name.text = nil;
+    self.address.text = nil;
+    self.city.text = nil;
+    self.state.text = nil;
+    self.zip.text = nil;
+  }]];
+  [saveAlert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+
+  }]];
+  [self presentViewController:saveAlert animated:YES completion:nil];
 }
-
 
 @end
