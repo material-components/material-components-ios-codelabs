@@ -142,6 +142,7 @@
                         <outlet property="address" destination="CyL-Fo-uIP" id="97i-zx-Vct"/>
                         <outlet property="city" destination="t51-su-knD" id="jbl-Gm-UDS"/>
                         <outlet property="name" destination="fOy-Jj-oui" id="IsT-Eo-9xC"/>
+                        <outlet property="saveButton" destination="NP0-i1-Mc8" id="t8z-Qc-jrO"/>
                         <outlet property="state" destination="yOK-Jv-I38" id="CKh-iK-5fG"/>
                         <outlet property="zip" destination="gKG-kT-JRH" id="693-AS-kh0"/>
                     </connections>

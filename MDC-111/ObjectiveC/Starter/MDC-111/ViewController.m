@@ -22,13 +22,14 @@
 @property (weak, nonatomic) IBOutlet UITextField *state;
 @property (weak, nonatomic) IBOutlet UITextField *zip;
 
+@property (weak, nonatomic) IBOutlet UIButton *saveButton;
+
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (IBAction)saveDidTouch:(id)sender {
@@ -43,7 +44,6 @@
     self.zip.text = nil;
   }]];
   [saveAlert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-
   }]];
   [self presentViewController:saveAlert animated:YES completion:nil];
 }
