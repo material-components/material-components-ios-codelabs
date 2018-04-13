@@ -13,7 +13,7 @@
         <!--Shipping Address-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MDC_111" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -139,7 +139,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Shipping Address" id="AO4-PY-OFA"/>
                     <connections>
-                        <outlet property="address" destination="CyL-Fo-uIP" id="sKd-fy-GeM"/>
+                        <outlet property="address" destination="CyL-Fo-uIP" id="T5j-qU-ZgA"/>
                         <outlet property="city" destination="t51-su-knD" id="krl-s0-Qa6"/>
                         <outlet property="name" destination="fOy-Jj-oui" id="WP7-Sf-7EC"/>
                         <outlet property="saveButton" destination="NP0-i1-Mc8" id="izE-Ij-ubS"/>
