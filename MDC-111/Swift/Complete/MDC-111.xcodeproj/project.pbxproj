@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		36589C8A2080F3C300AD34F7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36589C892080F3C300AD34F7 /* ViewController.swift */; };
 		36F246FB207EC3D900238A16 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F246FA207EC3D900238A16 /* AppDelegate.m */; };
-		36F246FE207EC3D900238A16 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F246FD207EC3D900238A16 /* ViewController.m */; };
 		36F24701207EC3D900238A16 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36F246FF207EC3D900238A16 /* Main.storyboard */; };
 		36F24703207EC3D900238A16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36F24702207EC3D900238A16 /* Assets.xcassets */; };
 		36F24706207EC3D900238A16 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36F24704207EC3D900238A16 /* LaunchScreen.storyboard */; };
@@ -18,11 +18,11 @@
 
 /* Begin PBXFileReference section */
 		36589C84207FBF4C00AD34F7 /* Lorem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Lorem.h; sourceTree = "<group>"; };
+		36589C862080F39E00AD34F7 /* MDC-111-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MDC-111-Bridging-Header.h"; sourceTree = "<group>"; };
+		36589C892080F3C300AD34F7 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		36F246F6207EC3D900238A16 /* MDC-111.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MDC-111.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		36F246F9207EC3D900238A16 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		36F246FA207EC3D900238A16 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		36F246FC207EC3D900238A16 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		36F246FD207EC3D900238A16 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		36F24700207EC3D900238A16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		36F24702207EC3D900238A16 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		36F24705207EC3D900238A16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -84,14 +84,14 @@
 			children = (
 				36F246F9207EC3D900238A16 /* AppDelegate.h */,
 				36F246FA207EC3D900238A16 /* AppDelegate.m */,
-				36F246FC207EC3D900238A16 /* ViewController.h */,
-				36F246FD207EC3D900238A16 /* ViewController.m */,
+				36589C892080F3C300AD34F7 /* ViewController.swift */,
 				36F246FF207EC3D900238A16 /* Main.storyboard */,
 				36F24702207EC3D900238A16 /* Assets.xcassets */,
 				36F24704207EC3D900238A16 /* LaunchScreen.storyboard */,
 				36F24707207EC3D900238A16 /* Info.plist */,
 				36F24708207EC3D900238A16 /* main.m */,
 				36589C85207FBF5200AD34F7 /* Supplemental */,
+				36589C862080F39E00AD34F7 /* MDC-111-Bridging-Header.h */,
 			);
 			path = "MDC-111";
 			sourceTree = "<group>";
@@ -138,6 +138,7 @@
 				TargetAttributes = {
 					36F246F5207EC3D900238A16 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0930;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -242,8 +243,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				36F246FE207EC3D900238A16 /* ViewController.m in Sources */,
 				36F24709207EC3D900238A16 /* main.m in Sources */,
+				36589C8A2080F3C300AD34F7 /* ViewController.swift in Sources */,
 				36F246FB207EC3D900238A16 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -379,11 +380,15 @@
 			baseConfigurationReference = FD0788FBC42E37C5110C66BE /* Pods-MDC-111.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "MDC-111/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.google.2018.MDC-111";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MDC-111/MDC-111-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -393,11 +398,14 @@
 			baseConfigurationReference = 9F7119F949EA0737A1432E11 /* Pods-MDC-111.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "MDC-111/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.google.2018.MDC-111";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MDC-111/MDC-111-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
