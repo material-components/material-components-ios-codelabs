@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sSv-kk-vTb">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Shipping Address-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fOy-Jj-oui" customClass="MDCTextField">
+                                <rect key="frame" x="20" y="94" width="335" height="17"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="1MB-ha-k8h"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CyL-Fo-uIP" customClass="MDCTextField">
+                                <rect key="frame" x="20" y="111" width="335" height="17"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t51-su-knD" customClass="MDCTextField">
+                                <rect key="frame" x="20" y="128" width="335" height="17"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yOK-Jv-I38" customClass="MDCTextField">
+                                <rect key="frame" x="20" y="145" width="335" height="17"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Zip" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gKG-kT-JRH" customClass="MDCTextField">
+                                <rect key="frame" x="20" y="162" width="335" height="17"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NP0-i1-Mc8" customClass="MDCRaisedButton">
+                                <rect key="frame" x="267" y="211" width="88" height="29"/>
+                                <color key="backgroundColor" red="0.0" green="0.47058823529411764" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="88" id="bou-1N-zhv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                <state key="normal" title="SAVE">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveDidTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pj9-Gn-cA9"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NP0-i1-Mc8" secondAttribute="trailing" constant="20" id="0dX-ov-MbC"/>
+                            <constraint firstItem="NP0-i1-Mc8" firstAttribute="top" secondItem="gKG-kT-JRH" secondAttribute="bottom" constant="32" id="1Rr-t9-HxH"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="gKG-kT-JRH" secondAttribute="bottom" constant="32" id="1tc-QI-iPI"/>
+                            <constraint firstItem="CyL-Fo-uIP" firstAttribute="leading" secondItem="fOy-Jj-oui" secondAttribute="leading" id="5u6-7k-iPZ"/>
+                            <constraint firstItem="t51-su-knD" firstAttribute="trailing" secondItem="CyL-Fo-uIP" secondAttribute="trailing" id="6bB-hd-PWk"/>
+                            <constraint firstItem="gKG-kT-JRH" firstAttribute="trailing" secondItem="yOK-Jv-I38" secondAttribute="trailing" id="DaP-x0-n8M"/>
+                            <constraint firstItem="fOy-Jj-oui" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="EUF-Lw-Jvb"/>
+                            <constraint firstItem="gKG-kT-JRH" firstAttribute="top" secondItem="yOK-Jv-I38" secondAttribute="bottom" priority="750" id="Imo-ng-epG"/>
+                            <constraint firstItem="yOK-Jv-I38" firstAttribute="leading" secondItem="t51-su-knD" secondAttribute="leading" id="Inv-1Y-IVo"/>
+                            <constraint firstItem="yOK-Jv-I38" firstAttribute="top" secondItem="t51-su-knD" secondAttribute="bottom" priority="750" id="NNQ-KO-yi7"/>
+                            <constraint firstItem="fOy-Jj-oui" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="Wo6-l6-tDx"/>
+                            <constraint firstItem="fOy-Jj-oui" firstAttribute="trailing" secondItem="CyL-Fo-uIP" secondAttribute="trailing" id="dCs-4u-Kmr"/>
+                            <constraint firstItem="CyL-Fo-uIP" firstAttribute="top" secondItem="fOy-Jj-oui" secondAttribute="bottom" priority="750" id="h0C-Fq-b8w"/>
+                            <constraint firstItem="yOK-Jv-I38" firstAttribute="trailing" secondItem="t51-su-knD" secondAttribute="trailing" id="iBe-AS-JsY"/>
+                            <constraint firstItem="NP0-i1-Mc8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="inb-IU-MqU"/>
+                            <constraint firstItem="t51-su-knD" firstAttribute="leading" secondItem="CyL-Fo-uIP" secondAttribute="leading" id="mOW-ch-Hd5"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fOy-Jj-oui" secondAttribute="trailing" constant="20" id="pKG-UM-80t"/>
+                            <constraint firstItem="t51-su-knD" firstAttribute="top" secondItem="CyL-Fo-uIP" secondAttribute="bottom" priority="750" id="v5f-zl-bEH"/>
+                            <constraint firstItem="gKG-kT-JRH" firstAttribute="leading" secondItem="yOK-Jv-I38" secondAttribute="leading" id="veL-XL-Hz0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Shipping Address" id="AO4-PY-OFA"/>
+                    <connections>
+                        <outlet property="address" destination="CyL-Fo-uIP" id="97i-zx-Vct"/>
+                        <outlet property="city" destination="t51-su-knD" id="jbl-Gm-UDS"/>
+                        <outlet property="name" destination="fOy-Jj-oui" id="IsT-Eo-9xC"/>
+                        <outlet property="saveButton" destination="NP0-i1-Mc8" id="w5C-kA-COf"/>
+                        <outlet property="state" destination="yOK-Jv-I38" id="CKh-iK-5fG"/>
+                        <outlet property="zip" destination="gKG-kT-JRH" id="693-AS-kh0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="672.5" y="148.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="fTW-B4-dBm">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sSv-kk-vTb" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Tzh-ax-aWZ">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="xHy-HO-CLX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WHo-ld-UMA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="85.5" y="148.5"/>
+        </scene>
+    </scenes>
+</document>
