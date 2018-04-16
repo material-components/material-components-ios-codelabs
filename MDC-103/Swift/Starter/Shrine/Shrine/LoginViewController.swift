@@ -28,7 +28,9 @@ class LoginViewController: UIViewController {
   }()
 
   let logoImageView: UIImageView = {
-    let logoImageView = UIImageView(image: UIImage.init(named: "ShrineLogo"))
+    let baseImage = UIImage.init(named: "ShrineLogo")
+    let templatedImage = baseImage?.withRenderingMode(.alwaysTemplate)
+    let logoImageView = UIImageView(image: templatedImage)
     logoImageView.translatesAutoresizingMaskIntoConstraints = false
     return logoImageView
   }()
@@ -91,7 +93,8 @@ class LoginViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    scrollView.backgroundColor = ApplicationScheme().surfaceColor
+    view.tintColor = .black
+    scrollView.backgroundColor = .white
 
     view.addSubview(scrollView)
 
@@ -222,28 +225,8 @@ class LoginViewController: UIViewController {
     NSLayoutConstraint.activate(constraints)
 
     // TODO: Theme the interface with our colors
-    self.view.backgroundColor = ApplicationScheme.scheme.surfaceColor
-    self.logoImageView.tintColor = ApplicationScheme.scheme.onSurfaceColor
-    self.titleLabel.textColor = ApplicationScheme.scheme.onSurfaceColor
-    MDCTextFieldColorThemer.applySemanticColorScheme(ApplicationScheme.scheme,
-                                                     to: self.usernameTextFieldController)
-    MDCTextFieldColorThemer.applySemanticColorScheme(ApplicationScheme.scheme,
-                                                     to: self.passwordTextFieldController)
-    MDCButtonColorThemer.applySemanticColorScheme(ApplicationScheme.scheme,
-                                                  to: self.cancelButton)
-    MDCButtonColorThemer.applySemanticColorScheme(ApplicationScheme.scheme,
-                                                  to: self.nextButton)
 
-    // TODO: Theme the interface with our fonts
-    titleLabel.font = ApplicationScheme.scheme.headline5
-    MDCTextFieldTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme,
-                                                       to: usernameTextFieldController)
-    MDCTextFieldTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme,
-                                                       to: passwordTextFieldController)
-    MDCButtonTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme,
-                                                    to: cancelButton)
-    MDCButtonTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme,
-                                                    to: nextButton)
+    // TODO: Theme the interface with our typography
   }
 
   // MARK: - Gesture Handling
