@@ -82,30 +82,6 @@ class LoginViewController: UIViewController {
     passwordTextFieldController.placeholderText = "Password"
     passwordTextField.delegate = self
     registerKeyboardNotifications()
-
-    // TODO: Theme the interface with our colors
-    self.view.backgroundColor = ApplicationScheme.scheme.surfaceColor
-    self.logoImageView.tintColor = ApplicationScheme.scheme.onSurfaceColor
-    self.titleLabel.textColor = ApplicationScheme.scheme.onSurfaceColor
-    MDCTextFieldColorThemer.applySemanticColorScheme(ApplicationScheme.scheme,
-                                                     to: self.usernameTextFieldController)
-    MDCTextFieldColorThemer.applySemanticColorScheme(ApplicationScheme.scheme,
-                                                     to: self.passwordTextFieldController)
-    MDCButtonColorThemer.applySemanticColorScheme(ApplicationScheme.scheme,
-                                                  to: self.cancelButton)
-    MDCButtonColorThemer.applySemanticColorScheme(ApplicationScheme.scheme,
-                                                  to: self.nextButton)
-
-    // TODO: Theme the interface with our fonts
-    titleLabel.font = ApplicationScheme.scheme.headline5
-    MDCTextFieldTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme,
-                                                       to: usernameTextFieldController)
-    MDCTextFieldTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme,
-                                                       to: passwordTextFieldController)
-    MDCButtonTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme,
-                                                    to: cancelButton)
-    MDCButtonTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme,
-                                                    to: nextButton)
   }
 
   required init?(coder aDecoder: NSCoder) {
@@ -115,8 +91,7 @@ class LoginViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    let tempColor = ApplicationScheme().primaryColor
-    scrollView.backgroundColor = tempColor
+    scrollView.backgroundColor = ApplicationScheme().surfaceColor
 
     view.addSubview(scrollView)
 
@@ -245,6 +220,30 @@ class LoginViewController: UIViewController {
                                           constant: -20))
 
     NSLayoutConstraint.activate(constraints)
+
+    // TODO: Theme the interface with our colors
+    self.view.backgroundColor = ApplicationScheme.scheme.surfaceColor
+    self.logoImageView.tintColor = ApplicationScheme.scheme.onSurfaceColor
+    self.titleLabel.textColor = ApplicationScheme.scheme.onSurfaceColor
+    MDCTextFieldColorThemer.applySemanticColorScheme(ApplicationScheme.scheme,
+                                                     to: self.usernameTextFieldController)
+    MDCTextFieldColorThemer.applySemanticColorScheme(ApplicationScheme.scheme,
+                                                     to: self.passwordTextFieldController)
+    MDCButtonColorThemer.applySemanticColorScheme(ApplicationScheme.scheme,
+                                                  to: self.cancelButton)
+    MDCButtonColorThemer.applySemanticColorScheme(ApplicationScheme.scheme,
+                                                  to: self.nextButton)
+
+    // TODO: Theme the interface with our fonts
+    titleLabel.font = ApplicationScheme.scheme.headline5
+    MDCTextFieldTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme,
+                                                       to: usernameTextFieldController)
+    MDCTextFieldTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme,
+                                                       to: passwordTextFieldController)
+    MDCButtonTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme,
+                                                    to: cancelButton)
+    MDCButtonTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme,
+                                                    to: nextButton)
   }
 
   // MARK: - Gesture Handling

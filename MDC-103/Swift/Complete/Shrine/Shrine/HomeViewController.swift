@@ -34,6 +34,7 @@ class HomeViewController: UICollectionViewController {
 
     // AppBar Init
     self.addChildViewController(appBar.headerViewController)
+    self.appBar.headerViewController.headerView.trackingScrollView = self.collectionView
     appBar.addSubviewsToParent()
 
     // Setup Navigation Items
@@ -58,12 +59,22 @@ class HomeViewController: UICollectionViewController {
                                      target: nil,
                                      action: nil)
     self.navigationItem.rightBarButtonItems = [ tuneItem, searchItem ]
+
+    // TODO: Theme our interface with our colors
+    self.view.backgroundColor = ApplicationScheme().surfaceColor
+    self.collectionView?.backgroundColor = ApplicationScheme().surfaceColor
+    MDCAppBarColorThemer.applySemanticColorScheme(ApplicationScheme(), to:self.appBar)
+
+    // TODO: Theme our interface with our typography
+    MDCAppBarTypographyThemer.applyTypographyScheme(ApplicationScheme(), to: self.appBar)
+
+    // TODO: Set layout to our custom layout
+
   }
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
 
-    // TODO: Theme our interface with our colors
   }
 
   override func viewDidAppear(_ animated: Bool) {
@@ -106,6 +117,45 @@ class HomeViewController: UICollectionViewController {
     cell.nameLabel.text = product.productName
     cell.priceLabel.text = product.price
     return cell
+  }
+
+}
+
+//MARK: - UIScrollViewDelegate
+
+// The following four methods must be forwarded to the tracking scroll view in order to implement
+// the Flexible Header's behavior.
+
+extension HomeViewController {
+
+  override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    if (scrollView == self.appBar.headerViewController.headerView.trackingScrollView) {
+      self.appBar.headerViewController.headerView.trackingScrollDidScroll()
+    }
+  }
+
+  override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    if (scrollView == self.appBar.headerViewController.headerView.trackingScrollView) {
+      self.appBar.headerViewController.headerView.trackingScrollDidEndDecelerating()
+    }
+  }
+
+  override func scrollViewDidEndDragging(_ scrollView: UIScrollView,
+                                         willDecelerate decelerate: Bool) {
+    let headerView = self.appBar.headerViewController.headerView
+    if (scrollView == headerView.trackingScrollView) {
+      headerView.trackingScrollDidEndDraggingWillDecelerate(decelerate)
+    }
+  }
+
+  override func scrollViewWillEndDragging(_ scrollView: UIScrollView,
+                                          withVelocity velocity: CGPoint,
+                                          targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    let headerView = self.appBar.headerViewController.headerView
+    if (scrollView == headerView.trackingScrollView) {
+      headerView.trackingScrollWillEndDragging(withVelocity: velocity,
+                                               targetContentOffset: targetContentOffset)
+    }
   }
 
 }
