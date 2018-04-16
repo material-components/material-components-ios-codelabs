@@ -73,15 +73,10 @@ class HomeViewController: UICollectionViewController {
 
   }
 
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-
-  }
-
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
 
-    if (self.collectionViewLayout is UICollectionViewFlowLayout ) {
+    if (self.collectionViewLayout is UICollectionViewFlowLayout) {
       let flowLayout = self.collectionViewLayout as! UICollectionViewFlowLayout
       let HORIZONTAL_SPACING: CGFloat = 8.0
       let itemDimension: CGFloat = (self.view.frame.size.width - 3.0 * HORIZONTAL_SPACING) * 0.5
