@@ -158,13 +158,7 @@
 #pragma mark - Action Handling
 
 // Button Action Handlers
-- (void)didTapNext:(id)sender {
-  [self dismissViewControllerAnimated:YES completion:NULL];
-}
-
-- (void)didTapCancel:(id)sender {
-  [self dismissViewControllerAnimated:YES completion:NULL];
-}
+//TODO: Add Action Handlers
 
 #pragma mark - Keyboard Handling
 
