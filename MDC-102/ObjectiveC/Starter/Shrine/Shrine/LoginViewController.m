@@ -80,16 +80,20 @@
   [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapDidTouch:)];
   [self.scrollView addGestureRecognizer:tapGestureRecognizer];
 
-  self.titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-  self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-  self.titleLabel.text = @"Shrine";
-  [self.titleLabel sizeToFit];
-  [self.scrollView addSubview:self.titleLabel];
-
+  // Logo Init
   UIImage *logoImage = [UIImage imageNamed:@"ShrineLogo"];
-  self.logoImageView = [[UIImageView alloc] initWithImage:logoImage];
+  UIImage *templatedLogoImage =
+  [logoImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+  self.logoImageView = [[UIImageView alloc] initWithImage:templatedLogoImage];
   self.logoImageView.translatesAutoresizingMaskIntoConstraints = NO;
   [self.scrollView addSubview:self.logoImageView];
+
+  // Title Init
+  self.titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+  self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+  self.titleLabel.text = @"SHRINE";
+  [self.titleLabel sizeToFit];
+  [self.scrollView addSubview:self.titleLabel];
 
   // Text Field Init
   self.usernameTextField = [[MDCTextField alloc] initWithFrame:CGRectZero];
@@ -130,34 +134,14 @@
   [self.scrollView addSubview:self.nextButton];
 
   // Layout Constraints
-
   NSMutableArray <NSLayoutConstraint *> *constraints = [[NSMutableArray alloc] init];
-
-  NSLayoutConstraint *titleTopConstraint =
-  [NSLayoutConstraint constraintWithItem:self.titleLabel
-                               attribute:NSLayoutAttributeTop
-                               relatedBy:NSLayoutRelationEqual
-                                  toItem:self.scrollView.contentLayoutGuide
-                               attribute:NSLayoutAttributeTop
-                              multiplier:1
-                                constant:40];
-  [constraints addObject:titleTopConstraint];
-
-  NSLayoutConstraint *centerTitleConstraint =
-  [NSLayoutConstraint constraintWithItem:self.titleLabel
-                               attribute:NSLayoutAttributeCenterX
-                               relatedBy:NSLayoutRelationEqual
-                                  toItem:self.scrollView
-                               attribute:NSLayoutAttributeCenterX
-                              multiplier:1.f constant:0.f];
-  [constraints addObject:centerTitleConstraint];
 
   NSLayoutConstraint *logoTopConstraint =
   [NSLayoutConstraint constraintWithItem:self.logoImageView
                                attribute:NSLayoutAttributeTop
                                relatedBy:NSLayoutRelationEqual
-                                  toItem:self.titleLabel
-                               attribute:NSLayoutAttributeBottom
+                                  toItem:self.scrollView.contentLayoutGuide
+                               attribute:NSLayoutAttributeTop
                               multiplier:1
                                 constant:49];
   [constraints addObject:logoTopConstraint];
@@ -171,15 +155,34 @@
                               multiplier:1.f constant:0.f];
   [constraints addObject:centerLogoConstraint];
 
-  // Text Field Constraints
-  NSLayoutConstraint *usernameTopConstraint =
-  [NSLayoutConstraint constraintWithItem:self.usernameTextField
+  NSLayoutConstraint *titleTopConstraint =
+  [NSLayoutConstraint constraintWithItem:self.titleLabel
                                attribute:NSLayoutAttributeTop
                                relatedBy:NSLayoutRelationEqual
                                   toItem:self.logoImageView
                                attribute:NSLayoutAttributeBottom
                               multiplier:1
-                                constant:8];
+                                constant:22];
+  [constraints addObject:titleTopConstraint];
+
+  NSLayoutConstraint *centerTitleConstraint =
+  [NSLayoutConstraint constraintWithItem:self.titleLabel
+                               attribute:NSLayoutAttributeCenterX
+                               relatedBy:NSLayoutRelationEqual
+                                  toItem:self.scrollView
+                               attribute:NSLayoutAttributeCenterX
+                              multiplier:1.f constant:0.f];
+  [constraints addObject:centerTitleConstraint];
+
+  // Text Field Constraints
+  NSLayoutConstraint *usernameTopConstraint =
+  [NSLayoutConstraint constraintWithItem:self.usernameTextField
+                               attribute:NSLayoutAttributeTop
+                               relatedBy:NSLayoutRelationEqual
+                                  toItem:self.titleLabel
+                               attribute:NSLayoutAttributeBottom
+                              multiplier:1
+                                constant:22];
   [constraints addObject:usernameTopConstraint];
 
   NSLayoutConstraint *centerUsernameConstraint =
