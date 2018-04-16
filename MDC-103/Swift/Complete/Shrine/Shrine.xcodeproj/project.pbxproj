@@ -8,20 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		4018272320845F210016B9EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4018272220845F210016B9EA /* AppDelegate.swift */; };
-		4018272520845F210016B9EA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4018272420845F210016B9EA /* ViewController.swift */; };
 		4018272820845F210016B9EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4018272620845F210016B9EA /* Main.storyboard */; };
 		4018272A20845F220016B9EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4018272920845F220016B9EA /* Assets.xcassets */; };
 		4018272D20845F220016B9EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4018272B20845F220016B9EA /* LaunchScreen.storyboard */; };
+		4018273520845F610016B9EA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4018273420845F610016B9EA /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4018271F20845F210016B9EA /* Shrine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shrine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4018272220845F210016B9EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4018272420845F210016B9EA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4018272720845F210016B9EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4018272920845F220016B9EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4018272C20845F220016B9EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4018272E20845F220016B9EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4018273420845F610016B9EA /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +55,7 @@
 			isa = PBXGroup;
 			children = (
 				4018272220845F210016B9EA /* AppDelegate.swift */,
-				4018272420845F210016B9EA /* ViewController.swift */,
+				4018273420845F610016B9EA /* HomeViewController.swift */,
 				4018272620845F210016B9EA /* Main.storyboard */,
 				4018272920845F220016B9EA /* Assets.xcassets */,
 				4018272B20845F220016B9EA /* LaunchScreen.storyboard */,
@@ -135,8 +135,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4018272520845F210016B9EA /* ViewController.swift in Sources */,
 				4018272320845F210016B9EA /* AppDelegate.swift in Sources */,
+				4018273520845F610016B9EA /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,7 +286,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.Shrine;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.Shrine.swift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -303,7 +303,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.Shrine;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.Shrine.swift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
