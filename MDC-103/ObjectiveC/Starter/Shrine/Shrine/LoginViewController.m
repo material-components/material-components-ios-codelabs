@@ -52,7 +52,10 @@
 
   [self registerKeyboardNotifications];
 
+  self.view.tintColor = [UIColor blackColor];
   self.view.backgroundColor = [UIColor whiteColor];
+
+  self.title = @"Login";
 
   self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
   self.scrollView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -136,28 +139,8 @@
   [self.scrollView addSubview:self.nextButton];
 
   // TODO: Theme our interface with our colors
-  self.view.backgroundColor = [ApplicationScheme scheme].surfaceColor;
-  self.logoImageView.tintColor = [ApplicationScheme scheme].onSurfaceColor;
-  self.titleLabel.textColor = [ApplicationScheme scheme].onSurfaceColor;
-  [MDCTextFieldColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
-                              toTextInputController:self.usernameTextFieldController];
-  [MDCTextFieldColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
-                              toTextInputController:self.passwordTextFieldController];
-  [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
-                                    toFlatButton:self.cancelButton];
-  [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
-                                  toRaisedButton:self.nextButton];
 
   // TODO: Theme our interface with our typography
-  self.titleLabel.font = [ApplicationScheme scheme].headline5;
-  [MDCTextFieldTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
-                                toTextInputController:self.usernameTextFieldController];
-  [MDCTextFieldTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
-                                toTextInputController:self.passwordTextFieldController];
-  [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
-                                          toButton:self.cancelButton];
-  [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
-                                          toButton:self.nextButton];
 
   // Layout Constraints
   NSMutableArray <NSLayoutConstraint *> *constraints = [[NSMutableArray alloc] init];
