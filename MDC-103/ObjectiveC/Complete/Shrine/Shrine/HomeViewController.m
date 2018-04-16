@@ -42,6 +42,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+  self.view.tintColor = [UIColor blackColor];
+  self.view.backgroundColor = [UIColor whiteColor];
+
   self.title = @"Shrine";
 
   // Display the Login Screen the first time this controller is shown
