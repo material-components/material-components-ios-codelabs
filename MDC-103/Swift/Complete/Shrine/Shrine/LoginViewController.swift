@@ -18,22 +18,12 @@ import UIKit
 
 import MaterialComponents
 
-class HomeViewController: UICollectionViewController {
-  var shouldDisplayLogin = true
+class LoginViewController: UIViewController {
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
+    override func viewDidLoad() {
+      super.viewDidLoad()
 
-    self.collectionView?.backgroundColor = .orange
-  }
-
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
-
-    if (self.shouldDisplayLogin) {
-      let loginViewController = LoginViewController(nibName: nil, bundle: nil)
-      self.present(loginViewController, animated: false, completion: nil)
-      self.shouldDisplayLogin = false
+      self.view.backgroundColor = .blue
     }
-  }
+
 }

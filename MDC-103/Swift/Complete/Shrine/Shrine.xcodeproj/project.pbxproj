@@ -13,6 +13,7 @@
 		4018272A20845F220016B9EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4018272920845F220016B9EA /* Assets.xcassets */; };
 		4018272D20845F220016B9EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4018272B20845F220016B9EA /* LaunchScreen.storyboard */; };
 		4018273520845F610016B9EA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4018273420845F610016B9EA /* HomeViewController.swift */; };
+		4020097C2084636D00B7845B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4020097B2084636D00B7845B /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		4018272C20845F220016B9EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4018272E20845F220016B9EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4018273420845F610016B9EA /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		4020097B2084636D00B7845B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		51D867A462307E53590DDF61 /* Pods_Shrine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shrine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D128F203722E7B07CFDB2022 /* Pods-Shrine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shrine.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Shrine/Pods-Shrine.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -72,6 +74,7 @@
 			children = (
 				4018272220845F210016B9EA /* AppDelegate.swift */,
 				4018273420845F610016B9EA /* HomeViewController.swift */,
+				4020097B2084636D00B7845B /* LoginViewController.swift */,
 				4018272620845F210016B9EA /* Main.storyboard */,
 				4018272920845F220016B9EA /* Assets.xcassets */,
 				4018272B20845F220016B9EA /* LaunchScreen.storyboard */,
@@ -210,6 +213,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4020097C2084636D00B7845B /* LoginViewController.swift in Sources */,
 				4018272320845F210016B9EA /* AppDelegate.swift in Sources */,
 				4018273520845F610016B9EA /* HomeViewController.swift in Sources */,
 			);
@@ -358,7 +362,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Shrine/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.Shrine.swift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -373,7 +380,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Shrine/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.Shrine.swift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
