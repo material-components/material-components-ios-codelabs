@@ -90,10 +90,10 @@ class Catalog: NSObject {
   }
 
   public static let count: Int = {
-    return products.count
+    return Catalog.products.count
   }()
 
   public static func productAtIndex(index: Int) -> Product {
-    return products[index]
+    return Catalog.products[index]
   }
 }

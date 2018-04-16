@@ -30,10 +30,37 @@ class HomeViewController: UICollectionViewController {
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
 
+    if (self.collectionViewLayout is UICollectionViewFlowLayout ) {
+      let flowLayout = self.collectionViewLayout as! UICollectionViewFlowLayout
+      let HORIZONTAL_SPACING: CGFloat = 8.0
+      let itemDimension: CGFloat = (self.view.frame.size.width - 3.0 * HORIZONTAL_SPACING) * 0.5
+      let itemSize = CGSize(width: itemDimension, height: itemDimension)
+      flowLayout.itemSize = itemSize
+    }
+
     if (self.shouldDisplayLogin) {
       let loginViewController = LoginViewController(nibName: nil, bundle: nil)
       self.present(loginViewController, animated: false, completion: nil)
       self.shouldDisplayLogin = false
     }
   }
+
+  //MARK - UICollectionViewDataSource
+  override func collectionView(_ collectionView: UICollectionView,
+                               numberOfItemsInSection section: Int) -> Int {
+    return 11
+  }
+
+  override func collectionView(_ collectionView: UICollectionView,
+                               cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = self.collectionView?.dequeueReusableCell(withReuseIdentifier: "ProductCell",
+                                                        for: indexPath) as! ProductCell
+//    let product = Catalog.productAtIndex(index: indexPath.row)
+//    cell.nameLabel.text = product.productName
+//    cell.priceLabel.text = product.price
+    cell.nameLabel.text = "Product Name"
+    cell.priceLabel.text = "$33.44"
+    return cell
+  }
+
 }

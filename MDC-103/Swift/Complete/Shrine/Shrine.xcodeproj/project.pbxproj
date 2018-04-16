@@ -16,6 +16,7 @@
 		4020097C2084636D00B7845B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4020097B2084636D00B7845B /* LoginViewController.swift */; };
 		4020097E20846A9000B7845B /* ApplicationScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4020097D20846A9000B7845B /* ApplicationScheme.swift */; };
 		402009802084774C00B7845B /* Catalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4020097F2084774C00B7845B /* Catalog.swift */; };
+		4020098220847D0B00B7845B /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4020098120847D0B00B7845B /* ProductCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		4020097B2084636D00B7845B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4020097D20846A9000B7845B /* ApplicationScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationScheme.swift; sourceTree = "<group>"; };
 		4020097F2084774C00B7845B /* Catalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Catalog.swift; sourceTree = "<group>"; };
+		4020098120847D0B00B7845B /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		51D867A462307E53590DDF61 /* Pods_Shrine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shrine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D128F203722E7B07CFDB2022 /* Pods-Shrine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shrine.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Shrine/Pods-Shrine.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,6 +83,7 @@
 				4020097F2084774C00B7845B /* Catalog.swift */,
 				4018273420845F610016B9EA /* HomeViewController.swift */,
 				4020097B2084636D00B7845B /* LoginViewController.swift */,
+				4020098120847D0B00B7845B /* ProductCell.swift */,
 				4018272020845F210016B9EA /* Products */,
 				4018272620845F210016B9EA /* Main.storyboard */,
 				4018272920845F220016B9EA /* Assets.xcassets */,
@@ -223,6 +226,7 @@
 				402009802084774C00B7845B /* Catalog.swift in Sources */,
 				4020097C2084636D00B7845B /* LoginViewController.swift in Sources */,
 				4018272320845F210016B9EA /* AppDelegate.swift in Sources */,
+				4020098220847D0B00B7845B /* ProductCell.swift in Sources */,
 				4018273520845F610016B9EA /* HomeViewController.swift in Sources */,
 				4020097E20846A9000B7845B /* ApplicationScheme.swift in Sources */,
 			);
