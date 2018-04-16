@@ -109,11 +109,6 @@
   ProductCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"ProductCell" forIndexPath:indexPath];
 
   //TODO: Set the properties of the cell to reflect the product from the model
-  Product *product = [[Catalog productCatalog] productAtIndex:indexPath.row];
-  UIImage *productImage = [UIImage imageNamed:product.imageName];
-  cell.imageView.image = productImage;
-  cell.nameLabel.text = product.productName;
-  cell.priceLabel.text = product.price;
 
   return cell;
 }
