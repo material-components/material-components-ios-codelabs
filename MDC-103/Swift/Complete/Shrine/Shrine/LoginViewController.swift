@@ -28,7 +28,9 @@ class LoginViewController: UIViewController {
   }()
 
   let logoImageView: UIImageView = {
-    let logoImageView = UIImageView(image: UIImage.init(named: "ShrineLogo"))
+    let baseImage = UIImage.init(named: "ShrineLogo")
+    let templatedImage = baseImage?.withRenderingMode(.alwaysTemplate)
+    let logoImageView = UIImageView(image: templatedImage)
     logoImageView.translatesAutoresizingMaskIntoConstraints = false
     return logoImageView
   }()
