@@ -28,6 +28,7 @@
 @property (nonatomic) BOOL shouldDisplayLogin;
 
 // AppBar Property
+//TODO: Add AppBar Property
 @property(nonatomic, strong) MDCAppBar *appBar;
 
 @end
@@ -45,15 +46,16 @@
   // Display the Login Screen the first time this controller is shown
   [self displayLogin];
 
-  //TODO: Instantiate and add the AppBar
   // AppBar Init
-  _appBar = [[MDCAppBar alloc] init];
+  //TODO: Instantiate and add the AppBar
+  self.appBar = [[MDCAppBar alloc] init];
   [self addChildViewController:_appBar.headerViewController];
   // Set the tracking scroll view.
   self.appBar.headerViewController.headerView.trackingScrollView = self.collectionView;
   [self.appBar addSubviewsToParent];
 
   // Setup Navigation Items
+  //TODO: Add navigation items
   UIImage *menuItemImage = [UIImage imageNamed:@"MenuItem"];
   UIImage *templatedMenuItemImage = [menuItemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
   UIBarButtonItem *menuItem =
