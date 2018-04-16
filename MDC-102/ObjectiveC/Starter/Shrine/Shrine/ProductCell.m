@@ -22,8 +22,7 @@
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    // Configure the cell properties
-    self.backgroundColor = [UIColor whiteColor];
+    //TODO: Configure the cell properties
 
     //TODO: Add MDCCardCollectionCell specific properties
   }
