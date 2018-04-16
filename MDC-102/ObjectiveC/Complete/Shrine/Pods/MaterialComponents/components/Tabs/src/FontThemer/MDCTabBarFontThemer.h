@@ -19,6 +19,7 @@ limitations under the License.
 
 /**
  Used to apply a font scheme to theme MDCTabBar.
+ This Class will be deprecated soon please use MDCTabBarTypographyThemer instead.
  */
 @interface MDCTabBarFontThemer : NSObject
 
@@ -30,6 +31,6 @@ limitations under the License.
  @param tabBar A MDCTabBar instance to apply a color scheme.
  */
 + (void)applyFontScheme:(nonnull id<MDCFontScheme>)fontScheme
-               toTabBar:(nullable MDCTabBar *)tabBar;
+               toTabBar:(nonnull MDCTabBar *)tabBar;
 
 @end

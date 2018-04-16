@@ -18,7 +18,7 @@
 
 #import "MDCSnackbarOverlayView.h"
 
-#import "MDCSnackbarMessage.h"
+#import "../MDCSnackbarMessage.h"
 #import "MDCSnackbarMessageViewInternal.h"
 #import "MaterialAnimationTiming.h"
 #import "MaterialApplication.h"
@@ -412,7 +412,7 @@ static const CGFloat kMaximumHeight = 80.0f;
 }
 
 - (BOOL)anchoredToScreenEdge {
-  return self.bottomOffset == 0;
+  return [self dynamicBottomMargin] == 0;
 }
 
 #pragma mark - Safe Area Insets

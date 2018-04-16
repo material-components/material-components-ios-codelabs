@@ -47,6 +47,11 @@
 
   [self registerKeyboardNotifications];
 
+  self.view.tintColor = [UIColor blackColor];
+  self.view.backgroundColor = [UIColor whiteColor];
+
+  self.title = @"Login";
+
   self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
   self.scrollView.translatesAutoresizingMaskIntoConstraints = NO;
   self.view.backgroundColor = [UIColor whiteColor];

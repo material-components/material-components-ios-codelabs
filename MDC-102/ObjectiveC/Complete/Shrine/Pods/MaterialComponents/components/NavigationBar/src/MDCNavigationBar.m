@@ -25,6 +25,7 @@
 #import "MaterialTypography.h"
 
 
+static const NSUInteger kTitleFontSize = 20;
 static const CGFloat kNavigationBarDefaultHeight = 56;
 static const CGFloat kNavigationBarPadDefaultHeight = 64;
 static const UIEdgeInsets kTextInsets = {16, 16, 16, 16};
@@ -119,6 +120,7 @@ static NSString *const MDCNavigationBarTitleAlignmentKey = @"MDCNavigationBarTit
 
 @interface MDCNavigationBar (PrivateAPIs)
 
+/// titleLabel is hidden if there is a titleView. When not hidden, displays self.title.
 - (UILabel *)titleLabel;
 - (MDCButtonBar *)leadingButtonBar;
 - (MDCButtonBar *)trailingButtonBar;
@@ -149,9 +151,10 @@ static NSString *const MDCNavigationBarTitleAlignmentKey = @"MDCNavigationBarTit
 
 - (void)commonMDCNavigationBarInit {
   _observedNavigationItemLock = [[NSObject alloc] init];
+  _titleFont = [MDCTypography titleFont];
 
   _titleLabel = [[UILabel alloc] init];
-  _titleLabel.font = [MDCTypography titleFont];
+  _titleLabel.font = _titleFont;
   _titleLabel.accessibilityTraits |= UIAccessibilityTraitHeader;
   _titleLabel.textAlignment = NSTextAlignmentCenter;
   _leadingButtonBar = [[MDCButtonBar alloc] init];
@@ -260,6 +263,23 @@ static NSString *const MDCNavigationBarTitleAlignmentKey = @"MDCNavigationBarTit
   [aCoder encodeInteger:self.titleAlignment forKey:MDCNavigationBarTitleAlignmentKey];
 }
 
+- (void)setTitleFont:(UIFont *)titleFont {
+  // Using "fontWithSize:" did not work for system font medium, instead it returned a regular font.
+  _titleFont = [UIFont fontWithName:titleFont.fontName size:kTitleFontSize];
+  if (!_titleFont) {
+    _titleFont = [MDCTypography titleFont];
+  }
+  _titleLabel.font = _titleFont;
+}
+
+- (void)setTitleTextColor:(UIColor *)titleTextColor {
+  _titleLabel.textColor = titleTextColor;
+}
+
+- (UIColor *)titleTextColor {
+  return _titleLabel.textColor;
+}
+
 #pragma mark Accessibility
 
 - (NSArray<__kindof UIView *> *)accessibilityElements {
@@ -324,6 +344,7 @@ static NSString *const MDCNavigationBarTitleAlignmentKey = @"MDCNavigationBarTit
 
   UIEdgeInsets textInsets = [self usePadInsets] ? kTextPadInsets : kTextInsets;
 
+  // textFrame is used to determine layout of both TitleLabel and TitleView
   CGRect textFrame = UIEdgeInsetsInsetRect(self.bounds, textInsets);
   textFrame.origin.x += _leadingButtonBar.frame.size.width;
   textFrame.size.width -= _leadingButtonBar.frame.size.width + _trailingButtonBar.frame.size.width;
@@ -334,6 +355,7 @@ static NSString *const MDCNavigationBarTitleAlignmentKey = @"MDCNavigationBarTit
   }
 #endif
 
+  // Layout TitleLabel
   NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
   paraStyle.lineBreakMode = _titleLabel.lineBreakMode;
 
@@ -356,8 +378,12 @@ static NSString *const MDCNavigationBarTitleAlignmentKey = @"MDCNavigationBarTit
                                             withinBounds:textFrame
                                                alignment:titleVerticalAlignment];
   alignedFrame = [self mdc_frameAlignedHorizontally:alignedFrame alignment:self.titleAlignment];
-
   _titleLabel.frame = MDCRectAlignToScale(alignedFrame, self.window.screen.scale);
+
+  // Layout TitleView
+  if (self.mdf_effectiveUserInterfaceLayoutDirection == UIUserInterfaceLayoutDirectionRightToLeft) {
+    textFrame = MDFRectFlippedHorizontally(textFrame, CGRectGetWidth(self.bounds));
+  }
   self.titleView.frame = textFrame;
 
   // Button and title label alignment
@@ -626,10 +652,13 @@ static NSString *const MDCNavigationBarTitleAlignmentKey = @"MDCNavigationBarTit
 
   [self.titleView removeFromSuperview];
   _titleView = titleView;
-  [self addSubview:_titleView];
+
+  if (_titleView != nil) {
+    [self addSubview:_titleView];
+  }
 
   _titleLabel.hidden = _titleView != nil;
-
+    
   [self setNeedsLayout];
 }
 

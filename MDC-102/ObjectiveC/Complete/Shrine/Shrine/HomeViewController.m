@@ -37,46 +37,44 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+  self.view.tintColor = [UIColor blackColor];
   self.view.backgroundColor = [UIColor whiteColor];
 
   self.title = @"Shrine";
 
+  // Display the Login Screen the first time this controller is shown
   [self displayLogin];
 
+  //TODO: Instantiate and add the AppBar
   // AppBar Init
   _appBar = [[MDCAppBar alloc] init];
   [self addChildViewController:_appBar.headerViewController];
   // Set the tracking scroll view.
   self.appBar.headerViewController.headerView.trackingScrollView = self.collectionView;
-
-  // Choice: If you do not need to implement any delegate methods and you are not using a
-  //         collection view, you can use the headerViewController as the delegate.
-  // Alternative: See AppBarDelegateForwardingExample.
-  //  self.collectionView.delegate = self.appBar.headerViewController;
-  //TODO: (featherless@) The line above appears to work, but throws a warning.
-  // What is the best way forward?
-
   [self.appBar addSubviewsToParent];
 
   // Setup Navigation Items
   UIImage *menuItemImage = [UIImage imageNamed:@"MenuItem"];
+  UIImage *templatedMenuItemImage = [menuItemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
   UIBarButtonItem *menuItem =
-    [[UIBarButtonItem alloc] initWithImage:menuItemImage
-                                     style:UIBarButtonItemStylePlain
-                                    target:nil
-                                    action:nil];
+  [[UIBarButtonItem alloc] initWithImage:templatedMenuItemImage
+                                   style:UIBarButtonItemStylePlain
+                                  target:self
+                                  action:@selector(menuItemTapped:)];
   self.navigationItem.leftBarButtonItem = menuItem;
 
   UIImage *searchItemImage = [UIImage imageNamed:@"SearchItem"];
+  UIImage *templateSearchItemImage = [searchItemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
   UIBarButtonItem *searchItem =
-  [[UIBarButtonItem alloc] initWithImage:searchItemImage
+  [[UIBarButtonItem alloc] initWithImage:templateSearchItemImage
                                    style:UIBarButtonItemStylePlain
                                   target:nil
                                   action:nil];
 
   UIImage *tuneItemImage = [UIImage imageNamed:@"TuneItem"];
+  UIImage *templateTuneItemImage = [tuneItemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
   UIBarButtonItem *tuneItem =
-  [[UIBarButtonItem alloc] initWithImage:tuneItemImage
+  [[UIBarButtonItem alloc] initWithImage:templateTuneItemImage
                                    style:UIBarButtonItemStylePlain
                                   target:nil
                                   action:nil];
@@ -142,6 +140,46 @@
         [[LoginViewController alloc] initWithNibName:nil bundle:nil];
     [self presentViewController:loginViewController animated:YES completion:NULL];
     self.shouldDisplayLogin = NO;
+  }
+}
+
+- (void)menuItemTapped:(id)selector {
+  LoginViewController *loginViewController =
+  [[LoginViewController alloc] initWithNibName:nil bundle:nil];
+  [self presentViewController:loginViewController animated:YES completion:NULL];
+}
+
+#pragma mark - UIScrollViewDelegate
+
+// The following four methods must be forwarded to the tracking scroll view in order to implement
+// the Flexible Header's behavior with a collection view.
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+  if (scrollView == self.appBar.headerViewController.headerView.trackingScrollView) {
+    [self.appBar.headerViewController.headerView trackingScrollViewDidScroll];
+  }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+  if (scrollView == self.appBar.headerViewController.headerView.trackingScrollView) {
+    [self.appBar.headerViewController.headerView trackingScrollViewDidEndDecelerating];
+  }
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+  MDCFlexibleHeaderView *headerView = self.appBar.headerViewController.headerView;
+  if (scrollView == headerView.trackingScrollView) {
+    [headerView trackingScrollViewDidEndDraggingWillDecelerate:decelerate];
+  }
+}
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
+                     withVelocity:(CGPoint)velocity
+              targetContentOffset:(inout CGPoint *)targetContentOffset {
+  MDCFlexibleHeaderView *headerView = self.appBar.headerViewController.headerView;
+  if (scrollView == headerView.trackingScrollView) {
+    [headerView trackingScrollViewWillEndDraggingWithVelocity:velocity
+                                          targetContentOffset:targetContentOffset];
   }
 }
 

@@ -14,14 +14,14 @@
  limitations under the License.
  */
 
-#import <UIKit/UIKit.h>
+#import "MDCChipViewFontThemer.h"
+#import "MaterialChips.h"
+#import "MaterialThemes.h"
 
-@interface MDCButtonBarButton ()
+@implementation MDCChipViewFontThemer
 
-/**
- Content padding for the button.
- */
-//TODO(#2851): Can't we do this with the existing contentEdgeInsets
-@property(nonatomic) UIEdgeInsets contentPadding;
++ (void)applyFontScheme:(id<MDCFontScheme>)fontScheme toChipView:(MDCChipView *)chipView {
+  chipView.titleFont = fontScheme.body2;
+}
 
 @end
