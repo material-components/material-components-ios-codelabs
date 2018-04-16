@@ -20,13 +20,12 @@ import MaterialComponents
 
 class ApplicationScheme: NSObject, MDCColorScheming, MDCTypographyScheming {
   private static let colorScheme: MDCSemanticColorScheme = {
-    let scheme = MDCSemanticColorScheme()
+    let scheme = MDCSemanticColorScheme.init(defaults: .material201804)
     //TODO: Customize ApplicationScheme Colors
     scheme.primaryColor =
-      UIColor(red: 254.0/255.0, green: 206.0/255.0, blue: 82.0/255.0, alpha: 1.0)
-    scheme.onPrimaryColor =
-      UIColor(red: 76.0/255.0, green: 73.0/255.0, blue: 73.0/255.0, alpha: 1.0)
-    scheme.surfaceColor = UIColor(red: 65.0/255.0, green: 65.0/255.0, blue: 73.0/255.0, alpha: 1.0)
+      UIColor(red: 252.0/255.0, green: 184.0/255.0, blue: 171.0/255.0, alpha: 1.0)
+    scheme.onPrimaryColor = .black
+    scheme.surfaceColor = UIColor(red: 254.0/255.0, green: 219.0/255.0, blue: 208.0/255.0, alpha: 1.0)
     scheme.onSurfaceColor = .white
     return scheme
   }()
@@ -44,7 +43,7 @@ class ApplicationScheme: NSObject, MDCColorScheming, MDCTypographyScheming {
 
   private static var singleton = ApplicationScheme()
 
-  class func scheme() -> ApplicationScheme {
+  static var scheme: ApplicationScheme {
     return singleton
   }
 

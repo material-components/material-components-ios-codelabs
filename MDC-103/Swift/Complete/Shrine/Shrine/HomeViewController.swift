@@ -60,6 +60,12 @@ class HomeViewController: UICollectionViewController {
     self.navigationItem.rightBarButtonItems = [ tuneItem, searchItem ]
   }
 
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+
+    // TODO: Theme our interface with our colors
+  }
+
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
 

@@ -84,21 +84,27 @@ class LoginViewController: UIViewController {
     registerKeyboardNotifications()
 
     // TODO: Theme the interface with our colors
-    self.view.backgroundColor = ApplicationScheme.scheme().surfaceColor
-    self.logoImageView.tintColor = ApplicationScheme.scheme().onSurfaceColor
-    self.titleLabel.textColor = ApplicationScheme.scheme().onSurfaceColor
-    MDCTextFieldColorThemer.applySemanticColorScheme(ApplicationScheme.scheme(),
+    self.view.backgroundColor = ApplicationScheme.scheme.surfaceColor
+    self.logoImageView.tintColor = ApplicationScheme.scheme.onSurfaceColor
+    self.titleLabel.textColor = ApplicationScheme.scheme.onSurfaceColor
+    MDCTextFieldColorThemer.applySemanticColorScheme(ApplicationScheme.scheme,
                                                      to: self.usernameTextFieldController)
+    MDCTextFieldColorThemer.applySemanticColorScheme(ApplicationScheme.scheme,
+                                                     to: self.passwordTextFieldController)
+    MDCButtonColorThemer.applySemanticColorScheme(ApplicationScheme.scheme,
+                                                  to: self.cancelButton)
+    MDCButtonColorThemer.applySemanticColorScheme(ApplicationScheme.scheme,
+                                                  to: self.nextButton)
 
     // TODO: Theme the interface with our fonts
-    titleLabel.font = ApplicationScheme.scheme().headline5
-    MDCTextFieldTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme(),
+    titleLabel.font = ApplicationScheme.scheme.headline5
+    MDCTextFieldTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme,
                                                        to: usernameTextFieldController)
-    MDCTextFieldTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme(),
+    MDCTextFieldTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme,
                                                        to: passwordTextFieldController)
-    MDCButtonTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme(),
+    MDCButtonTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme,
                                                     to: cancelButton)
-    MDCButtonTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme(),
+    MDCButtonTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme,
                                                     to: nextButton)
   }
 

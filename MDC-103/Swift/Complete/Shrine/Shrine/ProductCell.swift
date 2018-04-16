@@ -28,8 +28,8 @@ class ProductCell: MDCCardCollectionCell {
     self.backgroundColor = .white
 
     //TODO: Set custom font based on our ApplicationScheme and center align text
-    self.nameLabel.font = ApplicationScheme.scheme().subtitle1
-    self.priceLabel.font = ApplicationScheme.scheme().subtitle1
+    self.nameLabel.font = ApplicationScheme.scheme.subtitle1
+    self.priceLabel.font = ApplicationScheme.scheme.subtitle1
     self.nameLabel.textAlignment = .center
     self.priceLabel.textAlignment = .center
 
