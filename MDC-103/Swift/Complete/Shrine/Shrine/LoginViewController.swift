@@ -36,7 +36,7 @@ class LoginViewController: UIViewController {
   let titleLabel: UILabel = {
     let titleLabel = UILabel()
     titleLabel.translatesAutoresizingMaskIntoConstraints = false
-    titleLabel.text = "Shrine"
+    titleLabel.text = "SHRINE"
     titleLabel.sizeToFit()
     return titleLabel
   }()
