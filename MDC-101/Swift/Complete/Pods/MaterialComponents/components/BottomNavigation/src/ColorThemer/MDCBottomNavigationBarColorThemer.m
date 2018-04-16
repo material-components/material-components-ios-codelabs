@@ -16,13 +16,22 @@
 
 #import "MDCBottomNavigationBarColorThemer.h"
 
+static const CGFloat kUnselectedOpacity = 0.6f;
+
 @implementation MDCBottomNavigationBarColorThemer
+
++ (void)applySemanticColorScheme:(nonnull id<MDCColorScheming>)colorScheme
+              toBottomNavigation:(nonnull MDCBottomNavigationBar *)bottomNavigation {
+  bottomNavigation.barTintColor = colorScheme.primaryColor;
+  bottomNavigation.selectedItemTintColor = colorScheme.onPrimaryColor;
+  CGFloat opacity = kUnselectedOpacity;
+  bottomNavigation.unselectedItemTintColor =
+      [colorScheme.onPrimaryColor colorWithAlphaComponent:opacity];
+}
 
 + (void)applyColorScheme:(id<MDCColorScheme>)colorScheme
     toBottomNavigationBar:(MDCBottomNavigationBar *)bottomNavigationBar {
-  bottomNavigationBar.selectedItemTintColor = colorScheme.primaryLightColor;
-  bottomNavigationBar.unselectedItemTintColor = colorScheme.primaryDarkColor;
-  bottomNavigationBar.backgroundColor = colorScheme.secondaryColor;
+  bottomNavigationBar.selectedItemTintColor = colorScheme.primaryColor;
 }
 
 @end

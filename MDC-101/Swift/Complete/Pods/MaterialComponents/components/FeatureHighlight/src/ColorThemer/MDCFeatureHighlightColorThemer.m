@@ -20,8 +20,19 @@
 
 + (void)applyColorScheme:(id<MDCColorScheme>)colorScheme
     toFeatureHighlightView:(MDCFeatureHighlightView *)featureHighlightView {
-  featureHighlightView.innerHighlightColor = colorScheme.primaryLightColor;
+  if ([colorScheme respondsToSelector:@selector(primaryLightColor)]) {
+    featureHighlightView.innerHighlightColor = colorScheme.primaryLightColor;
+  }
   featureHighlightView.outerHighlightColor = colorScheme.primaryColor;
+}
+
++ (void)applySemanticColorScheme:(id<MDCColorScheming>)colorScheme
+          toFeatureHighlightViewController:
+              (MDCFeatureHighlightViewController *)featureHighlightViewController {
+  featureHighlightViewController.innerHighlightColor = colorScheme.surfaceColor;
+  featureHighlightViewController.outerHighlightColor = colorScheme.primaryColor;
+  featureHighlightViewController.titleColor = colorScheme.onPrimaryColor;
+  featureHighlightViewController.bodyColor = colorScheme.onPrimaryColor;
 }
 
 @end

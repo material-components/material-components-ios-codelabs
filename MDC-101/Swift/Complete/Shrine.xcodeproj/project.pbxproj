@@ -100,7 +100,6 @@
 				400CAD37205C990900DC981A /* Frameworks */,
 				400CAD38205C990900DC981A /* Resources */,
 				94A12DD0039F81C1C20C03A5 /* [CP] Embed Pods Frameworks */,
-				2C6FFD5DECE82991809B49EF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -158,21 +157,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2C6FFD5DECE82991809B49EF /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Shrine/Pods-Shrine-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		477932B13986BAECAB6D63A8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
