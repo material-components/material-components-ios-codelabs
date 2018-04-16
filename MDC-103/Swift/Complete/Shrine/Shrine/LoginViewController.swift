@@ -91,6 +91,9 @@ class LoginViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    let tempColor = ApplicationScheme().primaryColor
+    scrollView.backgroundColor = tempColor
+
     view.addSubview(scrollView)
 
     NSLayoutConstraint.activate(
