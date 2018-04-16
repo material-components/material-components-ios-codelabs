@@ -1,8 +1,0 @@
-/* Accessibility label for indeterminate activity indicator in progress */
-"MaterialActivityIndicatorInProgressAccessibilityLabel" = "In Progress";
-
-/* Accessibility label for indeterminate activity indicator in progress */
-"MaterialActivityIndicatorProgressCompletedAccessibilityLabel" = "%ld Percent Complete";
-
-/* Accessibility label for activity indicator progress halted */
-"MaterialActivityIndicatorProgressHaltedAccessibilityLabel" = "Progress Halted";
