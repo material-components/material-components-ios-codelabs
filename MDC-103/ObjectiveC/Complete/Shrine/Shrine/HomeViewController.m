@@ -119,21 +119,6 @@
   }
 }
 
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
-  [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-
-  // We are using a standard flow layout so we update our collection layout item size based on
-  // the width of the size
-  if ([self.collectionViewLayout isKindOfClass:[UICollectionViewFlowLayout class]]) {
-    UICollectionViewFlowLayout *flowLayout =
-    (UICollectionViewFlowLayout *)self.collectionViewLayout;
-    CGFloat HORIZONTAL_SPACING = 8;  // Spacing between the edges of cards
-    CGFloat itemDimension = (size.width - 3 * HORIZONTAL_SPACING) * 0.5;
-    CGSize itemSize = CGSizeMake(itemDimension, itemDimension);
-    flowLayout.itemSize = itemSize;
-  }
-}
-
 #pragma mark - Methods
 
 - (void)displayLogin {
