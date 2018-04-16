@@ -34,10 +34,10 @@ class ProductCell: MDCCardCollectionCell {
     self.priceLabel.textAlignment = .center
 
     //TODO: Set to 0 to disable the curved corners
-    self.cornerRadius = 8.0;
+    self.cornerRadius = 0.0;
 
     //TODO: Set Border Width to 0 to disable the stroke outline
-    self.setBorderWidth(1.0, for:.normal)
+    self.setBorderWidth(0.0, for:.normal)
     self.setBorderColor(.lightGray, for: .normal)
   }
 

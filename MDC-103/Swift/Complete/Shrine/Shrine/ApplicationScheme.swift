@@ -33,7 +33,7 @@ class ApplicationScheme: NSObject, MDCColorScheming, MDCTypographyScheming {
   private static let typographyScheme: MDCTypographyScheme = {
     let scheme = MDCTypographyScheme()
     //TODO: Customize ApplicationScheme Fonts
-    let fontName = "Chalkduster"
+    let fontName = "Rubik"
     scheme.headline5 = UIFont(name: fontName, size: 24)!
     scheme.headline6 = UIFont(name: fontName, size: 20)!
     scheme.subtitle1 = UIFont(name: fontName, size: 16)!
