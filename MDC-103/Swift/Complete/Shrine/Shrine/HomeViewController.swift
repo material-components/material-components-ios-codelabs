@@ -20,11 +20,44 @@ import MaterialComponents
 
 class HomeViewController: UICollectionViewController {
   var shouldDisplayLogin = true
+  var appBar = MDCAppBar()
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    self.view.tintColor = .black
+    self.view.backgroundColor = .white
+
+    self.title = "Shrine"
+
     self.collectionView?.backgroundColor = .orange
+
+    // AppBar Init
+    self.addChildViewController(appBar.headerViewController)
+    appBar.addSubviewsToParent()
+
+    // Setup Navigation Items
+    let menuItemImage = UIImage(named: "MenuItem")
+    let templatedMenuItemImage = menuItemImage?.withRenderingMode(.alwaysTemplate)
+    let menuItem = UIBarButtonItem(image: templatedMenuItemImage,
+                                   style: .plain,
+                                   target: self,
+                                   action: #selector(menuItemTapped(sender:)))
+    self.navigationItem.leftBarButtonItem = menuItem
+
+    let searchItemImage = UIImage(named: "SearchItem")
+    let templatedSearchItemImage = searchItemImage?.withRenderingMode(.alwaysTemplate)
+    let searchItem = UIBarButtonItem(image: templatedSearchItemImage,
+                                   style: .plain,
+                                   target: nil,
+                                   action: nil)
+    let tuneItemImage = UIImage(named: "TuneItem")
+    let templatedTuneItemImage = tuneItemImage?.withRenderingMode(.alwaysTemplate)
+    let tuneItem = UIBarButtonItem(image: templatedTuneItemImage,
+                                     style: .plain,
+                                     target: nil,
+                                     action: nil)
+    self.navigationItem.rightBarButtonItems = [ tuneItem, searchItem ]
   }
 
   override func viewDidAppear(_ animated: Bool) {
@@ -43,6 +76,12 @@ class HomeViewController: UICollectionViewController {
       self.present(loginViewController, animated: false, completion: nil)
       self.shouldDisplayLogin = false
     }
+  }
+
+  //MARK - Methods
+  @objc func menuItemTapped(sender: Any) {
+    let loginViewController = LoginViewController(nibName: nil, bundle: nil)
+    self.present(loginViewController, animated: true, completion: nil)
   }
 
   //MARK - UICollectionViewDataSource
