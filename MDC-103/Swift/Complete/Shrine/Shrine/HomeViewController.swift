@@ -69,6 +69,7 @@ class HomeViewController: UICollectionViewController {
     MDCAppBarTypographyThemer.applyTypographyScheme(ApplicationScheme(), to: self.appBar)
 
     // TODO: Set layout to our custom layout
+    self.collectionView!.collectionViewLayout = CustomLayout()
 
   }
 
