@@ -31,8 +31,8 @@
 @property(nonatomic) MDCTextField *usernameTextField;
 @property(nonatomic) MDCTextField *passwordTextField;
 
-@property(nonatomic) MDCTextInputControllerFilled *usernameTextFieldController;
-@property(nonatomic) MDCTextInputControllerFilled *passwordTextFieldController;
+@property(nonatomic) MDCTextInputControllerOutlined *usernameTextFieldController;
+@property(nonatomic) MDCTextInputControllerOutlined *passwordTextFieldController;
 
 // Button Properties
 @property(nonatomic) MDCFlatButton *cancelButton;
@@ -99,7 +99,7 @@
   [self.scrollView addSubview:self.usernameTextField];
 
   self.usernameTextFieldController =
-  [[MDCTextInputControllerFilled alloc] initWithTextInput:self.usernameTextField];
+  [[MDCTextInputControllerOutlined alloc] initWithTextInput:self.usernameTextField];
   self.usernameTextFieldController.placeholderText = @"Username";
 
   self.passwordTextField = [[MDCTextField alloc] initWithFrame:CGRectZero];
@@ -109,7 +109,7 @@
   [self.scrollView addSubview:self.passwordTextField];
 
   self.passwordTextFieldController =
-  [[MDCTextInputControllerFilled alloc] initWithTextInput:self.passwordTextField];
+  [[MDCTextInputControllerOutlined alloc] initWithTextInput:self.passwordTextField];
   self.passwordTextFieldController.placeholderText = @"Password";
 
   // Button Init
@@ -234,15 +234,6 @@
                               multiplier:1
                                 constant:8];
   [constraints addObject:cancelTopConstraint];
-
-  NSLayoutConstraint *centerCancelConstraint =
-  [NSLayoutConstraint constraintWithItem:self.cancelButton
-                               attribute:NSLayoutAttributeCenterX
-                               relatedBy:NSLayoutRelationEqual
-                                  toItem:self.scrollView
-                               attribute:NSLayoutAttributeCenterX
-                              multiplier:1.f constant:0.f];
-  [constraints addObject:centerCancelConstraint];
 
   NSLayoutConstraint *centerButtonsConstraint =
   [NSLayoutConstraint constraintWithItem:self.cancelButton

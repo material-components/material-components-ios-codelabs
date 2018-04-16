@@ -376,7 +376,7 @@
 				DEVELOPMENT_TEAM = EQHXZ8M8AV;
 				INFOPLIST_FILE = Shrine/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.Shrine;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.Shrine.objc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "ababcf4f-b7fa-4e93-ab24-7ea27469d950";
 				PROVISIONING_PROFILE_SPECIFIER = "Google Development";
@@ -393,7 +393,7 @@
 				DEVELOPMENT_TEAM = EQHXZ8M8AV;
 				INFOPLIST_FILE = Shrine/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.Shrine;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.Shrine.objc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "ababcf4f-b7fa-4e93-ab24-7ea27469d950";
 				PROVISIONING_PROFILE_SPECIFIER = "Google Development";
