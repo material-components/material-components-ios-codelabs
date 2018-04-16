@@ -32,8 +32,6 @@ class Product: NSObject {
 class Catalog: NSObject {
   private static var products = [Product]()
 
-  private static var singleton = Catalog()
-
   override init() {
     super.init()
 
@@ -85,9 +83,11 @@ class Catalog: NSObject {
     //TODO: Finish Catalog
   }
 
-  class func productCatalog() -> Catalog {
-    return singleton
-  }
+//  private static var singleton = Catalog()
+//
+//  class func productCatalog() -> Catalog {
+//    return singleton
+//  }
 
   public static let count: Int = {
     return Catalog.products.count
