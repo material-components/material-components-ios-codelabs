@@ -97,6 +97,7 @@ class HomeViewController: UICollectionViewController {
 //    let product = Catalog.productAtIndex(index: indexPath.row)
 //    cell.nameLabel.text = product.productName
 //    cell.priceLabel.text = product.price
+    cell.imageView.image = UIImage(named: "ProductUmbrella")
     cell.nameLabel.text = "Product Name"
     cell.priceLabel.text = "$33.44"
     return cell
