@@ -42,6 +42,11 @@ class ApplicationScheme: NSObject, MDCColorScheming, MDCTypographyScheming {
     return scheme
   }()
 
+  private static var singleton = ApplicationScheme()
+
+  class func scheme() -> ApplicationScheme {
+    return singleton
+  }
 
   public private(set) var primaryColor: UIColor = {
     return colorScheme.primaryColor
