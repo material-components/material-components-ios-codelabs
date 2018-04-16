@@ -87,20 +87,18 @@ class HomeViewController: UICollectionViewController {
   //MARK - UICollectionViewDataSource
   override func collectionView(_ collectionView: UICollectionView,
                                numberOfItemsInSection section: Int) -> Int {
-//    return Catalog.count
-    return 11
+    let count = Catalog.count
+    return count
   }
 
   override func collectionView(_ collectionView: UICollectionView,
                                cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = self.collectionView?.dequeueReusableCell(withReuseIdentifier: "ProductCell",
                                                         for: indexPath) as! ProductCell
-//    let product = Catalog.productAtIndex(index: indexPath.row)
-//    cell.nameLabel.text = product.productName
-//    cell.priceLabel.text = product.price
-    cell.imageView.image = UIImage(named: "ProductUmbrella")
-    cell.nameLabel.text = "Product Name"
-    cell.priceLabel.text = "$33.44"
+    let product = Catalog.productAtIndex(index: indexPath.row)
+    cell.imageView.image = UIImage(named: product.imageName)
+    cell.nameLabel.text = product.productName
+    cell.priceLabel.text = product.price
     return cell
   }
 
