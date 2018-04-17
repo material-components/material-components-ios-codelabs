@@ -19,6 +19,7 @@
 #import <MaterialComponents/MaterialAppBar.h>
 #import <MaterialComponents/MaterialButtons.h>
 #import <MaterialComponents/MaterialNavigationBar.h>
+#import <MaterialComponents/MDCAppBarColorThemer.h>
 #import <MaterialComponents/MDCButtonColorThemer.h>
 #import <MaterialComponents/MDCButtonTypographyThemer.h>
 #import <MaterialComponents/MDCNavigationBarColorThemer.h>
@@ -30,7 +31,7 @@
 @interface BackdropViewController ()
 
 // AppBar Property
-@property(nonatomic, strong) MDCAppBar *appBar;
+@property(nonatomic) MDCAppBar *appBar;
 
 // NavigationBar Property
 @property(nonatomic) MDCNavigationBar *navigationBar;
@@ -53,6 +54,8 @@
   [super viewDidLoad];
 
   self.view.backgroundColor = [ApplicationScheme scheme].surfaceColor;
+
+  self.title = @"Shrine";
 
   // Setup Navigation Items
   UIImage *menuItemImage = [UIImage imageNamed:@"MenuItem"];
@@ -82,14 +85,11 @@
   self.navigationItem.rightBarButtonItems = @[ tuneItem, searchItem ];
 
   // NavigationBar Init
-  //  _appBar = [[MDCAppBar alloc] init];
-  //  [self addChildViewController:_appBar.headerViewController];
-  self.navigationBar = [[MDCNavigationBar alloc] init];
-  self.navigationBar.translatesAutoresizingMaskIntoConstraints = NO;
-  self.navigationBar.title = @"SHRINE";
-  [MDCNavigationBarColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
-                                        toNavigationBar:self.navigationBar];
-  [self.view addSubview:self.navigationBar];
+  _appBar = [[MDCAppBar alloc] init];
+  [self addChildViewController:_appBar.headerViewController];
+  [self.appBar addSubviewsToParent];
+  [MDCAppBarColorThemer applySemanticColorScheme:[ApplicationScheme scheme] toAppBar:_appBar];
+  self.appBar.navigationBar.translatesAutoresizingMaskIntoConstraints = NO;
 
   // Button Init
   self.featuredButton = [[MDCFlatButton alloc] init];
@@ -165,40 +165,41 @@
   [self.view addSubview:self.accountButton];
 
   NSMutableArray <NSLayoutConstraint *> *constraints = [[NSMutableArray alloc] init];
-  NSLayoutConstraint *navbarTopConstraint =
-  [NSLayoutConstraint constraintWithItem:self.navigationBar
-                               attribute:NSLayoutAttributeTop
-                               relatedBy:NSLayoutRelationEqual
-                                  toItem:self.view
-                               attribute:NSLayoutAttributeTop
-                              multiplier:1
-                                constant:0];
-  [constraints addObject:navbarTopConstraint];
 
-  NSLayoutConstraint *navbarHeightConstraint =
-  [NSLayoutConstraint constraintWithItem:self.navigationBar
-                               attribute:NSLayoutAttributeHeight
-                               relatedBy:NSLayoutRelationEqual
-                                  toItem:nil
-                               attribute:NSLayoutAttributeNotAnAttribute
-                              multiplier:1
-                                constant:72];
-  [constraints addObject:navbarHeightConstraint];
-
-  NSLayoutConstraint *navbarWidthConstraint =
-  [NSLayoutConstraint constraintWithItem:self.navigationBar
-                               attribute:NSLayoutAttributeWidth
-                               relatedBy:NSLayoutRelationEqual
-                                  toItem:self.view
-                               attribute:NSLayoutAttributeWidth
-                              multiplier:1
-                                constant:0];
-  [constraints addObject:navbarWidthConstraint];
+//  NSLayoutConstraint *navbarTopConstraint =
+//  [NSLayoutConstraint constraintWithItem:self.appBar.navigationBar
+//                               attribute:NSLayoutAttributeTop
+//                               relatedBy:NSLayoutRelationEqual
+//                                  toItem:self.view
+//                               attribute:NSLayoutAttributeTop
+//                              multiplier:1
+//                                constant:0];
+//  [constraints addObject:navbarTopConstraint];
+//
+//  NSLayoutConstraint *navbarHeightConstraint =
+//  [NSLayoutConstraint constraintWithItem:self.appBar.navigationBar
+//                               attribute:NSLayoutAttributeHeight
+//                               relatedBy:NSLayoutRelationEqual
+//                                  toItem:nil
+//                               attribute:NSLayoutAttributeNotAnAttribute
+//                              multiplier:1
+//                                constant:72];
+//  [constraints addObject:navbarHeightConstraint];
+//
+//  NSLayoutConstraint *navbarWidthConstraint =
+//  [NSLayoutConstraint constraintWithItem:self.appBar.navigationBar
+//                               attribute:NSLayoutAttributeWidth
+//                               relatedBy:NSLayoutRelationEqual
+//                                  toItem:self.view
+//                               attribute:NSLayoutAttributeWidth
+//                              multiplier:1
+//                                constant:0];
+//  [constraints addObject:navbarWidthConstraint];
 
   [constraints addObject:[NSLayoutConstraint constraintWithItem:self.featuredButton attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
 
   NSDictionary *nameView = @{
-                             @"navigationbar" : self.navigationBar,
+                             @"navigationbar" : self.appBar.navigationBar,
                              @"featured" : self.featuredButton,
                              @"apartment" : self.apartmentButton,
                              @"accessories" : self.accessoriesButton,
@@ -209,7 +210,7 @@
                              @"account" : self.accountButton,
                              };
   [constraints addObjectsFromArray:[NSLayoutConstraint
-                                    constraintsWithVisualFormat:@"V:[navigationbar][featured][apartment][accessories][shoes][tops][bottoms][dresses][account]"
+                                    constraintsWithVisualFormat:@"V:|[navigationbar]-[featured]-[apartment]-[accessories]-[shoes]-[tops]-[bottoms]-[dresses]-[account]"
                                     options:NSLayoutFormatAlignAllCenterX
                                     metrics:nil
                                     views:nameView]];
