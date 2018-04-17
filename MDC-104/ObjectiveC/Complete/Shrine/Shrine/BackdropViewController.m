@@ -46,6 +46,9 @@
 @property(nonatomic) MDCFlatButton *dressesButton;
 @property(nonatomic) MDCFlatButton *accountButton;
 
+// NavigationBar Property
+@property(nonatomic, getter=isFocusedEmbeddedController) BOOL focusedEmbeddedController;
+
 @end
 
 @implementation BackdropViewController
@@ -72,16 +75,16 @@
   UIBarButtonItem *searchItem =
   [[UIBarButtonItem alloc] initWithImage:templateSearchItemImage
                                    style:UIBarButtonItemStylePlain
-                                  target:nil
-                                  action:nil];
+                                  target:self
+                                  action:@selector(filterItemTapped:)];
 
   UIImage *tuneItemImage = [UIImage imageNamed:@"TuneItem"];
   UIImage *templateTuneItemImage = [tuneItemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
   UIBarButtonItem *tuneItem =
   [[UIBarButtonItem alloc] initWithImage:templateTuneItemImage
                                    style:UIBarButtonItemStylePlain
-                                  target:nil
-                                  action:nil];
+                                  target:self
+                                  action:@selector(filterItemTapped:)];
   self.navigationItem.rightBarButtonItems = @[ tuneItem, searchItem ];
 
   // NavigationBar Init
@@ -217,12 +220,26 @@
   [NSLayoutConstraint activateConstraints:constraints];
 }
 
-#pragma mark - Methods
+#pragma mark - Action Methods
 
 - (void)menuItemTapped:(id)selector {
   LoginViewController *loginViewController =
   [[LoginViewController alloc] initWithNibName:nil bundle:nil];
   [self presentViewController:loginViewController animated:YES completion:NULL];
+}
+
+- (void)filterItemTapped:(id)selector {
+  // Toggle CatalogView
+}
+
+#pragma mark - Controller Containment
+
+- (void)insertController:(UIViewController *)viewController {
+
+}
+
+- (void)removeController {
+
 }
 
 @end
