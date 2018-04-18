@@ -44,6 +44,7 @@ class LoginViewController: UIViewController {
   }()
 
   // Text Fields
+  //TODO: Add text fields
   let usernameTextField: MDCTextField = {
     let usernameTextField = MDCTextField()
     usernameTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -56,10 +57,12 @@ class LoginViewController: UIViewController {
     return passwordTextField
   }()
 
+  //TODO: Add text field controllers
   let usernameTextFieldController: MDCTextInputControllerOutlined
   let passwordTextFieldController: MDCTextInputControllerOutlined
 
   // Buttons
+  //TODO: Add buttons
   let cancelButton: MDCFlatButton = {
     let cancelButton = MDCFlatButton()
     cancelButton.translatesAutoresizingMaskIntoConstraints = false
@@ -76,14 +79,10 @@ class LoginViewController: UIViewController {
   }()
 
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    //TODO: Setup text field controllers
     usernameTextFieldController = MDCTextInputControllerOutlined(textInput: usernameTextField)
     passwordTextFieldController = MDCTextInputControllerOutlined(textInput: passwordTextField)
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    usernameTextFieldController.placeholderText = "Username"
-    usernameTextField.delegate = self
-    passwordTextFieldController.placeholderText = "Password"
-    passwordTextField.delegate = self
-    registerKeyboardNotifications()
   }
 
   required init?(coder aDecoder: NSCoder) {
@@ -117,13 +116,19 @@ class LoginViewController: UIViewController {
     scrollView.addSubview(logoImageView)
 
     // TextFields
+    //TODO: Add text fields to scroll view and setup initial state
     scrollView.addSubview(usernameTextField)
     scrollView.addSubview(passwordTextField)
+    usernameTextFieldController.placeholderText = "Username"
+    usernameTextField.delegate = self
+    passwordTextFieldController.placeholderText = "Password"
+    passwordTextField.delegate = self
+    registerKeyboardNotifications()
 
     // Buttons
+    //TODO: Add buttons to the scroll view
     scrollView.addSubview(nextButton)
     scrollView.addSubview(cancelButton)
-
 
     // Constraints
     var constraints = [NSLayoutConstraint]()
@@ -156,6 +161,7 @@ class LoginViewController: UIViewController {
                                           multiplier: 1,
                                           constant: 0))
     // Text Fields
+    //TODO: Setup text field constraints
     constraints.append(NSLayoutConstraint(item: usernameTextField,
                                           attribute: .top,
                                           relatedBy: .equal,
@@ -194,7 +200,9 @@ class LoginViewController: UIViewController {
                                      options: [],
                                      metrics: nil,
                                      views: [ "password" : passwordTextField]))
+
     // Buttons
+    //TODO: Setup button constraints
     constraints.append(NSLayoutConstraint(item: cancelButton,
                                           attribute: .top,
                                           relatedBy: .equal,
@@ -223,10 +231,6 @@ class LoginViewController: UIViewController {
                                           constant: -20))
 
     NSLayoutConstraint.activate(constraints)
-
-    // TODO: Theme the interface with our colors
-
-    // TODO: Theme the interface with our typography
   }
 
   // MARK: - Gesture Handling
@@ -236,6 +240,7 @@ class LoginViewController: UIViewController {
   }
 
   // MARK: - Action Handling
+  //TODO: Add the button handlers
 
   @objc func didTapNext(sender: Any) {
     self.dismiss(animated: true, completion: nil)
@@ -277,10 +282,10 @@ class LoginViewController: UIViewController {
 }
 
 
+// MARK: - UITextFieldDelegate
 extension LoginViewController: UITextFieldDelegate {
 
-  // MARK: - UITextFieldDelegate
-
+  //TODO: Add basic password field validation
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     textField.resignFirstResponder();
 
