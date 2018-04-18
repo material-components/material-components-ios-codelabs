@@ -26,6 +26,7 @@
 #import <MaterialComponents/MDCNavigationBarTypographyThemer.h>
 
 #import "ApplicationScheme.h"
+#import "HomeViewController.h"
 #import "LoginViewController.h"
 
 @interface BackdropViewController ()
@@ -46,12 +47,18 @@
 @property(nonatomic) MDCFlatButton *dressesButton;
 @property(nonatomic) MDCFlatButton *accountButton;
 
-// NavigationBar Property
+// Is embedded controller in the foreground / focused
 @property(nonatomic, getter=isFocusedEmbeddedController) BOOL focusedEmbeddedController;
+
+
+@property(nonatomic) UIViewController *embeddedViewController;
+@property(nonatomic) UIView *embeddedView;
 
 @end
 
-@implementation BackdropViewController
+@implementation BackdropViewController {
+  BOOL _focusedEmbeddedController;
+}
 
 - (void)viewDidLoad {
   [super viewDidLoad];
@@ -218,6 +225,42 @@
                                     metrics:nil
                                     views:nameView]];
   [NSLayoutConstraint activateConstraints:constraints];
+
+  // Setup embedded view
+  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+  UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"HomeViewController"];
+  [self insertController:viewController];
+}
+
+#pragma mark - UIViewController
+
+- (void)viewWillLayoutSubviews {
+  [super viewWillLayoutSubviews];
+}
+
+- (void)viewDidLayoutSubviews {
+  [super viewDidLayoutSubviews];
+
+  CGRect embeddedFrame = CGRectStandardize(self.view.bounds);
+  UIEdgeInsets insetHeader = UIEdgeInsetsZero;
+  insetHeader.top = CGRectGetMaxY(self.appBar.headerViewController.view.frame);
+  embeddedFrame = UIEdgeInsetsInsetRect(embeddedFrame, insetHeader);
+
+  if (self.isFocusedEmbeddedController) {
+    embeddedFrame.origin.y = CGRectStandardize(self.view.bounds).size.height -
+    CGRectGetHeight(self.appBar.navigationBar.frame);
+  }
+
+  self.embeddedView.frame = embeddedFrame;
+}
+
+- (BOOL)isFocusedEmbeddedController {
+  return _focusedEmbeddedController;
+}
+
+- (void)setFocusedEmbeddedController:(BOOL)focusedEmbeddedController {
+  _focusedEmbeddedController = focusedEmbeddedController;
+  [self.view setNeedsLayout];
 }
 
 #pragma mark - Action Methods
@@ -230,12 +273,28 @@
 
 - (void)filterItemTapped:(id)selector {
   // Toggle CatalogView
+  self.focusedEmbeddedController = !self.isFocusedEmbeddedController;
 }
 
 #pragma mark - Controller Containment
 
 - (void)insertController:(UIViewController *)viewController {
+  if (self.embeddedViewController) {
+    [self.embeddedViewController willMoveToParentViewController:nil];
+    [self.embeddedViewController removeFromParentViewController];
+    self.embeddedViewController = nil;
 
+    [self.embeddedView removeFromSuperview];
+    self.embeddedView = nil;
+  }
+  if (viewController) {
+    [viewController willMoveToParentViewController:self];
+    [self addChildViewController:viewController];
+    self.embeddedViewController = viewController;
+
+    [self.view addSubview:viewController.view];
+    self.embeddedView = viewController.view;
+  }
 }
 
 - (void)removeController {

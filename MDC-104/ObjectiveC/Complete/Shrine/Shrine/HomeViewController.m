@@ -47,55 +47,58 @@
 
   self.title = @"Shrine";
 
+  //KMKM: Remove
   // Display the Login Screen the first time this controller is shown
-  [self displayLogin];
+//  [self displayLogin];
 
   // AppBar Init
-  _appBar = [[MDCAppBar alloc] init];
-  [self addChildViewController:_appBar.headerViewController];
-  // Set the tracking scroll view.
-  self.appBar.headerViewController.headerView.trackingScrollView = self.collectionView;
-  [self.appBar addSubviewsToParent];
+  //KMKM
+  //TODO: Remove AppBar
+//  _appBar = [[MDCAppBar alloc] init];
+//  [self addChildViewController:_appBar.headerViewController];
+//  // Set the tracking scroll view.
+//  self.appBar.headerViewController.headerView.trackingScrollView = self.collectionView;
+//  [self.appBar addSubviewsToParent];
 
   // Setup Navigation Items
-  UIImage *menuItemImage = [UIImage imageNamed:@"MenuItem"];
-  UIImage *templatedMenuItemImage = [menuItemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-  UIBarButtonItem *menuItem =
-    [[UIBarButtonItem alloc] initWithImage:templatedMenuItemImage
-                                     style:UIBarButtonItemStylePlain
-                                    target:self
-                                    action:@selector(menuItemTapped:)];
-  self.navigationItem.leftBarButtonItem = menuItem;
+//  UIImage *menuItemImage = [UIImage imageNamed:@"MenuItem"];
+//  UIImage *templatedMenuItemImage = [menuItemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+//  UIBarButtonItem *menuItem =
+//    [[UIBarButtonItem alloc] initWithImage:templatedMenuItemImage
+//                                     style:UIBarButtonItemStylePlain
+//                                    target:self
+//                                    action:@selector(menuItemTapped:)];
+//  self.navigationItem.leftBarButtonItem = menuItem;
+//
+//  UIImage *searchItemImage = [UIImage imageNamed:@"SearchItem"];
+//  UIImage *templateSearchItemImage = [searchItemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+//  UIBarButtonItem *searchItem =
+//  [[UIBarButtonItem alloc] initWithImage:templateSearchItemImage
+//                                   style:UIBarButtonItemStylePlain
+//                                  target:nil
+//                                  action:nil];
+//
+//  UIImage *tuneItemImage = [UIImage imageNamed:@"TuneItem"];
+//  UIImage *templateTuneItemImage = [tuneItemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+//  UIBarButtonItem *tuneItem =
+//  [[UIBarButtonItem alloc] initWithImage:templateTuneItemImage
+//                                   style:UIBarButtonItemStylePlain
+//                                  target:nil
+//                                  action:nil];
+//  self.navigationItem.rightBarButtonItems = @[ tuneItem, searchItem ];
 
-  UIImage *searchItemImage = [UIImage imageNamed:@"SearchItem"];
-  UIImage *templateSearchItemImage = [searchItemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-  UIBarButtonItem *searchItem =
-  [[UIBarButtonItem alloc] initWithImage:templateSearchItemImage
-                                   style:UIBarButtonItemStylePlain
-                                  target:nil
-                                  action:nil];
-
-  UIImage *tuneItemImage = [UIImage imageNamed:@"TuneItem"];
-  UIImage *templateTuneItemImage = [tuneItemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-  UIBarButtonItem *tuneItem =
-  [[UIBarButtonItem alloc] initWithImage:templateTuneItemImage
-                                   style:UIBarButtonItemStylePlain
-                                  target:nil
-                                  action:nil];
-  self.navigationItem.rightBarButtonItems = @[ tuneItem, searchItem ];
-
-  // TODO: Theme our interface with our colors
   self.view.backgroundColor = [ApplicationScheme scheme].surfaceColor;
   self.collectionView.backgroundColor = [ApplicationScheme scheme].surfaceColor;
   [MDCAppBarColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
                                         toAppBar:self.appBar];
 
-  // TODO: Theme our interface with our typography
   [MDCAppBarTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
                                           toAppBar:self.appBar];
 
-  // TODO: Set layout to our custom layout
   self.collectionView.collectionViewLayout = [[CustomLayout alloc] init];
+
+  //TODO: Cut Corner
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {

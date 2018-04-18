@@ -13,7 +13,7 @@
         <!--Home View Controller-->
         <scene sceneID="Da9-AU-Zky">
             <objects>
-                <collectionViewController id="gQb-Xg-rKp" customClass="HomeViewController" sceneMemberID="viewController">
+                <collectionViewController restorationIdentifier="HomeViewController" storyboardIdentifier="HomeViewController" id="gQb-Xg-rKp" customClass="HomeViewController" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="sT6-uc-3Ax">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
