@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		400CAD3E205C990900DC981A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400CAD3D205C990900DC981A /* AppDelegate.swift */; };
-		400CAD40205C990900DC981A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400CAD3F205C990900DC981A /* ViewController.swift */; };
 		400CAD45205C990900DC981A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 400CAD44205C990900DC981A /* Assets.xcassets */; };
 		400CAD48205C990900DC981A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 400CAD46205C990900DC981A /* LaunchScreen.storyboard */; };
 		400CAD50205C992F00DC981A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400CAD4F205C992F00DC981A /* LoginViewController.swift */; };
@@ -21,7 +20,6 @@
 		21692A69FA19E55E609FEE4B /* Pods-Shrine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shrine.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shrine/Pods-Shrine.release.xcconfig"; sourceTree = "<group>"; };
 		400CAD3A205C990900DC981A /* Shrine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shrine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		400CAD3D205C990900DC981A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		400CAD3F205C990900DC981A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		400CAD44205C990900DC981A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		400CAD47205C990900DC981A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		400CAD49205C990900DC981A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -68,7 +66,6 @@
 				400CAD3D205C990900DC981A /* AppDelegate.swift */,
 				407540402087E32200783900 /* HomeViewController.swift */,
 				400CAD4F205C992F00DC981A /* LoginViewController.swift */,
-				400CAD3F205C990900DC981A /* ViewController.swift */,
 				407540422087E3B200783900 /* Main.storyboard */,
 				400CAD44205C990900DC981A /* Assets.xcassets */,
 				400CAD46205C990900DC981A /* LaunchScreen.storyboard */,
@@ -218,7 +215,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				400CAD50205C992F00DC981A /* LoginViewController.swift in Sources */,
-				400CAD40205C990900DC981A /* ViewController.swift in Sources */,
 				400CAD3E205C990900DC981A /* AppDelegate.swift in Sources */,
 				407540412087E32200783900 /* HomeViewController.swift in Sources */,
 			);
