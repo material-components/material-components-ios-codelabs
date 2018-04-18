@@ -15,6 +15,7 @@
  */
 
 import UIKit
+
 import MaterialComponents
 
 class LoginViewController: UIViewController {
@@ -26,18 +27,20 @@ class LoginViewController: UIViewController {
     return scrollView
   }()
 
+  let logoImageView: UIImageView = {
+    let baseImage = UIImage.init(named: "ShrineLogo")
+    let templatedImage = baseImage?.withRenderingMode(.alwaysTemplate)
+    let logoImageView = UIImageView(image: templatedImage)
+    logoImageView.translatesAutoresizingMaskIntoConstraints = false
+    return logoImageView
+  }()
+
   let titleLabel: UILabel = {
     let titleLabel = UILabel()
     titleLabel.translatesAutoresizingMaskIntoConstraints = false
-    titleLabel.text = "Shrine"
+    titleLabel.text = "SHRINE"
     titleLabel.sizeToFit()
     return titleLabel
-  }()
-
-  let logoImageView: UIImageView = {
-    let logoImageView = UIImageView(image: UIImage.init(named: "ShrineLogo"))
-    logoImageView.translatesAutoresizingMaskIntoConstraints = false
-    return logoImageView
   }()
 
   // Text Fields
@@ -53,27 +56,28 @@ class LoginViewController: UIViewController {
     return passwordTextField
   }()
 
-  let usernameTextFieldController: MDCTextInputControllerFilled
-  let passwordTextFieldController: MDCTextInputControllerFilled
+  let usernameTextFieldController: MDCTextInputControllerOutlined
+  let passwordTextFieldController: MDCTextInputControllerOutlined
 
   // Buttons
   let cancelButton: MDCFlatButton = {
     let cancelButton = MDCFlatButton()
     cancelButton.translatesAutoresizingMaskIntoConstraints = false
     cancelButton.setTitle("CANCEL", for: .normal)
+    cancelButton.addTarget(self, action: #selector(didTapCancel(sender:)), for: .touchUpInside)
     return cancelButton
   }()
   let nextButton: MDCRaisedButton = {
     let nextButton = MDCRaisedButton()
     nextButton.translatesAutoresizingMaskIntoConstraints = false
     nextButton.setTitle("NEXT", for: .normal)
+    nextButton.addTarget(self, action: #selector(didTapNext(sender:)), for: .touchUpInside)
     return nextButton
   }()
 
-
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-    usernameTextFieldController = MDCTextInputControllerFilled(textInput: usernameTextField)
-    passwordTextFieldController = MDCTextInputControllerFilled(textInput: passwordTextField)
+    usernameTextFieldController = MDCTextInputControllerOutlined(textInput: usernameTextField)
+    passwordTextFieldController = MDCTextInputControllerOutlined(textInput: passwordTextField)
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     usernameTextFieldController.placeholderText = "Username"
     usernameTextField.delegate = self
@@ -86,141 +90,162 @@ class LoginViewController: UIViewController {
     fatalError("init(coder:) has not been implemented")
   }
 
-    override func viewDidLoad() {
-      super.viewDidLoad()
+  override func viewDidLoad() {
+    super.viewDidLoad()
 
-      view.addSubview(scrollView)
+    view.tintColor = .black
+    scrollView.backgroundColor = .white
 
-      NSLayoutConstraint.activate(
-        NSLayoutConstraint.constraints(withVisualFormat: "V:|[scrollView]|",
-                                       options: [],
-                                       metrics: nil,
-                                       views: ["scrollView" : scrollView])
-        )
-      NSLayoutConstraint.activate(
-        NSLayoutConstraint.constraints(withVisualFormat: "H:|[scrollView]|",
-                                       options: [],
-                                       metrics: nil,
-                                       views: ["scrollView" : scrollView])
-      )
-      let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapTouch))
-      scrollView.addGestureRecognizer(tapGestureRecognizer)
+    view.addSubview(scrollView)
 
-      scrollView.addSubview(titleLabel)
-      scrollView.addSubview(logoImageView)
+    NSLayoutConstraint.activate(
+      NSLayoutConstraint.constraints(withVisualFormat: "V:|[scrollView]|",
+                                     options: [],
+                                     metrics: nil,
+                                     views: ["scrollView" : scrollView])
+    )
+    NSLayoutConstraint.activate(
+      NSLayoutConstraint.constraints(withVisualFormat: "H:|[scrollView]|",
+                                     options: [],
+                                     metrics: nil,
+                                     views: ["scrollView" : scrollView])
+    )
+    let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapTouch))
+    scrollView.addGestureRecognizer(tapGestureRecognizer)
 
-      // TextFields
-      scrollView.addSubview(usernameTextField)
-      scrollView.addSubview(passwordTextField)
+    scrollView.addSubview(titleLabel)
+    scrollView.addSubview(logoImageView)
 
-      // Buttons
-      scrollView.addSubview(nextButton)
-      scrollView.addSubview(cancelButton)
+    // TextFields
+    scrollView.addSubview(usernameTextField)
+    scrollView.addSubview(passwordTextField)
+
+    // Buttons
+    scrollView.addSubview(nextButton)
+    scrollView.addSubview(cancelButton)
 
 
-      // Constraints
-      var constraints = [NSLayoutConstraint]()
-      constraints.append(NSLayoutConstraint(item: titleLabel,
-                                            attribute: .top,
-                                            relatedBy: .equal,
-                                            toItem: scrollView.contentLayoutGuide,
-                                            attribute: .topMargin,
-                                            multiplier: 1,
-                                            constant: 40))
-      constraints.append(NSLayoutConstraint(item: titleLabel,
-                                            attribute: .centerX,
-                                            relatedBy: .equal,
-                                            toItem: scrollView,
-                                            attribute: .centerX,
-                                            multiplier: 1,
-                                            constant: 0))
-      constraints.append(NSLayoutConstraint(item: logoImageView,
-                                            attribute: .top,
-                                            relatedBy: .equal,
-                                            toItem: titleLabel,
-                                            attribute: .bottom,
-                                            multiplier: 1,
-                                            constant: 49))
-      constraints.append(NSLayoutConstraint(item: logoImageView,
-                                            attribute: .centerX,
-                                            relatedBy: .equal,
-                                            toItem: scrollView,
-                                            attribute: .centerX,
-                                            multiplier: 1,
-                                            constant: 0))
-      // Text Fields
-      constraints.append(NSLayoutConstraint(item: usernameTextField,
-                                            attribute: .top,
-                                            relatedBy: .equal,
-                                            toItem: logoImageView,
-                                            attribute: .bottom,
-                                            multiplier: 1,
-                                            constant: 8))
-      constraints.append(NSLayoutConstraint(item: usernameTextField,
-                                            attribute: .centerX,
-                                            relatedBy: .equal,
-                                            toItem: scrollView,
-                                            attribute: .centerX,
-                                            multiplier: 1,
-                                            constant: 8))
-      constraints.append(contentsOf:
-        NSLayoutConstraint.constraints(withVisualFormat: "H:|-[username]-|",
-                                       options: [],
-                                       metrics: nil,
-                                       views: [ "username" : usernameTextField]))
-      constraints.append(NSLayoutConstraint(item: passwordTextField,
-                                            attribute: .top,
-                                            relatedBy: .equal,
-                                            toItem: usernameTextField,
-                                            attribute: .bottom,
-                                            multiplier: 1,
-                                            constant: 8))
-      constraints.append(NSLayoutConstraint(item: passwordTextField,
-                                            attribute: .centerX,
-                                            relatedBy: .equal,
-                                            toItem: scrollView,
-                                            attribute: .centerX,
-                                            multiplier: 1,
-                                            constant: 8))
-      constraints.append(contentsOf:
-        NSLayoutConstraint.constraints(withVisualFormat: "H:|-[password]-|",
-                                       options: [],
-                                       metrics: nil,
-                                       views: [ "password" : passwordTextField]))
-      // Buttons
-      constraints.append(NSLayoutConstraint(item: cancelButton,
-                                            attribute: .top,
-                                            relatedBy: .equal,
-                                            toItem: passwordTextField,
-                                            attribute: .bottom,
-                                            multiplier: 1,
-                                            constant: 8))
-      constraints.append(NSLayoutConstraint(item: cancelButton,
-                                            attribute: .centerY,
-                                            relatedBy: .equal,
-                                            toItem: nextButton,
-                                            attribute: .centerY,
-                                            multiplier: 1,
-                                            constant: 0))
-      constraints.append(contentsOf:
-        NSLayoutConstraint.constraints(withVisualFormat: "H:[cancel]-[next]-|",
-                                       options: NSLayoutFormatOptions(rawValue: 0),
-                                       metrics: nil,
-                                       views: [ "cancel" : cancelButton, "next" : nextButton]))
-      constraints.append(NSLayoutConstraint(item: nextButton,
-                                            attribute: .bottom,
-                                            relatedBy: .equal,
-                                            toItem: scrollView.contentLayoutGuide,
-                                            attribute: .bottomMargin,
-                                            multiplier: 1,
-                                            constant: -20))
+    // Constraints
+    var constraints = [NSLayoutConstraint]()
+    constraints.append(NSLayoutConstraint(item: logoImageView,
+                                          attribute: .top,
+                                          relatedBy: .equal,
+                                          toItem: scrollView.contentLayoutGuide,
+                                          attribute: .top,
+                                          multiplier: 1,
+                                          constant: 49))
+    constraints.append(NSLayoutConstraint(item: logoImageView,
+                                          attribute: .centerX,
+                                          relatedBy: .equal,
+                                          toItem: scrollView,
+                                          attribute: .centerX,
+                                          multiplier: 1,
+                                          constant: 0))
+    constraints.append(NSLayoutConstraint(item: titleLabel,
+                                          attribute: .top,
+                                          relatedBy: .equal,
+                                          toItem: logoImageView,
+                                          attribute: .bottom,
+                                          multiplier: 1,
+                                          constant: 22))
+    constraints.append(NSLayoutConstraint(item: titleLabel,
+                                          attribute: .centerX,
+                                          relatedBy: .equal,
+                                          toItem: scrollView,
+                                          attribute: .centerX,
+                                          multiplier: 1,
+                                          constant: 0))
+    // Text Fields
+    constraints.append(NSLayoutConstraint(item: usernameTextField,
+                                          attribute: .top,
+                                          relatedBy: .equal,
+                                          toItem: titleLabel,
+                                          attribute: .bottom,
+                                          multiplier: 1,
+                                          constant: 22))
+    constraints.append(NSLayoutConstraint(item: usernameTextField,
+                                          attribute: .centerX,
+                                          relatedBy: .equal,
+                                          toItem: scrollView,
+                                          attribute: .centerX,
+                                          multiplier: 1,
+                                          constant: 0))
+    constraints.append(contentsOf:
+      NSLayoutConstraint.constraints(withVisualFormat: "H:|-[username]-|",
+                                     options: [],
+                                     metrics: nil,
+                                     views: [ "username" : usernameTextField]))
+    constraints.append(NSLayoutConstraint(item: passwordTextField,
+                                          attribute: .top,
+                                          relatedBy: .equal,
+                                          toItem: usernameTextField,
+                                          attribute: .bottom,
+                                          multiplier: 1,
+                                          constant: 8))
+    constraints.append(NSLayoutConstraint(item: passwordTextField,
+                                          attribute: .centerX,
+                                          relatedBy: .equal,
+                                          toItem: scrollView,
+                                          attribute: .centerX,
+                                          multiplier: 1,
+                                          constant: 8))
+    constraints.append(contentsOf:
+      NSLayoutConstraint.constraints(withVisualFormat: "H:|-[password]-|",
+                                     options: [],
+                                     metrics: nil,
+                                     views: [ "password" : passwordTextField]))
+    // Buttons
+    constraints.append(NSLayoutConstraint(item: cancelButton,
+                                          attribute: .top,
+                                          relatedBy: .equal,
+                                          toItem: passwordTextField,
+                                          attribute: .bottom,
+                                          multiplier: 1,
+                                          constant: 8))
+    constraints.append(NSLayoutConstraint(item: cancelButton,
+                                          attribute: .centerY,
+                                          relatedBy: .equal,
+                                          toItem: nextButton,
+                                          attribute: .centerY,
+                                          multiplier: 1,
+                                          constant: 0))
+    constraints.append(contentsOf:
+      NSLayoutConstraint.constraints(withVisualFormat: "H:[cancel]-[next]-|",
+                                     options: NSLayoutFormatOptions(rawValue: 0),
+                                     metrics: nil,
+                                     views: [ "cancel" : cancelButton, "next" : nextButton]))
+    constraints.append(NSLayoutConstraint(item: nextButton,
+                                          attribute: .bottom,
+                                          relatedBy: .equal,
+                                          toItem: scrollView.contentLayoutGuide,
+                                          attribute: .bottomMargin,
+                                          multiplier: 1,
+                                          constant: -20))
 
-      NSLayoutConstraint.activate(constraints)
-    }
+    NSLayoutConstraint.activate(constraints)
+
+    // TODO: Theme the interface with our colors
+
+    // TODO: Theme the interface with our typography
+  }
+
+  // MARK: - Gesture Handling
 
   @objc func didTapTouch(sender: UIGestureRecognizer) {
     view.endEditing(true)
   }
+
+  // MARK: - Action Handling
+
+  @objc func didTapNext(sender: Any) {
+    self.dismiss(animated: true, completion: nil)
+  }
+
+  @objc func didTapCancel(sender: Any) {
+    self.dismiss(animated: true, completion: nil)
+  }
+
+  // MARK: - Keyboard Handling
 
   func registerKeyboardNotifications() {
     NotificationCenter.default.addObserver(
@@ -251,7 +276,11 @@ class LoginViewController: UIViewController {
   }
 }
 
+
 extension LoginViewController: UITextFieldDelegate {
+
+  // MARK: - UITextFieldDelegate
+
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     textField.resignFirstResponder();
 
@@ -266,5 +295,3 @@ extension LoginViewController: UITextFieldDelegate {
     return false
   }
 }
-
-

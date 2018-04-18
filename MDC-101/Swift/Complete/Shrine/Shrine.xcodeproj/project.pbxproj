@@ -12,6 +12,8 @@
 		400CAD45205C990900DC981A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 400CAD44205C990900DC981A /* Assets.xcassets */; };
 		400CAD48205C990900DC981A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 400CAD46205C990900DC981A /* LaunchScreen.storyboard */; };
 		400CAD50205C992F00DC981A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400CAD4F205C992F00DC981A /* LoginViewController.swift */; };
+		407540412087E32200783900 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407540402087E32200783900 /* HomeViewController.swift */; };
+		407540432087E3B200783900 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 407540422087E3B200783900 /* Main.storyboard */; };
 		5405F893208A3E7988638CA1 /* Pods_Shrine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE372C1AAE9F6FBB63638824 /* Pods_Shrine.framework */; };
 /* End PBXBuildFile section */
 
@@ -24,6 +26,8 @@
 		400CAD47205C990900DC981A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		400CAD49205C990900DC981A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		400CAD4F205C992F00DC981A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		407540402087E32200783900 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		407540422087E3B200783900 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		A0777E7B612A6D9D46AC5BBB /* Pods-Shrine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shrine.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Shrine/Pods-Shrine.debug.xcconfig"; sourceTree = "<group>"; };
 		BE372C1AAE9F6FBB63638824 /* Pods_Shrine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shrine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -62,8 +66,10 @@
 			isa = PBXGroup;
 			children = (
 				400CAD3D205C990900DC981A /* AppDelegate.swift */,
+				407540402087E32200783900 /* HomeViewController.swift */,
 				400CAD4F205C992F00DC981A /* LoginViewController.swift */,
 				400CAD3F205C990900DC981A /* ViewController.swift */,
+				407540422087E3B200783900 /* Main.storyboard */,
 				400CAD44205C990900DC981A /* Assets.xcassets */,
 				400CAD46205C990900DC981A /* LaunchScreen.storyboard */,
 				400CAD49205C990900DC981A /* Info.plist */,
@@ -122,7 +128,7 @@
 				TargetAttributes = {
 					400CAD39205C990900DC981A = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -149,6 +155,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				407540432087E3B200783900 /* Main.storyboard in Resources */,
 				400CAD48205C990900DC981A /* LaunchScreen.storyboard in Resources */,
 				400CAD45205C990900DC981A /* Assets.xcassets in Resources */,
 			);
@@ -213,6 +220,7 @@
 				400CAD50205C992F00DC981A /* LoginViewController.swift in Sources */,
 				400CAD40205C990900DC981A /* ViewController.swift in Sources */,
 				400CAD3E205C990900DC981A /* AppDelegate.swift in Sources */,
+				407540412087E32200783900 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,12 +350,14 @@
 			baseConfigurationReference = A0777E7B612A6D9D46AC5BBB /* Pods-Shrine.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = AJH3QX5L6U;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Shrine/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.Shrine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -358,12 +368,14 @@
 			baseConfigurationReference = 21692A69FA19E55E609FEE4B /* Pods-Shrine.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = AJH3QX5L6U;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Shrine/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.Shrine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
