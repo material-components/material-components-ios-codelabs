@@ -18,9 +18,6 @@
 
 @interface CustomLayout ()
 
-@property (nonatomic) CGSize landscapeItemSize;
-@property (nonatomic) CGSize portraitItemSize;
-
 @property (nonatomic) CGSize itemASize;
 @property (nonatomic) CGSize itemBSize;
 @property (nonatomic) CGSize itemCSize;
@@ -64,12 +61,12 @@ static CGFloat HORIZONTAL_PADDING = .10;
       (self.collectionView.contentInset.top + self.collectionView.contentInset.bottom);
   CGFloat contentWidth = CGRectGetWidth(parentFrame);
 
-  self.landscapeItemSize = CGSizeMake(contentWidth * .46, contentHeight * .32);
-  self.portraitItemSize = CGSizeMake(contentWidth * .32, contentHeight * .54);
+  CGSize landscapeItemSize = CGSizeMake(contentWidth * .46, contentHeight * .32);
+  CGSize portraitItemSize = CGSizeMake(contentWidth * .32, contentHeight * .54);
 
-  self.itemASize = self.landscapeItemSize;
-  self.itemBSize = self.landscapeItemSize;
-  self.itemCSize = self.portraitItemSize;
+  self.itemASize = landscapeItemSize;
+  self.itemBSize = landscapeItemSize;
+  self.itemCSize = portraitItemSize;
 
   self.itemAOffset = CGPointMake(contentWidth * HORIZONTAL_PADDING, contentHeight * .66);
   self.itemBOffset = CGPointMake(contentWidth * .3, contentHeight * .16);

@@ -26,8 +26,9 @@
 #import <MaterialComponents/MDCNavigationBarTypographyThemer.h>
 
 #import "ApplicationScheme.h"
+#import "Catalog.h"
+#import "HomeViewController.h"
 #import "LoginViewController.h"
-#import "ProductsViewController.h"
 #import "ShapedShadowedView.h"
 
 @interface BackdropViewController ()
@@ -51,6 +52,7 @@
 // Is embedded controller in the foreground / focused
 @property(nonatomic, getter=isFocusedEmbeddedController) BOOL focusedEmbeddedController;
 
+@property(nonatomic) UIView *containerView;
 
 @property(nonatomic) UIViewController *embeddedViewController;
 @property(nonatomic) UIView *embeddedView;
@@ -106,6 +108,9 @@
   self.featuredButton = [[MDCFlatButton alloc] init];
   self.featuredButton.translatesAutoresizingMaskIntoConstraints = NO;
   [self.featuredButton setTitle:@"FEATURED" forState:UIControlStateNormal];
+  [self.featuredButton addTarget:self
+                          action:@selector(categoryTapped:)
+                forControlEvents:UIControlEventTouchDown];
   [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
                                     toFlatButton:self.featuredButton];
   [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
@@ -115,6 +120,9 @@
   self.apartmentButton = [[MDCFlatButton alloc] init];
   self.apartmentButton.translatesAutoresizingMaskIntoConstraints = NO;
   [self.apartmentButton setTitle:@"APARTMENT" forState:UIControlStateNormal];
+  [self.apartmentButton addTarget:self
+                           action:@selector(categoryTapped:)
+                 forControlEvents:UIControlEventTouchDown];
   [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
                                     toFlatButton:self.apartmentButton];
   [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
@@ -124,6 +132,9 @@
   self.accessoriesButton = [[MDCFlatButton alloc] init];
   self.accessoriesButton.translatesAutoresizingMaskIntoConstraints = NO;
   [self.accessoriesButton setTitle:@"ACCESSORIES" forState:UIControlStateNormal];
+  [self.accessoriesButton addTarget:self
+                             action:@selector(categoryTapped:)
+                   forControlEvents:UIControlEventTouchDown];
   [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
                                     toFlatButton:self.accessoriesButton];
   [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
@@ -133,6 +144,9 @@
   self.shoesButton = [[MDCFlatButton alloc] init];
   self.shoesButton.translatesAutoresizingMaskIntoConstraints = NO;
   [self.shoesButton setTitle:@"SHOES" forState:UIControlStateNormal];
+  [self.shoesButton addTarget:self
+                       action:@selector(categoryTapped:)
+             forControlEvents:UIControlEventTouchDown];
   [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
                                     toFlatButton:self.shoesButton];
   [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
@@ -142,6 +156,9 @@
   self.topsButton = [[MDCFlatButton alloc] init];
   self.topsButton.translatesAutoresizingMaskIntoConstraints = NO;
   [self.topsButton setTitle:@"TOPS" forState:UIControlStateNormal];
+  [self.topsButton addTarget:self
+                      action:@selector(categoryTapped:)
+            forControlEvents:UIControlEventTouchDown];
   [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
                                     toFlatButton:self.topsButton];
   [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
@@ -151,6 +168,9 @@
   self.bottomsButton = [[MDCFlatButton alloc] init];
   self.bottomsButton.translatesAutoresizingMaskIntoConstraints = NO;
   [self.bottomsButton setTitle:@"BOTTOMS" forState:UIControlStateNormal];
+  [self.bottomsButton addTarget:self
+                         action:@selector(categoryTapped:)
+               forControlEvents:UIControlEventTouchDown];
   [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
                                     toFlatButton:self.bottomsButton];
   [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
@@ -160,6 +180,9 @@
   self.dressesButton = [[MDCFlatButton alloc] init];
   self.dressesButton.translatesAutoresizingMaskIntoConstraints = NO;
   [self.dressesButton setTitle:@"DRESSES" forState:UIControlStateNormal];
+  [self.dressesButton addTarget:self
+                         action:@selector(categoryTapped:)
+               forControlEvents:UIControlEventTouchDown];
   [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
                                     toFlatButton:self.dressesButton];
   [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
@@ -169,6 +192,9 @@
   self.accountButton = [[MDCFlatButton alloc] init];
   self.accountButton.translatesAutoresizingMaskIntoConstraints = NO;
   [self.accountButton setTitle:@"MY ACCOUNT" forState:UIControlStateNormal];
+  [self.accountButton addTarget:self
+                         action:@selector(accountTapped:)
+               forControlEvents:UIControlEventTouchDown];
   [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
                                     toFlatButton:self.accountButton];
   [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
@@ -197,10 +223,15 @@
                                     views:nameView]];
   [NSLayoutConstraint activateConstraints:constraints];
 
+  self.containerView = [[ShapedShadowedView alloc] initWithFrame:CGRectZero];
+  self.containerView.translatesAutoresizingMaskIntoConstraints = NO;
+  self.containerView.backgroundColor = UIColor.whiteColor;
+  [self.view addSubview:self.containerView];
+
   // Setup embedded view controller
   UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
   UIViewController *viewController =
-      [storyboard instantiateViewControllerWithIdentifier:@"ProductsViewController"];
+      [storyboard instantiateViewControllerWithIdentifier:@"HomeViewController"];
   [self insertController:viewController];
 }
 
@@ -214,7 +245,8 @@
   [super viewDidLayoutSubviews];
 
   CGRect embeddedFrame = [self frameForEmbeddedController];
-  self.embeddedView.frame = embeddedFrame;
+  self.containerView.frame = embeddedFrame;
+  self.embeddedView.frame = self.containerView.bounds;
 }
 
 - (BOOL)isFocusedEmbeddedController {
@@ -224,7 +256,7 @@
 - (void)setFocusedEmbeddedController:(BOOL)focusedEmbeddedController {
   _focusedEmbeddedController = focusedEmbeddedController;
   [UIView animateWithDuration:0.20 animations:^(){
-    self.embeddedView.frame = [self frameForEmbeddedController];
+    self.containerView.frame = [self frameForEmbeddedController];
   }];
 }
 
@@ -255,6 +287,36 @@
   self.focusedEmbeddedController = !self.isFocusedEmbeddedController;
 }
 
+- (void)categoryTapped:(id)selector {
+  NSString *filter = @"";
+  if (selector == self.featuredButton) {
+    filter = @"featured";
+  } else if (selector == self.apartmentButton) {
+    filter = @"apartment";
+  } else if (selector == self.accessoriesButton) {
+    filter = @"accessories";
+  } else if (selector == self.shoesButton) {
+    filter = @"shoes";
+  } else if (selector == self.topsButton) {
+    filter = @"tops";
+  } else if (selector == self.bottomsButton) {
+    filter = @"bottoms";
+  } else if (selector == self.dressesButton) {
+    filter = @"dresses";
+  }
+
+  [Catalog productCatalog].categoryFilter = filter;
+
+  // Toggle CatalogView
+  self.focusedEmbeddedController = !self.isFocusedEmbeddedController;
+}
+
+- (void)accountTapped:(id)selector {
+  LoginViewController *loginViewController =
+  [[LoginViewController alloc] initWithNibName:nil bundle:nil];
+  [self presentViewController:loginViewController animated:YES completion:NULL];
+}
+
 #pragma mark - Controller Containment
 
 - (void)insertController:(UIViewController *)viewController {
@@ -271,7 +333,7 @@
     [self addChildViewController:viewController];
     self.embeddedViewController = viewController;
 
-    [self.view addSubview:viewController.view];
+    [self.containerView addSubview:viewController.view];
     self.embeddedView = viewController.view;
   }
 }

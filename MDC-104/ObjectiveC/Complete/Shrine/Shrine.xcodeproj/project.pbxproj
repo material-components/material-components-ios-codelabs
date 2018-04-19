@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		402009852084FF9900B7845B /* BackdropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 402009842084FF9900B7845B /* BackdropViewController.m */; };
 		4049389C20682A5500C63F13 /* ProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4049389B20682A5500C63F13 /* ProductCell.m */; };
 		4049389F20682E3C00C63F13 /* Catalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 4049389E20682E3C00C63F13 /* Catalog.m */; };
 		40674A9120641F57001F19D9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 40674A9020641F57001F19D9 /* AppDelegate.m */; };
@@ -16,19 +15,18 @@
 		40674A9C20641F57001F19D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40674A9A20641F57001F19D9 /* LaunchScreen.storyboard */; };
 		40674A9F20641F57001F19D9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 40674A9E20641F57001F19D9 /* main.m */; };
 		406C8BB3207BDE9000EF3B46 /* ApplicationScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 406C8BB2207BDE9000EF3B46 /* ApplicationScheme.m */; };
-		40754049208842F100783900 /* ShapedShadowedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40754048208842F100783900 /* ShapedShadowedView.m */; };
-		4075404F2088509600783900 /* ProductsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4075404E2088509600783900 /* ProductsViewController.m */; };
 		4078486F2064598C00C13D50 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4078486E2064598C00C13D50 /* LoginViewController.m */; };
+		4078487220645A1200C13D50 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4078487120645A1200C13D50 /* HomeViewController.m */; };
 		40981E5D207D1730004614C3 /* CustomLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 40981E5C207D1730004614C3 /* CustomLayout.m */; };
 		40981E60207D1F5B004614C3 /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40981E5E207D1F5A004614C3 /* Rubik-Medium.ttf */; };
 		40981E61207D1F5B004614C3 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40981E5F207D1F5B004614C3 /* Rubik-Regular.ttf */; };
+		40EEFCA8208920CD003A37DB /* BackdropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40EEFCA6208920CC003A37DB /* BackdropViewController.m */; };
+		40EEFCAB20892296003A37DB /* ShapedShadowedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40EEFCAA20892296003A37DB /* ShapedShadowedView.m */; };
 		B32A6D84467916327E3938F2 /* Pods_Shrine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6E97014811A1E02372FF6C2 /* Pods_Shrine.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		104941F709FE7A815C3AD5CC /* Pods-Shrine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shrine.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shrine/Pods-Shrine.release.xcconfig"; sourceTree = "<group>"; };
-		402009832084FF9900B7845B /* BackdropViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BackdropViewController.h; sourceTree = "<group>"; };
-		402009842084FF9900B7845B /* BackdropViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BackdropViewController.m; sourceTree = "<group>"; };
 		4049389A20682A5500C63F13 /* ProductCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductCell.h; sourceTree = "<group>"; };
 		4049389B20682A5500C63F13 /* ProductCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductCell.m; sourceTree = "<group>"; };
 		4049389D20682E3C00C63F13 /* Catalog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Catalog.h; sourceTree = "<group>"; };
@@ -43,17 +41,19 @@
 		40674A9E20641F57001F19D9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		406C8BB1207BDE9000EF3B46 /* ApplicationScheme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplicationScheme.h; sourceTree = "<group>"; };
 		406C8BB2207BDE9000EF3B46 /* ApplicationScheme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplicationScheme.m; sourceTree = "<group>"; };
-		40754047208842F100783900 /* ShapedShadowedView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ShapedShadowedView.h; path = "/Users/iangordon/projects/material-components-ios-codelabs/MDC-104/ObjectiveC/Complete/Shrine/Shrine/ShapedShadowedView.h"; sourceTree = "<absolute>"; };
-		40754048208842F100783900 /* ShapedShadowedView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ShapedShadowedView.m; path = "/Users/iangordon/projects/material-components-ios-codelabs/MDC-104/ObjectiveC/Complete/Shrine/Shrine/ShapedShadowedView.m"; sourceTree = "<absolute>"; };
-		4075404D2088509600783900 /* ProductsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductsViewController.h; sourceTree = "<group>"; };
-		4075404E2088509600783900 /* ProductsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductsViewController.m; sourceTree = "<group>"; };
 		4078486D2064598C00C13D50 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		4078486E2064598C00C13D50 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		4078487020645A1200C13D50 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		4078487120645A1200C13D50 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		40981E5B207D1730004614C3 /* CustomLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomLayout.h; sourceTree = "<group>"; };
 		40981E5C207D1730004614C3 /* CustomLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomLayout.m; sourceTree = "<group>"; };
 		40981E5E207D1F5A004614C3 /* Rubik-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Medium.ttf"; sourceTree = "<group>"; };
 		40981E5F207D1F5B004614C3 /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
 		40981E62207D1F67004614C3 /* Rubik-OFL.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Rubik-OFL.txt"; sourceTree = "<group>"; };
+		40EEFCA6208920CC003A37DB /* BackdropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackdropViewController.m; sourceTree = "<group>"; };
+		40EEFCA7208920CC003A37DB /* BackdropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackdropViewController.h; sourceTree = "<group>"; };
+		40EEFCA920892296003A37DB /* ShapedShadowedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapedShadowedView.h; sourceTree = "<group>"; };
+		40EEFCAA20892296003A37DB /* ShapedShadowedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapedShadowedView.m; sourceTree = "<group>"; };
 		C6E97014811A1E02372FF6C2 /* Pods_Shrine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shrine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF4A993F75001EEDD0E06302 /* Pods-Shrine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shrine.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Shrine/Pods-Shrine.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,20 +104,20 @@
 				40674A9020641F57001F19D9 /* AppDelegate.m */,
 				406C8BB1207BDE9000EF3B46 /* ApplicationScheme.h */,
 				406C8BB2207BDE9000EF3B46 /* ApplicationScheme.m */,
-				402009832084FF9900B7845B /* BackdropViewController.h */,
-				402009842084FF9900B7845B /* BackdropViewController.m */,
+				40EEFCA7208920CC003A37DB /* BackdropViewController.h */,
+				40EEFCA6208920CC003A37DB /* BackdropViewController.m */,
 				4049389D20682E3C00C63F13 /* Catalog.h */,
 				4049389E20682E3C00C63F13 /* Catalog.m */,
 				40981E5B207D1730004614C3 /* CustomLayout.h */,
 				40981E5C207D1730004614C3 /* CustomLayout.m */,
+				4078487020645A1200C13D50 /* HomeViewController.h */,
+				4078487120645A1200C13D50 /* HomeViewController.m */,
 				4078486D2064598C00C13D50 /* LoginViewController.h */,
 				4078486E2064598C00C13D50 /* LoginViewController.m */,
 				4049389A20682A5500C63F13 /* ProductCell.h */,
 				4049389B20682A5500C63F13 /* ProductCell.m */,
-				4075404D2088509600783900 /* ProductsViewController.h */,
-				4075404E2088509600783900 /* ProductsViewController.m */,
-				40754047208842F100783900 /* ShapedShadowedView.h */,
-				40754048208842F100783900 /* ShapedShadowedView.m */,
+				40EEFCA920892296003A37DB /* ShapedShadowedView.h */,
+				40EEFCAA20892296003A37DB /* ShapedShadowedView.m */,
 				40674A9520641F57001F19D9 /* Main.storyboard */,
 				40674A9820641F57001F19D9 /* Assets.xcassets */,
 				40674A9A20641F57001F19D9 /* LaunchScreen.storyboard */,
@@ -272,13 +272,13 @@
 			files = (
 				406C8BB3207BDE9000EF3B46 /* ApplicationScheme.m in Sources */,
 				4078486F2064598C00C13D50 /* LoginViewController.m in Sources */,
-				402009852084FF9900B7845B /* BackdropViewController.m in Sources */,
 				40674A9F20641F57001F19D9 /* main.m in Sources */,
+				4078487220645A1200C13D50 /* HomeViewController.m in Sources */,
 				40674A9120641F57001F19D9 /* AppDelegate.m in Sources */,
 				40981E5D207D1730004614C3 /* CustomLayout.m in Sources */,
+				40EEFCA8208920CD003A37DB /* BackdropViewController.m in Sources */,
 				4049389C20682A5500C63F13 /* ProductCell.m in Sources */,
-				40754049208842F100783900 /* ShapedShadowedView.m in Sources */,
-				4075404F2088509600783900 /* ProductsViewController.m in Sources */,
+				40EEFCAB20892296003A37DB /* ShapedShadowedView.m in Sources */,
 				4049389F20682E3C00C63F13 /* Catalog.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

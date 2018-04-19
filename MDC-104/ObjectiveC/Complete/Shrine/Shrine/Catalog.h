@@ -22,6 +22,7 @@
 @property (nonatomic, readonly) NSString *imageName;
 @property (nonatomic, readonly) NSString *productName;
 @property (nonatomic, readonly) NSString *price;
+@property (nonatomic, readonly) NSString *category;
 
 @end
 
@@ -37,7 +38,8 @@
 - (instancetype)init NS_UNAVAILABLE;
 
 @property (nonatomic, readonly) NSUInteger count;
-
 - (Product *)productAtIndex:(NSUInteger)index;
+
+@property (nonatomic, nonnull, copy) NSString *categoryFilter;
 
 @end
