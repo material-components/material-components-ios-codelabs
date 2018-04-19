@@ -24,6 +24,7 @@
 #import <MaterialComponents/MDCButtonTypographyThemer.h>
 #import <MaterialComponents/MDCNavigationBarColorThemer.h>
 #import <MaterialComponents/MDCNavigationBarTypographyThemer.h>
+#import <MaterialComponents/MDCShapedShadowLayer.h>
 
 #import "ApplicationScheme.h"
 #import "Catalog.h"
@@ -333,8 +334,13 @@
     [self addChildViewController:viewController];
     self.embeddedViewController = viewController;
 
+    /*    let shapeLayer = (self.layer as! MDCShapedShadowLayer).shapeLayer
+     contentView.layer.mask = shapeLayer
+*/   */
     [self.containerView addSubview:viewController.view];
     self.embeddedView = viewController.view;
+    MDCShapedShadowLayer *shapedShadowLayer = (MDCShapedShadowLayer *)self.containerView.layer;
+    self.embeddedView.layer.mask = shapedShadowLayer.shapeLayer;
   }
 }
 

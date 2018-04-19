@@ -86,8 +86,8 @@
 
   // TODO: Set background color to clear since this will not be embedded in a
   // container view
-  self.view.backgroundColor = [UIColor clearColor];
-  self.collectionView.backgroundColor = [UIColor clearColor];
+  self.view.backgroundColor = [UIColor redColor];
+  self.collectionView.backgroundColor = [UIColor blueColor];
   [MDCAppBarColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
                                         toAppBar:self.appBar];
 
