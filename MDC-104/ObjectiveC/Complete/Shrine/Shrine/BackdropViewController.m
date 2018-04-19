@@ -26,8 +26,9 @@
 #import <MaterialComponents/MDCNavigationBarTypographyThemer.h>
 
 #import "ApplicationScheme.h"
-#import "HomeViewController.h"
 #import "LoginViewController.h"
+#import "ProductsViewController.h"
+#import "ShapedShadowedView.h"
 
 @interface BackdropViewController ()
 
@@ -176,36 +177,6 @@
 
   NSMutableArray <NSLayoutConstraint *> *constraints = [[NSMutableArray alloc] init];
 
-//  NSLayoutConstraint *navbarTopConstraint =
-//  [NSLayoutConstraint constraintWithItem:self.appBar.navigationBar
-//                               attribute:NSLayoutAttributeTop
-//                               relatedBy:NSLayoutRelationEqual
-//                                  toItem:self.view
-//                               attribute:NSLayoutAttributeTop
-//                              multiplier:1
-//                                constant:0];
-//  [constraints addObject:navbarTopConstraint];
-//
-//  NSLayoutConstraint *navbarHeightConstraint =
-//  [NSLayoutConstraint constraintWithItem:self.appBar.navigationBar
-//                               attribute:NSLayoutAttributeHeight
-//                               relatedBy:NSLayoutRelationEqual
-//                                  toItem:nil
-//                               attribute:NSLayoutAttributeNotAnAttribute
-//                              multiplier:1
-//                                constant:72];
-//  [constraints addObject:navbarHeightConstraint];
-//
-//  NSLayoutConstraint *navbarWidthConstraint =
-//  [NSLayoutConstraint constraintWithItem:self.appBar.navigationBar
-//                               attribute:NSLayoutAttributeWidth
-//                               relatedBy:NSLayoutRelationEqual
-//                                  toItem:self.view
-//                               attribute:NSLayoutAttributeWidth
-//                              multiplier:1
-//                                constant:0];
-//  [constraints addObject:navbarWidthConstraint];
-
   [constraints addObject:[NSLayoutConstraint constraintWithItem:self.featuredButton attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
 
   NSDictionary *nameView = @{
@@ -226,9 +197,10 @@
                                     views:nameView]];
   [NSLayoutConstraint activateConstraints:constraints];
 
-  // Setup embedded view
+  // Setup embedded view controller
   UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-  UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"HomeViewController"];
+  UIViewController *viewController =
+      [storyboard instantiateViewControllerWithIdentifier:@"ProductsViewController"];
   [self insertController:viewController];
 }
 
@@ -241,6 +213,22 @@
 - (void)viewDidLayoutSubviews {
   [super viewDidLayoutSubviews];
 
+  CGRect embeddedFrame = [self frameForEmbeddedController];
+  self.embeddedView.frame = embeddedFrame;
+}
+
+- (BOOL)isFocusedEmbeddedController {
+  return _focusedEmbeddedController;
+}
+
+- (void)setFocusedEmbeddedController:(BOOL)focusedEmbeddedController {
+  _focusedEmbeddedController = focusedEmbeddedController;
+  [UIView animateWithDuration:0.20 animations:^(){
+    self.embeddedView.frame = [self frameForEmbeddedController];
+  }];
+}
+
+- (CGRect)frameForEmbeddedController {
   CGRect embeddedFrame = CGRectStandardize(self.view.bounds);
   UIEdgeInsets insetHeader = UIEdgeInsetsZero;
   insetHeader.top = CGRectGetMaxY(self.appBar.headerViewController.view.frame);
@@ -251,16 +239,7 @@
     CGRectGetHeight(self.appBar.navigationBar.frame);
   }
 
-  self.embeddedView.frame = embeddedFrame;
-}
-
-- (BOOL)isFocusedEmbeddedController {
-  return _focusedEmbeddedController;
-}
-
-- (void)setFocusedEmbeddedController:(BOOL)focusedEmbeddedController {
-  _focusedEmbeddedController = focusedEmbeddedController;
-  [self.view setNeedsLayout];
+  return embeddedFrame;
 }
 
 #pragma mark - Action Methods
@@ -298,7 +277,14 @@
 }
 
 - (void)removeController {
+  if (self.embeddedViewController) {
+    [self.embeddedViewController willMoveToParentViewController:nil];
+    [self.embeddedViewController removeFromParentViewController];
+    self.embeddedViewController = nil;
 
+    [self.embeddedView removeFromSuperview];
+    self.embeddedView = nil;
+  }
 }
 
 @end

@@ -16,16 +16,6 @@
 
 #import <UIKit/UIKit.h>
 
-
-/**
- This view controller is our main home screen.
- */
-@interface HomeViewController : UICollectionViewController
-
-/**
- Present the modal LoginViewController.  If this is called before HomeViewController is on the screen,
- HomeViewController will present LoginViewController as soon as it appears.
- */
-- (void)displayLogin;
+@interface ProductsViewController : UIViewController
 
 @end

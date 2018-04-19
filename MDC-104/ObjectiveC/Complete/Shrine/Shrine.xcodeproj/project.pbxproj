@@ -16,8 +16,9 @@
 		40674A9C20641F57001F19D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40674A9A20641F57001F19D9 /* LaunchScreen.storyboard */; };
 		40674A9F20641F57001F19D9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 40674A9E20641F57001F19D9 /* main.m */; };
 		406C8BB3207BDE9000EF3B46 /* ApplicationScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 406C8BB2207BDE9000EF3B46 /* ApplicationScheme.m */; };
+		40754049208842F100783900 /* ShapedShadowedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40754048208842F100783900 /* ShapedShadowedView.m */; };
+		4075404F2088509600783900 /* ProductsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4075404E2088509600783900 /* ProductsViewController.m */; };
 		4078486F2064598C00C13D50 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4078486E2064598C00C13D50 /* LoginViewController.m */; };
-		4078487220645A1200C13D50 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4078487120645A1200C13D50 /* HomeViewController.m */; };
 		40981E5D207D1730004614C3 /* CustomLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 40981E5C207D1730004614C3 /* CustomLayout.m */; };
 		40981E60207D1F5B004614C3 /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40981E5E207D1F5A004614C3 /* Rubik-Medium.ttf */; };
 		40981E61207D1F5B004614C3 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40981E5F207D1F5B004614C3 /* Rubik-Regular.ttf */; };
@@ -42,10 +43,12 @@
 		40674A9E20641F57001F19D9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		406C8BB1207BDE9000EF3B46 /* ApplicationScheme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplicationScheme.h; sourceTree = "<group>"; };
 		406C8BB2207BDE9000EF3B46 /* ApplicationScheme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplicationScheme.m; sourceTree = "<group>"; };
+		40754047208842F100783900 /* ShapedShadowedView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ShapedShadowedView.h; path = "/Users/iangordon/projects/material-components-ios-codelabs/MDC-104/ObjectiveC/Complete/Shrine/Shrine/ShapedShadowedView.h"; sourceTree = "<absolute>"; };
+		40754048208842F100783900 /* ShapedShadowedView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ShapedShadowedView.m; path = "/Users/iangordon/projects/material-components-ios-codelabs/MDC-104/ObjectiveC/Complete/Shrine/Shrine/ShapedShadowedView.m"; sourceTree = "<absolute>"; };
+		4075404D2088509600783900 /* ProductsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductsViewController.h; sourceTree = "<group>"; };
+		4075404E2088509600783900 /* ProductsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductsViewController.m; sourceTree = "<group>"; };
 		4078486D2064598C00C13D50 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		4078486E2064598C00C13D50 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		4078487020645A1200C13D50 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
-		4078487120645A1200C13D50 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		40981E5B207D1730004614C3 /* CustomLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomLayout.h; sourceTree = "<group>"; };
 		40981E5C207D1730004614C3 /* CustomLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomLayout.m; sourceTree = "<group>"; };
 		40981E5E207D1F5A004614C3 /* Rubik-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Medium.ttf"; sourceTree = "<group>"; };
@@ -107,12 +110,14 @@
 				4049389E20682E3C00C63F13 /* Catalog.m */,
 				40981E5B207D1730004614C3 /* CustomLayout.h */,
 				40981E5C207D1730004614C3 /* CustomLayout.m */,
-				4078487020645A1200C13D50 /* HomeViewController.h */,
-				4078487120645A1200C13D50 /* HomeViewController.m */,
 				4078486D2064598C00C13D50 /* LoginViewController.h */,
 				4078486E2064598C00C13D50 /* LoginViewController.m */,
 				4049389A20682A5500C63F13 /* ProductCell.h */,
 				4049389B20682A5500C63F13 /* ProductCell.m */,
+				4075404D2088509600783900 /* ProductsViewController.h */,
+				4075404E2088509600783900 /* ProductsViewController.m */,
+				40754047208842F100783900 /* ShapedShadowedView.h */,
+				40754048208842F100783900 /* ShapedShadowedView.m */,
 				40674A9520641F57001F19D9 /* Main.storyboard */,
 				40674A9820641F57001F19D9 /* Assets.xcassets */,
 				40674A9A20641F57001F19D9 /* LaunchScreen.storyboard */,
@@ -269,10 +274,11 @@
 				4078486F2064598C00C13D50 /* LoginViewController.m in Sources */,
 				402009852084FF9900B7845B /* BackdropViewController.m in Sources */,
 				40674A9F20641F57001F19D9 /* main.m in Sources */,
-				4078487220645A1200C13D50 /* HomeViewController.m in Sources */,
 				40674A9120641F57001F19D9 /* AppDelegate.m in Sources */,
 				40981E5D207D1730004614C3 /* CustomLayout.m in Sources */,
 				4049389C20682A5500C63F13 /* ProductCell.m in Sources */,
+				40754049208842F100783900 /* ShapedShadowedView.m in Sources */,
+				4075404F2088509600783900 /* ProductsViewController.m in Sources */,
 				4049389F20682E3C00C63F13 /* Catalog.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
