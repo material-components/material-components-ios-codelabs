@@ -138,7 +138,6 @@
             forControlEvents:UIControlEventTouchUpInside];
   [self.scrollView addSubview:self.nextButton];
 
-  // TODO: Theme our interface with our colors
   self.view.backgroundColor = [ApplicationScheme scheme].surfaceColor;
   self.logoImageView.tintColor = [ApplicationScheme scheme].onSurfaceColor;
   self.titleLabel.textColor = [ApplicationScheme scheme].onSurfaceColor;
@@ -151,7 +150,6 @@
   [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
                                   toRaisedButton:self.nextButton];
 
-  // TODO: Theme our interface with our typography
   self.titleLabel.font = [ApplicationScheme scheme].headline5;
   [MDCTextFieldTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
                                 toTextInputController:self.usernameTextFieldController];

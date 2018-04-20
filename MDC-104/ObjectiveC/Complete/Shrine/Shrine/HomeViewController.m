@@ -46,9 +46,6 @@
 
   self.title = @"Shrine";
 
-  // Display the Login Screen the first time this controller is shown
-//FIXME  [self displayLogin];
-
   //TODO: Remove AppBar
 //  // AppBar Init
 //  _appBar = [[MDCAppBar alloc] init];
@@ -192,6 +189,7 @@
 }
 
 #pragma mark - Catalog Notification Handler
+
 //TODO: Add notification Handler
 - (void)respondToCatalogNotification:(NSNotification *)notification {
   [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];

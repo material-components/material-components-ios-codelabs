@@ -25,7 +25,6 @@
   static ApplicationScheme *scheme;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
-    //TODO: Change scheme to initialize with initAlternativeSingleton
     scheme = [[ApplicationScheme alloc] initStandardSingleton];
   });
   return scheme;
@@ -37,7 +36,6 @@
     // Instantiate a MDCSemanticColorScheme object and modify it to our chosen colors
     _colorScheme =
         [[MDCSemanticColorScheme alloc] initWithDefaults:MDCColorSchemeDefaultsMaterial201804];
-    //TODO: Add our custom colors after this line
     _colorScheme.primaryColor =
         [UIColor colorWithRed:252.0/255.0 green:184.0/255.0 blue:171.0/255.0 alpha:1.0];
     _colorScheme.onPrimaryColor = [UIColor blackColor];
@@ -47,7 +45,6 @@
 
     // Instantiate a MDCSemanticColorScheme object and modify it to our chosen colors
     _typographyScheme = [[MDCTypographyScheme alloc] initWithDefaults:MDCTypographySchemeDefaultsMaterial201804];
-    //TODO: Add our custom fonts after this line
     NSString *fontName = @"Rubik";
     _typographyScheme.headline5 = [UIFont fontWithName:fontName size:24.0];
     _typographyScheme.headline6 = [UIFont fontWithName:fontName size:20.0];

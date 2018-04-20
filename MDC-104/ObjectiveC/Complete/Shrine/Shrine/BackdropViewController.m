@@ -224,6 +224,7 @@
                                     views:nameView]];
   [NSLayoutConstraint activateConstraints:constraints];
 
+  //TODO: Change the container view into a ShapedShadowedView
   self.containerView = [[ShapedShadowedView alloc] initWithFrame:CGRectZero];
   self.containerView.translatesAutoresizingMaskIntoConstraints = NO;
   self.containerView.backgroundColor = UIColor.whiteColor;
@@ -279,7 +280,7 @@
 
 - (void)menuItemTapped:(id)selector {
   LoginViewController *loginViewController =
-  [[LoginViewController alloc] initWithNibName:nil bundle:nil];
+      [[LoginViewController alloc] initWithNibName:nil bundle:nil];
   [self presentViewController:loginViewController animated:YES completion:NULL];
 }
 
@@ -334,13 +335,12 @@
     [self addChildViewController:viewController];
     self.embeddedViewController = viewController;
 
-    /*    let shapeLayer = (self.layer as! MDCShapedShadowLayer).shapeLayer
-     contentView.layer.mask = shapeLayer
-*/   */
     [self.containerView addSubview:viewController.view];
     self.embeddedView = viewController.view;
-    MDCShapedShadowLayer *shapedShadowLayer = (MDCShapedShadowLayer *)self.containerView.layer;
-    self.embeddedView.layer.mask = shapedShadowLayer.shapeLayer;
+    if ([self.containerView.layer isKindOfClass:[MDCShapedShadowLayer class]]) {
+      MDCShapedShadowLayer *shapedShadowLayer = (MDCShapedShadowLayer *)self.containerView.layer;
+      self.embeddedView.layer.mask = shapedShadowLayer.shapeLayer;
+    }
   }
 }
 

@@ -24,16 +24,13 @@
   // Configure the cell properties
   self.backgroundColor = [UIColor whiteColor];
 
-  //TODO: Set custom font based on our ApplicationScheme and center align text
   self.nameLabel.font = [ApplicationScheme scheme].subtitle1;
   self.priceLabel.font = [ApplicationScheme scheme].subtitle1;
   self.nameLabel.textAlignment = NSTextAlignmentCenter;
   self.priceLabel.textAlignment = NSTextAlignmentCenter;
 
-  //TODO: Set to 0 to disable the curved corners
   self.cornerRadius = 0.0;
 
-  //TODO: Set Border Width to 0 to disable the stroke outline
   [self setBorderWidth:0.0 forState:MDCCardCellStateNormal];
   [self setBorderColor:[UIColor lightGrayColor] forState:MDCCardCellStateNormal];
 }
