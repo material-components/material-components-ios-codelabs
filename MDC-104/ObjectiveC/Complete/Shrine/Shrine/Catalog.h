@@ -16,7 +16,6 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface Product : NSObject
 
 @property (nonatomic, readonly) NSString *imageName;
@@ -41,5 +40,8 @@
 - (Product *)productAtIndex:(NSUInteger)index;
 
 @property (nonatomic, nonnull, copy) NSString *categoryFilter;
+
+// Notification that gets posted when categoryFilter is changed
+OBJC_EXTERN NSString *const CatalogFilterDidChangeNotification;
 
 @end

@@ -291,7 +291,7 @@
 - (void)categoryTapped:(id)selector {
   NSString *filter = @"";
   if (selector == self.featuredButton) {
-    filter = @"featured";
+    filter = @"";  // Intentionally set to blank so all products are shown
   } else if (selector == self.apartmentButton) {
     filter = @"apartment";
   } else if (selector == self.accessoriesButton) {

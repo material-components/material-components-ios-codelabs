@@ -84,10 +84,6 @@
                                   action:nil];
   self.navigationItem.rightBarButtonItems = @[ tuneItem, searchItem ];
 
-  // TODO: Set background color to clear since this will not be embedded in a
-  // container view
-  self.view.backgroundColor = [UIColor redColor];
-  self.collectionView.backgroundColor = [UIColor blueColor];
   [MDCAppBarColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
                                         toAppBar:self.appBar];
 
@@ -95,6 +91,12 @@
                                           toAppBar:self.appBar];
 
   self.collectionView.collectionViewLayout = [[CustomLayout alloc] init];
+
+  //TODO: Register for the catalog changed notification
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(respondToCatalogNotification:)
+                                               name:CatalogFilterDidChangeNotification
+                                             object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -187,6 +189,12 @@
   cell.priceLabel.text = product.price;
 
   return cell;
+}
+
+#pragma mark - Catalog Notification Handler
+//TODO: Add notification Handler
+- (void)respondToCatalogNotification:(NSNotification *)notification {
+  [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
 }
 
 @end
