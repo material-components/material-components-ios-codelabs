@@ -234,6 +234,7 @@
   UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
   UIViewController *viewController =
       [storyboard instantiateViewControllerWithIdentifier:@"HomeViewController"];
+  //TODO: Embed the catalog view controller in the BackdropViewController
   [self insertController:viewController];
 }
 
@@ -268,9 +269,15 @@
   insetHeader.top = CGRectGetMaxY(self.appBar.headerViewController.view.frame);
   embeddedFrame = UIEdgeInsetsInsetRect(embeddedFrame, insetHeader);
 
-  if (self.isFocusedEmbeddedController) {
+  // If the embedded controller is not focused, move to the bottom of the interface
+  if (!self.isFocusedEmbeddedController) {
     embeddedFrame.origin.y = CGRectStandardize(self.view.bounds).size.height -
-    CGRectGetHeight(self.appBar.navigationBar.frame);
+        CGRectGetHeight(self.appBar.navigationBar.frame);
+  }
+
+  // If we don't have an embedded view, locate the view offscreen
+  if (!self.embeddedView) {
+    embeddedFrame.origin.y = CGRectGetMaxY(self.view.bounds);
   }
 
   return embeddedFrame;
@@ -329,6 +336,7 @@
 
     [self.embeddedView removeFromSuperview];
     self.embeddedView = nil;
+    _focusedEmbeddedController = NO;
   }
   if (viewController) {
     [viewController willMoveToParentViewController:self];
@@ -341,6 +349,8 @@
       MDCShapedShadowLayer *shapedShadowLayer = (MDCShapedShadowLayer *)self.containerView.layer;
       self.embeddedView.layer.mask = shapedShadowLayer.shapeLayer;
     }
+
+    _focusedEmbeddedController = YES;
   }
 }
 
@@ -352,6 +362,7 @@
 
     [self.embeddedView removeFromSuperview];
     self.embeddedView = nil;
+    _focusedEmbeddedController = NO;
   }
 }
 

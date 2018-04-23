@@ -22,6 +22,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   // Override point for customization after application launch.
+  self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+
+  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+  //TODO: Change the root view controller to BackdropViewController
+  UIViewController *viewController =
+      [storyboard instantiateViewControllerWithIdentifier:@"BackdropViewController"];
+  self.window.rootViewController = viewController;
+  [self.window makeKeyAndVisible];
+
   return YES;
 }
 

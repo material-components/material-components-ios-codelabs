@@ -46,8 +46,8 @@
 
   self.title = @"Shrine";
 
-  //TODO: Remove AppBar
-//  // AppBar Init
+  // AppBar Init
+  //TODO: Remove the following five lines to remove the App Bar
 //  _appBar = [[MDCAppBar alloc] init];
 //  [self addChildViewController:_appBar.headerViewController];
 //  // Set the tracking scroll view.
