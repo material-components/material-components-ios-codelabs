@@ -125,7 +125,6 @@ static inline CGSize CGSizeShrinkWithInsets(CGSize size, UIEdgeInsets edgeInsets
 @interface MDCChipView ()
 @property(nonatomic, readonly) CGRect contentRect;
 @property(nonatomic, readonly, strong) MDCShapedShadowLayer *layer;
-@property(nonatomic, readonly, strong) UIView *backgroundOverlayView;
 @property(nonatomic, readonly) BOOL showImageView;
 @property(nonatomic, readonly) BOOL showSelectedImageView;
 @property(nonatomic, readonly) BOOL showAccessoryView;
@@ -135,7 +134,6 @@ static inline CGSize CGSizeShrinkWithInsets(CGSize size, UIEdgeInsets edgeInsets
 
 @implementation MDCChipView {
   // For each UIControlState.
-  NSMutableDictionary<NSNumber *, UIColor *> *_backgroundOverlayColors;
   NSMutableDictionary<NSNumber *, UIColor *> *_backgroundColors;
   NSMutableDictionary<NSNumber *, UIColor *> *_borderColors;
   NSMutableDictionary<NSNumber *, NSNumber *> *_borderWidths;
@@ -168,12 +166,6 @@ static inline CGSize CGSizeShrinkWithInsets(CGSize size, UIEdgeInsets edgeInsets
       _backgroundColors[@(UIControlStateDisabled)] = disabled;
       _backgroundColors[@(UIControlStateSelected)] = selected;
     }
-
-    _backgroundOverlayColors = [NSMutableDictionary dictionary];
-    _backgroundOverlayView = [[UIView alloc] initWithFrame:self.bounds];
-    _backgroundOverlayView.layer.mask = self.layer.shapeLayer;
-    [self addSubview:_backgroundOverlayView];
-
     _borderColors = [NSMutableDictionary dictionary];
     _borderWidths = [NSMutableDictionary dictionary];
 
@@ -369,26 +361,6 @@ static inline CGSize CGSizeShrinkWithInsets(CGSize size, UIEdgeInsets edgeInsets
   if (accessoryView) {
     [self insertSubview:accessoryView aboveSubview:_titleLabel];
   }
-}
-
-- (nullable UIColor *)backgroundOverlayColorForState:(UIControlState)state {
-  UIColor *backgroundColor = _backgroundOverlayColors[@(state)];
-  if (!backgroundColor && state != UIControlStateNormal) {
-    backgroundColor = _backgroundOverlayColors[@(UIControlStateNormal)];
-  }
-  return backgroundColor;
-
-}
-
-- (void)setBackgroundOverlayColor:(nullable UIColor *)backgroundOverlayColor
-                         forState:(UIControlState)state {
-  _backgroundOverlayColors[@(state)] = backgroundOverlayColor;
-
-  [self updateBackgroundOverlayColor];
-}
-
-- (void)updateBackgroundOverlayColor {
-  self.backgroundOverlayView.backgroundColor = [self backgroundOverlayColorForState:self.state];
 }
 
 - (nullable UIColor *)backgroundColorForState:(UIControlState)state {
@@ -587,7 +559,6 @@ static inline CGSize CGSizeShrinkWithInsets(CGSize size, UIEdgeInsets edgeInsets
 
 - (void)updateState {
   [self updateBackgroundColor];
-  [self updateBackgroundOverlayColor];
   [self updateBorderColor];
   [self updateBorderWidth];
   [self updateElevation];
@@ -623,7 +594,6 @@ static inline CGSize CGSizeShrinkWithInsets(CGSize size, UIEdgeInsets edgeInsets
 - (void)layoutSubviews {
   [super layoutSubviews];
 
-  _backgroundOverlayView.frame = self.bounds;
   _inkView.frame = self.bounds;
   _imageView.frame = [self imageViewFrame];
   _selectedImageView.frame = [self selectedImageViewFrame];
@@ -638,14 +608,6 @@ static inline CGSize CGSizeShrinkWithInsets(CGSize size, UIEdgeInsets edgeInsets
     self.layer.shadowPath =
         [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:cornerRadius].CGPath;
   }
-
-  // make sure backgroundOverlayView layer has the same shape the component
-  CAShapeLayer *backgroundOverlayShapedLayer = (CAShapeLayer *)_backgroundOverlayView.layer.mask;
-  if (![backgroundOverlayShapedLayer isKindOfClass:[CAShapeLayer class]]) {
-    backgroundOverlayShapedLayer = [CAShapeLayer layer];
-    _backgroundOverlayView.layer.mask = backgroundOverlayShapedLayer;
-  }
-  backgroundOverlayShapedLayer.path = self.layer.shadowPath;
 
   // Handle RTL
   if (self.mdf_effectiveUserInterfaceLayoutDirection == UIUserInterfaceLayoutDirectionRightToLeft) {
@@ -791,29 +753,27 @@ static inline CGSize CGSizeShrinkWithInsets(CGSize size, UIEdgeInsets edgeInsets
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
   [super touchesBegan:touches withEvent:event];
 
-  [_inkView startTouchBeganAnimationAtPoint:[self locationFromTouches:touches] completion:nil];
+  [self startTouchBeganAnimationAtPoint:[self locationFromTouches:touches]];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
   [super touchesEnded:touches withEvent:event];
 
-  [_inkView startTouchEndedAnimationAtPoint:[self locationFromTouches:touches] completion:nil];
+  [self startTouchEndedAnimationAtPoint:[self locationFromTouches:touches]];
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
   [super touchesCancelled:touches withEvent:event];
 
-  [_inkView startTouchEndedAnimationAtPoint:[self locationFromTouches:touches] completion:nil];
+  [self startTouchEndedAnimationAtPoint:[self locationFromTouches:touches]];
 }
 
 - (void)touchDragEnter:(__unused MDCChipView *)button forEvent:(UIEvent *)event {
-  [_inkView startTouchBeganAnimationAtPoint:[self locationFromTouches:event.allTouches]
-                                 completion:nil];
+  [self startTouchBeganAnimationAtPoint:[self locationFromTouches:event.allTouches]];
 }
 
 - (void)touchDragExit:(__unused MDCChipView *)button forEvent:(UIEvent *)event {
-  [_inkView startTouchEndedAnimationAtPoint:[self locationFromTouches:event.allTouches]
-                                 completion:nil];
+  [self startTouchEndedAnimationAtPoint:[self locationFromTouches:event.allTouches]];
 }
 
 - (CGPoint)locationFromTouches:(NSSet *)touches {
@@ -826,6 +786,9 @@ static inline CGSize CGSizeShrinkWithInsets(CGSize size, UIEdgeInsets edgeInsets
 @implementation MDCChipView (Private)
 
 - (void)startTouchBeganAnimationAtPoint:(CGPoint)point {
+  if (!self.enabled) {
+    return;
+  }
   CGSize size = [self sizeThatFits:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
   CGFloat widthDiff = 24.f; // Difference between unselected and selected frame widths.
   _inkView.maxRippleRadius =
@@ -835,6 +798,9 @@ static inline CGSize CGSizeShrinkWithInsets(CGSize size, UIEdgeInsets edgeInsets
 }
 
 - (void)startTouchEndedAnimationAtPoint:(CGPoint)point {
+  if (!self.enabled) {
+    return;
+  }
   [_inkView startTouchEndedAnimationAtPoint:point completion:nil];
 }
 

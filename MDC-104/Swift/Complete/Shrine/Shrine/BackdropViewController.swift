@@ -25,6 +25,7 @@ class BackdropViewController: UIViewController {
   var containerView: ShapedShadowedView = {
     let view = ShapedShadowedView(frame: .zero)
     view.translatesAutoresizingMaskIntoConstraints = false
+    view.backgroundColor = .white
     return view
   }()
 

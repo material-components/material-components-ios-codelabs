@@ -27,7 +27,6 @@ class HomeViewController: UICollectionViewController {
     super.viewDidLoad()
 
     self.view.tintColor = .black
-    self.view.backgroundColor = .clear
 
     self.title = "Shrine"
 

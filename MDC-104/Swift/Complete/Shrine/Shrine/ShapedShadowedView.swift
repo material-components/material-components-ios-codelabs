@@ -54,10 +54,10 @@ class ShapedShadowedView: UIView {
     get {
       return super.backgroundColor
     }
-    set {
-      super.backgroundColor = backgroundColor
+    set(newColor) {
+      super.backgroundColor = newColor
       let shapedShadowedLayer = self.layer as! MDCShapedShadowLayer
-      shapedShadowedLayer.shapedBackgroundColor = backgroundColor
+      shapedShadowedLayer.shapedBackgroundColor = newColor
     }
   }
 }
