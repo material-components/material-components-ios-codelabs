@@ -1,0 +1,9 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '11.0'
+
+target 'Shrine' do
+  use_frameworks!
+
+  # Pods for Shrine
+  pod 'MaterialComponents', :git => 'https://github.com/material-components/material-components-ios', :branch => 'develop'
+end
