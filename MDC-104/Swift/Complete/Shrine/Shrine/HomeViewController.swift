@@ -70,6 +70,11 @@ class HomeViewController: UICollectionViewController {
     // TODO: Set layout to our custom layout
     self.collectionView!.collectionViewLayout = CustomLayout()
 
+    //TODO: Register for the catalog changed notification
+    NotificationCenter.default.addObserver(self,
+                                           selector: #selector(respondToCatalogNotification),
+                                           name: Notification.Name(rawValue: "CatalogFilterDidChangeNotification"),
+                                           object: nil)
   }
 
   override func viewDidAppear(_ animated: Bool) {
@@ -114,6 +119,9 @@ class HomeViewController: UICollectionViewController {
     return cell
   }
 
+  @objc func respondToCatalogNotification() {
+    self.collectionView?.reloadSections([0])
+  }
 }
 
 //MARK: - UIScrollViewDelegate

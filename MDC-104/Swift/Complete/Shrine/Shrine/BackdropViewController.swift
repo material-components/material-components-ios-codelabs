@@ -103,7 +103,7 @@ class BackdropViewController: UIViewController {
     let button = MDCFlatButton()
     button.translatesAutoresizingMaskIntoConstraints = false
     button.setTitle("ACCOUNT", for: .normal)
-    button.addTarget(self, action: #selector(didTapCategory(sender:)), for: .touchUpInside)
+    button.addTarget(self, action: #selector(menuItemTapped(sender:)), for: .touchUpInside)
     MDCButtonColorThemer.applySemanticColorScheme(ApplicationScheme.scheme, to: button)
     MDCButtonTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme, to: button)
     return button
@@ -237,6 +237,28 @@ class BackdropViewController: UIViewController {
   }
 
   @objc func didTapCategory(sender: Any) {
+    let filter: String
+    let view = sender as! UIView
+    if (view == self.featuredButton) {
+      filter = ""
+    } else if (view == self.apartmentButton) {
+      filter = "apartment"
+    } else if (view == self.accessoriesButton) {
+      filter = "accessories"
+    } else if (view == self.shoesButton) {
+      filter = "shoes"
+    } else if (view == self.topsButton) {
+      filter = "top"
+    } else if (view == self.bottomsButton) {
+      filter = "bottoms"
+    } else if (view == self.dressesButton) {
+      filter = "dresses"
+    } else {
+      filter = ""
+    }
+
+    Catalog.categoryFilter = filter
+
     isFocusedEmbeddedController = !isFocusedEmbeddedController
   }
 

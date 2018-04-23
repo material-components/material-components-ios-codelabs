@@ -97,8 +97,11 @@ class CustomLayout: UICollectionViewLayout {
     get {
       var contentSize: CGSize = .zero
       contentSize.height = self.tripleSize.height
-      let lastItemFrameValue: NSValue = self.frameCache.last!
-      let lastItemFrame = lastItemFrameValue.cgRectValue
+      var lastItemFrame: CGRect = .zero
+      let lastItemFrameValue: NSValue? = self.frameCache.last
+      if ((lastItemFrameValue) != nil) {
+        lastItemFrame = lastItemFrameValue!.cgRectValue
+      }
       contentSize.width = lastItemFrame.maxX + HORIZONTAL_PADDING * self.collectionView!.frame.width
       return contentSize
     }
