@@ -21,7 +21,6 @@ import MaterialComponents
 class ApplicationScheme: NSObject, MDCColorScheming, MDCTypographyScheming {
   private static let colorScheme: MDCSemanticColorScheme = {
     let scheme = MDCSemanticColorScheme(defaults: .material201804)
-    //TODO: Customize ApplicationScheme Colors
     scheme.primaryColor =
       UIColor(red: 252.0/255.0, green: 184.0/255.0, blue: 171.0/255.0, alpha: 1.0)
     scheme.onPrimaryColor = .black
@@ -32,7 +31,6 @@ class ApplicationScheme: NSObject, MDCColorScheming, MDCTypographyScheming {
 
   private static let typographyScheme: MDCTypographyScheme = {
     let scheme = MDCTypographyScheme()
-    //TODO: Customize ApplicationScheme Fonts
     let fontName = "Rubik"
     scheme.headline5 = UIFont(name: fontName, size: 24)!
     scheme.headline6 = UIFont(name: fontName, size: 20)!
