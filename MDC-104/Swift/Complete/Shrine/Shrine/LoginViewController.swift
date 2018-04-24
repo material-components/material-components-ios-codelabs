@@ -162,13 +162,6 @@ class LoginViewController: UIViewController {
                                           attribute: .bottom,
                                           multiplier: 1,
                                           constant: 22))
-    constraints.append(NSLayoutConstraint(item: usernameTextField,
-                                          attribute: .centerX,
-                                          relatedBy: .equal,
-                                          toItem: scrollView,
-                                          attribute: .centerX,
-                                          multiplier: 1,
-                                          constant: 0))
     constraints.append(contentsOf:
       NSLayoutConstraint.constraints(withVisualFormat: "H:|-[username]-|",
                                      options: [],
