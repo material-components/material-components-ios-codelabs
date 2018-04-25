@@ -21,7 +21,7 @@ import MaterialComponents
 class BackdropViewController: UIViewController {
   var appBar = MDCAppBar()
   
-//  var containerView: UIView = {
+  //TODO: Change the following two lines from UIView to ShapedShadowedView
   var containerView: ShapedShadowedView = {
     let view = ShapedShadowedView(frame: .zero)
     view.translatesAutoresizingMaskIntoConstraints = false
@@ -158,6 +158,7 @@ class BackdropViewController: UIViewController {
 
     self.view.addSubview(self.containerView)
 
+    //TODO: Insert the HomeViewController into our BackdropViewController
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
     let viewController =
       storyboard.instantiateViewController(withIdentifier: "HomeViewController")
@@ -204,7 +205,7 @@ class BackdropViewController: UIViewController {
     let filter: String
     let view = sender as! UIView
     if (view == self.featuredButton) {
-      filter = ""
+      filter = "Featured"
     } else if (view == self.homeButton) {
       filter = "Home"
     } else if (view == self.accessoriesButton) {
@@ -215,6 +216,7 @@ class BackdropViewController: UIViewController {
       filter = ""
     }
 
+    //TODO: Set the catalog filter based on the button pressed
     Catalog.categoryFilter = filter
 
     isFocusedEmbeddedController = !isFocusedEmbeddedController

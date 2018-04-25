@@ -217,7 +217,6 @@ class LoginViewController: UIViewController {
 
     NSLayoutConstraint.activate(constraints)
 
-    // TODO: Theme the interface with our colors
     self.view.backgroundColor = ApplicationScheme.scheme.surfaceColor
     self.logoImageView.tintColor = ApplicationScheme.scheme.onSurfaceColor
     self.titleLabel.textColor = ApplicationScheme.scheme.onSurfaceColor
@@ -230,7 +229,6 @@ class LoginViewController: UIViewController {
     MDCButtonColorThemer.applySemanticColorScheme(ApplicationScheme.scheme,
                                                   to: self.nextButton)
 
-    // TODO: Theme the interface with our fonts
     titleLabel.font = ApplicationScheme.scheme.headline5
     MDCTextFieldTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme,
                                                        to: usernameTextFieldController)

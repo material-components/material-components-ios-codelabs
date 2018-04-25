@@ -61,13 +61,10 @@ class HomeViewController: UICollectionViewController {
                                      action: nil)
     self.navigationItem.rightBarButtonItems = [ tuneItem, searchItem ]
 
-    // TODO: Theme our interface with our colors
     MDCAppBarColorThemer.applySemanticColorScheme(ApplicationScheme(), to:self.appBar)
 
-    // TODO: Theme our interface with our typography
     MDCAppBarTypographyThemer.applyTypographyScheme(ApplicationScheme(), to: self.appBar)
 
-    // TODO: Set layout to our custom layout
     self.collectionView!.collectionViewLayout = CustomLayout()
 
     //TODO: Register for the catalog changed notification
@@ -119,6 +116,7 @@ class HomeViewController: UICollectionViewController {
     return cell
   }
 
+  // Catalog Update Handler reloads the collection view is the products have changed
   @objc func respondToCatalogNotification() {
     self.collectionView?.reloadSections([0])
   }
