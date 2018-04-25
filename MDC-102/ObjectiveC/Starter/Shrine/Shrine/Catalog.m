@@ -16,24 +16,28 @@
 
 #import "Catalog.h"
 
+NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNotification";
+
 
 @interface Product ()
 - (instancetype)initWithImageName:(NSString *)imageName
                       productName:(NSString *)productName
-                            price:(NSString *)price;
+                            price:(NSString *)price
+                         category:(NSString *)category;
 @end
 
 @implementation Product
 
 - (instancetype)initWithImageName:(NSString *)imageName
                       productName:(NSString *)productName
-                            price:(NSString *)price {
+                            price:(NSString *)price
+                         category:(NSString *)category {
   self = [super init];
   if (self) {
     _imageName = [imageName copy];
     _productName = [productName copy];
     _price = [price copy];
-
+    _category = [category copy];
   }
   return self;
 }
@@ -41,7 +45,8 @@
 @end
 
 @implementation Catalog {
-  NSMutableArray <Product *>*_products;
+  NSMutableArray <Product *>*_allProducts;
+  NSArray <Product *>*_filteredProducts;
 }
 
 + (instancetype)productCatalog {
@@ -56,191 +61,359 @@
 - (instancetype)initSingleton {
   self = [super init];
   if (self) {
-    _products = [[NSMutableArray alloc] init];
+    _allProducts = [[NSMutableArray alloc] init];
 
     {
       Product *product =
-        [[Product alloc] initWithImageName:@"ProductBackpack"
-                               productName:@"Backpack"
-                                     price:@"$11.22"];
-      [_products addObject:product];
+        [[Product alloc] initWithImageName:@"Product0"
+                               productName:@"Vagabond sack"
+                                     price:@"$120"
+                                  category:@"Accessories"];
+      [_allProducts addObject:product];
     }
     {
       Product *product =
-      [[Product alloc] initWithImageName:@"ProductBeachball"
-                             productName:@"Beachball"
-                                   price:@"$11.22"];
-      [_products addObject:product];
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"Stella sunglasses"
+                                   price:@"$58"
+                                category:@"Accessories"];
+      [_allProducts addObject:product];
     }
     {
       Product *product =
-      [[Product alloc] initWithImageName:@"ProductBinoculars"
-                             productName:@"Binoculars"
-                                   price:@"$11.22"];
-      [_products addObject:product];
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"Whitney belt"
+                                   price:@"$35"
+                                category:@"Accessories"];
+      [_allProducts addObject:product];
     }
     {
       Product *product =
-      [[Product alloc] initWithImageName:@"ProductBrush"
-                             productName:@"Brush"
-                                   price:@"$11.22"];
-      [_products addObject:product];
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"Garden strand"
+                                   price:@"$98"
+                                category:@"Accessories"];
+      [_allProducts addObject:product];
     }
     {
       Product *product =
-      [[Product alloc] initWithImageName:@"ProductChair"
-                             productName:@"Chair"
-                                   price:@"$11.22"];
-      [_products addObject:product];
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"Strut earrings"
+                                   price:@"$34"
+                                category:@"Accessories"];
+      [_allProducts addObject:product];
     }
     {
       Product *product =
-      [[Product alloc] initWithImageName:@"ProductChucks"
-                             productName:@"Chucks"
-                                   price:@"$11.22"];
-      [_products addObject:product];
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"Varsity socks"
+                                   price:@"$12"
+                                category:@"Accessories"];
+      [_allProducts addObject:product];
     }
     {
       Product *product =
-      [[Product alloc] initWithImageName:@"ProductClock"
-                             productName:@"Clock"
-                                   price:@"$11.22"];
-      [_products addObject:product];
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"Weave keyring"
+                                   price:@"$16"
+                                category:@"Accessories"];
+      [_allProducts addObject:product];
     }
     {
       Product *product =
-      [[Product alloc] initWithImageName:@"ProductFishbowl"
-                             productName:@"Fishbowl"
-                                   price:@"$11.22"];
-      [_products addObject:product];
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"Gatsby hat"
+                                   price:@"$40"
+                                category:@"Accessories"];
+      [_allProducts addObject:product];
     }
     {
       Product *product =
-      [[Product alloc] initWithImageName:@"ProductFlippers"
-                             productName:@"Flippers"
-                                   price:@"$11.22"];
-      [_products addObject:product];
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"Shrug bag"
+                                   price:@"$198"
+                                category:@"Accessories"];
+      [_allProducts addObject:product];
     }
     {
       Product *product =
-      [[Product alloc] initWithImageName:@"ProductHeels"
-                             productName:@"Heels"
-                                   price:@"$11.22"];
-      [_products addObject:product];
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"Glit desk trio"
+                                   price:@"$58"
+                                category:@"Home"];
+      [_allProducts addObject:product];
     }
     {
       Product *product =
-      [[Product alloc] initWithImageName:@"ProductHelmet"
-                             productName:@"Helmet"
-                                   price:@"$11.22"];
-      [_products addObject:product];
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"Copper wire rack"
+                                   price:@"$18"
+                                category:@"Home"];
+      [_allProducts addObject:product];
     }
     {
       Product *product =
-      [[Product alloc] initWithImageName:@"ProductLamp"
-                             productName:@"Lamp"
-                                   price:@"$11.22"];
-      [_products addObject:product];
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"Smooth ceramic set"
+                                   price:@"$28"
+                                category:@"Home"];
+      [_allProducts addObject:product];
     }
     {
       Product *product =
-      [[Product alloc] initWithImageName:@"ProductLawnchair"
-                             productName:@"Lawnchair"
-                                   price:@"$11.22"];
-      [_products addObject:product];
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"Hurrahs tea set"
+                                   price:@"$34"
+                                category:@"Home"];
+      [_allProducts addObject:product];
     }
     {
       Product *product =
-      [[Product alloc] initWithImageName:@"ProductLipstick"
-                             productName:@"Lipstick"
-                                   price:@"$11.22"];
-      [_products addObject:product];
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"Blue stone mug"
+                                   price:@"$18"
+                                category:@"Home"];
+      [_allProducts addObject:product];
     }
     {
       Product *product =
-      [[Product alloc] initWithImageName:@"ProductPen"
-                             productName:@"Pen"
-                                   price:@"$11.22"];
-      [_products addObject:product];
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"Rainwater tray"
+                                   price:@"$27"
+                                category:@"Home"];
+      [_allProducts addObject:product];
     }
     {
       Product *product =
-      [[Product alloc] initWithImageName:@"ProductPopsicle"
-                             productName:@"Popsicle"
-                                   price:@"$11.22"];
-      [_products addObject:product];
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"Chambray napkins"
+                                   price:@"$16"
+                                category:@"Home"];
+      [_allProducts addObject:product];
     }
     {
       Product *product =
-      [[Product alloc] initWithImageName:@"ProductRadio"
-                             productName:@"Radio"
-                                   price:@"$11.22"];
-      [_products addObject:product];
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"Succulent planters"
+                                   price:@"$16"
+                                category:@"Home"];
+      [_allProducts addObject:product];
     }
     {
       Product *product =
-      [[Product alloc] initWithImageName:@"ProductShoes"
-                             productName:@"Shoes"
-                                   price:@"$11.22"];
-      [_products addObject:product];
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"Quartet table"
+                                   price:@"$175"
+                                category:@"Home"];
+      [_allProducts addObject:product];
     }
     {
       Product *product =
-      [[Product alloc] initWithImageName:@"ProductSunnies"
-                             productName:@"Sunnies"
-                                   price:@"$11.22"];
-      [_products addObject:product];
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"Kitchen quattro"
+                                   price:@"$129"
+                                category:@"Home"];
+      [_allProducts addObject:product];
     }
     {
       Product *product =
-      [[Product alloc] initWithImageName:@"ProductSurfboard"
-                             productName:@"Surfboard"
-                                   price:@"$11.22"];
-      [_products addObject:product];
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"Adobe Sweater"
+                                   price:@"$48"
+                                category:@"Clothing"];
+      [_allProducts addObject:product];
     }
     {
       Product *product =
-      [[Product alloc] initWithImageName:@"ProductTeapot"
-                             productName:@"Teapot"
-                                   price:@"$11.22"];
-      [_products addObject:product];
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"Sea tunic"
+                                   price:@"$45"
+                                category:@"Clothing"];
+      [_allProducts addObject:product];
     }
     {
       Product *product =
-      [[Product alloc] initWithImageName:@"ProductTools"
-                             productName:@"Tools"
-                                   price:@"$11.22"];
-      [_products addObject:product];
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"Plaster tunic"
+                                   price:@"$38"
+                                category:@"Clothing"];
+      [_allProducts addObject:product];
     }
     {
       Product *product =
-      [[Product alloc] initWithImageName:@"ProductTypewriter"
-                             productName:@"Typewriter"
-                                   price:@"$11.22"];
-      [_products addObject:product];
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"White pinstripe shirt"
+                                   price:@"$70"
+                                category:@"Clothing"];
+      [_allProducts addObject:product];
     }
     {
       Product *product =
-      [[Product alloc] initWithImageName:@"ProductUmbrella"
-                             productName:@"Umbrella"
-                                   price:@"$11.22"];
-      [_products addObject:product];
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"Chambray shirt"
+                                   price:@"$70"
+                                category:@"Clothing"];
+      [_allProducts addObject:product];
     }
+    {
+      Product *product =
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"Seabreeze sweater"
+                                   price:@"$60"
+                                category:@"Clothing"];
+      [_allProducts addObject:product];
+    }
+    {
+      Product *product =
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"Gentry jacket"
+                                   price:@"$178"
+                                category:@"Clothing"];
+      [_allProducts addObject:product];
+    }
+    {
+      Product *product =
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"Navy trousers"
+                                   price:@"$74"
+                                category:@"Clothing"];
+      [_allProducts addObject:product];
+    }
+    {
+      Product *product =
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"Walter henley (white)"
+                                   price:@"$38"
+                                category:@"Clothing"];
+      [_allProducts addObject:product];
+    }
+    {
+      Product *product =
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"Surf and perf shirt"
+                                   price:@"$48"
+                                category:@"Clothing"];
+      [_allProducts addObject:product];
+    }
+    {
+      Product *product =
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"Bixby scarf"
+                                   price:@"$98"
+                                category:@"Clothing"];
+      [_allProducts addObject:product];
+    }
+    {
+      Product *product =
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"Ramona crossover"
+                                   price:@"$68"
+                                category:@"Clothing"];
+      [_allProducts addObject:product];
+    }
+    {
+      Product *product =
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"Chambray shirt"
+                                   price:@"$38"
+                                category:@"Clothing"];
+      [_allProducts addObject:product];
+    }
+    {
+      Product *product =
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"Classic white collar"
+                                   price:@"$58"
+                                category:@"Clothing"];
+      [_allProducts addObject:product];
+    }
+    {
+      Product *product =
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"Cerise scallop tee"
+                                   price:@"$42"
+                                category:@"Clothing"];
+      [_allProducts addObject:product];
+    }
+    {
+      Product *product =
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"Shoulder rolls tee"
+                                   price:@"$27"
+                                category:@"Clothing"];
+      [_allProducts addObject:product];
+    }
+    {
+      Product *product =
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"Grey slouch tank"
+                                   price:@"$24"
+                                category:@"Clothing"];
+      [_allProducts addObject:product];
+    }
+    {
+      Product *product =
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"Sunshirt dress"
+                                   price:@"$58"
+                                category:@"Clothing"];
+      [_allProducts addObject:product];
+    }
+    {
+      Product *product =
+      [[Product alloc] initWithImageName:@"Product0"
+                             productName:@"Fine lines tee"
+                                   price:@"$58"
+                                category:@"Clothing"];
+      [_allProducts addObject:product];
+    }
+
+    _categoryFilter = @"";
+    _filteredProducts = _allProducts;
   }
   return self;
 }
 
 - (Product *)productAtIndex:(NSUInteger)index {
-  if (index >= _products.count) {
+  if (index >= _filteredProducts.count) {
     NSAssert(0, @"Invalid Product Index");
     return nil;
   }
 
-  return _products[index];
+  return _filteredProducts[index];
 }
 
 - (NSUInteger)count {
-  return _products.count;
+  return _filteredProducts.count;
+}
+
+- (void)setCategoryFilter:(NSString *)categoryFilter {
+  if (!categoryFilter) {
+    categoryFilter = @"";
+  }
+  if ([self.categoryFilter isEqualToString:categoryFilter])
+    return;
+
+  _categoryFilter = categoryFilter;
+  [self applyFilter];
+
+  [[NSNotificationCenter defaultCenter] postNotificationName:CatalogFilterDidChangeNotification
+                                                      object:nil];
+}
+
+- (void)applyFilter {
+  if ([self.categoryFilter isEqualToString:@""]) {
+    _filteredProducts = _allProducts;
+    return;
+  }
+
+  NSIndexSet *matchingSet = [_allProducts indexesOfObjectsPassingTest:^BOOL(Product * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    if ([obj.category isEqualToString:self.categoryFilter])
+      return YES;
+    else
+      return NO;
+  }];
+  _filteredProducts = [_allProducts objectsAtIndexes:matchingSet];
 }
 
 @end
