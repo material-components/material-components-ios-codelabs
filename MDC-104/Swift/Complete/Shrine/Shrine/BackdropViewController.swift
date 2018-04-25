@@ -39,10 +39,20 @@ class BackdropViewController: UIViewController {
     return button
   }()
 
-  let apartmentButton: MDCFlatButton = {
+  let clothingButton: MDCFlatButton = {
     let button = MDCFlatButton()
     button.translatesAutoresizingMaskIntoConstraints = false
-    button.setTitle("APARTMENT", for: .normal)
+    button.setTitle("CLOTHING", for: .normal)
+    button.addTarget(self, action: #selector(didTapCategory(sender:)), for: .touchUpInside)
+    MDCButtonColorThemer.applySemanticColorScheme(ApplicationScheme.scheme, to: button)
+    MDCButtonTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme, to: button)
+    return button
+  }()
+
+  let homeButton: MDCFlatButton = {
+    let button = MDCFlatButton()
+    button.translatesAutoresizingMaskIntoConstraints = false
+    button.setTitle("HOME", for: .normal)
     button.addTarget(self, action: #selector(didTapCategory(sender:)), for: .touchUpInside)
     MDCButtonColorThemer.applySemanticColorScheme(ApplicationScheme.scheme, to: button)
     MDCButtonTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme, to: button)
@@ -53,46 +63,6 @@ class BackdropViewController: UIViewController {
     let button = MDCFlatButton()
     button.translatesAutoresizingMaskIntoConstraints = false
     button.setTitle("ACCESSORIES", for: .normal)
-    button.addTarget(self, action: #selector(didTapCategory(sender:)), for: .touchUpInside)
-    MDCButtonColorThemer.applySemanticColorScheme(ApplicationScheme.scheme, to: button)
-    MDCButtonTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme, to: button)
-    return button
-  }()
-
-  let shoesButton: MDCFlatButton = {
-    let button = MDCFlatButton()
-    button.translatesAutoresizingMaskIntoConstraints = false
-    button.setTitle("SHOES", for: .normal)
-    button.addTarget(self, action: #selector(didTapCategory(sender:)), for: .touchUpInside)
-    MDCButtonColorThemer.applySemanticColorScheme(ApplicationScheme.scheme, to: button)
-    MDCButtonTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme, to: button)
-    return button
-  }()
-
-  let topsButton: MDCFlatButton = {
-    let button = MDCFlatButton()
-    button.translatesAutoresizingMaskIntoConstraints = false
-    button.setTitle("TOPS", for: .normal)
-    button.addTarget(self, action: #selector(didTapCategory(sender:)), for: .touchUpInside)
-    MDCButtonColorThemer.applySemanticColorScheme(ApplicationScheme.scheme, to: button)
-    MDCButtonTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme, to: button)
-    return button
-  }()
-
-  let bottomsButton: MDCFlatButton = {
-    let button = MDCFlatButton()
-    button.translatesAutoresizingMaskIntoConstraints = false
-    button.setTitle("BOTTOMS", for: .normal)
-    button.addTarget(self, action: #selector(didTapCategory(sender:)), for: .touchUpInside)
-    MDCButtonColorThemer.applySemanticColorScheme(ApplicationScheme.scheme, to: button)
-    MDCButtonTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme, to: button)
-    return button
-  }()
-
-  let dressesButton: MDCFlatButton = {
-    let button = MDCFlatButton()
-    button.translatesAutoresizingMaskIntoConstraints = false
-    button.setTitle("DRESSES", for: .normal)
     button.addTarget(self, action: #selector(didTapCategory(sender:)), for: .touchUpInside)
     MDCButtonColorThemer.applySemanticColorScheme(ApplicationScheme.scheme, to: button)
     MDCButtonTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme, to: button)
@@ -158,12 +128,9 @@ class BackdropViewController: UIViewController {
 
     // Buttons
     self.view.addSubview(featuredButton)
-    self.view.addSubview(apartmentButton)
+    self.view.addSubview(clothingButton)
+    self.view.addSubview(homeButton)
     self.view.addSubview(accessoriesButton)
-    self.view.addSubview(shoesButton)
-    self.view.addSubview(topsButton)
-    self.view.addSubview(bottomsButton)
-    self.view.addSubview(dressesButton)
     self.view.addSubview(accountButton)
 
     var constraints = [NSLayoutConstraint]()
@@ -178,17 +145,14 @@ class BackdropViewController: UIViewController {
     let nameView = [
       "navigationbar" : self.appBar.navigationBar,
       "featured" : self.featuredButton,
-      "apartment" : self.apartmentButton,
+      "clothing" : self.clothingButton,
+      "home" : self.homeButton,
       "accessories" : self.accessoriesButton,
-      "shoes" : self.shoesButton,
-      "tops" : self.topsButton,
-      "bottoms" : self.bottomsButton,
-      "dresses" : self.dressesButton,
       "account" : self.accountButton
     ]
 
     constraints.append(contentsOf:
-        NSLayoutConstraint.constraints(withVisualFormat: "V:|[navigationbar]-[featured]-[apartment]-[accessories]-[shoes]-[tops]-[bottoms]-[dresses]-[account]", options: .alignAllCenterX, metrics: nil, views: nameView))
+        NSLayoutConstraint.constraints(withVisualFormat: "V:|[navigationbar]-[featured]-[clothing]-[home]-[accessories]-[account]", options: .alignAllCenterX, metrics: nil, views: nameView))
 
     NSLayoutConstraint.activate(constraints)
 
@@ -241,18 +205,12 @@ class BackdropViewController: UIViewController {
     let view = sender as! UIView
     if (view == self.featuredButton) {
       filter = ""
-    } else if (view == self.apartmentButton) {
-      filter = "apartment"
+    } else if (view == self.homeButton) {
+      filter = "Home"
     } else if (view == self.accessoriesButton) {
-      filter = "accessories"
-    } else if (view == self.shoesButton) {
-      filter = "shoes"
-    } else if (view == self.topsButton) {
-      filter = "top"
-    } else if (view == self.bottomsButton) {
-      filter = "bottoms"
-    } else if (view == self.dressesButton) {
-      filter = "dresses"
+      filter = "Accessories"
+    } else if (view == self.clothingButton) {
+      filter = "Clothing"
     } else {
       filter = ""
     }

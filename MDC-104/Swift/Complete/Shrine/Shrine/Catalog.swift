@@ -21,12 +21,14 @@ class Product: NSObject {
   public private(set) var productName: String
   public private(set) var price: String
   public private(set) var category: String
+  public private(set) var isFeatured: Bool
 
-  required init(imageName: String, productName: String, price: String, category: String) {
+  required init(imageName: String, productName: String, price: String, category: String, isFeatured: Bool) {
     self.imageName = imageName
     self.productName = productName
     self.price = price
     self.category = category
+    self.isFeatured = isFeatured
     super.init()
   }
 }
@@ -37,29 +39,44 @@ class Catalog: NSObject {
       Notification.Name(rawValue: "CatalogFilterDidChangeNotification")
 
   private static let products = [
-    Product(imageName: "ProductBackpack", productName: "Backpack", price: "$11.22", category: "accessories"),
-    Product(imageName: "ProductBeachball", productName: "Beachball", price: "$11.22", category: "apartment"),
-    Product(imageName: "ProductBinoculars", productName: "Binoculars", price: "$11.22", category: "apartment"),
-    Product(imageName: "ProductBrush", productName: "Brush", price: "$11.22", category: "accessories"),
-    Product(imageName: "ProductChair", productName: "Chair", price: "$11.22", category: "apartment"),
-    Product(imageName: "ProductChucks", productName: "Chucks", price: "$11.22", category: "shoes"),
-    Product(imageName: "ProductClock", productName: "Clock", price: "$11.22", category: "apartment"),
-    Product(imageName: "ProductFishbowl", productName: "Fishbowl", price: "$11.22", category: "apartment"),
-    Product(imageName: "ProductFlippers", productName: "Flippers", price: "$11.22", category: "shoes"),
-    Product(imageName: "ProductHeels", productName: "Heels", price: "$11.22", category: "shoes"),
-    Product(imageName: "ProductHelmet", productName: "Helmet", price: "$11.22", category: "accessories"),
-    Product(imageName: "ProductLamp", productName: "Lamp", price: "$11.22", category: "apartment"),
-    Product(imageName: "ProductLawnchair", productName: "Lawnchair", price: "$11.22", category: "apartment"),
-    Product(imageName: "ProductLipstick", productName: "Lipstick", price: "$11.22", category: "accessories"),
-    Product(imageName: "ProductPopsicle", productName: "Popsicle", price: "$11.22", category: "apartment"),
-    Product(imageName: "ProductRadio", productName: "Radio", price: "$11.22", category: "apartment"),
-    Product(imageName: "ProductShoes", productName: "Shoes", price: "$11.22", category: "shoes"),
-    Product(imageName: "ProductSunnies", productName: "Sunnies", price: "$11.22", category: "accessories"),
-    Product(imageName: "ProductSurfboard", productName: "Surfboard", price: "$11.22", category: "apartment"),
-    Product(imageName: "ProductTeapot", productName: "Teaport", price: "$11.22", category: "apartment"),
-    Product(imageName: "ProductTools", productName: "Tools", price: "$11.22", category: "apartment"),
-    Product(imageName: "ProductTypewriter", productName: "Typewriter", price: "$11.22", category: "apartment"),
-    Product(imageName: "ProductUmbrella", productName: "Umbrella", price: "$11.22", category: "accessories"),
+    Product(imageName: "Product0", productName: "Vagabond sack", price: "$120", category: "Accessories", isFeatured:true),
+    Product(imageName: "Product0", productName: "Stella sunglasses", price: "$58", category: "Accessories", isFeatured:true),
+    Product(imageName: "Product0", productName: "Whitney belt", price: "$35", category: "Accessories", isFeatured:false),
+    Product(imageName: "Product0", productName: "Garden strand", price: "$98", category: "Accessories", isFeatured:true),
+    Product(imageName: "Product0", productName: "Strut earnings", price: "$34", category: "Accessories", isFeatured:false),
+    Product(imageName: "Product0", productName: "Varsity socks", price: "$12", category: "Accessories", isFeatured:false),
+    Product(imageName: "Product0", productName: "Weave keyring", price: "$16", category: "Accessories", isFeatured:false),
+    Product(imageName: "Product0", productName: "Gatsby hat", price: "$40", category: "Accessories", isFeatured:true),
+    Product(imageName: "Product0", productName: "Shrug bag", price: "$198", category: "Accessories", isFeatured:true),
+    Product(imageName: "Product0", productName: "Gilt desk trio", price: "$58", category: "Home", isFeatured:true),
+    Product(imageName: "Product0", productName: "Copper wire rack", price: "$18", category: "Home", isFeatured:false),
+    Product(imageName: "Product0", productName: "Soothe ceramic set", price: "$28", category: "Home", isFeatured:false),
+    Product(imageName: "Product0", productName: "Hurrahs tea set", price: "$34", category: "Home", isFeatured:false),
+    Product(imageName: "Product0", productName: "Blue stone mug", price: "$18", category: "Home", isFeatured:true),
+    Product(imageName: "Product0", productName: "Rainwater tray", price: "$27", category: "Home", isFeatured:true),
+    Product(imageName: "Product0", productName: "Chambray napkins", price: "$16", category: "Home", isFeatured:true),
+    Product(imageName: "Product0", productName: "Succulent planters", price: "$16", category: "Home", isFeatured:true),
+    Product(imageName: "Product0", productName: "Quartet table", price: "$175", category: "Home", isFeatured:true),
+    Product(imageName: "Product0", productName: "Kitchen quattro", price: "$129", category: "Home", isFeatured:false),
+    Product(imageName: "Product0", productName: "Adobe sweater", price: "$48", category: "Clothing", isFeatured:false),
+    Product(imageName: "Product0", productName: "Sea tunic", price: "$45", category: "Clothing", isFeatured:false),
+    Product(imageName: "Product0", productName: "Plaster tunic", price: "$38", category: "Clothing", isFeatured:false),
+    Product(imageName: "Product0", productName: "White pinstripe shirt", price: "$70", category: "Clothing", isFeatured:false),
+    Product(imageName: "Product0", productName: "Chambray shirt", price: "$70", category: "Clothing", isFeatured:false),
+    Product(imageName: "Product0", productName: "Seabreeze sweater", price: "$60", category: "Clothing", isFeatured:true),
+    Product(imageName: "Product0", productName: "Gentry jacket", price: "$178", category: "Clothing", isFeatured:false),
+    Product(imageName: "Product0", productName: "Navy trousers", price: "$74", category: "Clothing", isFeatured:false),
+    Product(imageName: "Product0", productName: "Walter henley (white)", price: "$38", category: "Clothing", isFeatured:true),
+    Product(imageName: "Product0", productName: "Surf and perf shirt", price: "$48", category: "Clothing", isFeatured:true),
+    Product(imageName: "Product0", productName: "Bixby scarf", price: "$98", category: "Clothing", isFeatured:true),
+    Product(imageName: "Product0", productName: "Ramona crossover", price: "$68", category: "Clothing", isFeatured:true),
+    Product(imageName: "Product0", productName: "Chambray shirt", price: "$38", category: "Clothing", isFeatured:false),
+    Product(imageName: "Product0", productName: "Classic white collar", price: "$58", category: "Clothing", isFeatured:false),
+    Product(imageName: "Product0", productName: "Cerise scallop tee", price: "$42", category: "Clothing", isFeatured:true),
+    Product(imageName: "Product0", productName: "Shoulder rolls tee", price: "$27", category: "Clothing", isFeatured:false),
+    Product(imageName: "Product0", productName: "Grey slouch tank", price: "$24", category: "Clothing", isFeatured:false),
+    Product(imageName: "Product0", productName: "Sunshirt dress", price: "$58", category: "Clothing", isFeatured:false),
+    Product(imageName: "Product0", productName: "Fine lines tee", price: "$58", category: "Clothing", isFeatured:true),
   ]
 
   private static var filteredProducts: [Product] = products
