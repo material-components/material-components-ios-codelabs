@@ -53,6 +53,7 @@ class LoginViewController: UIViewController {
   let passwordTextField: MDCTextField = {
     let passwordTextField = MDCTextField()
     passwordTextField.translatesAutoresizingMaskIntoConstraints = false
+    passwordTextField.isSecureTextEntry = true
     return passwordTextField
   }()
 
