@@ -114,6 +114,7 @@
   self.passwordTextField.translatesAutoresizingMaskIntoConstraints = NO;
   self.passwordTextField.delegate = self;
   self.passwordTextField.clearButtonMode = UITextFieldViewModeUnlessEditing;
+  self.passwordTextField.secureTextEntry = YES;
   [self.scrollView addSubview:self.passwordTextField];
 
   self.passwordTextFieldController =

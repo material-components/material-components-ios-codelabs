@@ -14,13 +14,35 @@
  limitations under the License.
  */
 
-#import "MaterialThemes.h"
+#import "MaterialColorScheme.h"
 #import "MaterialTabs.h"
 
 /**
  Used to apply a color scheme to theme MDCTabBar.
  */
 @interface MDCTabBarColorThemer : NSObject
+
+/**
+ Applies a color scheme's properties to an MDCTabBar.
+
+ @param colorScheme The color scheme to apply to MDCTabBar.
+ @param tabBar An MDCTabBar instance to which the color scheme should be applied.
+ */
++ (void)applySemanticColorScheme:(nonnull id<MDCColorScheming>)colorScheme
+                          toTabs:(nonnull MDCTabBar *)tabBar;
+
+/**
+ Applies a color scheme's properties to an MDCTabBar using the surface variant.
+
+ Uses the surface color as the most important color for the component.
+
+ @param colorScheme The color scheme to apply to MDCTabBar.
+ @param tabBar An MDCTabBar instance to which the color scheme should be applied.
+ */
++ (void)applySurfaceVariantWithColorScheme:(nonnull id<MDCColorScheming>)colorScheme
+                                    toTabs:(nonnull MDCTabBar *)tabBar;
+
+#pragma mark - Soon to be deprecated
 
 /**
  Applies a color scheme to theme a MDCTabBar. Use a UIAppearance proxy to apply a color scheme to

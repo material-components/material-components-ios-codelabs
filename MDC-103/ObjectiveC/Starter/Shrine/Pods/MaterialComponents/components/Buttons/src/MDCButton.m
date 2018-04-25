@@ -115,10 +115,12 @@ static NSAttributedString *uppercaseAttributedString(NSAttributedString *string)
   NSMutableDictionary<NSNumber *, UIColor *> *_borderColors;
   NSMutableDictionary<NSNumber *, NSNumber *> *_borderWidths;
   NSMutableDictionary<NSNumber *, UIColor *> *_shadowColors;
+  NSMutableDictionary<NSNumber *, UIColor *> *_imageTintColors;
   NSMutableDictionary<NSNumber *, UIFont *> *_fonts;
 
   CGFloat _enabledAlpha;
   BOOL _hasCustomDisabledTitleColor;
+  BOOL _imageTintStatefulAPIEnabled;
 
   // Cached accessibility settings.
   NSMutableDictionary<NSNumber *, NSString *> *_nontransformedTitles;
@@ -127,7 +129,7 @@ static NSAttributedString *uppercaseAttributedString(NSAttributedString *string)
   BOOL _mdc_adjustsFontForContentSizeCategory;
 }
 @property(nonatomic, strong) MDCInkView *inkView;
-@property(nonatomic, readonly, strong) MDCShadowLayer *layer;
+@property(nonatomic, readonly, strong) MDCShapedShadowLayer *layer;
 @end
 
 @implementation MDCButton
@@ -135,7 +137,7 @@ static NSAttributedString *uppercaseAttributedString(NSAttributedString *string)
 @dynamic layer;
 
 + (Class)layerClass {
-  return [MDCShadowLayer class];
+  return [MDCShapedShadowLayer class];
 }
 
 - (instancetype)init {
@@ -237,7 +239,7 @@ static NSAttributedString *uppercaseAttributedString(NSAttributedString *string)
     } else {
       // Storyboards will set the backgroundColor via the UIView backgroundColor setter, so we have
       // to write that in to our _backgroundColors dictionary.
-      _backgroundColors[@(UIControlStateNormal)] = super.backgroundColor;
+      _backgroundColors[@(UIControlStateNormal)] = self.layer.shapedBackgroundColor;
     }
     [self updateBackgroundColor];
 
@@ -296,6 +298,7 @@ static NSAttributedString *uppercaseAttributedString(NSAttributedString *string)
   _userElevations = [NSMutableDictionary dictionary];
   _nontransformedTitles = [NSMutableDictionary dictionary];
   _borderColors = [NSMutableDictionary dictionary];
+  _imageTintColors = [NSMutableDictionary dictionary];
   _borderWidths = [NSMutableDictionary dictionary];
   _fonts = [NSMutableDictionary dictionary];
 
@@ -315,19 +318,19 @@ static NSAttributedString *uppercaseAttributedString(NSAttributedString *string)
   _maximumSize = CGSizeZero;
 
   self.layer.cornerRadius = MDCButtonDefaultCornerRadius;
-  MDCShadowLayer *shadowLayer = self.layer;
-  shadowLayer.shadowPath = [self boundingPath].CGPath;
-  shadowLayer.shadowColor = [UIColor blackColor].CGColor;
-  shadowLayer.elevation = [self elevationForState:self.state];
+  if (!self.layer.shapeGenerator) {
+    self.layer.shadowPath = [self boundingPath].CGPath;
+  }
+  self.layer.shadowColor = [UIColor blackColor].CGColor;
+  self.layer.elevation = [self elevationForState:self.state];
 
   _shadowColors = [NSMutableDictionary dictionary];
-  _shadowColors[@(UIControlStateNormal)] = [UIColor colorWithCGColor:shadowLayer.shadowColor];
+  _shadowColors[@(UIControlStateNormal)] = [UIColor colorWithCGColor:self.layer.shadowColor];
 
   // Set up ink layer.
   _inkView = [[MDCInkView alloc] initWithFrame:self.bounds];
   _inkView.usesLegacyInkRipple = NO;
   [self insertSubview:_inkView belowSubview:self.imageView];
-
   // UIButton has a drag enter/exit boundary that is outside of the frame of the button itself.
   // Because this is not exposed externally, we can't use -touchesMoved: to calculate when to
   // change ink state. So instead we fall back on adding target/actions for these specific events.
@@ -378,7 +381,9 @@ static NSAttributedString *uppercaseAttributedString(NSAttributedString *string)
 
 - (void)layoutSubviews {
   [super layoutSubviews];
-  self.layer.shadowPath = [self boundingPath].CGPath;
+  if (!self.layer.shapeGenerator) {
+    self.layer.shadowPath = [self boundingPath].CGPath;
+  }
   if ([self respondsToSelector:@selector(cornerRadius)]) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
@@ -508,6 +513,7 @@ static NSAttributedString *uppercaseAttributedString(NSAttributedString *string)
   [self updateBorderWidth];
   [self updateShadowColor];
   [self updateTitleFont];
+  [self updateImageTintColor];
 }
 
 #pragma mark - Title Uppercasing
@@ -687,6 +693,26 @@ static NSAttributedString *uppercaseAttributedString(NSAttributedString *string)
   [self updateAlphaAndBackgroundColorAnimated:NO];
 }
 
+#pragma mark - Image Tint Color
+
+- (nullable UIColor *)imageTintColorForState:(UIControlState)state {
+
+  return _imageTintColors[@(state)] ?: _imageTintColors[@(UIControlStateNormal)];
+}
+
+- (void)setImageTintColor:(nullable UIColor *)imageTintColor forState:(UIControlState)state {
+  _imageTintColors[@(state)] = imageTintColor;
+  _imageTintStatefulAPIEnabled = YES;
+  [self updateImageTintColor];
+}
+
+- (void)updateImageTintColor {
+  if (!_imageTintStatefulAPIEnabled) {
+    return;
+  }
+  self.imageView.tintColor = [self imageTintColorForState:self.state];
+}
+
 #pragma mark - Elevations
 
 - (CGFloat)elevationForState:(UIControlState)state {
@@ -751,7 +777,7 @@ static NSAttributedString *uppercaseAttributedString(NSAttributedString *string)
     // We fall back to UIControlStateNormal if there is no value for the current state.
     width = _borderWidths[@(UIControlStateNormal)];
   }
-  self.layer.borderWidth = (width != nil) ? (CGFloat)width.doubleValue : 0;
+  self.layer.shapedBorderWidth = (width != nil) ? (CGFloat)width.doubleValue : 0;
 }
 
 #pragma mark - Title Font
@@ -832,8 +858,6 @@ static NSAttributedString *uppercaseAttributedString(NSAttributedString *string)
     cornerRadius = [self cornerRadius];
 #pragma clang diagnostic pop
   }
-
-
   return [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:cornerRadius];
 }
 
@@ -860,7 +884,9 @@ static NSAttributedString *uppercaseAttributedString(NSAttributedString *string)
 }
 
 - (void)updateBackgroundColor {
-  super.backgroundColor = self.currentBackgroundColor;
+  // When shapeGenerator is unset then self.layer.shapedBackgroundColor sets the layer's
+  // backgroundColor. Whereas when shapeGenerator is set the sublayer's fillColor is set.
+  self.layer.shapedBackgroundColor = self.currentBackgroundColor;
   [self updateDisabledTitleColor];
 }
 
@@ -895,7 +921,7 @@ static NSAttributedString *uppercaseAttributedString(NSAttributedString *string)
     // We fall back to UIControlStateNormal if there is no value for the current state.
     color = _borderColors[@(UIControlStateNormal)];
   }
-  self.layer.borderColor = color ? color.CGColor : NULL;
+  self.layer.shapedBorderColor = color ?: NULL;
 }
 
 - (void)updateTitleFont {
@@ -921,6 +947,34 @@ static NSAttributedString *uppercaseAttributedString(NSAttributedString *string)
   self.titleLabel.font = font;
 
   [self setNeedsLayout];
+}
+
+- (void)setShapeGenerator:(id<MDCShapeGenerating>)shapeGenerator {
+  if (shapeGenerator) {
+    self.layer.shadowPath = nil;
+  } else {
+    self.layer.shadowPath = [self boundingPath].CGPath;
+  }
+  self.layer.shapeGenerator = shapeGenerator;
+  // The imageView is added very early in the lifecycle of a UIButton, therefore we need to move
+  // the colorLayer behind the imageView otherwise the image will not show.
+  // Because the inkView needs to go below the imageView, but above the colorLayer
+  // we need to have the colorLayer be at the back
+  [self.layer.colorLayer removeFromSuperlayer];
+  [self.layer insertSublayer:self.layer.colorLayer below:self.inkView.layer];
+  [self updateBackgroundColor];
+  [self updateInkForShape];
+}
+
+- (id<MDCShapeGenerating>)shapeGenerator {
+  return self.layer.shapeGenerator;
+}
+
+- (void)updateInkForShape {
+  CGRect boundingBox = CGPathGetBoundingBox(self.layer.shapeLayer.path);
+  self.inkView.maxRippleRadius =
+      (CGFloat)(MDCHypot(CGRectGetHeight(boundingBox), CGRectGetWidth(boundingBox)) / 2 + 10.f);
+  self.inkView.layer.masksToBounds = NO;
 }
 
 #pragma mark - Dynamic Type

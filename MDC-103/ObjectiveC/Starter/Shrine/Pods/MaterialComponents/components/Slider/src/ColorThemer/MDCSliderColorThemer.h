@@ -14,8 +14,10 @@
  limitations under the License.
  */
 
-#import "MaterialThemes.h"
+#import "MaterialColorScheme.h"
 #import "MaterialSlider.h"
+
+#import <Foundation/Foundation.h>
 
 /**
  Used to apply a color scheme to theme MDCSlider.
@@ -23,8 +25,21 @@
 @interface MDCSliderColorThemer : NSObject
 
 /**
+ Applies a color scheme's properties to an MDCSlider.
+
+ @param colorScheme The color scheme to apply to MDCSlider.
+ @param slider An MDCSlider instance to which the color scheme should be applied.
+ */
++ (void)applySemanticColorScheme:(nonnull id<MDCColorScheming>)colorScheme
+                        toSlider:(nonnull MDCSlider *)slider;
+
+#pragma mark - Soon to be deprecated
+
+/**
  Applies a color scheme to theme a MDCSlider. Use a UIAppearance proxy to apply a color scheme to
  all instances of MDCSlider.
+
+ This method will soon be deprecated. Consider using +applySemanticColorScheme:toSlider: instead.
 
  @param colorScheme The color scheme to apply to MDCSlider.
  @param slider A MDCSlider instance to apply a color scheme.
