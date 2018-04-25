@@ -42,12 +42,9 @@
 
 // Button Properties
 @property(nonatomic) MDCFlatButton *featuredButton;
-@property(nonatomic) MDCFlatButton *apartmentButton;
+@property(nonatomic) MDCFlatButton *clothingButton;
+@property(nonatomic) MDCFlatButton *homeButton;
 @property(nonatomic) MDCFlatButton *accessoriesButton;
-@property(nonatomic) MDCFlatButton *shoesButton;
-@property(nonatomic) MDCFlatButton *topsButton;
-@property(nonatomic) MDCFlatButton *bottomsButton;
-@property(nonatomic) MDCFlatButton *dressesButton;
 @property(nonatomic) MDCFlatButton *accountButton;
 
 // Is embedded controller in the foreground / focused
@@ -118,17 +115,29 @@
                                           toButton:self.featuredButton];
   [self.view addSubview:self.featuredButton];
 
-  self.apartmentButton = [[MDCFlatButton alloc] init];
-  self.apartmentButton.translatesAutoresizingMaskIntoConstraints = NO;
-  [self.apartmentButton setTitle:@"APARTMENT" forState:UIControlStateNormal];
-  [self.apartmentButton addTarget:self
+  self.clothingButton = [[MDCFlatButton alloc] init];
+  self.clothingButton.translatesAutoresizingMaskIntoConstraints = NO;
+  [self.clothingButton setTitle:@"CLOTHING" forState:UIControlStateNormal];
+  [self.clothingButton addTarget:self
+                          action:@selector(categoryTapped:)
+                forControlEvents:UIControlEventTouchDown];
+  [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
+                                    toFlatButton:self.clothingButton];
+  [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
+                                          toButton:self.clothingButton];
+  [self.view addSubview:self.clothingButton];
+
+  self.homeButton = [[MDCFlatButton alloc] init];
+  self.homeButton.translatesAutoresizingMaskIntoConstraints = NO;
+  [self.homeButton setTitle:@"HOME" forState:UIControlStateNormal];
+  [self.homeButton addTarget:self
                            action:@selector(categoryTapped:)
                  forControlEvents:UIControlEventTouchDown];
   [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
-                                    toFlatButton:self.apartmentButton];
+                                    toFlatButton:self.homeButton];
   [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
-                                          toButton:self.apartmentButton];
-  [self.view addSubview:self.apartmentButton];
+                                          toButton:self.homeButton];
+  [self.view addSubview:self.homeButton];
 
   self.accessoriesButton = [[MDCFlatButton alloc] init];
   self.accessoriesButton.translatesAutoresizingMaskIntoConstraints = NO;
@@ -141,54 +150,6 @@
   [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
                                           toButton:self.accessoriesButton];
   [self.view addSubview:self.accessoriesButton];
-
-  self.shoesButton = [[MDCFlatButton alloc] init];
-  self.shoesButton.translatesAutoresizingMaskIntoConstraints = NO;
-  [self.shoesButton setTitle:@"SHOES" forState:UIControlStateNormal];
-  [self.shoesButton addTarget:self
-                       action:@selector(categoryTapped:)
-             forControlEvents:UIControlEventTouchDown];
-  [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
-                                    toFlatButton:self.shoesButton];
-  [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
-                                          toButton:self.shoesButton];
-  [self.view addSubview:self.shoesButton];
-
-  self.topsButton = [[MDCFlatButton alloc] init];
-  self.topsButton.translatesAutoresizingMaskIntoConstraints = NO;
-  [self.topsButton setTitle:@"TOPS" forState:UIControlStateNormal];
-  [self.topsButton addTarget:self
-                      action:@selector(categoryTapped:)
-            forControlEvents:UIControlEventTouchDown];
-  [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
-                                    toFlatButton:self.topsButton];
-  [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
-                                          toButton:self.topsButton];
-  [self.view addSubview:self.topsButton];
-
-  self.bottomsButton = [[MDCFlatButton alloc] init];
-  self.bottomsButton.translatesAutoresizingMaskIntoConstraints = NO;
-  [self.bottomsButton setTitle:@"BOTTOMS" forState:UIControlStateNormal];
-  [self.bottomsButton addTarget:self
-                         action:@selector(categoryTapped:)
-               forControlEvents:UIControlEventTouchDown];
-  [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
-                                    toFlatButton:self.bottomsButton];
-  [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
-                                          toButton:self.bottomsButton];
-  [self.view addSubview:self.bottomsButton];
-
-  self.dressesButton = [[MDCFlatButton alloc] init];
-  self.dressesButton.translatesAutoresizingMaskIntoConstraints = NO;
-  [self.dressesButton setTitle:@"DRESSES" forState:UIControlStateNormal];
-  [self.dressesButton addTarget:self
-                         action:@selector(categoryTapped:)
-               forControlEvents:UIControlEventTouchDown];
-  [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
-                                    toFlatButton:self.dressesButton];
-  [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
-                                          toButton:self.dressesButton];
-  [self.view addSubview:self.dressesButton];
 
   self.accountButton = [[MDCFlatButton alloc] init];
   self.accountButton.translatesAutoresizingMaskIntoConstraints = NO;
@@ -209,16 +170,13 @@
   NSDictionary *nameView = @{
                              @"navigationbar" : self.appBar.navigationBar,
                              @"featured" : self.featuredButton,
-                             @"apartment" : self.apartmentButton,
+                             @"clothing" : self.clothingButton,
+                             @"home" : self.homeButton,
                              @"accessories" : self.accessoriesButton,
-                             @"shoes" : self.shoesButton,
-                             @"tops" : self.topsButton,
-                             @"bottoms" : self.bottomsButton,
-                             @"dresses" : self.dressesButton,
                              @"account" : self.accountButton,
                              };
   [constraints addObjectsFromArray:[NSLayoutConstraint
-                                    constraintsWithVisualFormat:@"V:|[navigationbar]-[featured]-[apartment]-[accessories]-[shoes]-[tops]-[bottoms]-[dresses]-[account]"
+                                    constraintsWithVisualFormat:@"V:|[navigationbar]-[featured]-[clothing]-[home]-[accessories]-[account]"
                                     options:NSLayoutFormatAlignAllCenterX
                                     metrics:nil
                                     views:nameView]];
@@ -299,19 +257,13 @@
 - (void)categoryTapped:(id)selector {
   NSString *filter = @"";
   if (selector == self.featuredButton) {
-    filter = @"";  // Intentionally set to blank so all products are shown
-  } else if (selector == self.apartmentButton) {
-    filter = @"apartment";
+    filter = @"Featured";
+  } else if (selector == self.clothingButton) {
+    filter = @"Clothing";
+  } else if (selector == self.homeButton) {
+    filter = @"Home";
   } else if (selector == self.accessoriesButton) {
-    filter = @"accessories";
-  } else if (selector == self.shoesButton) {
-    filter = @"shoes";
-  } else if (selector == self.topsButton) {
-    filter = @"tops";
-  } else if (selector == self.bottomsButton) {
-    filter = @"bottoms";
-  } else if (selector == self.dressesButton) {
-    filter = @"dresses";
+    filter = @"Accessories";
   }
 
   [Catalog productCatalog].categoryFilter = filter;

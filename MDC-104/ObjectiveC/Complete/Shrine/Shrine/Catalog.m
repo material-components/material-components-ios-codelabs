@@ -23,7 +23,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
 - (instancetype)initWithImageName:(NSString *)imageName
                       productName:(NSString *)productName
                             price:(NSString *)price
-                         category:(NSString *)category;
+                         category:(NSString *)category
+                         featured:(BOOL)featured;
 @end
 
 @implementation Product
@@ -31,13 +32,15 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
 - (instancetype)initWithImageName:(NSString *)imageName
                       productName:(NSString *)productName
                             price:(NSString *)price
-                         category:(NSString *)category {
+                         category:(NSString *)category
+                         featured:(BOOL)featured {
   self = [super init];
   if (self) {
     _imageName = [imageName copy];
     _productName = [productName copy];
     _price = [price copy];
     _category = [category copy];
+    _featured = featured;
   }
   return self;
 }
@@ -46,7 +49,7 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
 
 @implementation Catalog {
   NSMutableArray <Product *>*_allProducts;
-  NSArray <Product *>*_filteredProducts;
+  NSMutableArray <Product *>*_filteredProducts;
 }
 
 + (instancetype)productCatalog {
@@ -68,7 +71,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
         [[Product alloc] initWithImageName:@"Product0"
                                productName:@"Vagabond sack"
                                      price:@"$120"
-                                  category:@"Accessories"];
+                                  category:@"Accessories"
+                                  featured:YES];
       [_allProducts addObject:product];
     }
     {
@@ -76,7 +80,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product1"
                              productName:@"Stella sunglasses"
                                    price:@"$58"
-                                category:@"Accessories"];
+                                category:@"Accessories"
+                                featured:YES];
       [_allProducts addObject:product];
     }
     {
@@ -84,7 +89,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product2"
                              productName:@"Whitney belt"
                                    price:@"$35"
-                                category:@"Accessories"];
+                                category:@"Accessories"
+                                featured:NO];
       [_allProducts addObject:product];
     }
     {
@@ -92,7 +98,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product3"
                              productName:@"Garden strand"
                                    price:@"$98"
-                                category:@"Accessories"];
+                                category:@"Accessories"
+                                featured:YES];
       [_allProducts addObject:product];
     }
     {
@@ -100,7 +107,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product4"
                              productName:@"Strut earrings"
                                    price:@"$34"
-                                category:@"Accessories"];
+                                category:@"Accessories"
+                                featured:NO];
       [_allProducts addObject:product];
     }
     {
@@ -108,7 +116,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product5"
                              productName:@"Varsity socks"
                                    price:@"$12"
-                                category:@"Accessories"];
+                                category:@"Accessories"
+                                featured:NO];
       [_allProducts addObject:product];
     }
     {
@@ -116,7 +125,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product6"
                              productName:@"Weave keyring"
                                    price:@"$16"
-                                category:@"Accessories"];
+                                category:@"Accessories"
+                                featured:NO];
       [_allProducts addObject:product];
     }
     {
@@ -124,7 +134,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product7"
                              productName:@"Gatsby hat"
                                    price:@"$40"
-                                category:@"Accessories"];
+                                category:@"Accessories"
+                                featured:YES];
       [_allProducts addObject:product];
     }
     {
@@ -132,7 +143,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product8"
                              productName:@"Shrug bag"
                                    price:@"$198"
-                                category:@"Accessories"];
+                                category:@"Accessories"
+                                featured:YES];
       [_allProducts addObject:product];
     }
     {
@@ -140,7 +152,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product9"
                              productName:@"Glit desk trio"
                                    price:@"$58"
-                                category:@"Home"];
+                                category:@"Home"
+                                featured:YES];
       [_allProducts addObject:product];
     }
     {
@@ -148,7 +161,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product10"
                              productName:@"Copper wire rack"
                                    price:@"$18"
-                                category:@"Home"];
+                                category:@"Home"
+                                featured:NO];
       [_allProducts addObject:product];
     }
     {
@@ -156,7 +170,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product11"
                              productName:@"Smooth ceramic set"
                                    price:@"$28"
-                                category:@"Home"];
+                                category:@"Home"
+                                featured:NO];
       [_allProducts addObject:product];
     }
     {
@@ -164,7 +179,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product12"
                              productName:@"Hurrahs tea set"
                                    price:@"$34"
-                                category:@"Home"];
+                                category:@"Home"
+                                featured:NO];
       [_allProducts addObject:product];
     }
     {
@@ -172,7 +188,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product13"
                              productName:@"Blue stone mug"
                                    price:@"$18"
-                                category:@"Home"];
+                                category:@"Home"
+                                featured:YES];
       [_allProducts addObject:product];
     }
     {
@@ -180,7 +197,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product14"
                              productName:@"Rainwater tray"
                                    price:@"$27"
-                                category:@"Home"];
+                                category:@"Home"
+                                featured:YES];
       [_allProducts addObject:product];
     }
     {
@@ -188,7 +206,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product15"
                              productName:@"Chambray napkins"
                                    price:@"$16"
-                                category:@"Home"];
+                                category:@"Home"
+                                featured:YES];
       [_allProducts addObject:product];
     }
     {
@@ -196,7 +215,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product16"
                              productName:@"Succulent planters"
                                    price:@"$16"
-                                category:@"Home"];
+                                category:@"Home"
+                                featured:YES];
       [_allProducts addObject:product];
     }
     {
@@ -204,7 +224,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product17"
                              productName:@"Quartet table"
                                    price:@"$175"
-                                category:@"Home"];
+                                category:@"Home"
+                                featured:YES];
       [_allProducts addObject:product];
     }
     {
@@ -212,7 +233,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product18"
                              productName:@"Kitchen quattro"
                                    price:@"$129"
-                                category:@"Home"];
+                                category:@"Home"
+                                featured:NO];
       [_allProducts addObject:product];
     }
     {
@@ -220,7 +242,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product19"
                              productName:@"Adobe Sweater"
                                    price:@"$48"
-                                category:@"Clothing"];
+                                category:@"Clothing"
+                                featured:NO];
       [_allProducts addObject:product];
     }
     {
@@ -228,7 +251,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product20"
                              productName:@"Sea tunic"
                                    price:@"$45"
-                                category:@"Clothing"];
+                                category:@"Clothing"
+                                featured:NO];
       [_allProducts addObject:product];
     }
     {
@@ -236,7 +260,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product21"
                              productName:@"Plaster tunic"
                                    price:@"$38"
-                                category:@"Clothing"];
+                                category:@"Clothing"
+                                featured:NO];
       [_allProducts addObject:product];
     }
     {
@@ -244,7 +269,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product22"
                              productName:@"White pinstripe shirt"
                                    price:@"$70"
-                                category:@"Clothing"];
+                                category:@"Clothing"
+                                featured:NO];
       [_allProducts addObject:product];
     }
     {
@@ -252,7 +278,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product23"
                              productName:@"Chambray shirt"
                                    price:@"$70"
-                                category:@"Clothing"];
+                                category:@"Clothing"
+                                featured:NO];
       [_allProducts addObject:product];
     }
     {
@@ -260,7 +287,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product24"
                              productName:@"Seabreeze sweater"
                                    price:@"$60"
-                                category:@"Clothing"];
+                                category:@"Clothing"
+                                featured:YES];
       [_allProducts addObject:product];
     }
     {
@@ -268,7 +296,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product25"
                              productName:@"Gentry jacket"
                                    price:@"$178"
-                                category:@"Clothing"];
+                                category:@"Clothing"
+                                featured:NO];
       [_allProducts addObject:product];
     }
     {
@@ -276,7 +305,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product26"
                              productName:@"Navy trousers"
                                    price:@"$74"
-                                category:@"Clothing"];
+                                category:@"Clothing"
+                                featured:NO];
       [_allProducts addObject:product];
     }
     {
@@ -284,7 +314,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product27"
                              productName:@"Walter henley (white)"
                                    price:@"$38"
-                                category:@"Clothing"];
+                                category:@"Clothing"
+                                featured:YES];
       [_allProducts addObject:product];
     }
     {
@@ -292,7 +323,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product28"
                              productName:@"Surf and perf shirt"
                                    price:@"$48"
-                                category:@"Clothing"];
+                                category:@"Clothing"
+                                featured:YES];
       [_allProducts addObject:product];
     }
     {
@@ -300,7 +332,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product29"
                              productName:@"Bixby scarf"
                                    price:@"$98"
-                                category:@"Clothing"];
+                                category:@"Clothing"
+                                featured:YES];
       [_allProducts addObject:product];
     }
     {
@@ -308,7 +341,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product30"
                              productName:@"Ramona crossover"
                                    price:@"$68"
-                                category:@"Clothing"];
+                                category:@"Clothing"
+                                featured:YES];
       [_allProducts addObject:product];
     }
     {
@@ -316,7 +350,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product31"
                              productName:@"Chambray shirt"
                                    price:@"$38"
-                                category:@"Clothing"];
+                                category:@"Clothing"
+                                featured:NO];
       [_allProducts addObject:product];
     }
     {
@@ -324,7 +359,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product32"
                              productName:@"Classic white collar"
                                    price:@"$58"
-                                category:@"Clothing"];
+                                category:@"Clothing"
+                                featured:NO];
       [_allProducts addObject:product];
     }
     {
@@ -332,7 +368,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product33"
                              productName:@"Cerise scallop tee"
                                    price:@"$42"
-                                category:@"Clothing"];
+                                category:@"Clothing"
+                                featured:YES];
       [_allProducts addObject:product];
     }
     {
@@ -340,7 +377,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product34"
                              productName:@"Shoulder rolls tee"
                                    price:@"$27"
-                                category:@"Clothing"];
+                                category:@"Clothing"
+                                featured:NO];
       [_allProducts addObject:product];
     }
     {
@@ -348,7 +386,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product35"
                              productName:@"Grey slouch tank"
                                    price:@"$24"
-                                category:@"Clothing"];
+                                category:@"Clothing"
+                                featured:NO];
       [_allProducts addObject:product];
     }
     {
@@ -356,7 +395,8 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product36"
                              productName:@"Sunshirt dress"
                                    price:@"$58"
-                                category:@"Clothing"];
+                                category:@"Clothing"
+                                featured:NO];
       [_allProducts addObject:product];
     }
     {
@@ -364,12 +404,14 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [[Product alloc] initWithImageName:@"Product37"
                              productName:@"Fine lines tee"
                                    price:@"$58"
-                                category:@"Clothing"];
+                                category:@"Clothing"
+                                featured:YES];
       [_allProducts addObject:product];
     }
 
-    _categoryFilter = @"";
-    _filteredProducts = _allProducts;
+    _filteredProducts = [[NSMutableArray alloc] init];
+    _categoryFilter = @"Featured";
+    [self applyFilter];
   }
   return self;
 }
@@ -403,17 +445,28 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
 
 - (void)applyFilter {
   if ([self.categoryFilter isEqualToString:@""]) {
-    _filteredProducts = _allProducts;
+    _filteredProducts = [_allProducts copy];
     return;
   }
 
-  NSIndexSet *matchingSet = [_allProducts indexesOfObjectsPassingTest:^BOOL(Product * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-    if ([obj.category isEqualToString:self.categoryFilter])
-      return YES;
-    else
-      return NO;
-  }];
-  _filteredProducts = [_allProducts objectsAtIndexes:matchingSet];
+  [_filteredProducts removeAllObjects];
+  for (Product *product in _allProducts) {
+    if ([self.categoryFilter isEqualToString:@"Featured"] &&
+        product.isFeatured) {
+      [_filteredProducts addObject:product];
+    } else if ([self.categoryFilter isEqualToString:product.category]) {
+      [_filteredProducts addObject:product];
+    }
+  }
+
+  //KM
+//  NSIndexSet *matchingSet = [_allProducts indexesOfObjectsPassingTest:^BOOL(Product * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//    if ([obj.category isEqualToString:self.categoryFilter])
+//      return YES;
+//    else
+//      return NO;
+//  }];
+//  _filteredProducts = [_allProducts objectsAtIndexes:matchingSet];
 }
 
 @end
