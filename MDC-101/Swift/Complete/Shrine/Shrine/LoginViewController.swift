@@ -54,6 +54,7 @@ class LoginViewController: UIViewController {
   let passwordTextField: MDCTextField = {
     let passwordTextField = MDCTextField()
     passwordTextField.translatesAutoresizingMaskIntoConstraints = false
+    passwordTextField.isSecureTextEntry = true
     return passwordTextField
   }()
 
@@ -121,8 +122,10 @@ class LoginViewController: UIViewController {
     scrollView.addSubview(passwordTextField)
     usernameTextFieldController.placeholderText = "Username"
     usernameTextField.delegate = self
+    usernameTextField.backgroundColor = scrollView.backgroundColor
     passwordTextFieldController.placeholderText = "Password"
     passwordTextField.delegate = self
+    passwordTextField.backgroundColor = scrollView.backgroundColor
     registerKeyboardNotifications()
 
     // Buttons

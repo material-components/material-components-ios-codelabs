@@ -101,6 +101,7 @@
   self.usernameTextField.translatesAutoresizingMaskIntoConstraints = NO;
   self.usernameTextField.delegate = self;
   self.usernameTextField.clearButtonMode = UITextFieldViewModeUnlessEditing;
+  self.usernameTextField.backgroundColor = self.scrollView.backgroundColor;
   [self.scrollView addSubview:self.usernameTextField];
 
   self.usernameTextFieldController =
@@ -111,6 +112,8 @@
   self.passwordTextField.translatesAutoresizingMaskIntoConstraints = NO;
   self.passwordTextField.delegate = self;
   self.passwordTextField.clearButtonMode = UITextFieldViewModeUnlessEditing;
+  self.passwordTextField.secureTextEntry = YES;
+  self.passwordTextField.backgroundColor = self.scrollView.backgroundColor;
   [self.scrollView addSubview:self.passwordTextField];
 
   self.passwordTextFieldController =
