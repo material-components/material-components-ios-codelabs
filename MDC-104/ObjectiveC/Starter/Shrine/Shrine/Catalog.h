@@ -22,6 +22,7 @@
 @property (nonatomic, readonly) NSString *productName;
 @property (nonatomic, readonly) NSString *price;
 @property (nonatomic, readonly) NSString *category;
+@property (nonatomic, getter=isFeatured, readonly) BOOL featured;
 
 @end
 

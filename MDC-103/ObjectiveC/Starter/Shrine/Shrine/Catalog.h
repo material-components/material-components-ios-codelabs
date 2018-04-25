@@ -16,12 +16,13 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface Product : NSObject
 
 @property (nonatomic, readonly) NSString *imageName;
 @property (nonatomic, readonly) NSString *productName;
 @property (nonatomic, readonly) NSString *price;
+@property (nonatomic, readonly) NSString *category;
+@property (nonatomic, getter=isFeatured, readonly) BOOL featured;
 
 @end
 
@@ -37,7 +38,11 @@
 - (instancetype)init NS_UNAVAILABLE;
 
 @property (nonatomic, readonly) NSUInteger count;
-
 - (Product *)productAtIndex:(NSUInteger)index;
+
+@property (nonatomic, nonnull, copy) NSString *categoryFilter;
+
+// Notification that gets posted when categoryFilter is changed
+OBJC_EXTERN NSString *const CatalogFilterDidChangeNotification;
 
 @end

@@ -458,15 +458,6 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
       [_filteredProducts addObject:product];
     }
   }
-
-  //KM
-//  NSIndexSet *matchingSet = [_allProducts indexesOfObjectsPassingTest:^BOOL(Product * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//    if ([obj.category isEqualToString:self.categoryFilter])
-//      return YES;
-//    else
-//      return NO;
-//  }];
-//  _filteredProducts = [_allProducts objectsAtIndexes:matchingSet];
 }
 
 @end
