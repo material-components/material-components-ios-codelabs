@@ -156,6 +156,9 @@ class BackdropViewController: UIViewController {
 
     NSLayoutConstraint.activate(constraints)
 
+    let recognizer = UITapGestureRecognizer(target: self, action: #selector(filterItemTapped(sender:)))
+    self.view.addGestureRecognizer(recognizer)
+
     self.view.addSubview(self.containerView)
 
     //TODO: Insert the HomeViewController into our BackdropViewController
