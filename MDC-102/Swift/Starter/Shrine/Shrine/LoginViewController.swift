@@ -118,8 +118,8 @@ class LoginViewController: UIViewController {
     scrollView.addSubview(logoImageView)
 
     // TextFields
-    usernameTextField.backgroundColor = self.scrollView.backgroundColor
-    passwordTextField.backgroundColor = self.scrollView.backgroundColor
+    usernameTextField.backgroundColor = scrollView.backgroundColor
+    passwordTextField.backgroundColor = scrollView.backgroundColor
     scrollView.addSubview(usernameTextField)
     scrollView.addSubview(passwordTextField)
 
