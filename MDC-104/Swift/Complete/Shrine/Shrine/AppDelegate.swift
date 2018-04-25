@@ -32,6 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     self.window?.rootViewController = viewController
     self.window?.makeKeyAndVisible()
 
+    // Set our default catalog filter to the Featured items
+    Catalog.categoryFilter = "Featured"
+
     return true
   }
 

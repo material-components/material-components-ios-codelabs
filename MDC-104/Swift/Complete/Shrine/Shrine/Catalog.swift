@@ -99,8 +99,9 @@ class Catalog: NSObject {
   class func applyFilter() {
     self.filteredProducts.removeAll()
     for product in self.products {
-      if self.categoryFilter == "" ||
-        product.category == self.categoryFilter {
+      if (self.categoryFilter == "" || self.categoryFilter == "Featured") && product.isFeatured {
+        self.filteredProducts.append(product)
+      } else if product.category == self.categoryFilter {
         self.filteredProducts.append(product)
       }
     }
