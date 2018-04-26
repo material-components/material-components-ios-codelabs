@@ -25,7 +25,11 @@ class BackdropViewController: UIViewController {
   var containerView: ShapedShadowedView = {
     let view = ShapedShadowedView(frame: .zero)
     view.translatesAutoresizingMaskIntoConstraints = false
-    view.backgroundColor = .white
+    if let shapedShadowedLayer = view.layer as? MDCShapedShadowLayer {
+      shapedShadowedLayer.shapedBackgroundColor = .white
+    } else {
+      view.backgroundColor = .white
+    }
     return view
   }()
 
@@ -250,6 +254,7 @@ extension BackdropViewController {
 
     self.containerView.addSubview(controller.view)
     self.embeddedView = controller.view
+    self.embeddedView?.backgroundColor = .clear
 
     isFocusedEmbeddedController = true
   }

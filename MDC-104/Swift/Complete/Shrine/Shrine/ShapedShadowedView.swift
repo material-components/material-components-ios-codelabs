@@ -49,15 +49,4 @@ class ShapedShadowedView: UIView {
     shapedShadowedLayer.shadowOpacity = 0.8
     shapedShadowedLayer.shapedBackgroundColor = ApplicationScheme.scheme.surfaceColor
   }
-
-  override var backgroundColor: UIColor? {
-    get {
-      return super.backgroundColor
-    }
-    set(newColor) {
-      super.backgroundColor = newColor
-      let shapedShadowedLayer = self.layer as! MDCShapedShadowLayer
-      shapedShadowedLayer.shapedBackgroundColor = newColor
-    }
-  }
 }

@@ -30,6 +30,7 @@ class HomeViewController: UICollectionViewController {
 
     self.title = "Shrine"
 
+    self.view?.backgroundColor = .white
     self.collectionView?.backgroundColor = .clear
 
     // AppBar Setup
