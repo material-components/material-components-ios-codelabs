@@ -182,6 +182,10 @@
                                     views:nameView]];
   [NSLayoutConstraint activateConstraints:constraints];
 
+  UITapGestureRecognizer *recognizer =
+      [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(filterItemTapped:)];
+  [self.view addGestureRecognizer:recognizer];
+
   //TODO: Change the container view into a ShapedShadowedView
   self.containerView = [[ShapedShadowedView alloc] initWithFrame:CGRectZero];
   self.containerView.translatesAutoresizingMaskIntoConstraints = NO;
