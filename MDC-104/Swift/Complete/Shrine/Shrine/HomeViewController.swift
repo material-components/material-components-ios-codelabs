@@ -19,7 +19,6 @@ import UIKit
 import MaterialComponents
 
 class HomeViewController: UICollectionViewController {
-  //TODO Disable shouldDisplayLogin
   var shouldDisplayLogin = false
   var appBar = MDCAppBar()
 
