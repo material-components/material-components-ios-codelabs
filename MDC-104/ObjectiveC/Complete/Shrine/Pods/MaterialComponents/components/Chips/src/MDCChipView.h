@@ -23,7 +23,7 @@
 /*
  A Material chip.
 
- @see https://material.io/guidelines/components/chips.html for full details.
+ @see https://material.io/go/design-chips for full details.
 
  Chips are compact elements that represent an attribute, text, entity, or action.
 
@@ -139,6 +139,12 @@
  */
 @property(nonatomic, assign) CGSize minimumSize UI_APPEARANCE_SELECTOR;
 
+/**
+ Custom insets to use when computing touch targets. A positive inset value will shrink the hit
+ area for the Chip.
+ */
+@property(nonatomic, assign) UIEdgeInsets hitAreaInsets;
+
 /*
  A color used as the chip's @c backgroundColor for @c state.
 
@@ -160,26 +166,6 @@
  */
 - (void)setBackgroundColor:(nullable UIColor *)backgroundColor forState:(UIControlState)state
     UI_APPEARANCE_SELECTOR;
-
-/*
- A color used as the chip's background overlay color for @c state.
-
- If no background overlay color has been set for a given state, the returned value will fall back to
- the value set for UIControlStateNormal.
-
- @param state The control state.
- @return The background overlay color.
- */
-- (nullable UIColor *)backgroundOverlayColorForState:(UIControlState)state;
-
-/*
- A color used as the chip's background overlay @c color.
-
- @param backgroundOverlayColor The chip background overlay color.
- @param state The control state.
- */
-- (void)setBackgroundOverlayColor:(nullable UIColor *)backgroundOverlayColor
-                         forState:(UIControlState)state;
 
 /*
  Returns the border color for a particular control state.
