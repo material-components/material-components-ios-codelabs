@@ -64,7 +64,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  self.view.backgroundColor = [ApplicationScheme scheme].surfaceColor;
+  self.view.backgroundColor = [ApplicationScheme sharedInstance].colorScheme.surfaceColor;
 
   self.title = @"Shrine";
 
@@ -99,7 +99,8 @@
   _appBar = [[MDCAppBar alloc] init];
   [self addChildViewController:_appBar.headerViewController];
   [self.appBar addSubviewsToParent];
-  [MDCAppBarColorThemer applySemanticColorScheme:[ApplicationScheme scheme] toAppBar:_appBar];
+    self.view.backgroundColor = [ApplicationScheme sharedInstance].colorScheme.surfaceColor;
+[MDCAppBarColorThemer applySemanticColorScheme:[ApplicationScheme sharedInstance].colorScheme toAppBar:_appBar];
   self.appBar.navigationBar.translatesAutoresizingMaskIntoConstraints = NO;
 
   // Button Init
@@ -109,9 +110,9 @@
   [self.featuredButton addTarget:self
                           action:@selector(categoryTapped:)
                 forControlEvents:UIControlEventTouchUpInside];
-  [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
+  [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme sharedInstance].colorScheme
                                     toFlatButton:self.featuredButton];
-  [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
+  [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme sharedInstance].typographyScheme
                                           toButton:self.featuredButton];
   [self.view addSubview:self.featuredButton];
 
@@ -121,9 +122,9 @@
   [self.clothingButton addTarget:self
                           action:@selector(categoryTapped:)
                 forControlEvents:UIControlEventTouchUpInside];
-  [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
+  [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme sharedInstance].colorScheme
                                     toFlatButton:self.clothingButton];
-  [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
+  [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme sharedInstance].typographyScheme
                                           toButton:self.clothingButton];
   [self.view addSubview:self.clothingButton];
 
@@ -133,9 +134,9 @@
   [self.homeButton addTarget:self
                            action:@selector(categoryTapped:)
                  forControlEvents:UIControlEventTouchUpInside];
-  [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
+  [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme sharedInstance].colorScheme
                                     toFlatButton:self.homeButton];
-  [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
+  [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme sharedInstance].typographyScheme
                                           toButton:self.homeButton];
   [self.view addSubview:self.homeButton];
 
@@ -145,9 +146,9 @@
   [self.accessoriesButton addTarget:self
                              action:@selector(categoryTapped:)
                    forControlEvents:UIControlEventTouchUpInside];
-  [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
+  [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme sharedInstance].colorScheme
                                     toFlatButton:self.accessoriesButton];
-  [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
+  [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme sharedInstance].typographyScheme
                                           toButton:self.accessoriesButton];
   [self.view addSubview:self.accessoriesButton];
 
@@ -157,9 +158,9 @@
   [self.accountButton addTarget:self
                          action:@selector(accountTapped:)
                forControlEvents:UIControlEventTouchUpInside];
-  [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
+  [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme sharedInstance].colorScheme
                                     toFlatButton:self.accountButton];
-  [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
+  [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme sharedInstance].typographyScheme
                                           toButton:self.accountButton];
   [self.view addSubview:self.accountButton];
 
