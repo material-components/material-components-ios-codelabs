@@ -22,13 +22,14 @@ class ApplicationScheme: NSObject, MDCColorScheming, MDCTypographyScheming {
   private static let colorScheme: MDCSemanticColorScheme = {
     // Instantiate a MDCSemanticColorScheme object
     let scheme = MDCSemanticColorScheme(defaults: .material201804)
-    //TODO: Customize ApplicationScheme Colors after this line
+    //TODO: Customize our Colors after this line
     return scheme
   }()
 
   private static let typographyScheme: MDCTypographyScheme = {
+    // Instantiate a MDCTypographyScheme object
     let scheme = MDCTypographyScheme()
-    //TODO: Add our custom fonts after this line
+    //TODO: Customize our Fonts after this line
     return scheme
   }()
 
