@@ -81,10 +81,11 @@
                                   action:nil];
   self.navigationItem.rightBarButtonItems = @[ tuneItem, searchItem ];
 
-  [MDCAppBarColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
+    self.view.backgroundColor = [ApplicationScheme sharedInstance].colorScheme.surfaceColor;
+[MDCAppBarColorThemer applySemanticColorScheme:[ApplicationScheme sharedInstance].colorScheme
                                         toAppBar:self.appBar];
 
-  [MDCAppBarTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
+  [MDCAppBarTypographyThemer applyTypographyScheme:[ApplicationScheme sharedInstance].typographyScheme
                                           toAppBar:self.appBar];
 
   self.collectionView.collectionViewLayout = [[CustomLayout alloc] init];

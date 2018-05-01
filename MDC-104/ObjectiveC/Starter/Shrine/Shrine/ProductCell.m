@@ -24,8 +24,8 @@
   // Configure the cell properties
   self.backgroundColor = [UIColor whiteColor];
 
-  self.nameLabel.font = [ApplicationScheme scheme].subtitle1;
-  self.priceLabel.font = [ApplicationScheme scheme].subtitle1;
+  self.nameLabel.font = [ApplicationScheme sharedInstance].typographyScheme.subtitle1;
+  self.priceLabel.font = [ApplicationScheme sharedInstance].typographyScheme.subtitle1;
   self.nameLabel.textAlignment = NSTextAlignmentCenter;
   self.priceLabel.textAlignment = NSTextAlignmentCenter;
 

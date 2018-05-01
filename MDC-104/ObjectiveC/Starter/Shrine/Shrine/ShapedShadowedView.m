@@ -54,7 +54,7 @@
   shapedShadowedLayer.shadowOffset = CGSizeMake(0.0, 0.0);
   shapedShadowedLayer.shadowRadius = 4.0;
   shapedShadowedLayer.shadowOpacity = 0.8;
-  shapedShadowedLayer.shapedBackgroundColor = [ApplicationScheme scheme].surfaceColor;
+  shapedShadowedLayer.shapedBackgroundColor = [ApplicationScheme sharedInstance].colorScheme.surfaceColor;
 }
 
 - (void)setBackgroundColor:(UIColor *)backgroundColor {
