@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet MDCTextField *state;
 @property (weak, nonatomic) IBOutlet MDCTextField *zip;
 
+
 @property (nonatomic) MDCTextInputControllerOutlined *nameController;
 @property (nonatomic) MDCTextInputControllerOutlined *addressController;
 @property (nonatomic) MDCTextInputControllerOutlined *cityController;
@@ -55,6 +56,7 @@
 
   self.saveButton.hitAreaInsets = UIEdgeInsetsMake((48 - self.saveButton.bounds.size.height) / -2, 0, (48 - self.saveButton.bounds.size.height) / -2, 0);
 }
+#pragma mark - UITextFieldDelegate methods
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
   NSString *finishedString =
@@ -70,6 +72,8 @@
   }
   return YES;
 }
+
+#pragma mark - Target / Action
 
 - (IBAction)saveDidTouch:(id)sender {
   [self.view endEditing:YES];

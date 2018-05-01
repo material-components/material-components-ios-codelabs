@@ -24,6 +24,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
   @IBOutlet weak var saveButton: MDCRaisedButton!
 
+  // MARK: Properties
+
   var nameController: MDCTextInputControllerOutlined?
   var addressController: MDCTextInputControllerOutlined?
   var cityController: MDCTextInputControllerOutlined?
@@ -51,6 +53,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
                                             right: 0)
   }
 
+  // MARK: UITextFieldDelegate methods
+
   func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
     guard let text = textField.text,
     let range = Range(range, in: text),
@@ -67,6 +71,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     return true
   }
+
+  // MARK: Target / Action
 
   @IBAction func saveDidTouch(_ sender: Any) {
     view.endEditing(true)

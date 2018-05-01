@@ -13,7 +13,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
   @IBOutlet weak var name: UITextField!
   @IBOutlet weak var address: UITextField!
   @IBOutlet weak var city: UITextField!
@@ -22,9 +22,19 @@ class ViewController: UIViewController {
 
   @IBOutlet weak var saveButton: UIButton!
 
+  // MARK: Properties
+
   override func viewDidLoad() {
     super.viewDidLoad()
+
+    // TODO: Instantiate controllers
   }
+
+  // TODO: Override viewDidLayoutSubviews()
+
+  // MARK: UITextFieldDelegate methods
+
+  // MARK: Target / Action
 
   @IBAction func saveDidTouch(_ sender: Any) {
     view.endEditing(true)
