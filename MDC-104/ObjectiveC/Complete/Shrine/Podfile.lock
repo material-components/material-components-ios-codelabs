@@ -494,7 +494,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   MaterialComponents:
-    :commit: a66e99c3101180126086c882426f8f95a6089992
+    :commit: bc828c1b460ba369bd0605f784758c35840f357f
     :git: https://github.com/material-components/material-components-ios
 
 SPEC CHECKSUMS:
