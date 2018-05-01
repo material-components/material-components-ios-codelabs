@@ -24,13 +24,22 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 
+
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+
+  // TODO: Instantiate controllers
 }
+
+// TODO: Override viewDidLayoutSubviews()
+
+#pragma mark - UITextFieldDelegate methods
+
+#pragma mark - Target / Action
 
 - (IBAction)saveDidTouch:(id)sender {
   [self.view endEditing:YES];
