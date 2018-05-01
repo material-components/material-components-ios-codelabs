@@ -1,13 +1,13 @@
 {
   "name": "MaterialComponents",
-  "version": "54.6.1",
+  "version": "54.13.0",
   "authors": "The Material Components authors.",
   "summary": "A collection of stand-alone production-ready UI libraries focused on design details.",
   "homepage": "https://github.com/material-components/material-components-ios",
   "license": "Apache 2.0",
   "source": {
     "git": "https://github.com/material-components/material-components-ios.git",
-    "tag": "v54.6.1"
+    "tag": "v54.13.0"
   },
   "platforms": {
     "ios": "8.0"
@@ -336,6 +336,9 @@
         ],
         "MaterialComponents/private/Math": [
 
+        ],
+        "MaterialComponents/private/Shapes": [
+
         ]
       }
     },
@@ -395,6 +398,28 @@
 
             ]
           }
+        },
+        {
+          "name": "ButtonThemer",
+          "platforms": {
+            "ios": "8.0"
+          },
+          "public_header_files": "components/Buttons/src/ButtonThemer/*.h",
+          "source_files": [
+            "components/Buttons/src/ButtonThemer/*.{h,m}",
+            "components/Buttons/src/ButtonThemer/private/*.{h,m}"
+          ],
+          "dependencies": {
+            "MaterialComponents/Buttons": [
+
+            ],
+            "MaterialComponents/Buttons+Extensions/ColorThemer": [
+
+            ],
+            "MaterialComponents/Buttons+Extensions/TypographyThemer": [
+
+            ]
+          }
         }
       ]
     },
@@ -432,6 +457,22 @@
 
             ],
             "MaterialComponents/Themes": [
+
+            ]
+          }
+        },
+        {
+          "name": "TypographyThemer",
+          "platforms": {
+            "ios": "8.0"
+          },
+          "public_header_files": "components/ButtonBar/src/TypographyThemer/*.h",
+          "source_files": "components/ButtonBar/src/TypographyThemer/*.{h,m}",
+          "dependencies": {
+            "MaterialComponents/ButtonBar": [
+
+            ],
+            "MaterialComponents/schemes/Typography": [
 
             ]
           }
@@ -478,6 +519,22 @@
 
             ],
             "MaterialComponents/schemes/Color": [
+
+            ]
+          }
+        },
+        {
+          "name": "CardThemer",
+          "platforms": {
+            "ios": "8.0"
+          },
+          "public_header_files": "components/Cards/src/CardThemer/*.h",
+          "source_files": "components/Cards/src/CardThemer/*.{h,m}",
+          "dependencies": {
+            "MaterialComponents/Cards": [
+
+            ],
+            "MaterialComponents/Cards+Extensions/ColorThemer": [
 
             ]
           }
@@ -528,6 +585,22 @@
       "name": "Chips+Extensions",
       "subspecs": [
         {
+          "name": "ColorThemer",
+          "platforms": {
+            "ios": "8.0"
+          },
+          "public_header_files": "components/Chips/src/ColorThemer/*.h",
+          "source_files": "components/Chips/src/ColorThemer/*.{h,m}",
+          "dependencies": {
+            "MaterialComponents/Chips": [
+
+            ],
+            "MaterialComponents/schemes/Color": [
+
+            ]
+          }
+        },
+        {
           "name": "FontThemer",
           "platforms": {
             "ios": "8.0"
@@ -555,6 +628,25 @@
 
             ],
             "MaterialComponents/schemes/Typography": [
+
+            ]
+          }
+        },
+        {
+          "name": "ChipThemer",
+          "platforms": {
+            "ios": "8.0"
+          },
+          "public_header_files": "components/Chips/src/ChipThemer/*.h",
+          "source_files": "components/Chips/src/ChipThemer/*.{h,m}",
+          "dependencies": {
+            "MaterialComponents/Chips": [
+
+            ],
+            "MaterialComponents/Chips+Extensions/ColorThemer": [
+
+            ],
+            "MaterialComponents/Chips+Extensions/TypographyThemer": [
 
             ]
           }
@@ -1203,7 +1295,7 @@
             "MaterialComponents/Slider": [
 
             ],
-            "MaterialComponents/Themes": [
+            "MaterialComponents/schemes/Color": [
 
             ]
           }
@@ -1345,10 +1437,10 @@
           "public_header_files": "components/Tabs/src/ColorThemer/*.h",
           "source_files": "components/Tabs/src/ColorThemer/*.{h,m}",
           "dependencies": {
-            "MaterialComponents/Tabs": [
+            "MaterialComponents/schemes/Color": [
 
             ],
-            "MaterialComponents/Themes": [
+            "MaterialComponents/Tabs": [
 
             ]
           }
@@ -1575,12 +1667,57 @@
               }
             },
             {
+              "name": "ic_color_lens",
+              "public_header_files": "components/private/Icons/icons/ic_color_lens/src/*.h",
+              "source_files": "components/private/Icons/icons/ic_color_lens/src/*.{h,m}",
+              "resource_bundles": {
+                "MaterialIcons_ic_color_lens": [
+                  "components/private/Icons/icons/ic_color_lens/src/MaterialIcons_ic_color_lens.bundle/*.png"
+                ]
+              },
+              "dependencies": {
+                "MaterialComponents/private/Icons/Base": [
+
+                ]
+              }
+            },
+            {
+              "name": "ic_help_outline",
+              "public_header_files": "components/private/Icons/icons/ic_help_outline/src/*.h",
+              "source_files": "components/private/Icons/icons/ic_help_outline/src/*.{h,m}",
+              "resource_bundles": {
+                "MaterialIcons_ic_help_outline": [
+                  "components/private/Icons/icons/ic_help_outline/src/MaterialIcons_ic_help_outline.bundle/*.png"
+                ]
+              },
+              "dependencies": {
+                "MaterialComponents/private/Icons/Base": [
+
+                ]
+              }
+            },
+            {
               "name": "ic_info",
               "public_header_files": "components/private/Icons/icons/ic_info/src/*.h",
               "source_files": "components/private/Icons/icons/ic_info/src/*.{h,m}",
               "resource_bundles": {
                 "MaterialIcons_ic_info": [
                   "components/private/Icons/icons/ic_info/src/MaterialIcons_ic_info.bundle/*.png"
+                ]
+              },
+              "dependencies": {
+                "MaterialComponents/private/Icons/Base": [
+
+                ]
+              }
+            },
+            {
+              "name": "ic_more_horiz",
+              "public_header_files": "components/private/Icons/icons/ic_more_horiz/src/*.h",
+              "source_files": "components/private/Icons/icons/ic_more_horiz/src/*.{h,m}",
+              "resource_bundles": {
+                "MaterialIcons_ic_more_horiz": [
+                  "components/private/Icons/icons/ic_more_horiz/src/MaterialIcons_ic_more_horiz.bundle/*.png"
                 ]
               },
               "dependencies": {
@@ -1611,6 +1748,21 @@
               "resource_bundles": {
                 "MaterialIcons_ic_reorder": [
                   "components/private/Icons/icons/ic_reorder/src/MaterialIcons_ic_reorder.bundle/*.png"
+                ]
+              },
+              "dependencies": {
+                "MaterialComponents/private/Icons/Base": [
+
+                ]
+              }
+            },
+            {
+              "name": "ic_settings",
+              "public_header_files": "components/private/Icons/icons/ic_settings/src/*.h",
+              "source_files": "components/private/Icons/icons/ic_settings/src/*.{h,m}",
+              "resource_bundles": {
+                "MaterialIcons_ic_settings": [
+                  "components/private/Icons/icons/ic_settings/src/MaterialIcons_ic_settings.bundle/*.png"
                 ]
               },
               "dependencies": {

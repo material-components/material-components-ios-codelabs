@@ -117,7 +117,6 @@
 				36F246F3207EC3D900238A16 /* Frameworks */,
 				36F246F4207EC3D900238A16 /* Resources */,
 				08954D300A5310E50CCCE241 /* [CP] Embed Pods Frameworks */,
-				3544430DF98BA3B69F81106C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -218,21 +217,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MDC-111/Pods-MDC-111-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3544430DF98BA3B69F81106C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MDC-111/Pods-MDC-111-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

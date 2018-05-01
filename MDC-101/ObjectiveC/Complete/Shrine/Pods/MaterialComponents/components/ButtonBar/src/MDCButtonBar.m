@@ -21,8 +21,9 @@
 #import "MaterialButtons.h"
 #import "private/MDCAppBarButtonBarBuilder.h"
 
-static const CGFloat kDefaultHeight = 56;
-static const CGFloat kDefaultPadHeight = 64;
+static const CGFloat kButtonBarMaxHeight = 56;
+static const CGFloat kButtonBarMaxPadHeight = 64;
+static const CGFloat kButtonBarMinHeight = 24;
 
 // KVO contexts
 static char *const kKVOContextMDCButtonBar = "kKVOContextMDCButtonBar";
@@ -164,7 +165,9 @@ static NSString *const MDCButtonBarButtonLayoutPositionKey = @"MDCButtonBarButto
     totalWidth += width;
   }
 
-  CGFloat height = [self usePadHeight] ? kDefaultPadHeight : kDefaultHeight;
+  CGFloat maxHeight = [self usePadHeight] ? kButtonBarMaxPadHeight : kButtonBarMaxHeight;
+  CGFloat minHeight = kButtonBarMinHeight;
+  CGFloat height = MIN(MAX(size.height, minHeight), maxHeight);
   return CGSizeMake(totalWidth, height);
 }
 
@@ -215,6 +218,15 @@ static NSString *const MDCButtonBarButtonLayoutPositionKey = @"MDCButtonBarButto
     if ([viewObj isKindOfClass:[MDCButton class]]) {
       MDCButton *buttonView = (MDCButton *)viewObj;
       [buttonView setTitleColor:self.tintColor forState:UIControlStateNormal];
+    }
+  }
+}
+
+- (void)updateButtonsWithInkColor:(UIColor *)inkColor {
+  for (UIView *viewObj in _buttonViews) {
+    if ([viewObj isKindOfClass:[MDCButton class]]) {
+      MDCButton *buttonView = (MDCButton *)viewObj;
+      buttonView.inkColor = inkColor;
     }
   }
 }
@@ -403,6 +415,51 @@ static NSString *const MDCButtonBarButtonLayoutPositionKey = @"MDCButtonBarButto
   }
 }
 
+- (void)setButtonsTitleFont:(UIFont *)font forState:(UIControlState)state {
+  [_defaultBuilder setTitleFont:font forState:state];
+
+  for (NSUInteger i = 0; i < [_buttonViews count]; ++i) {
+    UIView *viewObj = _buttonViews[i];
+    if ([viewObj isKindOfClass:[UIButton class]]) {
+      MDCButton *button = (MDCButton *)viewObj;
+      [button setTitleFont:font forState:state];
+
+      if (i < [_items count]) {
+        UIBarButtonItem *item = _items[i];
+
+        CGRect frame = button.frame;
+        if (item.width > 0) {
+          frame.size.width = item.width;
+        } else {
+          frame.size.width = [button sizeThatFits:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)].width;
+        }
+        button.frame = frame;
+
+        [self setNeedsLayout];
+      }
+    }
+  }
+}
+
+- (nullable UIFont *)buttonsTitleFontForState:(UIControlState)state {
+  return [_defaultBuilder titleFontForState:state];
+}
+
+- (void)setButtonsTitleColor:(nullable UIColor *)color forState:(UIControlState)state {
+  [_defaultBuilder setTitleColor:color forState:state];
+
+  for (UIView *viewObj in _buttonViews) {
+    if ([viewObj isKindOfClass:[UIButton class]]) {
+      MDCButton *button = (MDCButton *)viewObj;
+      [button setTitleColor:color forState:state];
+    }
+  }
+}
+
+- (UIColor *)buttonsTitleColorForState:(UIControlState)state {
+  return [_defaultBuilder titleColorForState:state];
+}
+
 // UISemanticContentAttribute was added in iOS SDK 9.0 but is available on devices running earlier
 // version of iOS. We ignore the partial-availability warning that gets thrown on our use of this
 // symbol.
@@ -418,6 +475,14 @@ static NSString *const MDCButtonBarButtonLayoutPositionKey = @"MDCButtonBarButto
   _buttonTitleBaseline = buttonTitleBaseline;
 
   [self setNeedsLayout];
+}
+
+- (void)setInkColor:(UIColor *)inkColor {
+  if (_inkColor == inkColor) {
+    return;
+  }
+  _inkColor = inkColor;
+  [self updateButtonsWithInkColor:_inkColor];
 }
 
 - (void)reloadButtonViews {

@@ -1,13 +1,13 @@
 {
   "name": "MaterialComponents",
-  "version": "54.11.1",
+  "version": "54.13.0",
   "authors": "The Material Components authors.",
   "summary": "A collection of stand-alone production-ready UI libraries focused on design details.",
   "homepage": "https://github.com/material-components/material-components-ios",
   "license": "Apache 2.0",
   "source": {
     "git": "https://github.com/material-components/material-components-ios.git",
-    "tag": "v54.11.1"
+    "tag": "v54.13.0"
   },
   "platforms": {
     "ios": "8.0"
@@ -522,6 +522,22 @@
 
             ]
           }
+        },
+        {
+          "name": "CardThemer",
+          "platforms": {
+            "ios": "8.0"
+          },
+          "public_header_files": "components/Cards/src/CardThemer/*.h",
+          "source_files": "components/Cards/src/CardThemer/*.{h,m}",
+          "dependencies": {
+            "MaterialComponents/Cards": [
+
+            ],
+            "MaterialComponents/Cards+Extensions/ColorThemer": [
+
+            ]
+          }
         }
       ]
     },
@@ -612,6 +628,25 @@
 
             ],
             "MaterialComponents/schemes/Typography": [
+
+            ]
+          }
+        },
+        {
+          "name": "ChipThemer",
+          "platforms": {
+            "ios": "8.0"
+          },
+          "public_header_files": "components/Chips/src/ChipThemer/*.h",
+          "source_files": "components/Chips/src/ChipThemer/*.{h,m}",
+          "dependencies": {
+            "MaterialComponents/Chips": [
+
+            ],
+            "MaterialComponents/Chips+Extensions/ColorThemer": [
+
+            ],
+            "MaterialComponents/Chips+Extensions/TypographyThemer": [
 
             ]
           }

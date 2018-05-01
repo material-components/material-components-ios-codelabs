@@ -113,6 +113,51 @@ IB_DESIGNABLE
  */
 @property(nonatomic, strong, nullable) UIColor *titleTextColor;
 
+/**
+ The inkColor that is used for all buttons in trailing and leading button bars.
+
+ If set to nil, button bar buttons use default ink color.
+ */
+@property(nonatomic, strong, nullable) UIColor *inkColor;
+
+/**
+ Sets the title font for the given state for all buttons.
+
+ @param font The font that should be displayed on text buttons for the given state.
+ @param state The state for which the font should be displayed.
+ */
+- (void)setButtonsTitleFont:(nullable UIFont *)font forState:(UIControlState)state;
+
+/**
+ Returns the font set for @c state that was set by setButtonsTitleFont:forState:.
+
+ If no font has been set for a given state, the returned value will fall back to the value
+ set for UIControlStateNormal.
+
+ @param state The state for which the font should be returned.
+ @return The font associated with the given state.
+ */
+- (nullable UIFont *)buttonsTitleFontForState:(UIControlState)state;
+
+/**
+ Sets the title label color for the given state for all buttons.
+
+ @param color The color that should be used on text buttons labels for the given state.
+ @param state The state for which the color should be used.
+ */
+- (void)setButtonsTitleColor:(nullable UIColor *)color forState:(UIControlState)state;
+
+/**
+ Returns the color set for @c state that was set by setButtonsTitleColor:forState:.
+
+ If no value has been set for a given state, the returned value will fall back to the value
+ set for UIControlStateNormal.
+
+ @param state The state for which the color should be returned.
+ @return The color associated with the given state.
+ */
+- (nullable UIColor *)buttonsTitleColorForState:(UIControlState)state;
+
 /** The back button to be displayed, if any. */
 @property(nonatomic, strong, nullable) UIBarButtonItem *backItem;
 
@@ -195,6 +240,24 @@ IB_DESIGNABLE
 @property(nonatomic) BOOL leftItemsSupplementBackButton;
 
 #pragma mark - To be deprecated
+
+/**
+ Makes the navigation bar use flexible top and bottom insets for buttons and titles, by vertically
+ positioning them based on the height of the navigation bar. Default insets do not allow the height
+ of the navigation bar to be set to anything less than 56.0f, so this property has to be set to YES
+ in that case.
+ 
+ When this is set to YES, the custom titleView is aligned with the button bars and has the same
+ height as them, regardless of the height of the navigation bar. This allows vertically aligning the
+ content of the titleView with the buttons, by vertically centering the content of the titleView.
+ 
+ Default is NO.
+ 
+ NOTE: This property will be deprecated and the YES behavior will replace the current behavior.
+ All clients who rely on the titleView should set this to YES and implement proper alignment before
+ deprecation.
+ */
+@property(nonatomic) BOOL useFlexibleTopBottomInsets;
 
 /**
  Display attributes for the titleView's title text.

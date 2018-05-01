@@ -16,8 +16,8 @@
 
 #import "MDCAppBarColorThemer.h"
 
-#import "MDCFlexibleHeaderColorThemer.h"
-#import "MDCNavigationBarColorThemer.h"
+#import "MaterialFlexibleHeader+ColorThemer.h"
+#import "MaterialNavigationBar+ColorThemer.h"
 
 @implementation MDCAppBarColorThemer
 
@@ -27,6 +27,15 @@
                                     toFlexibleHeaderView:appBar.headerViewController.headerView];
   [MDCNavigationBarColorThemer applySemanticColorScheme:colorScheme
                                 toNavigationBar:appBar.navigationBar];
+}
+
++ (void)applySurfaceVariantWithColorScheme:(nonnull id<MDCColorScheming>)colorScheme
+                                  toAppBar:(nonnull MDCAppBar *)appBar {
+  [MDCFlexibleHeaderColorThemer applySurfaceVariantWithColorScheme:colorScheme
+                                              toFlexibleHeaderView:
+      appBar.headerViewController.headerView];
+  [MDCNavigationBarColorThemer applySurfaceVariantWithColorScheme:colorScheme
+                                                  toNavigationBar:appBar.navigationBar];
 }
 
 + (void)applyColorScheme:(id<MDCColorScheme>)colorScheme

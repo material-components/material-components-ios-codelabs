@@ -21,7 +21,7 @@
 /**
  A view controller for presenting other view controllers as bottom sheets.
 
- https://material.io/guidelines/components/bottom-sheets.html
+ https://material.io/go/design-sheets-bottom
 
  Show a bottom sheet by creating an MDCBottomSheetController instance with a contentViewController
  and presenting it with -[UIViewController presentViewController:animated:completion].
@@ -44,6 +44,11 @@
  Changes to this value will be ignored after the bottom sheet controller has been presented.
  */
 @property(nonatomic, weak, nullable) UIScrollView *trackingScrollView;
+
+/**
+ When set to false, the bottom sheet controller can't be dismissed by tapping outside of sheet area.
+ */
+@property(nonatomic, assign) BOOL dismissOnBackgroundTap;
 
 /**
  The bottom sheet delegate.

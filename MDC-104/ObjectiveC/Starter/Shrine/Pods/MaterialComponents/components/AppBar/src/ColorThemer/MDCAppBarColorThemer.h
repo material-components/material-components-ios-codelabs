@@ -18,25 +18,42 @@
 #import "MaterialColorScheme.h"
 
 /**
- A color themer for MDCNavigationBar that implements the Material design color system mappings.
+ The Material Design color system's themer for instances of MDCAppBar.
  */
 @interface MDCAppBarColorThemer : NSObject
 
 /**
- Applies a color scheme's properties to an MDCAppBar.
+ Applies a color scheme's properties to an MDCAppBar using the primary mapping.
 
- @param colorScheme The color scheme to apply to MDCAppBar.
- @param appBar An MDCAppBar instance to which the color scheme should be applied.
+ Uses the primary color as the most important color for the component.
+
+ @param colorScheme The color scheme to apply to the component instance.
+ @param appBar A component instance to which the color scheme should be applied.
  */
 + (void)applySemanticColorScheme:(nonnull id<MDCColorScheming>)colorScheme
                         toAppBar:(nonnull MDCAppBar *)appBar;
 
 /**
- Applies a color scheme to theme a MDCAppBar. Use a UIAppearance proxy to apply a color scheme to
- all instances of MDCAppBar.
+ Applies a color scheme's properties to an MDCAppBar using the surface mapping.
 
- @param colorScheme The color scheme to apply to MDCAppBar.
- @param appBar A MDCAppBar instance to apply a color scheme.
+ Uses the surface color as the most important color for the component.
+
+ @param colorScheme The color scheme to apply to the component instance.
+ @param appBar A component instance to which the color scheme should be applied.
+ */
++ (void)applySurfaceVariantWithColorScheme:(nonnull id<MDCColorScheming>)colorScheme
+                                  toAppBar:(nonnull MDCAppBar *)appBar;
+
+#pragma mark - Soon to be deprecated
+
+/**
+ Applies a color scheme's properties to an MDCAppBar.
+
+ @warning This method will soon be deprecated. Consider using @c +applySemanticColorScheme:toAppBar:
+ instead.
+
+ @param colorScheme The color scheme to apply to the component instance.
+ @param appBar A component instance to which the color scheme should be applied.
  */
 + (void)applyColorScheme:(nonnull id<MDCColorScheme>)colorScheme
                 toAppBar:(nonnull MDCAppBar *)appBar;
