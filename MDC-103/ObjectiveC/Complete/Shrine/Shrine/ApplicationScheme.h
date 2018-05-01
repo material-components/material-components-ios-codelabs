@@ -23,38 +23,12 @@
 /**
  ApplicationScheme is a central object for setting the application's colors and typography.
  */
-@interface ApplicationScheme : NSObject <MDCColorScheming, MDCTypographyScheming>
+@interface ApplicationScheme : NSObject
 
-+ (instancetype)scheme;
++ (instancetype)sharedInstance;
 - (instancetype)init NS_UNAVAILABLE;
 
-#pragma mark - Color Scheme
-
-@property(nonnull, readonly, nonatomic) UIColor *primaryColor;
-@property(nonnull, readonly, nonatomic) UIColor *primaryColorVariant;
-@property(nonnull, readonly, nonatomic) UIColor *secondaryColor;
-@property(nonnull, readonly, nonatomic) UIColor *errorColor;
-@property(nonnull, readonly, nonatomic) UIColor *surfaceColor;
-@property(nonnull, readonly, nonatomic) UIColor *backgroundColor;
-@property(nonnull, readonly, nonatomic) UIColor *onPrimaryColor;
-@property(nonnull, readonly, nonatomic) UIColor *onSecondaryColor;
-@property(nonnull, readonly, nonatomic) UIColor *onSurfaceColor;
-@property(nonnull, readonly, nonatomic) UIColor *onBackgroundColor;
-
-#pragma mark - Typography Scheme
-
-@property(nonatomic, nonnull, readonly) UIFont *headline1;
-@property(nonatomic, nonnull, readonly) UIFont *headline2;
-@property(nonatomic, nonnull, readonly) UIFont *headline3;
-@property(nonatomic, nonnull, readonly) UIFont *headline4;
-@property(nonatomic, nonnull, readonly) UIFont *headline5;
-@property(nonatomic, nonnull, readonly) UIFont *headline6;
-@property(nonatomic, nonnull, readonly) UIFont *subtitle1;
-@property(nonatomic, nonnull, readonly) UIFont *subtitle2;
-@property(nonatomic, nonnull, readonly) UIFont *body1;
-@property(nonatomic, nonnull, readonly) UIFont *body2;
-@property(nonatomic, nonnull, readonly) UIFont *caption;
-@property(nonatomic, nonnull, readonly) UIFont *button;
-@property(nonatomic, nonnull, readonly) UIFont *overline;
+@property(nonnull, readonly, nonatomic) MDCSemanticColorScheme *colorScheme;
+@property(nonnull, readonly, nonatomic) MDCTypographyScheme *typographyScheme;
 
 @end

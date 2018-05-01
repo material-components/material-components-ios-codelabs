@@ -140,27 +140,27 @@
   [self.scrollView addSubview:self.nextButton];
 
   // TODO: Theme our interface with our colors
-  self.view.backgroundColor = [ApplicationScheme scheme].surfaceColor;
-  self.logoImageView.tintColor = [ApplicationScheme scheme].onSurfaceColor;
-  self.titleLabel.textColor = [ApplicationScheme scheme].onSurfaceColor;
-  [MDCTextFieldColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
+  self.view.backgroundColor = [ApplicationScheme sharedInstance].colorScheme.surfaceColor;
+  self.logoImageView.tintColor = [ApplicationScheme sharedInstance].colorScheme.onSurfaceColor;
+  self.titleLabel.textColor = [ApplicationScheme sharedInstance].colorScheme.onSurfaceColor;
+  [MDCTextFieldColorThemer applySemanticColorScheme:[ApplicationScheme sharedInstance].colorScheme
                               toTextInputController:self.usernameTextFieldController];
-  [MDCTextFieldColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
+  [MDCTextFieldColorThemer applySemanticColorScheme:[ApplicationScheme sharedInstance].colorScheme
                               toTextInputController:self.passwordTextFieldController];
-  [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
+  [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme sharedInstance].colorScheme
                                     toFlatButton:self.cancelButton];
-  [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
+  [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme sharedInstance].colorScheme
                                   toRaisedButton:self.nextButton];
 
   // TODO: Theme our interface with our typography
-  self.titleLabel.font = [ApplicationScheme scheme].headline5;
-  [MDCTextFieldTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
+  self.titleLabel.font = [ApplicationScheme sharedInstance].typographyScheme.headline5;
+  [MDCTextFieldTypographyThemer applyTypographyScheme:[ApplicationScheme sharedInstance].typographyScheme
                                 toTextInputController:self.usernameTextFieldController];
-  [MDCTextFieldTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
+  [MDCTextFieldTypographyThemer applyTypographyScheme:[ApplicationScheme sharedInstance].typographyScheme
                                 toTextInputController:self.passwordTextFieldController];
-  [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
+  [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme sharedInstance].typographyScheme
                                           toButton:self.cancelButton];
-  [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
+  [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme sharedInstance].typographyScheme
                                           toButton:self.nextButton];
 
   // Layout Constraints

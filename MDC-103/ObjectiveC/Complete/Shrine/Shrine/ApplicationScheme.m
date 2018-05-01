@@ -21,7 +21,7 @@
   MDCTypographyScheme *_typographyScheme;
 }
 
-+ (instancetype)scheme {
++ (instancetype)sharedInstance {
   static ApplicationScheme *scheme;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
