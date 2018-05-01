@@ -111,7 +111,7 @@
   [self.featuredButton setTitle:@"FEATURED" forState:UIControlStateNormal];
   [self.featuredButton addTarget:self
                           action:@selector(categoryTapped:)
-                forControlEvents:UIControlEventTouchDown];
+                forControlEvents:UIControlEventTouchUpInside];
   [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
                                     toFlatButton:self.featuredButton];
   [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
@@ -123,7 +123,7 @@
   [self.apartmentButton setTitle:@"APARTMENT" forState:UIControlStateNormal];
   [self.apartmentButton addTarget:self
                            action:@selector(categoryTapped:)
-                 forControlEvents:UIControlEventTouchDown];
+                 forControlEvents:UIControlEventTouchUpInside];
   [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
                                     toFlatButton:self.apartmentButton];
   [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
@@ -135,7 +135,7 @@
   [self.accessoriesButton setTitle:@"ACCESSORIES" forState:UIControlStateNormal];
   [self.accessoriesButton addTarget:self
                              action:@selector(categoryTapped:)
-                   forControlEvents:UIControlEventTouchDown];
+                   forControlEvents:UIControlEventTouchUpInside];
   [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
                                     toFlatButton:self.accessoriesButton];
   [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
@@ -147,7 +147,7 @@
   [self.shoesButton setTitle:@"SHOES" forState:UIControlStateNormal];
   [self.shoesButton addTarget:self
                        action:@selector(categoryTapped:)
-             forControlEvents:UIControlEventTouchDown];
+             forControlEvents:UIControlEventTouchUpInside];
   [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
                                     toFlatButton:self.shoesButton];
   [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
@@ -159,7 +159,7 @@
   [self.topsButton setTitle:@"TOPS" forState:UIControlStateNormal];
   [self.topsButton addTarget:self
                       action:@selector(categoryTapped:)
-            forControlEvents:UIControlEventTouchDown];
+            forControlEvents:UIControlEventTouchUpInside];
   [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
                                     toFlatButton:self.topsButton];
   [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
@@ -171,7 +171,7 @@
   [self.bottomsButton setTitle:@"BOTTOMS" forState:UIControlStateNormal];
   [self.bottomsButton addTarget:self
                          action:@selector(categoryTapped:)
-               forControlEvents:UIControlEventTouchDown];
+               forControlEvents:UIControlEventTouchUpInside];
   [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
                                     toFlatButton:self.bottomsButton];
   [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
@@ -183,7 +183,7 @@
   [self.dressesButton setTitle:@"DRESSES" forState:UIControlStateNormal];
   [self.dressesButton addTarget:self
                          action:@selector(categoryTapped:)
-               forControlEvents:UIControlEventTouchDown];
+               forControlEvents:UIControlEventTouchUpInside];
   [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
                                     toFlatButton:self.dressesButton];
   [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
@@ -195,7 +195,7 @@
   [self.accountButton setTitle:@"MY ACCOUNT" forState:UIControlStateNormal];
   [self.accountButton addTarget:self
                          action:@selector(accountTapped:)
-               forControlEvents:UIControlEventTouchDown];
+               forControlEvents:UIControlEventTouchUpInside];
   [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme scheme]
                                     toFlatButton:self.accountButton];
   [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme scheme]
