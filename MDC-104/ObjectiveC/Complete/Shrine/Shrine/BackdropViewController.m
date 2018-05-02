@@ -183,11 +183,10 @@
   self.containerView.backgroundColor = UIColor.whiteColor;
   [self.view addSubview:self.containerView];
 
-  // Setup embedded view controller
+  //TODO: Instantiate and embed the catalog view controller in the BackdropViewController
   UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
   UIViewController *viewController =
       [storyboard instantiateViewControllerWithIdentifier:@"HomeViewController"];
-  //TODO: Embed the catalog view controller in the BackdropViewController
   [self insertController:viewController];
 }
 
