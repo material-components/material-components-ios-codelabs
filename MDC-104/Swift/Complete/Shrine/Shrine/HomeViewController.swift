@@ -33,7 +33,7 @@ class HomeViewController: UICollectionViewController {
     self.collectionView?.backgroundColor = .clear
 
     // AppBar Setup
-    //TODO Comment out AppBar Setup
+    //TODO: Remove AppBar Setup in the following three lines
 //    self.addChildViewController(appBar.headerViewController)
 //    self.appBar.headerViewController.headerView.trackingScrollView = self.collectionView
 //    appBar.addSubviewsToParent()
