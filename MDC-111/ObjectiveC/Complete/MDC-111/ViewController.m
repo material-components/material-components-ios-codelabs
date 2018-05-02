@@ -17,6 +17,7 @@
 #import "MaterialTextFields.h"
 #import "MaterialButtons.h"
 #import "MaterialDialogs.h"
+#import "MaterialButtons+ButtonThemer.h"
 
 @interface ViewController () <UITextFieldDelegate>
 
@@ -33,7 +34,7 @@
 @property (nonatomic) MDCTextInputControllerOutlined *stateController;
 @property (nonatomic) MDCTextInputControllerOutlined *zipController;
 
-@property (weak, nonatomic) IBOutlet MDCRaisedButton *saveButton;
+@property (weak, nonatomic) IBOutlet MDCButton *saveButton;
 
 @end
 
@@ -47,6 +48,8 @@
   self.cityController = [[MDCTextInputControllerOutlined alloc] initWithTextInput:self.city];
   self.stateController = [[MDCTextInputControllerOutlined alloc] initWithTextInput:self.state];
   self.zipController = [[MDCTextInputControllerOutlined alloc] initWithTextInput:self.zip];
+
+  [MDCContainedButtonThemer applyScheme:[[MDCButtonScheme alloc] init] toButton:self.saveButton];
 
   self.zip.delegate = self;
 }
