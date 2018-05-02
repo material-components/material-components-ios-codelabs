@@ -18,8 +18,9 @@ import UIKit
 
 import MaterialComponents
 
-class ApplicationScheme: NSObject, MDCColorScheming, MDCTypographyScheming {
-  private static let colorScheme: MDCSemanticColorScheme = {
+class ApplicationScheme: NSObject, MDCColorScheming, MDCTypographyScheming, MDCButtonScheming {
+
+  static let staticColorScheme: MDCSemanticColorScheme = {
     let scheme = MDCSemanticColorScheme(defaults: .material201804)
     scheme.primaryColor =
       UIColor(red: 252.0/255.0, green: 184.0/255.0, blue: 171.0/255.0, alpha: 1.0)
@@ -29,7 +30,7 @@ class ApplicationScheme: NSObject, MDCColorScheming, MDCTypographyScheming {
     return scheme
   }()
 
-  private static let typographyScheme: MDCTypographyScheme = {
+  static let staticTypographyScheme: MDCTypographyScheme = {
     let scheme = MDCTypographyScheme()
     let fontName = "Rubik"
     scheme.headline5 = UIFont(name: fontName, size: 24)!
@@ -39,80 +40,96 @@ class ApplicationScheme: NSObject, MDCColorScheming, MDCTypographyScheming {
     return scheme
   }()
 
+  public private(set) var cornerRadius: CGFloat = {
+    return CGFloat(6.1)
+  }()
+
+  public private(set) var minimumHeight: CGFloat = {
+    return CGFloat(32.0)
+  }()
+
   private static var singleton = ApplicationScheme()
 
   static var scheme: ApplicationScheme {
     return singleton
   }
 
+  public private(set) var colorScheme: MDCColorScheming = {
+    return ApplicationScheme.staticColorScheme
+  }()
+
+  public private(set) var typographyScheme: MDCTypographyScheming = {
+    return ApplicationScheme.staticTypographyScheme
+  }()
+
   public private(set) var primaryColor: UIColor = {
-    return colorScheme.primaryColor
+    return staticColorScheme.primaryColor
   }()
   public private(set) var primaryColorVariant: UIColor = {
-    return colorScheme.primaryColorVariant
+    return staticColorScheme.primaryColorVariant
   }()
   public private(set) var secondaryColor: UIColor = {
-    return colorScheme.secondaryColor
+    return staticColorScheme.secondaryColor
   }()
   public private(set) var errorColor: UIColor = {
-    return colorScheme.errorColor
+    return staticColorScheme.errorColor
   }()
   public private(set) var surfaceColor: UIColor = {
-    return colorScheme.surfaceColor
+    return staticColorScheme.surfaceColor
   }()
   public private(set) var backgroundColor: UIColor = {
-    return colorScheme.backgroundColor
+    return staticColorScheme.backgroundColor
   }()
   public private(set) var onPrimaryColor: UIColor = {
-    return colorScheme.onPrimaryColor
+    return staticColorScheme.onPrimaryColor
   }()
   public private(set) var onSecondaryColor: UIColor = {
-    return colorScheme.onSecondaryColor
+    return staticColorScheme.onSecondaryColor
   }()
   public private(set) var onSurfaceColor: UIColor = {
-    return colorScheme.onSurfaceColor
+    return staticColorScheme.onSurfaceColor
   }()
   public private(set) var onBackgroundColor: UIColor = {
-    return colorScheme.onBackgroundColor
+    return staticColorScheme.onBackgroundColor
   }()
 
   public private(set) var headline1: UIFont = {
-    return typographyScheme.headline1
+    return staticTypographyScheme.headline1
   }()
   public private(set) var headline2: UIFont = {
-    return typographyScheme.headline2
+    return staticTypographyScheme.headline2
   }()
   public private(set) var headline3: UIFont = {
-    return typographyScheme.headline3
+    return staticTypographyScheme.headline3
   }()
   public private(set) var headline4: UIFont = {
-    return typographyScheme.headline4
+    return staticTypographyScheme.headline4
   }()
   public private(set) var headline5: UIFont = {
-    return typographyScheme.headline5
+    return staticTypographyScheme.headline5
   }()
   public private(set) var headline6: UIFont = {
-    return typographyScheme.headline6
+    return staticTypographyScheme.headline6
   }()
   public private(set) var subtitle1: UIFont = {
-    return typographyScheme.subtitle1
+    return staticTypographyScheme.subtitle1
   }()
   public private(set) var subtitle2: UIFont = {
-    return typographyScheme.subtitle2
+    return staticTypographyScheme.subtitle2
   }()
   public private(set) var body1: UIFont = {
-    return typographyScheme.body1
+    return staticTypographyScheme.body1
   }()
   public private(set) var body2: UIFont = {
-    return typographyScheme.body2
+    return staticTypographyScheme.body2
   }()
   public private(set) var caption: UIFont = {
-    return typographyScheme.caption
+    return staticTypographyScheme.caption
   }()
   public private(set) var button: UIFont = {
-    return typographyScheme.button
+    return staticTypographyScheme.button
   }()
   public private(set) var overline: UIFont = {
-    return typographyScheme.overline
+    return staticTypographyScheme.overline
   }()
 }
