@@ -54,7 +54,7 @@
 
   self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
   self.scrollView.translatesAutoresizingMaskIntoConstraints = NO;
-  self.view.backgroundColor = [UIColor whiteColor];
+  self.scrollView.backgroundColor = [UIColor whiteColor];
   UIEdgeInsets margins = UIEdgeInsetsMake(0, 16, 0, 16);
   self.scrollView.layoutMargins = margins;
   [self.view addSubview:self.scrollView];
