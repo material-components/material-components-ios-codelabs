@@ -35,8 +35,8 @@
 @property(nonatomic) MDCTextInputControllerOutlined *passwordTextFieldController;
 
 // Button Properties
-@property(nonatomic) MDCFlatButton *cancelButton;
-@property(nonatomic) MDCRaisedButton *nextButton;
+@property(nonatomic) MDCButton *cancelButton;
+@property(nonatomic) MDCButton *nextButton;
 
 @end
 
@@ -122,7 +122,7 @@
 
   // Button Init
   //TODO: Instantiate Buttons
-  self.cancelButton = [[MDCFlatButton alloc] init];
+  self.cancelButton = [[MDCButton alloc] init];
   self.cancelButton.translatesAutoresizingMaskIntoConstraints = NO;
   [self.cancelButton setTitle:@"CANCEL" forState:UIControlStateNormal];
   [self.cancelButton addTarget:self
@@ -130,7 +130,7 @@
               forControlEvents:UIControlEventTouchUpInside];
   [self.scrollView addSubview:self.cancelButton];
 
-  self.nextButton = [[MDCRaisedButton alloc] initWithFrame:CGRectZero];
+  self.nextButton = [[MDCButton alloc] initWithFrame:CGRectZero];
   self.nextButton.translatesAutoresizingMaskIntoConstraints = NO;
   [self.nextButton setTitle:@"NEXT" forState:UIControlStateNormal];
   [self.nextButton addTarget:self
