@@ -94,7 +94,6 @@ class LoginViewController: UIViewController {
     super.viewDidLoad()
 
     view.tintColor = .black
-    scrollView.backgroundColor = .white
 
     view.addSubview(scrollView)
 

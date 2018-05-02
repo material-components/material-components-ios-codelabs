@@ -93,7 +93,7 @@ class LoginViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    scrollView.backgroundColor = ApplicationScheme().surfaceColor
+    view.tintColor = .black
 
     view.addSubview(scrollView)
 
@@ -224,6 +224,7 @@ class LoginViewController: UIViewController {
     NSLayoutConstraint.activate(constraints)
 
     // TODO: Theme the interface with our colors
+    self.view.tintColor = ApplicationScheme.scheme.onSurfaceColor
     self.view.backgroundColor = ApplicationScheme.scheme.surfaceColor
     self.logoImageView.tintColor = ApplicationScheme.scheme.onSurfaceColor
     self.titleLabel.textColor = ApplicationScheme.scheme.onSurfaceColor
