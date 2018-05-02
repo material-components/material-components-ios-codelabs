@@ -36,6 +36,7 @@
     // Instantiate a MDCSemanticColorScheme object and modify it to our chosen colors
     _colorScheme =
         [[MDCSemanticColorScheme alloc] initWithDefaults:MDCColorSchemeDefaultsMaterial201804];
+    //TODO: Add our custom colors after this line
     _colorScheme.primaryColor =
         [UIColor colorWithRed:252.0/255.0 green:184.0/255.0 blue:171.0/255.0 alpha:1.0];
     _colorScheme.onPrimaryColor =
@@ -57,6 +58,7 @@
 
     // Instantiate a MDCSemanticColorScheme object and modify it to our chosen colors
     _typographyScheme = [[MDCTypographyScheme alloc] initWithDefaults:MDCTypographySchemeDefaultsMaterial201804];
+    //TODO: Add our custom fonts after this line
     NSString *fontName = @"Rubik";
     _typographyScheme.headline5 = [UIFont fontWithName:fontName size:24.0];
     _typographyScheme.headline6 = [UIFont fontWithName:fontName size:20.0];
