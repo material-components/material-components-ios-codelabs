@@ -22,7 +22,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
   @IBOutlet weak var state: MDCTextField!
   @IBOutlet weak var zip: MDCTextField!
 
-  @IBOutlet weak var saveButton: MDCRaisedButton!
+  @IBOutlet weak var saveButton: MDCButton!
+  let buttonScheme = MDCButtonScheme()
 
   // MARK: Properties
 
@@ -40,6 +41,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     cityController = MDCTextInputControllerOutlined(textInput: city)
     stateController = MDCTextInputControllerOutlined(textInput: state)
     zipController = MDCTextInputControllerOutlined(textInput: zip)
+    MDCContainedButtonThemer.applyScheme(buttonScheme, to: saveButton)
 
     zip.delegate = self
   }
@@ -86,6 +88,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
       self.zip.text = nil
     }))
     alert.addAction(MDCAlertAction(title: "Cancel", handler: nil))
+    MDCAlertColorThemer.applySemanticColorScheme(self.buttonScheme.colorScheme, to: alert)
+    MDCAlertTypographyThemer.applyTypographyScheme(self.buttonScheme.typographyScheme, to: alert)
     present(alert, animated: true, completion: nil)
   }
 }

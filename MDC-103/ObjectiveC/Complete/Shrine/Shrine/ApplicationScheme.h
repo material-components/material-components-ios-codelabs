@@ -16,6 +16,7 @@
 
 #import <Foundation/Foundation.h>
 
+#import <MaterialComponents/MaterialButtons+ButtonThemer.h>
 #import <MaterialComponents/MaterialColorScheme.h>
 #import <MaterialComponents/MaterialTypographyScheme.h>
 
@@ -30,5 +31,6 @@
 
 @property(nonnull, readonly, nonatomic) MDCSemanticColorScheme *colorScheme;
 @property(nonnull, readonly, nonatomic) MDCTypographyScheme *typographyScheme;
+@property(nonnull, readonly, nonatomic) MDCButtonScheme *buttonScheme;
 
 @end

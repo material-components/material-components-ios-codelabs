@@ -63,6 +63,10 @@
     _typographyScheme.headline6 = [UIFont fontWithName:fontName size:20.0];
     _typographyScheme.subtitle1 = [UIFont fontWithName:fontName size:16.0];
     _typographyScheme.button = [UIFont fontWithName:fontName size:14.0];
+
+    _buttonScheme = [[MDCButtonScheme alloc] init];
+    _buttonScheme.colorScheme = _colorScheme;
+    _buttonScheme.typographyScheme = _typographyScheme;
   }
   return self;
 }

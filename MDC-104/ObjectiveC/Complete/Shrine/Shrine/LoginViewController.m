@@ -18,8 +18,8 @@
 
 #import <MaterialComponents/MaterialButtons.h>
 #import <MaterialComponents/MaterialTextFields.h>
-#import <MaterialComponents/MDCButtonColorThemer.h>
-#import <MaterialComponents/MDCButtonTypographyThemer.h>
+#import <MaterialComponents/MDCTextButtonThemer.h>
+#import <MaterialComponents/MDCContainedButtonThemer.h>
 #import <MaterialComponents/MDCTextFieldColorThemer.h>
 #import <MaterialComponents/MDCTextFieldTypographyThemer.h>
 
@@ -40,8 +40,8 @@
 @property(nonatomic) MDCTextInputControllerOutlined *passwordTextFieldController;
 
 // Button Properties
-@property(nonatomic) MDCFlatButton *cancelButton;
-@property(nonatomic) MDCRaisedButton *nextButton;
+@property(nonatomic) MDCButton *cancelButton;
+@property(nonatomic) MDCButton *nextButton;
 
 @end
 
@@ -121,7 +121,7 @@
   self.passwordTextFieldController.placeholderText = @"Password";
 
   // Cancel Button Init
-  self.cancelButton = [[MDCFlatButton alloc] init];
+  self.cancelButton = [[MDCButton alloc] init];
   self.cancelButton.translatesAutoresizingMaskIntoConstraints = NO;
   [self.cancelButton setTitle:@"CANCEL" forState:UIControlStateNormal];
   [self.cancelButton addTarget:self
@@ -130,7 +130,7 @@
   [self.scrollView addSubview:self.cancelButton];
 
   // Next Button Init
-  self.nextButton = [[MDCRaisedButton alloc] initWithFrame:CGRectZero];
+  self.nextButton = [[MDCButton alloc] initWithFrame:CGRectZero];
   self.nextButton.translatesAutoresizingMaskIntoConstraints = NO;
   [self.nextButton setTitle:@"NEXT" forState:UIControlStateNormal];
   [self.nextButton addTarget:self
@@ -145,20 +145,16 @@
                               toTextInputController:self.usernameTextFieldController];
   [MDCTextFieldColorThemer applySemanticColorScheme:[ApplicationScheme sharedInstance].colorScheme
                               toTextInputController:self.passwordTextFieldController];
-  [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme sharedInstance].colorScheme
-                                    toFlatButton:self.cancelButton];
-  [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme sharedInstance].colorScheme
-                                  toRaisedButton:self.nextButton];
+  [MDCTextButtonThemer applyScheme:[ApplicationScheme sharedInstance].buttonScheme
+                          toButton:self.cancelButton];
+  [MDCContainedButtonThemer applyScheme:[ApplicationScheme sharedInstance].buttonScheme
+                          toButton:self.nextButton];
 
   self.titleLabel.font = [ApplicationScheme sharedInstance].typographyScheme.headline5;
   [MDCTextFieldTypographyThemer applyTypographyScheme:[ApplicationScheme sharedInstance].typographyScheme
                                 toTextInputController:self.usernameTextFieldController];
   [MDCTextFieldTypographyThemer applyTypographyScheme:[ApplicationScheme sharedInstance].typographyScheme
                                 toTextInputController:self.passwordTextFieldController];
-  [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme sharedInstance].typographyScheme
-                                          toButton:self.cancelButton];
-  [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme sharedInstance].typographyScheme
-                                          toButton:self.nextButton];
 
   // Layout Constraints
   NSMutableArray <NSLayoutConstraint *> *constraints = [[NSMutableArray alloc] init];

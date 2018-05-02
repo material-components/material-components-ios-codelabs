@@ -17,6 +17,9 @@
 #import "MaterialTextFields.h"
 #import "MaterialButtons.h"
 #import "MaterialDialogs.h"
+#import "MaterialButtons+ButtonThemer.h"
+#import "MaterialDialogs+ColorThemer.h"
+#import "MaterialDialogs+TypographyThemer.h"
 
 @interface ViewController () <UITextFieldDelegate>
 
@@ -33,7 +36,8 @@
 @property (nonatomic) MDCTextInputControllerOutlined *stateController;
 @property (nonatomic) MDCTextInputControllerOutlined *zipController;
 
-@property (weak, nonatomic) IBOutlet MDCRaisedButton *saveButton;
+@property (weak, nonatomic) IBOutlet MDCButton *saveButton;
+@property (nonatomic) MDCButtonScheme *buttonScheme;
 
 @end
 
@@ -47,6 +51,9 @@
   self.cityController = [[MDCTextInputControllerOutlined alloc] initWithTextInput:self.city];
   self.stateController = [[MDCTextInputControllerOutlined alloc] initWithTextInput:self.state];
   self.zipController = [[MDCTextInputControllerOutlined alloc] initWithTextInput:self.zip];
+  self.buttonScheme = [[MDCButtonScheme alloc] init];
+
+  [MDCContainedButtonThemer applyScheme:self.buttonScheme toButton:self.saveButton];
 
   self.zip.delegate = self;
 }
@@ -88,6 +95,11 @@
   }]];
   [saveAlert addAction:[MDCAlertAction actionWithTitle:@"Cancel" handler:^(MDCAlertAction * _Nonnull action) {
   }]];
+  [MDCAlertColorThemer applySemanticColorScheme:self.buttonScheme.colorScheme
+                              toAlertController:saveAlert];
+  [MDCAlertTypographyThemer applyTypographyScheme:self.buttonScheme.typographyScheme
+                                toAlertController:saveAlert];
+
   [self presentViewController:saveAlert animated:YES completion:nil];
 }
 

@@ -20,8 +20,8 @@
 #import <MaterialComponents/MaterialButtons.h>
 #import <MaterialComponents/MaterialNavigationBar.h>
 #import <MaterialComponents/MDCAppBarColorThemer.h>
-#import <MaterialComponents/MDCButtonColorThemer.h>
-#import <MaterialComponents/MDCButtonTypographyThemer.h>
+#import <MaterialComponents/MDCTextButtonThemer.h>
+#import <MaterialComponents/MDCContainedButtonThemer.h>
 #import <MaterialComponents/MDCNavigationBarColorThemer.h>
 #import <MaterialComponents/MDCNavigationBarTypographyThemer.h>
 #import <MaterialComponents/MDCShapedShadowLayer.h>
@@ -41,14 +41,14 @@
 @property(nonatomic) MDCNavigationBar *navigationBar;
 
 // Button Properties
-@property(nonatomic) MDCFlatButton *featuredButton;
-@property(nonatomic) MDCFlatButton *apartmentButton;
-@property(nonatomic) MDCFlatButton *accessoriesButton;
-@property(nonatomic) MDCFlatButton *shoesButton;
-@property(nonatomic) MDCFlatButton *topsButton;
-@property(nonatomic) MDCFlatButton *bottomsButton;
-@property(nonatomic) MDCFlatButton *dressesButton;
-@property(nonatomic) MDCFlatButton *accountButton;
+@property(nonatomic) MDCButton *featuredButton;
+@property(nonatomic) MDCButton *apartmentButton;
+@property(nonatomic) MDCButton *accessoriesButton;
+@property(nonatomic) MDCButton *shoesButton;
+@property(nonatomic) MDCButton *topsButton;
+@property(nonatomic) MDCButton *bottomsButton;
+@property(nonatomic) MDCButton *dressesButton;
+@property(nonatomic) MDCButton *accountButton;
 
 // Is embedded controller in the foreground / focused
 @property(nonatomic, getter=isFocusedEmbeddedController) BOOL focusedEmbeddedController;
@@ -107,100 +107,86 @@
   self.appBar.navigationBar.translatesAutoresizingMaskIntoConstraints = NO;
 
   // Button Init
-  self.featuredButton = [[MDCFlatButton alloc] init];
+  self.featuredButton = [[MDCButton alloc] init];
   self.featuredButton.translatesAutoresizingMaskIntoConstraints = NO;
   [self.featuredButton setTitle:@"FEATURED" forState:UIControlStateNormal];
   [self.featuredButton addTarget:self
                           action:@selector(categoryTapped:)
                 forControlEvents:UIControlEventTouchUpInside];
-  [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme sharedInstance].colorScheme
-                                    toFlatButton:self.featuredButton];
-  [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme sharedInstance].typographyScheme
-                                          toButton:self.featuredButton];
+  [MDCTextButtonThemer applyScheme:[ApplicationScheme sharedInstance].buttonScheme
+                          toButton:self.featuredButton];
   [self.view addSubview:self.featuredButton];
 
-  self.apartmentButton = [[MDCFlatButton alloc] init];
+  self.apartmentButton = [[MDCButton alloc] init];
   self.apartmentButton.translatesAutoresizingMaskIntoConstraints = NO;
   [self.apartmentButton setTitle:@"APARTMENT" forState:UIControlStateNormal];
   [self.apartmentButton addTarget:self
                            action:@selector(categoryTapped:)
                  forControlEvents:UIControlEventTouchUpInside];
-  [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme sharedInstance].colorScheme
-                                    toFlatButton:self.apartmentButton];
-  [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme sharedInstance].typographyScheme
-                                          toButton:self.apartmentButton];
+  [MDCTextButtonThemer applyScheme:[ApplicationScheme sharedInstance].buttonScheme
+                          toButton:self.apartmentButton];
+  [MDCTextButtonThemer applyScheme:[ApplicationScheme sharedInstance].buttonScheme
+                          toButton:self.apartmentButton];
   [self.view addSubview:self.apartmentButton];
 
-  self.accessoriesButton = [[MDCFlatButton alloc] init];
+  self.accessoriesButton = [[MDCButton alloc] init];
   self.accessoriesButton.translatesAutoresizingMaskIntoConstraints = NO;
   [self.accessoriesButton setTitle:@"ACCESSORIES" forState:UIControlStateNormal];
   [self.accessoriesButton addTarget:self
                              action:@selector(categoryTapped:)
                    forControlEvents:UIControlEventTouchUpInside];
-  [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme sharedInstance].colorScheme
-                                    toFlatButton:self.accessoriesButton];
-  [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme sharedInstance].typographyScheme
-                                          toButton:self.accessoriesButton];
+  [MDCTextButtonThemer applyScheme:[ApplicationScheme sharedInstance].buttonScheme
+                          toButton:self.accessoriesButton];
   [self.view addSubview:self.accessoriesButton];
 
-  self.shoesButton = [[MDCFlatButton alloc] init];
+  self.shoesButton = [[MDCButton alloc] init];
   self.shoesButton.translatesAutoresizingMaskIntoConstraints = NO;
   [self.shoesButton setTitle:@"SHOES" forState:UIControlStateNormal];
   [self.shoesButton addTarget:self
                        action:@selector(categoryTapped:)
              forControlEvents:UIControlEventTouchUpInside];
-  [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme sharedInstance].colorScheme
-                                    toFlatButton:self.shoesButton];
-  [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme sharedInstance].typographyScheme
-                                          toButton:self.shoesButton];
+  [MDCTextButtonThemer applyScheme:[ApplicationScheme sharedInstance].buttonScheme
+                          toButton:self.shoesButton];
   [self.view addSubview:self.shoesButton];
 
-  self.topsButton = [[MDCFlatButton alloc] init];
+  self.topsButton = [[MDCButton alloc] init];
   self.topsButton.translatesAutoresizingMaskIntoConstraints = NO;
   [self.topsButton setTitle:@"TOPS" forState:UIControlStateNormal];
   [self.topsButton addTarget:self
                       action:@selector(categoryTapped:)
             forControlEvents:UIControlEventTouchUpInside];
-  [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme sharedInstance].colorScheme
-                                    toFlatButton:self.topsButton];
-  [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme sharedInstance].typographyScheme
-                                          toButton:self.topsButton];
+  [MDCTextButtonThemer applyScheme:[ApplicationScheme sharedInstance].buttonScheme
+                          toButton:self.topsButton];
   [self.view addSubview:self.topsButton];
 
-  self.bottomsButton = [[MDCFlatButton alloc] init];
+  self.bottomsButton = [[MDCButton alloc] init];
   self.bottomsButton.translatesAutoresizingMaskIntoConstraints = NO;
   [self.bottomsButton setTitle:@"BOTTOMS" forState:UIControlStateNormal];
   [self.bottomsButton addTarget:self
                          action:@selector(categoryTapped:)
                forControlEvents:UIControlEventTouchUpInside];
-  [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme sharedInstance].colorScheme
-                                    toFlatButton:self.bottomsButton];
-  [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme sharedInstance].typographyScheme
-                                          toButton:self.bottomsButton];
+  [MDCTextButtonThemer applyScheme:[ApplicationScheme sharedInstance].buttonScheme
+                          toButton:self.bottomsButton];
   [self.view addSubview:self.bottomsButton];
 
-  self.dressesButton = [[MDCFlatButton alloc] init];
+  self.dressesButton = [[MDCButton alloc] init];
   self.dressesButton.translatesAutoresizingMaskIntoConstraints = NO;
   [self.dressesButton setTitle:@"DRESSES" forState:UIControlStateNormal];
   [self.dressesButton addTarget:self
                          action:@selector(categoryTapped:)
                forControlEvents:UIControlEventTouchUpInside];
-  [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme sharedInstance].colorScheme
-                                    toFlatButton:self.dressesButton];
-  [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme sharedInstance].typographyScheme
-                                          toButton:self.dressesButton];
+  [MDCTextButtonThemer applyScheme:[ApplicationScheme sharedInstance].buttonScheme
+                          toButton:self.dressesButton];
   [self.view addSubview:self.dressesButton];
 
-  self.accountButton = [[MDCFlatButton alloc] init];
+  self.accountButton = [[MDCButton alloc] init];
   self.accountButton.translatesAutoresizingMaskIntoConstraints = NO;
   [self.accountButton setTitle:@"MY ACCOUNT" forState:UIControlStateNormal];
   [self.accountButton addTarget:self
                          action:@selector(accountTapped:)
                forControlEvents:UIControlEventTouchUpInside];
-  [MDCButtonColorThemer applySemanticColorScheme:[ApplicationScheme sharedInstance].colorScheme
-                                    toFlatButton:self.accountButton];
-  [MDCButtonTypographyThemer applyTypographyScheme:[ApplicationScheme sharedInstance].typographyScheme
-                                          toButton:self.accountButton];
+  [MDCTextButtonThemer applyScheme:[ApplicationScheme sharedInstance].buttonScheme
+                          toButton:self.accountButton];
   [self.view addSubview:self.accountButton];
 
   NSMutableArray <NSLayoutConstraint *> *constraints = [[NSMutableArray alloc] init];
