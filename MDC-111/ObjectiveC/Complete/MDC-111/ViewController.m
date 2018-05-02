@@ -18,6 +18,8 @@
 #import "MaterialButtons.h"
 #import "MaterialDialogs.h"
 #import "MaterialButtons+ButtonThemer.h"
+#import "MaterialDialogs+ColorThemer.h"
+#import "MaterialDialogs+TypographyThemer.h"
 
 @interface ViewController () <UITextFieldDelegate>
 
@@ -91,6 +93,11 @@
   }]];
   [saveAlert addAction:[MDCAlertAction actionWithTitle:@"Cancel" handler:^(MDCAlertAction * _Nonnull action) {
   }]];
+  MDCSemanticColorScheme *colorScheme = [[MDCSemanticColorScheme alloc] init];
+  MDCTypographyScheme *typographyScheme = [[MDCTypographyScheme alloc] init];
+  [MDCAlertColorThemer applySemanticColorScheme:colorScheme toAlertController:saveAlert];
+  [MDCAlertTypographyThemer applyTypographyScheme:typographyScheme toAlertController:saveAlert];
+
   [self presentViewController:saveAlert animated:YES completion:nil];
 }
 
