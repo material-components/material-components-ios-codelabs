@@ -42,11 +42,11 @@ class ApplicationScheme: NSObject, MDCColorScheming, MDCTypographyScheming, MDCB
       UIColor(red: 68.0/255.0, green: 44.0/255.0, blue: 46.0/255.0, alpha: 1.0)
     scheme.errorColor =
       UIColor(red: 197.0/255.0, green: 3.0/255.0, blue: 43.0/255.0, alpha: 1.0)
-    scheme.onBackgroundColor =
+    scheme.onErrorColor =
       UIColor(red: 255.0/255.0, green: 251.0/255.0, blue: 250.0/255.0, alpha: 1.0)
     return scheme
   }()
-  
+
   static let staticTypographyScheme: MDCTypographyScheme = {
     let scheme = MDCTypographyScheme()
     let fontName = "Rubik"
