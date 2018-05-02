@@ -22,36 +22,15 @@ class ApplicationScheme: NSObject, MDCColorScheming, MDCTypographyScheming, MDCB
 
   static let staticColorScheme: MDCSemanticColorScheme = {
     let scheme = MDCSemanticColorScheme(defaults: .material201804)
-    scheme.primaryColor =
-      UIColor(red: 252.0/255.0, green: 184.0/255.0, blue: 171.0/255.0, alpha: 1.0)
-    scheme.primaryColorVariant =
-      UIColor(red: 68.0/255.0, green: 44.0/255.0, blue: 46.0/255.0, alpha: 1.0)
-    scheme.onPrimaryColor =
-      UIColor(red: 68.0/255.0, green: 44.0/255.0, blue: 46.0/255.0, alpha: 1.0)
-    scheme.secondaryColor =
-      UIColor(red: 254.0/255.0, green: 234.0/255.0, blue: 230.0/255.0, alpha: 1.0)
-    scheme.onSecondaryColor =
-      UIColor(red: 68.0/255.0, green: 44.0/255.0, blue: 46.0/255.0, alpha: 1.0)
-    scheme.surfaceColor =
-      UIColor(red: 255.0/255.0, green: 251.0/255.0, blue: 250.0/255.0, alpha: 1.0)
-    scheme.onSurfaceColor =
-      UIColor(red: 68.0/255.0, green: 44.0/255.0, blue: 46.0/255.0, alpha: 1.0)
-    scheme.backgroundColor =
-      UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0)
-    scheme.onBackgroundColor =
-      UIColor(red: 68.0/255.0, green: 44.0/255.0, blue: 46.0/255.0, alpha: 1.0)
-    scheme.errorColor =
-      UIColor(red: 197.0/255.0, green: 3.0/255.0, blue: 43.0/255.0, alpha: 1.0)
+    //TODO: Customize our app Colors after this line
+
     return scheme
   }()
 
   static let staticTypographyScheme: MDCTypographyScheme = {
     let scheme = MDCTypographyScheme()
-    let fontName = "Rubik"
-    scheme.headline5 = UIFont(name: fontName, size: 24)!
-    scheme.headline6 = UIFont(name: fontName, size: 20)!
-    scheme.subtitle1 = UIFont(name: fontName, size: 16)!
-    scheme.button = UIFont(name: fontName, size: 14)!
+    //TODO: Add our custom fonts after this line
+
     return scheme
   }()
 
