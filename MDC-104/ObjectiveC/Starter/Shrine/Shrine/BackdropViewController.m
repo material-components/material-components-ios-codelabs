@@ -42,12 +42,9 @@
 
 // Button Properties
 @property(nonatomic) MDCButton *featuredButton;
-@property(nonatomic) MDCButton *apartmentButton;
+@property(nonatomic) MDCButton *clothingButton;
+@property(nonatomic) MDCButton *homeButton;
 @property(nonatomic) MDCButton *accessoriesButton;
-@property(nonatomic) MDCButton *shoesButton;
-@property(nonatomic) MDCButton *topsButton;
-@property(nonatomic) MDCButton *bottomsButton;
-@property(nonatomic) MDCButton *dressesButton;
 @property(nonatomic) MDCButton *accountButton;
 
 // Is embedded controller in the foreground / focused
@@ -117,17 +114,25 @@
                           toButton:self.featuredButton];
   [self.view addSubview:self.featuredButton];
 
-  self.apartmentButton = [[MDCButton alloc] init];
-  self.apartmentButton.translatesAutoresizingMaskIntoConstraints = NO;
-  [self.apartmentButton setTitle:@"APARTMENT" forState:UIControlStateNormal];
-  [self.apartmentButton addTarget:self
-                           action:@selector(categoryTapped:)
-                 forControlEvents:UIControlEventTouchUpInside];
+  self.clothingButton = [[MDCButton alloc] init];
+  self.clothingButton.translatesAutoresizingMaskIntoConstraints = NO;
+  [self.clothingButton setTitle:@"CLOTHING" forState:UIControlStateNormal];
+  [self.clothingButton addTarget:self
+                          action:@selector(categoryTapped:)
+                forControlEvents:UIControlEventTouchUpInside];
   [MDCTextButtonThemer applyScheme:[ApplicationScheme sharedInstance].buttonScheme
-                          toButton:self.apartmentButton];
+                          toButton:self.clothingButton];
+  [self.view addSubview:self.clothingButton];
+
+  self.homeButton = [[MDCButton alloc] init];
+  self.homeButton.translatesAutoresizingMaskIntoConstraints = NO;
+  [self.homeButton setTitle:@"HOME" forState:UIControlStateNormal];
+  [self.homeButton addTarget:self
+                      action:@selector(categoryTapped:)
+            forControlEvents:UIControlEventTouchUpInside];
   [MDCTextButtonThemer applyScheme:[ApplicationScheme sharedInstance].buttonScheme
-                          toButton:self.apartmentButton];
-  [self.view addSubview:self.apartmentButton];
+                          toButton:self.homeButton];
+  [self.view addSubview:self.homeButton];
 
   self.accessoriesButton = [[MDCButton alloc] init];
   self.accessoriesButton.translatesAutoresizingMaskIntoConstraints = NO;
@@ -138,46 +143,6 @@
   [MDCTextButtonThemer applyScheme:[ApplicationScheme sharedInstance].buttonScheme
                           toButton:self.accessoriesButton];
   [self.view addSubview:self.accessoriesButton];
-
-  self.shoesButton = [[MDCButton alloc] init];
-  self.shoesButton.translatesAutoresizingMaskIntoConstraints = NO;
-  [self.shoesButton setTitle:@"SHOES" forState:UIControlStateNormal];
-  [self.shoesButton addTarget:self
-                       action:@selector(categoryTapped:)
-             forControlEvents:UIControlEventTouchUpInside];
-  [MDCTextButtonThemer applyScheme:[ApplicationScheme sharedInstance].buttonScheme
-                          toButton:self.shoesButton];
-  [self.view addSubview:self.shoesButton];
-
-  self.topsButton = [[MDCButton alloc] init];
-  self.topsButton.translatesAutoresizingMaskIntoConstraints = NO;
-  [self.topsButton setTitle:@"TOPS" forState:UIControlStateNormal];
-  [self.topsButton addTarget:self
-                      action:@selector(categoryTapped:)
-            forControlEvents:UIControlEventTouchUpInside];
-  [MDCTextButtonThemer applyScheme:[ApplicationScheme sharedInstance].buttonScheme
-                          toButton:self.topsButton];
-  [self.view addSubview:self.topsButton];
-
-  self.bottomsButton = [[MDCButton alloc] init];
-  self.bottomsButton.translatesAutoresizingMaskIntoConstraints = NO;
-  [self.bottomsButton setTitle:@"BOTTOMS" forState:UIControlStateNormal];
-  [self.bottomsButton addTarget:self
-                         action:@selector(categoryTapped:)
-               forControlEvents:UIControlEventTouchUpInside];
-  [MDCTextButtonThemer applyScheme:[ApplicationScheme sharedInstance].buttonScheme
-                          toButton:self.bottomsButton];
-  [self.view addSubview:self.bottomsButton];
-
-  self.dressesButton = [[MDCButton alloc] init];
-  self.dressesButton.translatesAutoresizingMaskIntoConstraints = NO;
-  [self.dressesButton setTitle:@"DRESSES" forState:UIControlStateNormal];
-  [self.dressesButton addTarget:self
-                         action:@selector(categoryTapped:)
-               forControlEvents:UIControlEventTouchUpInside];
-  [MDCTextButtonThemer applyScheme:[ApplicationScheme sharedInstance].buttonScheme
-                          toButton:self.dressesButton];
-  [self.view addSubview:self.dressesButton];
 
   self.accountButton = [[MDCButton alloc] init];
   self.accountButton.translatesAutoresizingMaskIntoConstraints = NO;
@@ -196,16 +161,13 @@
   NSDictionary *nameView = @{
                              @"navigationbar" : self.appBar.navigationBar,
                              @"featured" : self.featuredButton,
-                             @"apartment" : self.apartmentButton,
+                             @"clothing" : self.clothingButton,
+                             @"home" : self.homeButton,
                              @"accessories" : self.accessoriesButton,
-                             @"shoes" : self.shoesButton,
-                             @"tops" : self.topsButton,
-                             @"bottoms" : self.bottomsButton,
-                             @"dresses" : self.dressesButton,
                              @"account" : self.accountButton,
                              };
   [constraints addObjectsFromArray:[NSLayoutConstraint
-                                    constraintsWithVisualFormat:@"V:|[navigationbar]-[featured]-[apartment]-[accessories]-[shoes]-[tops]-[bottoms]-[dresses]-[account]"
+                                    constraintsWithVisualFormat:@"V:|[navigationbar]-[featured]-[clothing]-[home]-[accessories]-[account]"
                                     options:NSLayoutFormatAlignAllCenterX
                                     metrics:nil
                                     views:nameView]];
@@ -285,19 +247,13 @@
 - (void)categoryTapped:(id)selector {
   NSString *filter = @"";
   if (selector == self.featuredButton) {
-    filter = @"";  // Intentionally set to blank so all products are shown
-  } else if (selector == self.apartmentButton) {
-    filter = @"apartment";
+    filter = @"Featured";
+  } else if (selector == self.clothingButton) {
+    filter = @"Clothing";
+  } else if (selector == self.homeButton) {
+    filter = @"Home";
   } else if (selector == self.accessoriesButton) {
-    filter = @"accessories";
-  } else if (selector == self.shoesButton) {
-    filter = @"shoes";
-  } else if (selector == self.topsButton) {
-    filter = @"tops";
-  } else if (selector == self.bottomsButton) {
-    filter = @"bottoms";
-  } else if (selector == self.dressesButton) {
-    filter = @"dresses";
+    filter = @"Accessories";
   }
 
   [Catalog productCatalog].categoryFilter = filter;
