@@ -41,11 +41,11 @@ class ApplicationScheme: NSObject, MDCColorScheming, MDCTypographyScheming, MDCB
   }()
 
   public private(set) var cornerRadius: CGFloat = {
-    return CGFloat(6.1)
+    return CGFloat(4.0)
   }()
 
   public private(set) var minimumHeight: CGFloat = {
-    return CGFloat(32.0)
+    return CGFloat(36.0)
   }()
 
   private static var singleton = ApplicationScheme()
