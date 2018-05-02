@@ -37,6 +37,7 @@
 @property (nonatomic) MDCTextInputControllerOutlined *zipController;
 
 @property (weak, nonatomic) IBOutlet MDCButton *saveButton;
+@property (nonatomic) MDCButtonScheme *buttonScheme;
 
 @end
 
@@ -50,8 +51,9 @@
   self.cityController = [[MDCTextInputControllerOutlined alloc] initWithTextInput:self.city];
   self.stateController = [[MDCTextInputControllerOutlined alloc] initWithTextInput:self.state];
   self.zipController = [[MDCTextInputControllerOutlined alloc] initWithTextInput:self.zip];
+  self.buttonScheme = [[MDCButtonScheme alloc] init];
 
-  [MDCContainedButtonThemer applyScheme:[[MDCButtonScheme alloc] init] toButton:self.saveButton];
+  [MDCContainedButtonThemer applyScheme:self.buttonScheme toButton:self.saveButton];
 
   self.zip.delegate = self;
 }
@@ -93,10 +95,10 @@
   }]];
   [saveAlert addAction:[MDCAlertAction actionWithTitle:@"Cancel" handler:^(MDCAlertAction * _Nonnull action) {
   }]];
-  MDCSemanticColorScheme *colorScheme = [[MDCSemanticColorScheme alloc] init];
-  MDCTypographyScheme *typographyScheme = [[MDCTypographyScheme alloc] init];
-  [MDCAlertColorThemer applySemanticColorScheme:colorScheme toAlertController:saveAlert];
-  [MDCAlertTypographyThemer applyTypographyScheme:typographyScheme toAlertController:saveAlert];
+  [MDCAlertColorThemer applySemanticColorScheme:self.buttonScheme.colorScheme
+                              toAlertController:saveAlert];
+  [MDCAlertTypographyThemer applyTypographyScheme:self.buttonScheme.typographyScheme
+                                toAlertController:saveAlert];
 
   [self presentViewController:saveAlert animated:YES completion:nil];
 }
