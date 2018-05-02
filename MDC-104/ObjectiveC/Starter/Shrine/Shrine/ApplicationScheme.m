@@ -38,10 +38,22 @@
         [[MDCSemanticColorScheme alloc] initWithDefaults:MDCColorSchemeDefaultsMaterial201804];
     _colorScheme.primaryColor =
         [UIColor colorWithRed:252.0/255.0 green:184.0/255.0 blue:171.0/255.0 alpha:1.0];
-    _colorScheme.onPrimaryColor = [UIColor blackColor];
+    _colorScheme.onPrimaryColor =
+        [UIColor colorWithRed:68.0/255.0 green:44.0/255.0 blue:46.0/255.0 alpha:1.0];
+    _colorScheme.secondaryColor =
+      [UIColor colorWithRed:254.0/255.0 green:234.0/255.0 blue:230.0/255.0 alpha:1.0];
+    _colorScheme.onSecondaryColor =
+    [UIColor colorWithRed:68.0/255.0 green:44.0/255.0 blue:46.0/255.0 alpha:1.0];
     _colorScheme.surfaceColor =
-        [UIColor colorWithRed:254.0/255.0 green:219.0/255.0 blue:208.0/255.0 alpha:1.0];
-    _colorScheme.onSurfaceColor = [UIColor blackColor];
+        [UIColor colorWithRed:255.0/255.0 green:251.0/255.0 blue:250.0/255.0 alpha:1.0];
+    _colorScheme.onSurfaceColor =
+    [UIColor colorWithRed:68.0/255.0 green:44.0/255.0 blue:46.0/255.0 alpha:1.0];
+    _colorScheme.backgroundColor =
+        [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0];
+    _colorScheme.onBackgroundColor =
+    [UIColor colorWithRed:68.0/255.0 green:44.0/255.0 blue:46.0/255.0 alpha:1.0];
+    _colorScheme.errorColor =
+        [UIColor colorWithRed:197.0/255.0 green:3.0/255.0 blue:43.0/255.0 alpha:1.0];
 
     // Instantiate a MDCSemanticColorScheme object and modify it to our chosen colors
     _typographyScheme = [[MDCTypographyScheme alloc] initWithDefaults:MDCTypographySchemeDefaultsMaterial201804];

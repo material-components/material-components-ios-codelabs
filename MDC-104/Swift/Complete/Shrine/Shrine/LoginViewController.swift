@@ -61,15 +61,15 @@ class LoginViewController: UIViewController {
   let passwordTextFieldController: MDCTextInputControllerOutlined
 
   // Buttons
-  let cancelButton: MDCFlatButton = {
-    let cancelButton = MDCFlatButton()
+  let cancelButton: MDCButton = {
+    let cancelButton = MDCButton()
     cancelButton.translatesAutoresizingMaskIntoConstraints = false
     cancelButton.setTitle("CANCEL", for: .normal)
     cancelButton.addTarget(self, action: #selector(didTapCancel(sender:)), for: .touchUpInside)
     return cancelButton
   }()
-  let nextButton: MDCRaisedButton = {
-    let nextButton = MDCRaisedButton()
+  let nextButton: MDCButton = {
+    let nextButton = MDCButton()
     nextButton.translatesAutoresizingMaskIntoConstraints = false
     nextButton.setTitle("NEXT", for: .normal)
     nextButton.addTarget(self, action: #selector(didTapNext(sender:)), for: .touchUpInside)
@@ -224,20 +224,15 @@ class LoginViewController: UIViewController {
                                                      to: self.usernameTextFieldController)
     MDCTextFieldColorThemer.applySemanticColorScheme(ApplicationScheme.scheme,
                                                      to: self.passwordTextFieldController)
-    MDCButtonColorThemer.applySemanticColorScheme(ApplicationScheme.scheme,
-                                                  to: self.cancelButton)
-    MDCButtonColorThemer.applySemanticColorScheme(ApplicationScheme.scheme,
-                                                  to: self.nextButton)
 
     titleLabel.font = ApplicationScheme.scheme.headline5
     MDCTextFieldTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme,
                                                        to: usernameTextFieldController)
     MDCTextFieldTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme,
                                                        to: passwordTextFieldController)
-    MDCButtonTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme,
-                                                    to: cancelButton)
-    MDCButtonTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme,
-                                                    to: nextButton)
+
+    MDCTextButtonThemer.applyScheme(ApplicationScheme.scheme, to: self.cancelButton)
+    MDCContainedButtonThemer.applyScheme(ApplicationScheme.scheme, to: self.nextButton)
   }
 
   // MARK: - Gesture Handling

@@ -33,53 +33,48 @@ class BackdropViewController: UIViewController {
     return view
   }()
 
-  let featuredButton: MDCFlatButton = {
-    let button = MDCFlatButton()
+  let featuredButton: MDCButton = {
+    let button = MDCButton()
     button.translatesAutoresizingMaskIntoConstraints = false
     button.setTitle("FEATURED", for: .normal)
     button.addTarget(self, action: #selector(didTapCategory(sender:)), for: .touchUpInside)
-    MDCButtonColorThemer.applySemanticColorScheme(ApplicationScheme.scheme, to: button)
-    MDCButtonTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme, to: button)
+    MDCTextButtonThemer.applyScheme(ApplicationScheme.scheme, to: button)
     return button
   }()
 
-  let clothingButton: MDCFlatButton = {
-    let button = MDCFlatButton()
+  let clothingButton: MDCButton = {
+    let button = MDCButton()
     button.translatesAutoresizingMaskIntoConstraints = false
     button.setTitle("CLOTHING", for: .normal)
     button.addTarget(self, action: #selector(didTapCategory(sender:)), for: .touchUpInside)
-    MDCButtonColorThemer.applySemanticColorScheme(ApplicationScheme.scheme, to: button)
-    MDCButtonTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme, to: button)
+    MDCTextButtonThemer.applyScheme(ApplicationScheme.scheme, to: button)
     return button
   }()
 
-  let homeButton: MDCFlatButton = {
-    let button = MDCFlatButton()
+  let homeButton: MDCButton = {
+    let button = MDCButton()
     button.translatesAutoresizingMaskIntoConstraints = false
     button.setTitle("HOME", for: .normal)
     button.addTarget(self, action: #selector(didTapCategory(sender:)), for: .touchUpInside)
-    MDCButtonColorThemer.applySemanticColorScheme(ApplicationScheme.scheme, to: button)
-    MDCButtonTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme, to: button)
+    MDCTextButtonThemer.applyScheme(ApplicationScheme.scheme, to: button)
     return button
   }()
 
-  let accessoriesButton: MDCFlatButton = {
-    let button = MDCFlatButton()
+  let accessoriesButton: MDCButton = {
+    let button = MDCButton()
     button.translatesAutoresizingMaskIntoConstraints = false
     button.setTitle("ACCESSORIES", for: .normal)
     button.addTarget(self, action: #selector(didTapCategory(sender:)), for: .touchUpInside)
-    MDCButtonColorThemer.applySemanticColorScheme(ApplicationScheme.scheme, to: button)
-    MDCButtonTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme, to: button)
+    MDCTextButtonThemer.applyScheme(ApplicationScheme.scheme, to: button)
     return button
   }()
 
-  let accountButton: MDCFlatButton = {
-    let button = MDCFlatButton()
+  let accountButton: MDCButton = {
+    let button = MDCButton()
     button.translatesAutoresizingMaskIntoConstraints = false
     button.setTitle("ACCOUNT", for: .normal)
     button.addTarget(self, action: #selector(menuItemTapped(sender:)), for: .touchUpInside)
-    MDCButtonColorThemer.applySemanticColorScheme(ApplicationScheme.scheme, to: button)
-    MDCButtonTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme, to: button)
+    MDCTextButtonThemer.applyScheme(ApplicationScheme.scheme, to: button)
     return button
   }()
 
