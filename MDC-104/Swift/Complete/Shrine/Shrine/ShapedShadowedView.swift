@@ -35,7 +35,7 @@ class ShapedShadowedView: UIView {
     shapedShadowedLayer.shadowOffset = CGSize(width: 0.0, height: 0.0)
     shapedShadowedLayer.shadowRadius = 4.0
     shapedShadowedLayer.shadowOpacity = 0.8
-    shapedShadowedLayer.shapedBackgroundColor = ApplicationScheme.scheme.surfaceColor
+    shapedShadowedLayer.shapedBackgroundColor = ApplicationScheme.shared.colorScheme.surfaceColor
   }
 
   required init?(coder aDecoder: NSCoder) {
@@ -47,6 +47,6 @@ class ShapedShadowedView: UIView {
     shapedShadowedLayer.shadowOffset = CGSize(width: 0.0, height: 0.0)
     shapedShadowedLayer.shadowRadius = 4.0
     shapedShadowedLayer.shadowOpacity = 0.8
-    shapedShadowedLayer.shapedBackgroundColor = ApplicationScheme.scheme.surfaceColor
+    shapedShadowedLayer.shapedBackgroundColor = ApplicationScheme.shared.colorScheme.surfaceColor
   }
 }
