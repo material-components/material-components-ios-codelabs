@@ -50,6 +50,29 @@
 
   // Setup Navigation Items
   //TODO: Add navigation items
+
+  // Done Label
+  UILabel *doneLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+  doneLabel.translatesAutoresizingMaskIntoConstraints = NO;
+  doneLabel.text = @"You did it!";
+  doneLabel.hidden = YES; // KM
+  [self.view addSubview:doneLabel];
+  [doneLabel sizeToFit];
+  [NSLayoutConstraint constraintWithItem:doneLabel
+                               attribute:NSLayoutAttributeCenterX
+                               relatedBy:NSLayoutRelationEqual
+                                  toItem:self.view
+                               attribute:NSLayoutAttributeCenterX
+                              multiplier:1
+                                constant:0].active = YES;
+  [NSLayoutConstraint constraintWithItem:doneLabel
+                               attribute:NSLayoutAttributeCenterY
+                               relatedBy:NSLayoutRelationEqual
+                                  toItem:self.view
+                               attribute:NSLayoutAttributeCenterY
+                              multiplier:1
+                                constant:0].active = YES;
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {
