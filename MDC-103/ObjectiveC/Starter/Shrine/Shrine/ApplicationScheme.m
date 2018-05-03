@@ -25,6 +25,7 @@
   static ApplicationScheme *scheme;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
+    //TODO: Change scheme to initialize with initAlternativeSingleton
     scheme = [[ApplicationScheme alloc] initStandardSingleton];
   });
   return scheme;
