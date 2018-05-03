@@ -13,22 +13,11 @@
 
 #import "ViewController.h"
 #import "Lorem.h"
-
 #import "MaterialTextFields.h"
 #import "MaterialButtons.h"
 #import "MaterialDialogs.h"
-#import "MaterialButtons+ButtonThemer.h"
-#import "MaterialDialogs+ColorThemer.h"
-#import "MaterialDialogs+TypographyThemer.h"
 
 @interface ViewController () <UITextFieldDelegate>
-
-@property (weak, nonatomic) IBOutlet MDCTextField *name;
-@property (weak, nonatomic) IBOutlet MDCTextField *address;
-@property (weak, nonatomic) IBOutlet MDCTextField *city;
-@property (weak, nonatomic) IBOutlet MDCTextField *state;
-@property (weak, nonatomic) IBOutlet MDCTextField *zip;
-
 
 @property (nonatomic) MDCTextInputControllerOutlined *nameController;
 @property (nonatomic) MDCTextInputControllerOutlined *addressController;
@@ -36,8 +25,14 @@
 @property (nonatomic) MDCTextInputControllerOutlined *stateController;
 @property (nonatomic) MDCTextInputControllerOutlined *zipController;
 
-@property (weak, nonatomic) IBOutlet MDCButton *saveButton;
-@property (nonatomic) MDCButtonScheme *buttonScheme;
+@property (weak, nonatomic) IBOutlet MDCTextField *name;
+@property (weak, nonatomic) IBOutlet MDCTextField *address;
+@property (weak, nonatomic) IBOutlet MDCTextField *city;
+@property (weak, nonatomic) IBOutlet MDCTextField *state;
+@property (weak, nonatomic) IBOutlet MDCTextField *zip;
+
+@property (weak, nonatomic) IBOutlet MDCRaisedButton *saveButton;
+
 
 @end
 
@@ -46,28 +41,19 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
+  // TODO: Instantiate controllers
   self.nameController = [[MDCTextInputControllerOutlined alloc] initWithTextInput:self.name];
   self.addressController = [[MDCTextInputControllerOutlined alloc] initWithTextInput:self.address];
   self.cityController = [[MDCTextInputControllerOutlined alloc] initWithTextInput:self.city];
   self.stateController = [[MDCTextInputControllerOutlined alloc] initWithTextInput:self.state];
   self.zipController = [[MDCTextInputControllerOutlined alloc] initWithTextInput:self.zip];
-  self.buttonScheme = [[MDCButtonScheme alloc] init];
-
-  [MDCContainedButtonThemer applyScheme:self.buttonScheme toButton:self.saveButton];
 
   self.zip.delegate = self;
 }
 
-- (void)viewDidLayoutSubviews {
-  [super viewDidLayoutSubviews];
-
-  self.saveButton.hitAreaInsets = UIEdgeInsetsMake((48 - self.saveButton.bounds.size.height) / -2, 0, (48 - self.saveButton.bounds.size.height) / -2, 0);
-}
-#pragma mark - UITextFieldDelegate methods
-
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
   NSString *finishedString =
-    [textField.text stringByReplacingCharactersInRange:range withString:string];
+  [textField.text stringByReplacingCharactersInRange:range withString:string];
 
   if (textField == self.zip) {
     if ([finishedString rangeOfCharacterFromSet:[NSCharacterSet letterCharacterSet]].length > 0) {
@@ -79,6 +65,15 @@
   }
   return YES;
 }
+
+// TODO: Override viewDidLayoutSubviews()
+- (void)viewDidLayoutSubviews {
+  [super viewDidLayoutSubviews];
+
+  self.saveButton.hitAreaInsets = UIEdgeInsetsMake((48 - self.saveButton.bounds.size.height) / -2, 0, (48 - self.saveButton.bounds.size.height) / -2, 0);
+}
+
+#pragma mark - UITextFieldDelegate methods
 
 #pragma mark - Target / Action
 
@@ -95,11 +90,6 @@
   }]];
   [saveAlert addAction:[MDCAlertAction actionWithTitle:@"Cancel" handler:^(MDCAlertAction * _Nonnull action) {
   }]];
-  [MDCAlertColorThemer applySemanticColorScheme:self.buttonScheme.colorScheme
-                              toAlertController:saveAlert];
-  [MDCAlertTypographyThemer applyTypographyScheme:self.buttonScheme.typographyScheme
-                                toAlertController:saveAlert];
-
   [self presentViewController:saveAlert animated:YES completion:nil];
 }
 
