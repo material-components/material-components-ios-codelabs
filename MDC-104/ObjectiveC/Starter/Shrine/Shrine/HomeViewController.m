@@ -82,7 +82,7 @@
   self.navigationItem.rightBarButtonItems = @[ tuneItem, searchItem ];
 
     self.view.backgroundColor = [ApplicationScheme sharedInstance].colorScheme.surfaceColor;
-[MDCAppBarColorThemer applySemanticColorScheme:[ApplicationScheme sharedInstance].colorScheme
+  [MDCAppBarColorThemer applySemanticColorScheme:[ApplicationScheme sharedInstance].colorScheme
                                         toAppBar:self.appBar];
 
   [MDCAppBarTypographyThemer applyTypographyScheme:[ApplicationScheme sharedInstance].typographyScheme
