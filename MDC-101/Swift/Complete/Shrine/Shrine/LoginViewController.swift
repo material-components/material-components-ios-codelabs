@@ -197,7 +197,7 @@ class LoginViewController: UIViewController {
                                           toItem: scrollView,
                                           attribute: .centerX,
                                           multiplier: 1,
-                                          constant: 8))
+                                          constant: 0))
     constraints.append(contentsOf:
       NSLayoutConstraint.constraints(withVisualFormat: "H:|-[password]-|",
                                      options: [],
