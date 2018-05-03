@@ -256,7 +256,7 @@
     filter = @"Accessories";
   }
 
-  [Catalog productCatalog].categoryFilter = filter;
+  //TODO: Set the catalog filter based on the button pressed
 
   // Toggle CatalogView
   self.focusedEmbeddedController = !self.isFocusedEmbeddedController;

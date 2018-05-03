@@ -260,6 +260,7 @@
     filter = @"Accessories";
   }
 
+  //TODO: Set the catalog filter based on the button pressed
   [Catalog productCatalog].categoryFilter = filter;
 
   // Toggle CatalogView
