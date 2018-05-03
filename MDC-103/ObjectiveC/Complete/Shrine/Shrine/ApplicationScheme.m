@@ -25,6 +25,7 @@
   static ApplicationScheme *scheme;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
+    //TODO: Change scheme to initialize with initAlternativeSingleton
     scheme = [[ApplicationScheme alloc] initStandardSingleton];
   });
   return scheme;
@@ -65,6 +66,7 @@
     _typographyScheme.subtitle1 = [UIFont fontWithName:fontName size:16.0];
     _typographyScheme.button = [UIFont fontWithName:fontName size:14.0];
 
+    // Create a button scheme based off our custom colors and typography
     _buttonScheme = [[MDCButtonScheme alloc] init];
     _buttonScheme.colorScheme = _colorScheme;
     _buttonScheme.typographyScheme = _typographyScheme;
