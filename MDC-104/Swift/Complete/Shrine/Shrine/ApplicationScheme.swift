@@ -20,7 +20,21 @@ import MaterialComponents
 
 class ApplicationScheme: NSObject {
 
-  static let staticColorScheme: MDCSemanticColorScheme = {
+  private static var singleton = ApplicationScheme()
+
+  static var shared: ApplicationScheme {
+    return singleton
+  }
+
+  override init() {
+    self.buttonScheme.colorScheme = self.colorScheme
+    self.buttonScheme.typographyScheme = self.typographyScheme
+    super.init()
+  }
+
+  public let buttonScheme = MDCButtonScheme()
+
+  public let colorScheme: MDCColorScheming = {
     let scheme = MDCSemanticColorScheme(defaults: .material201804)
     scheme.primaryColor =
       UIColor(red: 252.0/255.0, green: 184.0/255.0, blue: 171.0/255.0, alpha: 1.0)
@@ -45,7 +59,7 @@ class ApplicationScheme: NSObject {
     return scheme
   }()
 
-  static let staticTypographyScheme: MDCTypographyScheme = {
+  public let typographyScheme: MDCTypographyScheming = {
     let scheme = MDCTypographyScheme()
     let fontName = "Rubik"
     scheme.headline5 = UIFont(name: fontName, size: 24)!
@@ -53,27 +67,5 @@ class ApplicationScheme: NSObject {
     scheme.subtitle1 = UIFont(name: fontName, size: 16)!
     scheme.button = UIFont(name: fontName, size: 14)!
     return scheme
-  }()
-
-  private static var singleton = ApplicationScheme()
-
-  static var shared: ApplicationScheme {
-    return singleton
-  }
-
-  override init() {
-    self.buttonScheme.colorScheme = self.colorScheme
-    self.buttonScheme.typographyScheme = self.typographyScheme
-    super.init()
-  }
-
-  public let buttonScheme = MDCButtonScheme()
-
-  public private(set) var colorScheme: MDCColorScheming = {
-    return ApplicationScheme.staticColorScheme
-  }()
-
-  public private(set) var typographyScheme: MDCTypographyScheming = {
-    return ApplicationScheme.staticTypographyScheme
   }()
 }
