@@ -86,7 +86,6 @@
   UILabel *doneLabel = [[UILabel alloc] initWithFrame:CGRectZero];
   doneLabel.translatesAutoresizingMaskIntoConstraints = NO;
   doneLabel.text = @"You did it!";
-  doneLabel.hidden = YES; // KM
   [self.view addSubview:doneLabel];
   [doneLabel sizeToFit];
   [NSLayoutConstraint constraintWithItem:doneLabel
@@ -103,6 +102,9 @@
                                attribute:NSLayoutAttributeCenterY
                               multiplier:1
                                 constant:0].active = YES;
+
+  //TODO: Hide the "You did it!" text
+  doneLabel.hidden = YES;
 
 }
 
