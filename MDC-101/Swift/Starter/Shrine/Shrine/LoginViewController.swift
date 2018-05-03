@@ -176,4 +176,5 @@ class LoginViewController: UIViewController {
 // MARK: - UITextFieldDelegate
 extension LoginViewController: UITextFieldDelegate {
 
+  //TODO: Add basic password field validation in the textFieldShouldReturn delegate function
 }
