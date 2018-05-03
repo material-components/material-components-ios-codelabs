@@ -224,28 +224,29 @@ class LoginViewController: UIViewController {
     NSLayoutConstraint.activate(constraints)
 
     // TODO: Theme the interface with our colors
-    self.view.tintColor = ApplicationScheme.shared.colorScheme.onSurfaceColor
-    self.view.backgroundColor = ApplicationScheme.shared.colorScheme.surfaceColor
-    self.logoImageView.tintColor = ApplicationScheme.shared.colorScheme.onSurfaceColor
-    self.titleLabel.textColor = ApplicationScheme.shared.colorScheme.onSurfaceColor
-    MDCTextFieldColorThemer.applySemanticColorScheme(ApplicationScheme.shared.colorScheme,
+    let colorScheme = ApplicationScheme.shared.colorScheme
+    self.view.tintColor = colorScheme.onSurfaceColor
+    self.view.backgroundColor = colorScheme.surfaceColor
+    self.logoImageView.tintColor = colorScheme.onSurfaceColor
+    self.titleLabel.textColor = colorScheme.onSurfaceColor
+    MDCTextFieldColorThemer.applySemanticColorScheme(colorScheme,
                                                      to: self.usernameTextFieldController)
-    MDCTextFieldColorThemer.applySemanticColorScheme(ApplicationScheme.shared.colorScheme,
+    MDCTextFieldColorThemer.applySemanticColorScheme(colorScheme,
                                                      to: self.passwordTextFieldController)
-    MDCButtonColorThemer.applySemanticColorScheme(ApplicationScheme.shared.colorScheme,
+    MDCButtonColorThemer.applySemanticColorScheme(colorScheme,
                                                   to: self.cancelButton)
-    MDCButtonColorThemer.applySemanticColorScheme(ApplicationScheme.shared.colorScheme,
+    MDCButtonColorThemer.applySemanticColorScheme(colorScheme,
                                                   to: self.nextButton)
-
-    // TODO: Theme the interface with our fonts
-    titleLabel.font = ApplicationScheme.shared.typographyScheme.headline5
-    MDCTextFieldTypographyThemer.applyTypographyScheme(ApplicationScheme.shared.typographyScheme,
+    // TODO: Theme the interface with our typography
+    let typographyScheme = ApplicationScheme.shared.typographyScheme
+    titleLabel.font = typographyScheme.headline5
+    MDCTextFieldTypographyThemer.applyTypographyScheme(typographyScheme,
                                                        to: usernameTextFieldController)
-    MDCTextFieldTypographyThemer.applyTypographyScheme(ApplicationScheme.shared.typographyScheme,
+    MDCTextFieldTypographyThemer.applyTypographyScheme(typographyScheme,
                                                        to: passwordTextFieldController)
-    MDCButtonTypographyThemer.applyTypographyScheme(ApplicationScheme.shared.typographyScheme,
+    MDCButtonTypographyThemer.applyTypographyScheme(typographyScheme,
                                                     to: cancelButton)
-    MDCButtonTypographyThemer.applyTypographyScheme(ApplicationScheme.shared.typographyScheme,
+    MDCButtonTypographyThemer.applyTypographyScheme(typographyScheme,
                                                     to: nextButton)
   }
 

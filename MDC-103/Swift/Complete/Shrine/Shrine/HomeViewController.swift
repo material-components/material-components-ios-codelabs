@@ -30,7 +30,7 @@ class HomeViewController: UICollectionViewController {
 
     self.title = "Shrine"
 
-    self.collectionView?.backgroundColor = .orange
+    self.collectionView?.backgroundColor = .white
 
     // AppBar Init
     self.addChildViewController(appBar.headerViewController)
@@ -69,8 +69,7 @@ class HomeViewController: UICollectionViewController {
     MDCAppBarTypographyThemer.applyTypographyScheme(ApplicationScheme.shared.typographyScheme, to: self.appBar)
 
     // TODO: Set layout to our custom layout
-    self.collectionView!.collectionViewLayout = CustomLayout()
-
+    self.collectionView?.collectionViewLayout = CustomLayout()
   }
 
   override func viewDidAppear(_ animated: Bool) {
