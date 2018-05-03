@@ -17,11 +17,11 @@
 #import "LoginViewController.h"
 
 #import <MaterialComponents/MaterialButtons.h>
+#import <MaterialComponents/MaterialButtons+ColorThemer.h>
+#import <MaterialComponents/MaterialButtons+TypographyThemer.h>
 #import <MaterialComponents/MaterialTextFields.h>
-#import <MaterialComponents/MDCTextButtonThemer.h>
-#import <MaterialComponents/MDCContainedButtonThemer.h>
-#import <MaterialComponents/MDCTextFieldColorThemer.h>
-#import <MaterialComponents/MDCTextFieldTypographyThemer.h>
+#import <MaterialComponents/MaterialTextFields+ColorThemer.h>
+#import <MaterialComponents/MaterialTextFields+TypographyThemer.h>
 
 #import "ApplicationScheme.h"
 
