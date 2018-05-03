@@ -27,8 +27,8 @@ class ProductCell: MDCCardCollectionCell {
   func configureCell() {
     self.backgroundColor = .white
 
-    self.nameLabel.font = ApplicationScheme.scheme.subtitle1
-    self.priceLabel.font = ApplicationScheme.scheme.subtitle1
+    self.nameLabel.font = ApplicationScheme.shared.typographyScheme.subtitle1
+    self.priceLabel.font = ApplicationScheme.shared.typographyScheme.subtitle1
     self.nameLabel.textAlignment = .center
     self.priceLabel.textAlignment = .center
 

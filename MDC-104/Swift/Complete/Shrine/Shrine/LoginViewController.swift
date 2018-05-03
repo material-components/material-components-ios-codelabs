@@ -94,7 +94,7 @@ class LoginViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    scrollView.backgroundColor = ApplicationScheme().surfaceColor
+    scrollView.backgroundColor = ApplicationScheme.shared.colorScheme.surfaceColor
 
     view.addSubview(scrollView)
 
@@ -217,22 +217,22 @@ class LoginViewController: UIViewController {
 
     NSLayoutConstraint.activate(constraints)
 
-    self.view.backgroundColor = ApplicationScheme.scheme.surfaceColor
-    self.logoImageView.tintColor = ApplicationScheme.scheme.onSurfaceColor
-    self.titleLabel.textColor = ApplicationScheme.scheme.onSurfaceColor
-    MDCTextFieldColorThemer.applySemanticColorScheme(ApplicationScheme.scheme,
+    self.view.backgroundColor = ApplicationScheme.shared.colorScheme.surfaceColor
+    self.logoImageView.tintColor = ApplicationScheme.shared.colorScheme.onSurfaceColor
+    self.titleLabel.textColor = ApplicationScheme.shared.colorScheme.onSurfaceColor
+    MDCTextFieldColorThemer.applySemanticColorScheme(ApplicationScheme.shared.colorScheme,
                                                      to: self.usernameTextFieldController)
-    MDCTextFieldColorThemer.applySemanticColorScheme(ApplicationScheme.scheme,
+    MDCTextFieldColorThemer.applySemanticColorScheme(ApplicationScheme.shared.colorScheme,
                                                      to: self.passwordTextFieldController)
 
-    titleLabel.font = ApplicationScheme.scheme.headline5
-    MDCTextFieldTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme,
+    titleLabel.font = ApplicationScheme.shared.typographyScheme.headline5
+    MDCTextFieldTypographyThemer.applyTypographyScheme(ApplicationScheme.shared.typographyScheme,
                                                        to: usernameTextFieldController)
-    MDCTextFieldTypographyThemer.applyTypographyScheme(ApplicationScheme.scheme,
+    MDCTextFieldTypographyThemer.applyTypographyScheme(ApplicationScheme.shared.typographyScheme,
                                                        to: passwordTextFieldController)
 
-    MDCTextButtonThemer.applyScheme(ApplicationScheme.scheme, to: self.cancelButton)
-    MDCContainedButtonThemer.applyScheme(ApplicationScheme.scheme, to: self.nextButton)
+    MDCTextButtonThemer.applyScheme(ApplicationScheme.shared.buttonScheme, to: self.cancelButton)
+    MDCContainedButtonThemer.applyScheme(ApplicationScheme.shared.buttonScheme, to: self.nextButton)
   }
 
   // MARK: - Gesture Handling
