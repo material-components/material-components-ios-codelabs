@@ -81,7 +81,7 @@
                                   target:nil
                                   action:nil];
   self.navigationItem.rightBarButtonItems = @[ tuneItem, searchItem ];
-
+  
   // Done Label
   UILabel *doneLabel = [[UILabel alloc] initWithFrame:CGRectZero];
   doneLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -152,6 +152,7 @@
 // The following four methods must be forwarded to the tracking scroll view in order to implement
 // the Flexible Header's behavior with a collection view.
 
+// TODO: Add scrollview delegate methods to forward scrolling messages
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
   if (scrollView == self.appBar.headerViewController.headerView.trackingScrollView) {
     [self.appBar.headerViewController.headerView trackingScrollViewDidScroll];
@@ -184,19 +185,20 @@
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+  //TODO: Update the following line to return the number of items in the catalog instead of 0
   return [Catalog productCatalog].count;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
   ProductCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"ProductCell" forIndexPath:indexPath];
 
-  // Set the properties of the cell to reflect the product from the model
+  //TODO: Set the properties of the cell to reflect the product from the model
   Product *product = [[Catalog productCatalog] productAtIndex:indexPath.row];
   UIImage *productImage = [UIImage imageNamed:product.imageName];
   cell.imageView.image = productImage;
   cell.nameLabel.text = product.productName;
   cell.priceLabel.text = product.price;
-
+  
   return cell;
 }
 

@@ -29,7 +29,6 @@
     self.cornerRadius = 8.0;
     [self setBorderWidth:1.0 forState:MDCCardCellStateNormal];
     [self setBorderColor:[UIColor lightGrayColor] forState:MDCCardCellStateNormal];
-    
   }
   return self;
 }
