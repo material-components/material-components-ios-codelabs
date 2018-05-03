@@ -112,6 +112,7 @@ class HomeViewController: UICollectionViewController {
     return cell
   }
 
+  //TODO: Add notification Handler
   // Catalog Update Handler reloads the collection view is the products have changed
   @objc func respondToCatalogNotification() {
     self.collectionView?.reloadSections([0])
