@@ -61,12 +61,12 @@ class HomeViewController: UICollectionViewController {
     self.navigationItem.rightBarButtonItems = [ tuneItem, searchItem ]
 
     // TODO: Theme our interface with our colors
-    self.view.backgroundColor = ApplicationScheme().surfaceColor
-    self.collectionView?.backgroundColor = ApplicationScheme().surfaceColor
-    MDCAppBarColorThemer.applySemanticColorScheme(ApplicationScheme(), to:self.appBar)
+    self.view.backgroundColor = ApplicationScheme.shared.colorScheme.surfaceColor
+    self.collectionView?.backgroundColor = ApplicationScheme.shared.colorScheme.surfaceColor
+    MDCAppBarColorThemer.applySemanticColorScheme(ApplicationScheme.shared.colorScheme, to:self.appBar)
 
     // TODO: Theme our interface with our typography
-    MDCAppBarTypographyThemer.applyTypographyScheme(ApplicationScheme(), to: self.appBar)
+    MDCAppBarTypographyThemer.applyTypographyScheme(ApplicationScheme.shared.typographyScheme, to: self.appBar)
 
     // TODO: Set layout to our custom layout
     self.collectionView!.collectionViewLayout = CustomLayout()
