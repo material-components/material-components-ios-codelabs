@@ -17,6 +17,7 @@
 #import <MaterialComponents/MaterialCards.h>
 
 
+//TODO: Change the superclass from UICollectionViewCell to MDCCardCollectionCell
 @interface ProductCell : MDCCardCollectionCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
