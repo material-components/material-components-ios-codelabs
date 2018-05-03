@@ -38,7 +38,7 @@ class BackdropViewController: UIViewController {
     button.translatesAutoresizingMaskIntoConstraints = false
     button.setTitle("FEATURED", for: .normal)
     button.addTarget(self, action: #selector(didTapCategory(sender:)), for: .touchUpInside)
-    MDCTextButtonThemer.applyScheme(ApplicationScheme.scheme, to: button)
+    MDCTextButtonThemer.applyScheme(ApplicationScheme.shared.buttonScheme, to: button)
     return button
   }()
 
@@ -47,7 +47,7 @@ class BackdropViewController: UIViewController {
     button.translatesAutoresizingMaskIntoConstraints = false
     button.setTitle("CLOTHING", for: .normal)
     button.addTarget(self, action: #selector(didTapCategory(sender:)), for: .touchUpInside)
-    MDCTextButtonThemer.applyScheme(ApplicationScheme.scheme, to: button)
+    MDCTextButtonThemer.applyScheme(ApplicationScheme.shared.buttonScheme, to: button)
     return button
   }()
 
@@ -56,7 +56,7 @@ class BackdropViewController: UIViewController {
     button.translatesAutoresizingMaskIntoConstraints = false
     button.setTitle("HOME", for: .normal)
     button.addTarget(self, action: #selector(didTapCategory(sender:)), for: .touchUpInside)
-    MDCTextButtonThemer.applyScheme(ApplicationScheme.scheme, to: button)
+    MDCTextButtonThemer.applyScheme(ApplicationScheme.shared.buttonScheme, to: button)
     return button
   }()
 
@@ -65,7 +65,7 @@ class BackdropViewController: UIViewController {
     button.translatesAutoresizingMaskIntoConstraints = false
     button.setTitle("ACCESSORIES", for: .normal)
     button.addTarget(self, action: #selector(didTapCategory(sender:)), for: .touchUpInside)
-    MDCTextButtonThemer.applyScheme(ApplicationScheme.scheme, to: button)
+    MDCTextButtonThemer.applyScheme(ApplicationScheme.shared.buttonScheme, to: button)
     return button
   }()
 
@@ -74,7 +74,7 @@ class BackdropViewController: UIViewController {
     button.translatesAutoresizingMaskIntoConstraints = false
     button.setTitle("ACCOUNT", for: .normal)
     button.addTarget(self, action: #selector(menuItemTapped(sender:)), for: .touchUpInside)
-    MDCTextButtonThemer.applyScheme(ApplicationScheme.scheme, to: button)
+    MDCTextButtonThemer.applyScheme(ApplicationScheme.shared.buttonScheme, to: button)
     return button
   }()
 
@@ -92,7 +92,7 @@ class BackdropViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    self.view.backgroundColor = ApplicationScheme.scheme.surfaceColor
+    self.view.backgroundColor = ApplicationScheme.shared.colorScheme.surfaceColor
 
     self.title = "Shrine"
 
@@ -122,7 +122,7 @@ class BackdropViewController: UIViewController {
     // AppBar Init
     self.addChildViewController(appBar.headerViewController)
     appBar.addSubviewsToParent()
-    MDCAppBarColorThemer.applySemanticColorScheme(ApplicationScheme.scheme, to: appBar)
+    MDCAppBarColorThemer.applySemanticColorScheme(ApplicationScheme.shared.colorScheme, to: appBar)
     self.appBar.navigationBar.translatesAutoresizingMaskIntoConstraints = false
 
     // Buttons

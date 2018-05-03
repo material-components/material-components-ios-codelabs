@@ -61,9 +61,9 @@ class HomeViewController: UICollectionViewController {
                                      action: nil)
     self.navigationItem.rightBarButtonItems = [ tuneItem, searchItem ]
 
-    MDCAppBarColorThemer.applySemanticColorScheme(ApplicationScheme(), to:self.appBar)
+    MDCAppBarColorThemer.applySemanticColorScheme(ApplicationScheme.shared.colorScheme, to:self.appBar)
 
-    MDCAppBarTypographyThemer.applyTypographyScheme(ApplicationScheme(), to: self.appBar)
+    MDCAppBarTypographyThemer.applyTypographyScheme(ApplicationScheme.shared.typographyScheme, to: self.appBar)
 
     self.collectionView!.collectionViewLayout = CustomLayout()
 
