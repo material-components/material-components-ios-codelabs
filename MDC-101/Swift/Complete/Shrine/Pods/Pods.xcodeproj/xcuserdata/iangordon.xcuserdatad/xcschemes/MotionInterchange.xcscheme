@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FFCC9C21EEB66F1EA66EFB756724E0DC"
+               BlueprintIdentifier = "D3958CECD5B48AE1696CD3236385A8C9"
                BlueprintName = "MotionInterchange"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "MotionInterchange.framework">

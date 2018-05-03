@@ -6,6 +6,6 @@ target 'Shrine' do
   use_frameworks!
 
   # Pods for Shrine
-  pod 'MaterialComponents'
+  pod 'MaterialComponents', :git => 'https://github.com/material-components/material-components-ios', :branch => 'google-io-codelabs-2018'
 
 end

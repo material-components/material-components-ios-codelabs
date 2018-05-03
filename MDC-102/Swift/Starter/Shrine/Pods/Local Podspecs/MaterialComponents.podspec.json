@@ -1,13 +1,13 @@
 {
   "name": "MaterialComponents",
-  "version": "54.13.0",
+  "version": "55.0.0",
   "authors": "The Material Components authors.",
   "summary": "A collection of stand-alone production-ready UI libraries focused on design details.",
   "homepage": "https://github.com/material-components/material-components-ios",
   "license": "Apache 2.0",
   "source": {
     "git": "https://github.com/material-components/material-components-ios.git",
-    "tag": "v54.13.0"
+    "tag": "v55.0.0"
   },
   "platforms": {
     "ios": "8.0"
@@ -43,25 +43,20 @@
       }
     },
     {
-      "name": "ActivityIndicator+Extensions",
-      "subspecs": [
-        {
-          "name": "ColorThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/ActivityIndicator/src/ColorThemer/*.h",
-          "source_files": "components/ActivityIndicator/src/ColorThemer/*.{h,m}",
-          "dependencies": {
-            "MaterialComponents/ActivityIndicator": [
+      "name": "ActivityIndicator+ColorThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/ActivityIndicator/src/ColorThemer/*.h",
+      "source_files": "components/ActivityIndicator/src/ColorThemer/*.{h,m}",
+      "dependencies": {
+        "MaterialComponents/ActivityIndicator": [
 
-            ],
-            "MaterialComponents/schemes/Color": [
+        ],
+        "MaterialComponents/schemes/Color": [
 
-            ]
-          }
-        }
-      ]
+        ]
+      }
     },
     {
       "name": "AnimationTiming",
@@ -121,53 +116,48 @@
       }
     },
     {
-      "name": "AppBar+Extensions",
-      "subspecs": [
-        {
-          "name": "ColorThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/AppBar/src/ColorThemer/*.h",
-          "source_files": [
-            "components/AppBar/src/ColorThemer/*.{h,m}",
-            "components/AppBar/src/ColorThemer/private/*.{h,m}"
-          ],
-          "dependencies": {
-            "MaterialComponents/AppBar": [
+      "name": "AppBar+ColorThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/AppBar/src/ColorThemer/*.h",
+      "source_files": [
+        "components/AppBar/src/ColorThemer/*.{h,m}",
+        "components/AppBar/src/ColorThemer/private/*.{h,m}"
+      ],
+      "dependencies": {
+        "MaterialComponents/AppBar": [
 
-            ],
-            "MaterialComponents/FlexibleHeader+Extensions/ColorThemer": [
+        ],
+        "MaterialComponents/FlexibleHeader+ColorThemer": [
 
-            ],
-            "MaterialComponents/NavigationBar+Extensions/ColorThemer": [
+        ],
+        "MaterialComponents/NavigationBar+ColorThemer": [
 
-            ],
-            "MaterialComponents/Themes": [
+        ],
+        "MaterialComponents/Themes": [
 
-            ]
-          }
-        },
-        {
-          "name": "TypographyThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/AppBar/src/TypographyThemer/*.h",
-          "source_files": [
-            "components/AppBar/src/TypographyThemer/*.{h,m}",
-            "components/AppBar/src/TypographyThemer/private/*.{h,m}"
-          ],
-          "dependencies": {
-            "MaterialComponents/AppBar": [
+        ]
+      }
+    },
+    {
+      "name": "AppBar+TypographyThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/AppBar/src/TypographyThemer/*.h",
+      "source_files": [
+        "components/AppBar/src/TypographyThemer/*.{h,m}",
+        "components/AppBar/src/TypographyThemer/private/*.{h,m}"
+      ],
+      "dependencies": {
+        "MaterialComponents/AppBar": [
 
-            ],
-            "MaterialComponents/NavigationBar+Extensions/TypographyThemer": [
+        ],
+        "MaterialComponents/NavigationBar+TypographyThemer": [
 
-            ]
-          }
-        }
-      ]
+        ]
+      }
     },
     {
       "name": "BottomAppBar",
@@ -195,25 +185,20 @@
       }
     },
     {
-      "name": "BottomAppBar+Extensions",
-      "subspecs": [
-        {
-          "name": "ColorThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/BottomAppBar/src/ColorThemer/*.h",
-          "source_files": "components/BottomAppBar/src/ColorThemer/*.{h,m}",
-          "dependencies": {
-            "MaterialComponents/BottomAppBar": [
+      "name": "BottomAppBar+ColorThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/BottomAppBar/src/ColorThemer/*.h",
+      "source_files": "components/BottomAppBar/src/ColorThemer/*.{h,m}",
+      "dependencies": {
+        "MaterialComponents/BottomAppBar": [
 
-            ],
-            "MaterialComponents/Themes": [
+        ],
+        "MaterialComponents/Themes": [
 
-            ]
-          }
-        }
-      ]
+        ]
+      }
     },
     {
       "name": "BottomNavigation",
@@ -250,41 +235,36 @@
       }
     },
     {
-      "name": "BottomNavigation+Extensions",
-      "subspecs": [
-        {
-          "name": "ColorThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/BottomNavigation/src/ColorThemer/*.h",
-          "source_files": "components/BottomNavigation/src/ColorThemer/*.{h,m}",
-          "dependencies": {
-            "MaterialComponents/BottomNavigation": [
+      "name": "BottomNavigation+ColorThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/BottomNavigation/src/ColorThemer/*.h",
+      "source_files": "components/BottomNavigation/src/ColorThemer/*.{h,m}",
+      "dependencies": {
+        "MaterialComponents/BottomNavigation": [
 
-            ],
-            "MaterialComponents/schemes/Color": [
+        ],
+        "MaterialComponents/schemes/Color": [
 
-            ]
-          }
-        },
-        {
-          "name": "TypographyThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/BottomNavigation/src/TypographyThemer/*.h",
-          "source_files": "components/BottomNavigation/src/TypographyThemer/*.{h,m}",
-          "dependencies": {
-            "MaterialComponents/BottomNavigation": [
+        ]
+      }
+    },
+    {
+      "name": "BottomNavigation+TypographyThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/BottomNavigation/src/TypographyThemer/*.h",
+      "source_files": "components/BottomNavigation/src/TypographyThemer/*.{h,m}",
+      "dependencies": {
+        "MaterialComponents/BottomNavigation": [
 
-            ],
-            "MaterialComponents/schemes/Typography": [
+        ],
+        "MaterialComponents/schemes/Typography": [
 
-            ]
-          }
-        }
-      ]
+        ]
+      }
     },
     {
       "name": "BottomSheet",
@@ -343,85 +323,80 @@
       }
     },
     {
-      "name": "Buttons+Extensions",
-      "subspecs": [
-        {
-          "name": "ColorThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/Buttons/src/ColorThemer/*.h",
-          "source_files": [
-            "components/Buttons/src/ColorThemer/*.{h,m}",
-            "components/Buttons/src/ColorThemer/private/*.{h,m}"
-          ],
-          "dependencies": {
-            "MaterialComponents/Buttons": [
+      "name": "Buttons+ColorThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/Buttons/src/ColorThemer/*.h",
+      "source_files": [
+        "components/Buttons/src/ColorThemer/*.{h,m}",
+        "components/Buttons/src/ColorThemer/private/*.{h,m}"
+      ],
+      "dependencies": {
+        "MaterialComponents/Buttons": [
 
-            ],
-            "MaterialComponents/schemes/Color": [
+        ],
+        "MaterialComponents/schemes/Color": [
 
-            ]
-          }
-        },
-        {
-          "name": "TitleColorAccessibilityMutator",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/Buttons/src/TitleColorAccessibilityMutator/*.h",
-          "source_files": [
-            "components/Buttons/src/TitleColorAccessibilityMutator/*.{h,m}",
-            "components/Buttons/src/TitleColorAccessibilityMutator/private/*.{h,m}"
-          ],
-          "dependencies": {
-            "MDFTextAccessibility": [
+        ]
+      }
+    },
+    {
+      "name": "Buttons+TitleColorAccessibilityMutator",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/Buttons/src/TitleColorAccessibilityMutator/*.h",
+      "source_files": [
+        "components/Buttons/src/TitleColorAccessibilityMutator/*.{h,m}",
+        "components/Buttons/src/TitleColorAccessibilityMutator/private/*.{h,m}"
+      ],
+      "dependencies": {
+        "MDFTextAccessibility": [
 
-            ],
-            "MaterialComponents/Buttons": [
+        ],
+        "MaterialComponents/Buttons": [
 
-            ]
-          }
-        },
-        {
-          "name": "TypographyThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/Buttons/src/TypographyThemer/*.h",
-          "source_files": "components/Buttons/src/TypographyThemer/*.{h,m}",
-          "dependencies": {
-            "MaterialComponents/Buttons": [
+        ]
+      }
+    },
+    {
+      "name": "Buttons+TypographyThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/Buttons/src/TypographyThemer/*.h",
+      "source_files": "components/Buttons/src/TypographyThemer/*.{h,m}",
+      "dependencies": {
+        "MaterialComponents/Buttons": [
 
-            ],
-            "MaterialComponents/schemes/Typography": [
+        ],
+        "MaterialComponents/schemes/Typography": [
 
-            ]
-          }
-        },
-        {
-          "name": "ButtonThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/Buttons/src/ButtonThemer/*.h",
-          "source_files": [
-            "components/Buttons/src/ButtonThemer/*.{h,m}",
-            "components/Buttons/src/ButtonThemer/private/*.{h,m}"
-          ],
-          "dependencies": {
-            "MaterialComponents/Buttons": [
+        ]
+      }
+    },
+    {
+      "name": "Buttons+ButtonThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/Buttons/src/ButtonThemer/*.h",
+      "source_files": [
+        "components/Buttons/src/ButtonThemer/*.{h,m}",
+        "components/Buttons/src/ButtonThemer/private/*.{h,m}"
+      ],
+      "dependencies": {
+        "MaterialComponents/Buttons": [
 
-            ],
-            "MaterialComponents/Buttons+Extensions/ColorThemer": [
+        ],
+        "MaterialComponents/Buttons+ColorThemer": [
 
-            ],
-            "MaterialComponents/Buttons+Extensions/TypographyThemer": [
+        ],
+        "MaterialComponents/Buttons+TypographyThemer": [
 
-            ]
-          }
-        }
-      ]
+        ]
+      }
     },
     {
       "name": "ButtonBar",
@@ -443,41 +418,36 @@
       }
     },
     {
-      "name": "ButtonBar+Extensions",
-      "subspecs": [
-        {
-          "name": "ColorThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/ButtonBar/src/ColorThemer/*.h",
-          "source_files": "components/ButtonBar/src/ColorThemer/*.{h,m}",
-          "dependencies": {
-            "MaterialComponents/ButtonBar": [
+      "name": "ButtonBar+ColorThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/ButtonBar/src/ColorThemer/*.h",
+      "source_files": "components/ButtonBar/src/ColorThemer/*.{h,m}",
+      "dependencies": {
+        "MaterialComponents/ButtonBar": [
 
-            ],
-            "MaterialComponents/Themes": [
+        ],
+        "MaterialComponents/Themes": [
 
-            ]
-          }
-        },
-        {
-          "name": "TypographyThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/ButtonBar/src/TypographyThemer/*.h",
-          "source_files": "components/ButtonBar/src/TypographyThemer/*.{h,m}",
-          "dependencies": {
-            "MaterialComponents/ButtonBar": [
+        ]
+      }
+    },
+    {
+      "name": "ButtonBar+TypographyThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/ButtonBar/src/TypographyThemer/*.h",
+      "source_files": "components/ButtonBar/src/TypographyThemer/*.{h,m}",
+      "dependencies": {
+        "MaterialComponents/ButtonBar": [
 
-            ],
-            "MaterialComponents/schemes/Typography": [
+        ],
+        "MaterialComponents/schemes/Typography": [
 
-            ]
-          }
-        }
-      ]
+        ]
+      }
     },
     {
       "name": "Cards",
@@ -505,41 +475,36 @@
       }
     },
     {
-      "name": "Cards+Extensions",
-      "subspecs": [
-        {
-          "name": "ColorThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/Cards/src/ColorThemer/*.h",
-          "source_files": "components/Cards/src/ColorThemer/*.{h,m}",
-          "dependencies": {
-            "MaterialComponents/Cards": [
+      "name": "Cards+ColorThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/Cards/src/ColorThemer/*.h",
+      "source_files": "components/Cards/src/ColorThemer/*.{h,m}",
+      "dependencies": {
+        "MaterialComponents/Cards": [
 
-            ],
-            "MaterialComponents/schemes/Color": [
+        ],
+        "MaterialComponents/schemes/Color": [
 
-            ]
-          }
-        },
-        {
-          "name": "CardThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/Cards/src/CardThemer/*.h",
-          "source_files": "components/Cards/src/CardThemer/*.{h,m}",
-          "dependencies": {
-            "MaterialComponents/Cards": [
+        ]
+      }
+    },
+    {
+      "name": "Cards+CardThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/Cards/src/CardThemer/*.h",
+      "source_files": "components/Cards/src/CardThemer/*.{h,m}",
+      "dependencies": {
+        "MaterialComponents/Cards": [
 
-            ],
-            "MaterialComponents/Cards+Extensions/ColorThemer": [
+        ],
+        "MaterialComponents/Cards+ColorThemer": [
 
-            ]
-          }
-        }
-      ]
+        ]
+      }
     },
     {
       "name": "Chips",
@@ -582,76 +547,71 @@
       }
     },
     {
-      "name": "Chips+Extensions",
-      "subspecs": [
-        {
-          "name": "ColorThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/Chips/src/ColorThemer/*.h",
-          "source_files": "components/Chips/src/ColorThemer/*.{h,m}",
-          "dependencies": {
-            "MaterialComponents/Chips": [
+      "name": "Chips+ChipThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/Chips/src/ChipThemer/*.h",
+      "source_files": "components/Chips/src/ChipThemer/*.{h,m}",
+      "dependencies": {
+        "MaterialComponents/Chips": [
 
-            ],
-            "MaterialComponents/schemes/Color": [
+        ],
+        "MaterialComponents/Chips+ColorThemer": [
 
-            ]
-          }
-        },
-        {
-          "name": "FontThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/Chips/src/FontThemer/*.h",
-          "source_files": "components/Chips/src/FontThemer/*.{h,m}",
-          "dependencies": {
-            "MaterialComponents/Chips": [
+        ],
+        "MaterialComponents/Chips+TypographyThemer": [
 
-            ],
-            "MaterialComponents/Themes": [
+        ]
+      }
+    },
+    {
+      "name": "Chips+ColorThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/Chips/src/ColorThemer/*.h",
+      "source_files": "components/Chips/src/ColorThemer/*.{h,m}",
+      "dependencies": {
+        "MaterialComponents/Chips": [
 
-            ]
-          }
-        },
-        {
-          "name": "TypographyThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/Chips/src/TypographyThemer/*.h",
-          "source_files": "components/Chips/src/TypographyThemer/*.{h,m}",
-          "dependencies": {
-            "MaterialComponents/Chips": [
+        ],
+        "MaterialComponents/schemes/Color": [
 
-            ],
-            "MaterialComponents/schemes/Typography": [
+        ]
+      }
+    },
+    {
+      "name": "Chips+FontThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/Chips/src/FontThemer/*.h",
+      "source_files": "components/Chips/src/FontThemer/*.{h,m}",
+      "dependencies": {
+        "MaterialComponents/Chips": [
 
-            ]
-          }
-        },
-        {
-          "name": "ChipThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/Chips/src/ChipThemer/*.h",
-          "source_files": "components/Chips/src/ChipThemer/*.{h,m}",
-          "dependencies": {
-            "MaterialComponents/Chips": [
+        ],
+        "MaterialComponents/Themes": [
 
-            ],
-            "MaterialComponents/Chips+Extensions/ColorThemer": [
+        ]
+      }
+    },
+    {
+      "name": "Chips+TypographyThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/Chips/src/TypographyThemer/*.h",
+      "source_files": "components/Chips/src/TypographyThemer/*.{h,m}",
+      "dependencies": {
+        "MaterialComponents/Chips": [
 
-            ],
-            "MaterialComponents/Chips+Extensions/TypographyThemer": [
+        ],
+        "MaterialComponents/schemes/Typography": [
 
-            ]
-          }
-        }
-      ]
+        ]
+      }
     },
     {
       "name": "CollectionCells",
@@ -793,41 +753,36 @@
       }
     },
     {
-      "name": "Dialogs+Extensions",
-      "subspecs": [
-        {
-          "name": "ColorThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/Dialogs/src/ColorThemer/*.h",
-          "source_files": "components/Dialogs/src/ColorThemer/*.{h,m}",
-          "dependencies": {
-            "MaterialComponents/Dialogs": [
+      "name": "Dialogs+ColorThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/Dialogs/src/ColorThemer/*.h",
+      "source_files": "components/Dialogs/src/ColorThemer/*.{h,m}",
+      "dependencies": {
+        "MaterialComponents/Dialogs": [
 
-            ],
-            "MaterialComponents/Themes": [
+        ],
+        "MaterialComponents/Themes": [
 
-            ]
-          }
-        },
-        {
-          "name": "TypographyThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/Dialogs/src/TypographyThemer/*.h",
-          "source_files": "components/Dialogs/src/TypographyThemer/*.{h,m}",
-          "dependencies": {
-            "MaterialComponents/Dialogs": [
+        ]
+      }
+    },
+    {
+      "name": "Dialogs+TypographyThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/Dialogs/src/TypographyThemer/*.h",
+      "source_files": "components/Dialogs/src/TypographyThemer/*.{h,m}",
+      "dependencies": {
+        "MaterialComponents/Dialogs": [
 
-            ],
-            "MaterialComponents/schemes/Typography": [
+        ],
+        "MaterialComponents/schemes/Typography": [
 
-            ]
-          }
-        }
-      ]
+        ]
+      }
     },
     {
       "name": "FeatureHighlight",
@@ -855,73 +810,68 @@
       }
     },
     {
-      "name": "FeatureHighlight+Extensions",
-      "subspecs": [
-        {
-          "name": "ColorThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/FeatureHighlight/src/ColorThemer/*.h",
-          "source_files": "components/FeatureHighlight/src/ColorThemer/*.{h,m}",
-          "dependencies": {
-            "MaterialComponents/FeatureHighlight": [
+      "name": "FeatureHighlight+ColorThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/FeatureHighlight/src/ColorThemer/*.h",
+      "source_files": "components/FeatureHighlight/src/ColorThemer/*.{h,m}",
+      "dependencies": {
+        "MaterialComponents/FeatureHighlight": [
 
-            ],
-            "MaterialComponents/Themes": [
+        ],
+        "MaterialComponents/Themes": [
 
-            ]
-          }
-        },
-        {
-          "name": "FontThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/FeatureHighlight/src/FontThemer/*.h",
-          "source_files": "components/FeatureHighlight/src/FontThemer/*.{h,m}",
-          "dependencies": {
-            "MaterialComponents/FeatureHighlight": [
+        ]
+      }
+    },
+    {
+      "name": "FeatureHighlight+FontThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/FeatureHighlight/src/FontThemer/*.h",
+      "source_files": "components/FeatureHighlight/src/FontThemer/*.{h,m}",
+      "dependencies": {
+        "MaterialComponents/FeatureHighlight": [
 
-            ],
-            "MaterialComponents/Themes": [
+        ],
+        "MaterialComponents/Themes": [
 
-            ]
-          }
-        },
-        {
-          "name": "TypographyThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/FeatureHighlight/src/TypographyThemer/*.h",
-          "source_files": "components/FeatureHighlight/src/TypographyThemer/*.{h,m}",
-          "dependencies": {
-            "MaterialComponents/FeatureHighlight": [
+        ]
+      }
+    },
+    {
+      "name": "FeatureHighlight+TypographyThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/FeatureHighlight/src/TypographyThemer/*.h",
+      "source_files": "components/FeatureHighlight/src/TypographyThemer/*.{h,m}",
+      "dependencies": {
+        "MaterialComponents/FeatureHighlight": [
 
-            ],
-            "MaterialComponents/schemes/Typography": [
+        ],
+        "MaterialComponents/schemes/Typography": [
 
-            ]
-          }
-        },
-        {
-          "name": "FeatureHighlightAccessibilityMutator",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/FeatureHighlight/src/FeatureHighlightAccessibilityMutator/*.h",
-          "source_files": "components/FeatureHighlight/src/FeatureHighlightAccessibilityMutator/*.{h,m}",
-          "dependencies": {
-            "MaterialComponents/FeatureHighlight": [
+        ]
+      }
+    },
+    {
+      "name": "FeatureHighlight+FeatureHighlightAccessibilityMutator",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/FeatureHighlight/src/FeatureHighlightAccessibilityMutator/*.h",
+      "source_files": "components/FeatureHighlight/src/FeatureHighlightAccessibilityMutator/*.{h,m}",
+      "dependencies": {
+        "MaterialComponents/FeatureHighlight": [
 
-            ],
-            "MDFTextAccessibility": [
+        ],
+        "MDFTextAccessibility": [
 
-            ]
-          }
-        }
-      ]
+        ]
+      }
     },
     {
       "name": "FlexibleHeader",
@@ -946,25 +896,20 @@
       }
     },
     {
-      "name": "FlexibleHeader+Extensions",
-      "subspecs": [
-        {
-          "name": "ColorThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/FlexibleHeader/src/ColorThemer/*.h",
-          "source_files": "components/FlexibleHeader/src/ColorThemer/*.{h,m}",
-          "dependencies": {
-            "MaterialComponents/FlexibleHeader": [
+      "name": "FlexibleHeader+ColorThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/FlexibleHeader/src/ColorThemer/*.h",
+      "source_files": "components/FlexibleHeader/src/ColorThemer/*.{h,m}",
+      "dependencies": {
+        "MaterialComponents/FlexibleHeader": [
 
-            ],
-            "MaterialComponents/schemes/Color": [
+        ],
+        "MaterialComponents/schemes/Color": [
 
-            ]
-          }
-        }
-      ]
+        ]
+      }
     },
     {
       "name": "HeaderStackView",
@@ -975,25 +920,20 @@
       "source_files": "components/HeaderStackView/src/*.{h,m}"
     },
     {
-      "name": "HeaderStackView+Extensions",
-      "subspecs": [
-        {
-          "name": "ColorThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/HeaderStackView/src/ColorThemer/*.h",
-          "source_files": "components/HeaderStackView/src/ColorThemer/*.{h,m}",
-          "dependencies": {
-            "MaterialComponents/HeaderStackView": [
+      "name": "HeaderStackView+ColorThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/HeaderStackView/src/ColorThemer/*.h",
+      "source_files": "components/HeaderStackView/src/ColorThemer/*.{h,m}",
+      "dependencies": {
+        "MaterialComponents/HeaderStackView": [
 
-            ],
-            "MaterialComponents/Themes": [
+        ],
+        "MaterialComponents/Themes": [
 
-            ]
-          }
-        }
-      ]
+        ]
+      }
     },
     {
       "name": "Ink",
@@ -1012,25 +952,20 @@
       }
     },
     {
-      "name": "Ink+Extensions",
-      "subspecs": [
-        {
-          "name": "ColorThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/Ink/src/ColorThemer/*.h",
-          "source_files": "components/Ink/src/ColorThemer/*.{h,m}",
-          "dependencies": {
-            "MaterialComponents/Ink": [
+      "name": "Ink+ColorThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/Ink/src/ColorThemer/*.h",
+      "source_files": "components/Ink/src/ColorThemer/*.{h,m}",
+      "dependencies": {
+        "MaterialComponents/Ink": [
 
-            ],
-            "MaterialComponents/Themes": [
+        ],
+        "MaterialComponents/Themes": [
 
-            ]
-          }
-        }
-      ]
+        ]
+      }
     },
     {
       "name": "LibraryInfo",
@@ -1091,41 +1026,36 @@
       }
     },
     {
-      "name": "NavigationBar+Extensions",
-      "subspecs": [
-        {
-          "name": "ColorThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/NavigationBar/src/ColorThemer/*.h",
-          "source_files": "components/NavigationBar/src/ColorThemer/*.{h,m}",
-          "dependencies": {
-            "MaterialComponents/NavigationBar": [
+      "name": "NavigationBar+ColorThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/NavigationBar/src/ColorThemer/*.h",
+      "source_files": "components/NavigationBar/src/ColorThemer/*.{h,m}",
+      "dependencies": {
+        "MaterialComponents/NavigationBar": [
 
-            ],
-            "MaterialComponents/schemes/Color": [
+        ],
+        "MaterialComponents/schemes/Color": [
 
-            ]
-          }
-        },
-        {
-          "name": "TypographyThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/NavigationBar/src/TypographyThemer/*.h",
-          "source_files": "components/NavigationBar/src/TypographyThemer/*.{h,m}",
-          "dependencies": {
-            "MaterialComponents/NavigationBar": [
+        ]
+      }
+    },
+    {
+      "name": "NavigationBar+TypographyThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/NavigationBar/src/TypographyThemer/*.h",
+      "source_files": "components/NavigationBar/src/TypographyThemer/*.{h,m}",
+      "dependencies": {
+        "MaterialComponents/NavigationBar": [
 
-            ],
-            "MaterialComponents/schemes/Typography": [
+        ],
+        "MaterialComponents/schemes/Typography": [
 
-            ]
-          }
-        }
-      ]
+        ]
+      }
     },
     {
       "name": "OverlayWindow",
@@ -1158,25 +1088,20 @@
       ]
     },
     {
-      "name": "PageControl+Extensions",
-      "subspecs": [
-        {
-          "name": "ColorThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/PageControl/src/ColorThemer/*.h",
-          "source_files": "components/PageControl/src/ColorThemer/*.{h,m}",
-          "dependencies": {
-            "MaterialComponents/PageControl": [
+      "name": "PageControl+ColorThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/PageControl/src/ColorThemer/*.h",
+      "source_files": "components/PageControl/src/ColorThemer/*.{h,m}",
+      "dependencies": {
+        "MaterialComponents/PageControl": [
 
-            ],
-            "MaterialComponents/Themes": [
+        ],
+        "MaterialComponents/Themes": [
 
-            ]
-          }
-        }
-      ]
+        ]
+      }
     },
     {
       "name": "Palettes",
@@ -1215,25 +1140,20 @@
       }
     },
     {
-      "name": "ProgressView+Extensions",
-      "subspecs": [
-        {
-          "name": "ColorThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/ProgressView/src/ColorThemer/*.h",
-          "source_files": "components/ProgressView/src/ColorThemer/*.{h,m}",
-          "dependencies": {
-            "MaterialComponents/ProgressView": [
+      "name": "ProgressView+ColorThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/ProgressView/src/ColorThemer/*.h",
+      "source_files": "components/ProgressView/src/ColorThemer/*.{h,m}",
+      "dependencies": {
+        "MaterialComponents/ProgressView": [
 
-            ],
-            "MaterialComponents/Themes": [
+        ],
+        "MaterialComponents/Themes": [
 
-            ]
-          }
-        }
-      ]
+        ]
+      }
     },
     {
       "name": "ShadowElevations",
@@ -1279,28 +1199,23 @@
       }
     },
     {
-      "name": "Slider+Extensions",
-      "subspecs": [
-        {
-          "name": "ColorThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/Slider/src/ColorThemer/*.h",
-          "source_files": "components/Slider/src/ColorThemer/*.{h,m}",
-          "dependencies": {
-            "MaterialComponents/Palettes": [
+      "name": "Slider+ColorThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/Slider/src/ColorThemer/*.h",
+      "source_files": "components/Slider/src/ColorThemer/*.{h,m}",
+      "dependencies": {
+        "MaterialComponents/Palettes": [
 
-            ],
-            "MaterialComponents/Slider": [
+        ],
+        "MaterialComponents/Slider": [
 
-            ],
-            "MaterialComponents/schemes/Color": [
+        ],
+        "MaterialComponents/schemes/Color": [
 
-            ]
-          }
-        }
-      ]
+        ]
+      }
     },
     {
       "name": "Snackbar",
@@ -1337,57 +1252,52 @@
       }
     },
     {
-      "name": "Snackbar+Extensions",
-      "subspecs": [
-        {
-          "name": "ColorThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/Snackbar/src/ColorThemer/*.h",
-          "source_files": "components/Snackbar/src/ColorThemer/*.{h,m}",
-          "dependencies": {
-            "MaterialComponents/Snackbar": [
+      "name": "Snackbar+ColorThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/Snackbar/src/ColorThemer/*.h",
+      "source_files": "components/Snackbar/src/ColorThemer/*.{h,m}",
+      "dependencies": {
+        "MaterialComponents/Snackbar": [
 
-            ],
-            "MaterialComponents/schemes/Color": [
+        ],
+        "MaterialComponents/schemes/Color": [
 
-            ]
-          }
-        },
-        {
-          "name": "FontThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/Snackbar/src/FontThemer/*.h",
-          "source_files": "components/Snackbar/src/FontThemer/*.{h,m}",
-          "dependencies": {
-            "MaterialComponents/Snackbar": [
+        ]
+      }
+    },
+    {
+      "name": "Snackbar+FontThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/Snackbar/src/FontThemer/*.h",
+      "source_files": "components/Snackbar/src/FontThemer/*.{h,m}",
+      "dependencies": {
+        "MaterialComponents/Snackbar": [
 
-            ],
-            "MaterialComponents/Themes": [
+        ],
+        "MaterialComponents/Themes": [
 
-            ]
-          }
-        },
-        {
-          "name": "TypographyThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/Snackbar/src/TypographyThemer/*.h",
-          "source_files": "components/Snackbar/src/TypographyThemer/*.{h,m}",
-          "dependencies": {
-            "MaterialComponents/Snackbar": [
+        ]
+      }
+    },
+    {
+      "name": "Snackbar+TypographyThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/Snackbar/src/TypographyThemer/*.h",
+      "source_files": "components/Snackbar/src/TypographyThemer/*.{h,m}",
+      "dependencies": {
+        "MaterialComponents/Snackbar": [
 
-            ],
-            "MaterialComponents/schemes/Typography": [
+        ],
+        "MaterialComponents/schemes/Typography": [
 
-            ]
-          }
-        }
-      ]
+        ]
+      }
     },
     {
       "name": "Tabs",
@@ -1427,57 +1337,52 @@
       }
     },
     {
-      "name": "Tabs+Extensions",
-      "subspecs": [
-        {
-          "name": "ColorThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/Tabs/src/ColorThemer/*.h",
-          "source_files": "components/Tabs/src/ColorThemer/*.{h,m}",
-          "dependencies": {
-            "MaterialComponents/schemes/Color": [
+      "name": "Tabs+ColorThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/Tabs/src/ColorThemer/*.h",
+      "source_files": "components/Tabs/src/ColorThemer/*.{h,m}",
+      "dependencies": {
+        "MaterialComponents/schemes/Color": [
 
-            ],
-            "MaterialComponents/Tabs": [
+        ],
+        "MaterialComponents/Tabs": [
 
-            ]
-          }
-        },
-        {
-          "name": "FontThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/Tabs/src/FontThemer/*.h",
-          "source_files": "components/Tabs/src/FontThemer/*.{h,m}",
-          "dependencies": {
-            "MaterialComponents/Tabs": [
+        ]
+      }
+    },
+    {
+      "name": "Tabs+FontThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/Tabs/src/FontThemer/*.h",
+      "source_files": "components/Tabs/src/FontThemer/*.{h,m}",
+      "dependencies": {
+        "MaterialComponents/Tabs": [
 
-            ],
-            "MaterialComponents/Themes": [
+        ],
+        "MaterialComponents/Themes": [
 
-            ]
-          }
-        },
-        {
-          "name": "TypographyThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/Tabs/src/TypographyThemer/*.h",
-          "source_files": "components/Tabs/src/TypographyThemer/*.{h,m}",
-          "dependencies": {
-            "MaterialComponents/Tabs": [
+        ]
+      }
+    },
+    {
+      "name": "Tabs+TypographyThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/Tabs/src/TypographyThemer/*.h",
+      "source_files": "components/Tabs/src/TypographyThemer/*.{h,m}",
+      "dependencies": {
+        "MaterialComponents/Tabs": [
 
-            ],
-            "MaterialComponents/schemes/Typography": [
+        ],
+        "MaterialComponents/schemes/Typography": [
 
-            ]
-          }
-        }
-      ]
+        ]
+      }
     },
     {
       "name": "TextFields",
@@ -1508,57 +1413,52 @@
       }
     },
     {
-      "name": "TextFields+Extensions",
-      "subspecs": [
-        {
-          "name": "ColorThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/TextFields/src/ColorThemer/*.h",
-          "source_files": "components/TextFields/src/ColorThemer/*.{h,m}",
-          "dependencies": {
-            "MaterialComponents/TextFields": [
+      "name": "TextFields+ColorThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/TextFields/src/ColorThemer/*.h",
+      "source_files": "components/TextFields/src/ColorThemer/*.{h,m}",
+      "dependencies": {
+        "MaterialComponents/TextFields": [
 
-            ],
-            "MaterialComponents/Themes": [
+        ],
+        "MaterialComponents/Themes": [
 
-            ]
-          }
-        },
-        {
-          "name": "FontThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/TextFields/src/FontThemer/*.h",
-          "source_files": "components/TextFields/src/FontThemer/*.{h,m}",
-          "dependencies": {
-            "MaterialComponents/TextFields": [
+        ]
+      }
+    },
+    {
+      "name": "TextFields+FontThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/TextFields/src/FontThemer/*.h",
+      "source_files": "components/TextFields/src/FontThemer/*.{h,m}",
+      "dependencies": {
+        "MaterialComponents/TextFields": [
 
-            ],
-            "MaterialComponents/Themes": [
+        ],
+        "MaterialComponents/Themes": [
 
-            ]
-          }
-        },
-        {
-          "name": "TypographyThemer",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/TextFields/src/TypographyThemer/*.h",
-          "source_files": "components/TextFields/src/TypographyThemer/*.{h,m}",
-          "dependencies": {
-            "MaterialComponents/TextFields": [
+        ]
+      }
+    },
+    {
+      "name": "TextFields+TypographyThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/TextFields/src/TypographyThemer/*.h",
+      "source_files": "components/TextFields/src/TypographyThemer/*.{h,m}",
+      "dependencies": {
+        "MaterialComponents/TextFields": [
 
-            ],
-            "MaterialComponents/schemes/Typography": [
+        ],
+        "MaterialComponents/schemes/Typography": [
 
-            ]
-          }
-        }
-      ]
+        ]
+      }
     },
     {
       "name": "Themes",
@@ -1594,6 +1494,27 @@
 
         ]
       }
+    },
+    {
+      "name": "schemes",
+      "subspecs": [
+        {
+          "name": "Color",
+          "platforms": {
+            "ios": "8.0"
+          },
+          "public_header_files": "components/schemes/Color/src/*.h",
+          "source_files": "components/schemes/Color/src/*.{h,m}"
+        },
+        {
+          "name": "Typography",
+          "platforms": {
+            "ios": "8.0"
+          },
+          "public_header_files": "components/schemes/Typography/src/*.h",
+          "source_files": "components/schemes/Typography/src/*.{h,m}"
+        }
+      ]
     },
     {
       "name": "private",
@@ -1897,27 +1818,6 @@
 
             ]
           }
-        }
-      ]
-    },
-    {
-      "name": "schemes",
-      "subspecs": [
-        {
-          "name": "Color",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/schemes/Color/src/*.h",
-          "source_files": "components/schemes/Color/src/*.{h,m}"
-        },
-        {
-          "name": "Typography",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/schemes/Typography/src/*.h",
-          "source_files": "components/schemes/Typography/src/*.{h,m}"
         }
       ]
     }

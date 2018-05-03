@@ -2,8 +2,10 @@
 platform :ios, '11.0'
 
 target 'Shrine' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
   use_frameworks!
 
   # Pods for Shrine
-  pod 'MaterialComponents', :git => 'https://github.com/material-components/material-components-ios', :branch => 'develop'
+  pod 'MaterialComponents', :git => 'https://github.com/material-components/material-components-ios', :branch => 'google-io-codelabs-2018'
+
 end
