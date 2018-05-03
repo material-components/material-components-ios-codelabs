@@ -48,7 +48,7 @@ class LoginViewController: UIViewController {
   let usernameTextField: MDCTextField = {
     let usernameTextField = MDCTextField()
     usernameTextField.translatesAutoresizingMaskIntoConstraints = false
-    usernameTextField.clearButtonMode = .unlessEditing;
+    usernameTextField.clearButtonMode = .unlessEditing
     return usernameTextField
   }()
   let passwordTextField: MDCTextField = {
@@ -122,10 +122,8 @@ class LoginViewController: UIViewController {
     scrollView.addSubview(passwordTextField)
     usernameTextFieldController.placeholderText = "Username"
     usernameTextField.delegate = self
-    usernameTextField.backgroundColor = scrollView.backgroundColor
     passwordTextFieldController.placeholderText = "Password"
     passwordTextField.delegate = self
-    passwordTextField.backgroundColor = scrollView.backgroundColor
     registerKeyboardNotifications()
 
     // Buttons
@@ -244,7 +242,6 @@ class LoginViewController: UIViewController {
 
   // MARK: - Action Handling
   //TODO: Add the button handlers
-
   @objc func didTapNext(sender: Any) {
     self.dismiss(animated: true, completion: nil)
   }
@@ -288,7 +285,7 @@ class LoginViewController: UIViewController {
 // MARK: - UITextFieldDelegate
 extension LoginViewController: UITextFieldDelegate {
 
-  //TODO: Add basic password field validation
+  //TODO: Add basic password field validation in the textFieldShouldReturn delegate function
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     textField.resignFirstResponder();
 
