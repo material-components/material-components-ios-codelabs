@@ -25,8 +25,9 @@
   self.backgroundColor = [UIColor whiteColor];
 
   //TODO: Set custom font based on our ApplicationScheme and center align text
-  self.nameLabel.font = [ApplicationScheme sharedInstance].typographyScheme.subtitle1;
-  self.priceLabel.font = [ApplicationScheme sharedInstance].typographyScheme.subtitle1;
+  id<MDCTypographyScheming> typographyScheme = [ApplicationScheme sharedInstance].typographyScheme;
+  self.nameLabel.font = typographyScheme.subtitle1;
+  self.priceLabel.font = typographyScheme.subtitle1;
   self.nameLabel.textAlignment = NSTextAlignmentCenter;
   self.priceLabel.textAlignment = NSTextAlignmentCenter;
 
