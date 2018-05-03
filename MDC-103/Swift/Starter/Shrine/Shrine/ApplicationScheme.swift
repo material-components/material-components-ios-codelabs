@@ -18,112 +18,33 @@ import UIKit
 
 import MaterialComponents
 
-class ApplicationScheme: NSObject, MDCColorScheming, MDCTypographyScheming, MDCButtonScheming {
+class ApplicationScheme: NSObject {
 
-  static let staticColorScheme: MDCSemanticColorScheme = {
+  private static var singleton = ApplicationScheme()
+
+  static var shared: ApplicationScheme {
+    return singleton
+  }
+
+  override init() {
+    self.buttonScheme.colorScheme = self.colorScheme
+    self.buttonScheme.typographyScheme = self.typographyScheme
+    super.init()
+  }
+
+  public let buttonScheme = MDCButtonScheme()
+
+  public let colorScheme: MDCColorScheming = {
     let scheme = MDCSemanticColorScheme(defaults: .material201804)
     //TODO: Customize our app Colors after this line
 
     return scheme
   }()
 
-  static let staticTypographyScheme: MDCTypographyScheme = {
+  public let typographyScheme: MDCTypographyScheming = {
     let scheme = MDCTypographyScheme()
     //TODO: Add our custom fonts after this line
 
     return scheme
-  }()
-
-  public private(set) var cornerRadius: CGFloat = {
-    return CGFloat(4.0)
-  }()
-
-  public private(set) var minimumHeight: CGFloat = {
-    return CGFloat(36.0)
-  }()
-
-  private static var singleton = ApplicationScheme()
-
-  static var scheme: ApplicationScheme {
-    return singleton
-  }
-
-  public private(set) var colorScheme: MDCColorScheming = {
-    return ApplicationScheme.staticColorScheme
-  }()
-
-  public private(set) var typographyScheme: MDCTypographyScheming = {
-    return ApplicationScheme.staticTypographyScheme
-  }()
-
-  public private(set) var primaryColor: UIColor = {
-    return staticColorScheme.primaryColor
-  }()
-  public private(set) var primaryColorVariant: UIColor = {
-    return staticColorScheme.primaryColorVariant
-  }()
-  public private(set) var secondaryColor: UIColor = {
-    return staticColorScheme.secondaryColor
-  }()
-  public private(set) var errorColor: UIColor = {
-    return staticColorScheme.errorColor
-  }()
-  public private(set) var surfaceColor: UIColor = {
-    return staticColorScheme.surfaceColor
-  }()
-  public private(set) var backgroundColor: UIColor = {
-    return staticColorScheme.backgroundColor
-  }()
-  public private(set) var onPrimaryColor: UIColor = {
-    return staticColorScheme.onPrimaryColor
-  }()
-  public private(set) var onSecondaryColor: UIColor = {
-    return staticColorScheme.onSecondaryColor
-  }()
-  public private(set) var onSurfaceColor: UIColor = {
-    return staticColorScheme.onSurfaceColor
-  }()
-  public private(set) var onBackgroundColor: UIColor = {
-    return staticColorScheme.onBackgroundColor
-  }()
-
-  public private(set) var headline1: UIFont = {
-    return staticTypographyScheme.headline1
-  }()
-  public private(set) var headline2: UIFont = {
-    return staticTypographyScheme.headline2
-  }()
-  public private(set) var headline3: UIFont = {
-    return staticTypographyScheme.headline3
-  }()
-  public private(set) var headline4: UIFont = {
-    return staticTypographyScheme.headline4
-  }()
-  public private(set) var headline5: UIFont = {
-    return staticTypographyScheme.headline5
-  }()
-  public private(set) var headline6: UIFont = {
-    return staticTypographyScheme.headline6
-  }()
-  public private(set) var subtitle1: UIFont = {
-    return staticTypographyScheme.subtitle1
-  }()
-  public private(set) var subtitle2: UIFont = {
-    return staticTypographyScheme.subtitle2
-  }()
-  public private(set) var body1: UIFont = {
-    return staticTypographyScheme.body1
-  }()
-  public private(set) var body2: UIFont = {
-    return staticTypographyScheme.body2
-  }()
-  public private(set) var caption: UIFont = {
-    return staticTypographyScheme.caption
-  }()
-  public private(set) var button: UIFont = {
-    return staticTypographyScheme.button
-  }()
-  public private(set) var overline: UIFont = {
-    return staticTypographyScheme.overline
   }()
 }
