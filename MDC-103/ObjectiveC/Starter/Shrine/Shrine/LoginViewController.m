@@ -140,31 +140,9 @@
   [self.scrollView addSubview:self.nextButton];
 
   // TODO: Theme our interface with our colors
-  id<MDCColorScheming> colorScheme = [ApplicationScheme sharedInstance].colorScheme;
-  self.view.backgroundColor = colorScheme.surfaceColor;
-  self.logoImageView.tintColor = colorScheme.onSurfaceColor;
-  self.titleLabel.textColor = colorScheme.onSurfaceColor;
-  [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme
-                              toTextInputController:self.usernameTextFieldController];
-  [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme
-                              toTextInputController:self.passwordTextFieldController];
-  [MDCTextButtonColorThemer applySemanticColorScheme:colorScheme
-                                            toButton:self.cancelButton];
-  [MDCContainedButtonColorThemer applySemanticColorScheme:colorScheme
-                                                 toButton:self.nextButton];
 
   // TODO: Theme our interface with our typography
-  id<MDCTypographyScheming> typographyScheme = [ApplicationScheme sharedInstance].typographyScheme;
-  self.titleLabel.font = typographyScheme.headline5;
-  [MDCTextFieldTypographyThemer applyTypographyScheme:typographyScheme
-                                toTextInputController:self.usernameTextFieldController];
-  [MDCTextFieldTypographyThemer applyTypographyScheme:typographyScheme
-                                toTextInputController:self.passwordTextFieldController];
-  [MDCButtonTypographyThemer applyTypographyScheme:typographyScheme
-                                          toButton:self.cancelButton];
-  [MDCButtonTypographyThemer applyTypographyScheme:typographyScheme
-                                          toButton:self.nextButton];
-  
+
   // Layout Constraints
   NSMutableArray <NSLayoutConstraint *> *constraints = [[NSMutableArray alloc] init];
 

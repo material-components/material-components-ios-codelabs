@@ -85,19 +85,10 @@
   self.navigationItem.rightBarButtonItems = @[ tuneItem, searchItem ];
 
   // TODO: Theme our interface with our colors
-  id<MDCColorScheming> colorScheme = [ApplicationScheme sharedInstance].colorScheme;
-  self.view.backgroundColor = colorScheme.surfaceColor;
-  self.collectionView.backgroundColor = colorScheme.surfaceColor;
-  [MDCAppBarColorThemer applySemanticColorScheme:colorScheme
-                                        toAppBar:self.appBar];
 
   // TODO: Theme our interface with our typography
-  id<MDCTypographyScheming> typographyScheme = [ApplicationScheme sharedInstance].typographyScheme;
-  [MDCAppBarTypographyThemer applyTypographyScheme:typographyScheme
-                                          toAppBar:self.appBar];
 
   // TODO: Set layout to our custom layout
- self.collectionView.collectionViewLayout = [[CustomLayout alloc] init];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
