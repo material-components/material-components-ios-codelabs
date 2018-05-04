@@ -125,7 +125,7 @@
 				TargetAttributes = {
 					400CAD39205C990900DC981A = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -346,7 +346,8 @@
 			baseConfigurationReference = A0777E7B612A6D9D46AC5BBB /* Pods-Shrine.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Shrine/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
@@ -364,7 +365,8 @@
 			baseConfigurationReference = 21692A69FA19E55E609FEE4B /* Pods-Shrine.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Shrine/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
