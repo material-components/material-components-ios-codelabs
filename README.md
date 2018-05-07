@@ -1,5 +1,4 @@
 Material Component for iOS
-
 ============
 
 This repository contains five codelabs for Material Components for iOS.  Each codelabs is
