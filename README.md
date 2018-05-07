@@ -1,4 +1,4 @@
-Material Component for iOS
+Material Components for iOS
 ============
 
 This repository contains five codelabs for Material Components for iOS.  Each codelabs is
@@ -19,14 +19,12 @@ Visit the Google codelabs site to follow along the guided steps.
 Support
 -------
 
-If you've found an error in this sample, please file an issue:
-https://github.com/material-components/material-components-ios-codelabs/issues
+If you've found an error in this sample, please file an issue on (GitHub)[https://github.com/material-components/material-components-ios-codelabs/issues].
 
 Patches are encouraged, and may be submitted by forking this project and
 submitting a pull request through GitHub.
 
-Material Compoent for iOS questions on Stack Overflow:
-https://stackoverflow.com/questions/tagged/material-components-ios
+Material Components for iOS questions on (Stack Overflow)[https://stackoverflow.com/questions/tagged/material-components-ios].
 
 
 License
