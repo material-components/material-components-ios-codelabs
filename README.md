@@ -1,23 +1,20 @@
-Material Components for iOS Codelabs
-============
+# Material Components for iOS Codelabs
 
 This repository contains five codelabs for [Material Components for iOS](https://github.com/material-components/material-components-ios).  Each codelabs is
 available in both Objective-C and Swift versions.
 
-Introduction
-------------
+## Introduction
+
 In these codelabs, you will build an iOS app that uses various components of Material
 Components for iOS (MDC-iOS). MDC-101 through MDC-104 will guide you through building
 and integrating an application with MDC-iOS.  MDC-111 demonstrates some of the additional
 capabilites of MDC-iOS.
 
-Getting Started
----------------
+## Getting Started
 Open the .xcworkspace file inside the Starter directory of each codelab in Xcode.
 Visit the Google codelabs site to follow along the guided steps.
 
-Support
--------
+## Support
 
 If you've found an error in this sample, please file an issue on [GitHub](https://github.com/material-components/material-components-ios-codelabs/issues).
 
@@ -27,8 +24,7 @@ submitting a pull request through GitHub.
 Material Components for iOS questions on [Stack Overflow](https://stackoverflow.com/questions/tagged/material-components-ios).
 
 
-License
--------
+## License
 
 Copyright 2018 Google, Inc.
 
