@@ -58,7 +58,7 @@ class Catalog: NSObject {
     Product(imageName: "Product16", productName: "Succulent planters", price: "$16", category: "Home", isFeatured:true),
     Product(imageName: "Product17", productName: "Quartet table", price: "$175", category: "Home", isFeatured:true),
     Product(imageName: "Product18", productName: "Kitchen quattro", price: "$129", category: "Home", isFeatured:false),
-    Product(imageName: "Product19", productName: "Adobe sweater", price: "$48", category: "Clothing", isFeatured:false),
+    Product(imageName: "Product19", productName: "Clay sweater", price: "$48", category: "Clothing", isFeatured:false),
     Product(imageName: "Product20", productName: "Sea tunic", price: "$45", category: "Clothing", isFeatured:false),
     Product(imageName: "Product21", productName: "Plaster tunic", price: "$38", category: "Clothing", isFeatured:false),
     Product(imageName: "Product22", productName: "White pinstripe shirt", price: "$70", category: "Clothing", isFeatured:false),
