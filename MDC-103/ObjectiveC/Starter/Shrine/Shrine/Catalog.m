@@ -240,7 +240,7 @@ NSString *const CatalogFilterDidChangeNotification = @"CatalogFilterDidChangeNot
     {
       Product *product =
       [[Product alloc] initWithImageName:@"Product19"
-                             productName:@"Adobe Sweater"
+                             productName:@"Clay Sweater"
                                    price:@"$48"
                                 category:@"Clothing"
                                 featured:NO];
