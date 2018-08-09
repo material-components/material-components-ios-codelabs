@@ -925,7 +925,7 @@ static NSAttributedString *uppercaseAttributedString(NSAttributedString *string)
 }
 
 - (void)updateTitleFont {
-  // Retreive any custom font that has been set
+  // Retrieve any custom font that has been set
   UIFont *font = _fonts[@(self.state)];
   if (!font && self.state != UIControlStateNormal) {
     // We fall back to UIControlStateNormal if there is no value for the current state.
