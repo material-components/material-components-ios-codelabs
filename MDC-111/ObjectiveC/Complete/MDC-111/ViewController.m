@@ -70,7 +70,8 @@
 - (void)viewDidLayoutSubviews {
   [super viewDidLayoutSubviews];
 
-  self.saveButton.hitAreaInsets = UIEdgeInsetsMake((48 - self.saveButton.bounds.size.height) / -2, 0, (48 - self.saveButton.bounds.size.height) / -2, 0);
+  CGFloat verticalInset = (48 - CGRectGetHeight(self.saveButton.bounds)) / -2;
+  self.saveButton.hitAreaInsets = UIEdgeInsetsMake(verticalInset, 0, verticalInset, 0);
 }
 
 #pragma mark - UITextFieldDelegate methods

@@ -49,9 +49,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
 
-    saveButton.hitAreaInsets = UIEdgeInsets(top: (48 - self.saveButton.bounds.size.height) / -2,
+    saveButton.hitAreaInsets = UIEdgeInsets(top: (48 - self.saveButton.bounds.height) / -2,
                                             left: 0,
-                                            bottom: (48 - self.saveButton.bounds.size.height) / -2,
+                                            bottom: (48 - self.saveButton.bounds.height) / -2,
                                             right: 0)
   }
 
