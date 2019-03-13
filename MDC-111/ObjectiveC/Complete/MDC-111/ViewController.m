@@ -70,7 +70,7 @@
 - (void)viewDidLayoutSubviews {
   [super viewDidLayoutSubviews];
 
-  CGFloat verticalInset = (48 - CGRectGetHeight(self.saveButton.bounds)) / -2;
+  CGFloat verticalInset = MIN(0, (CGRectGetHeight(self.saveButton.bounds) - 48) / 2);
   self.saveButton.hitAreaInsets = UIEdgeInsetsMake(verticalInset, 0, verticalInset, 0);
 }
 
