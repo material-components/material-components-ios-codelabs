@@ -30,4 +30,4 @@ env:
     - WORKSPACE="MDC-111/Swift/Starter/MDC-111.xcworkspace" SCHEME="MDC-111"
     - WORKSPACE="MDC-111/Swift/Complete/MDC-111.xcworkspace" SCHEME="MDC-111"
 script:
-  - xcodebuild build -workspace "$WORKSPACE" -scheme "$SCHEME" -destination="OS=latest,name=iPhone XS" -sdk "iphonesimulator12.0"
+  - xcodebuild build -workspace "$WORKSPACE" -scheme "$SCHEME" -destination="OS=latest,name=iPhone XS" -sdk "iphonesimulator12.2"
