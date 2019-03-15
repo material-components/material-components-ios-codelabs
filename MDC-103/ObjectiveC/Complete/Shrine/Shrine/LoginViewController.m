@@ -148,10 +148,12 @@
                               toTextInputController:self.usernameTextFieldController];
   [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme
                               toTextInputController:self.passwordTextFieldController];
-  [MDCTextButtonColorThemer applySemanticColorScheme:colorScheme
+  [MDCContainedButtonColorThemer applySemanticColorScheme:colorScheme
                                             toButton:self.cancelButton];
   [MDCContainedButtonColorThemer applySemanticColorScheme:colorScheme
                                                  toButton:self.nextButton];
+  [self.nextButton setElevation:MDCShadowElevationRaisedButtonResting forState:UIControlStateNormal];
+  [self.nextButton setElevation:MDCShadowElevationRaisedButtonPressed forState:UIControlStateHighlighted];
 
   // TODO: Theme our interface with our typography
   id<MDCTypographyScheming> typographyScheme = [ApplicationScheme sharedInstance].typographyScheme;
