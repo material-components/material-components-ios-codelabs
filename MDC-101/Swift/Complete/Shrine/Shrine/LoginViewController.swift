@@ -64,15 +64,15 @@ class LoginViewController: UIViewController {
 
   // Buttons
   //TODO: Add buttons
-  let cancelButton: MDCFlatButton = {
-    let cancelButton = MDCFlatButton()
+  let cancelButton: MDCButton = {
+    let cancelButton = MDCButton()
     cancelButton.translatesAutoresizingMaskIntoConstraints = false
     cancelButton.setTitle("CANCEL", for: .normal)
     cancelButton.addTarget(self, action: #selector(didTapCancel(sender:)), for: .touchUpInside)
     return cancelButton
   }()
-  let nextButton: MDCRaisedButton = {
-    let nextButton = MDCRaisedButton()
+  let nextButton: MDCButton = {
+    let nextButton = MDCButton()
     nextButton.translatesAutoresizingMaskIntoConstraints = false
     nextButton.setTitle("NEXT", for: .normal)
     nextButton.addTarget(self, action: #selector(didTapNext(sender:)), for: .touchUpInside)
