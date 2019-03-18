@@ -233,10 +233,9 @@ class LoginViewController: UIViewController {
                                                      to: self.usernameTextFieldController)
     MDCTextFieldColorThemer.applySemanticColorScheme(colorScheme,
                                                      to: self.passwordTextFieldController)
-    MDCContainedButtonColorThemer.applySemanticColorScheme(colorScheme, to: self.cancelButton)
+    MDCTextButtonColorThemer.applySemanticColorScheme(colorScheme, to: self.cancelButton)
     MDCContainedButtonColorThemer.applySemanticColorScheme(colorScheme, to: self.nextButton)
-    self.nextButton.setElevation(.raisedButtonResting, for: .normal)
-    self.nextButton.setElevation(.raisedButtonPressed, for: .highlighted)
+
     // TODO: Theme the interface with our typography
     let typographyScheme = ApplicationScheme.shared.typographyScheme
     titleLabel.font = typographyScheme.headline5
