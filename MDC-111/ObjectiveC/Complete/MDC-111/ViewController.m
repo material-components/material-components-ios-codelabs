@@ -31,7 +31,7 @@
 @property (weak, nonatomic) IBOutlet MDCTextField *state;
 @property (weak, nonatomic) IBOutlet MDCTextField *zip;
 
-@property (weak, nonatomic) IBOutlet MDCRaisedButton *saveButton;
+@property (weak, nonatomic) IBOutlet MDCButton *saveButton;
 
 
 @end

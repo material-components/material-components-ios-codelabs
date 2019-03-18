@@ -60,15 +60,15 @@ class LoginViewController: UIViewController {
   let passwordTextFieldController: MDCTextInputControllerOutlined
 
   // Buttons
-  let cancelButton: MDCFlatButton = {
-    let cancelButton = MDCFlatButton()
+  let cancelButton: MDCButton = {
+    let cancelButton = MDCButton()
     cancelButton.translatesAutoresizingMaskIntoConstraints = false
     cancelButton.setTitle("CANCEL", for: .normal)
     cancelButton.addTarget(self, action: #selector(didTapCancel(sender:)), for: .touchUpInside)
     return cancelButton
   }()
-  let nextButton: MDCRaisedButton = {
-    let nextButton = MDCRaisedButton()
+  let nextButton: MDCButton = {
+    let nextButton = MDCButton()
     nextButton.translatesAutoresizingMaskIntoConstraints = false
     nextButton.setTitle("NEXT", for: .normal)
     nextButton.addTarget(self, action: #selector(didTapNext(sender:)), for: .touchUpInside)
@@ -233,10 +233,9 @@ class LoginViewController: UIViewController {
                                                      to: self.usernameTextFieldController)
     MDCTextFieldColorThemer.applySemanticColorScheme(colorScheme,
                                                      to: self.passwordTextFieldController)
-    MDCButtonColorThemer.applySemanticColorScheme(colorScheme,
-                                                  to: self.cancelButton)
-    MDCButtonColorThemer.applySemanticColorScheme(colorScheme,
-                                                  to: self.nextButton)
+    MDCTextButtonColorThemer.applySemanticColorScheme(colorScheme, to: self.cancelButton)
+    MDCContainedButtonColorThemer.applySemanticColorScheme(colorScheme, to: self.nextButton)
+
     // TODO: Theme the interface with our typography
     let typographyScheme = ApplicationScheme.shared.typographyScheme
     titleLabel.font = typographyScheme.headline5
