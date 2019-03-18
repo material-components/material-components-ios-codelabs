@@ -1,0 +1,33 @@
+osx_image: xcode10.2
+language: objective-c
+sudo: false
+branches:
+  only:
+    - master
+env:
+  global:
+  - LC_CTYPE=en_US.UTF-8
+  - LANG=en_US.UTF-8
+  matrix:
+    - WORKSPACE="MDC-101/ObjectiveC/Starter/Shrine/Shrine.xcworkspace" SCHEME="Shrine"
+    - WORKSPACE="MDC-101/ObjectiveC/Complete/Shrine/Shrine.xcworkspace" SCHEME="Shrine"
+    - WORKSPACE="MDC-101/Swift/Starter/Shrine/Shrine.xcworkspace" SCHEME="Shrine"
+    - WORKSPACE="MDC-101/Swift/Complete/Shrine/Shrine.xcworkspace" SCHEME="Shrine"
+    - WORKSPACE="MDC-102/ObjectiveC/Starter/Shrine/Shrine.xcworkspace" SCHEME="Shrine"
+    - WORKSPACE="MDC-102/ObjectiveC/Complete/Shrine/Shrine.xcworkspace" SCHEME="Shrine"
+    - WORKSPACE="MDC-102/Swift/Starter/Shrine/Shrine.xcworkspace" SCHEME="Shrine"
+    - WORKSPACE="MDC-102/Swift/Complete/Shrine/Shrine.xcworkspace" SCHEME="Shrine"
+    - WORKSPACE="MDC-103/ObjectiveC/Starter/Shrine/Shrine.xcworkspace" SCHEME="Shrine"
+    - WORKSPACE="MDC-103/ObjectiveC/Complete/Shrine/Shrine.xcworkspace" SCHEME="Shrine"
+    - WORKSPACE="MDC-103/Swift/Starter/Shrine/Shrine.xcworkspace" SCHEME="Shrine"
+    - WORKSPACE="MDC-103/Swift/Complete/Shrine/Shrine.xcworkspace" SCHEME="Shrine"
+    - WORKSPACE="MDC-104/ObjectiveC/Starter/Shrine/Shrine.xcworkspace" SCHEME="Shrine"
+    - WORKSPACE="MDC-104/ObjectiveC/Complete/Shrine/Shrine.xcworkspace" SCHEME="Shrine"
+    - WORKSPACE="MDC-104/Swift/Starter/Shrine/Shrine.xcworkspace" SCHEME="Shrine"
+    - WORKSPACE="MDC-104/Swift/Complete/Shrine/Shrine.xcworkspace" SCHEME="Shrine"
+    - WORKSPACE="MDC-111/ObjectiveC/Starter/MDC-111.xcworkspace" SCHEME="MDC-111"
+    - WORKSPACE="MDC-111/ObjectiveC/Complete/MDC-111.xcworkspace" SCHEME="MDC-111"
+    - WORKSPACE="MDC-111/Swift/Starter/MDC-111.xcworkspace" SCHEME="MDC-111"
+    - WORKSPACE="MDC-111/Swift/Complete/MDC-111.xcworkspace" SCHEME="MDC-111"
+script:
+  - xcodebuild build -workspace "$WORKSPACE" -scheme "$SCHEME" -destination="OS=latest,name=iPhone XS" -sdk "iphonesimulator12.2"
