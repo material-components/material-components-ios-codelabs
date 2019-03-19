@@ -1,32 +1,23 @@
-/*
- Copyright 2017-present the Material Components for iOS authors. All Rights Reserved.
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
- http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- */
+// Copyright 2017-present the Material Components for iOS authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 #import "MDCTabBarViewController.h"
 
 #import "MaterialShadowElevations.h"
 #import "MaterialShadowLayer.h"
 
-static NSString *const MDCTabBarViewControllerViewControllersKey =
-    @"MDCTabBarViewControllerViewControllersKey";
-static NSString *const MDCTabBarViewControllerSelectedViewControllerKey =
-    @"MDCTabBarViewControllerSelectedViewControllerKey";
-static NSString *const MDCTabBarViewControllerDelegateKey = @"MDCTabBarViewControllerDelegateKey";
-static NSString *const MDCTabBarViewControllerTabBarKey = @"MDCTabBarViewControllerTabBarKey";
-
-const CGFloat MDCTabBarViewControllerAnimationDuration = 0.3f;
+const CGFloat MDCTabBarViewControllerAnimationDuration = (CGFloat)0.3;
 
 /**
  * View to host shadow for the tab bar.
@@ -78,25 +69,36 @@ const CGFloat MDCTabBarViewControllerAnimationDuration = 0.3f;
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    _viewControllers = [aDecoder decodeObjectOfClass:[NSArray class]
-                                              forKey:MDCTabBarViewControllerViewControllersKey];
-    self.selectedViewController =
-        [aDecoder decodeObjectOfClass:[UIViewController class]
-                               forKey:MDCTabBarViewControllerSelectedViewControllerKey];
-    _tabBar = [aDecoder decodeObjectOfClass:[MDCTabBar class]
-                                     forKey:MDCTabBarViewControllerTabBarKey];
-    _delegate = [aDecoder decodeObjectForKey:MDCTabBarViewControllerDelegateKey];
+    [self commonInit];
   }
   return self;
 }
 
-- (void)encodeWithCoder:(NSCoder *)coder {
-  [super encodeWithCoder:coder];
-  [coder encodeObject:_viewControllers forKey:MDCTabBarViewControllerViewControllersKey];
-  [coder encodeConditionalObject:_selectedViewController
-                          forKey:MDCTabBarViewControllerSelectedViewControllerKey];
-  [coder encodeObject:_tabBar forKey:MDCTabBarViewControllerTabBarKey];
-  [coder encodeConditionalObject:_delegate forKey:MDCTabBarViewControllerDelegateKey];
+- (instancetype)init {
+  self = [super init];
+  if (self) {
+    [self commonInit];
+  }
+  return self;
+}
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+  if (self) {
+    [self commonInit];
+  }
+  return self;
+}
+
+- (void)commonInit {
+  if (self.tabBar) {
+    return;
+  }
+  MDCTabBar *tabBar = [[MDCTabBar alloc] initWithFrame:CGRectZero];
+  tabBar.alignment = MDCTabBarAlignmentJustified;
+  tabBar.delegate = self;
+  self.tabBar = tabBar;
+  _tabBarShadow = [[MDCTabBarShadowView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)viewDidLoad {
@@ -107,14 +109,10 @@ const CGFloat MDCTabBarViewControllerAnimationDuration = 0.3f;
                           UIViewAutoresizingFlexibleRightMargin |
                           UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight |
                           UIViewAutoresizingFlexibleBottomMargin;
-  MDCTabBar *tabBar = [[MDCTabBar alloc] initWithFrame:view.bounds];
-  tabBar.alignment = MDCTabBarAlignmentJustified;
-  tabBar.delegate = self;
-  self.tabBar = tabBar;
-  _tabBarShadow = [[MDCTabBarShadowView alloc] initWithFrame:view.bounds];
   [view addSubview:_tabBarShadow];
-  [view addSubview:tabBar];
-  [self updateTabBarItems];
+  [view addSubview:self.tabBar];
+  [self updateOldViewControllers:nil to:_viewControllers];
+  [self updateOldSelectedViewController:nil to:_selectedViewController];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -165,49 +163,71 @@ const CGFloat MDCTabBarViewControllerAnimationDuration = 0.3f;
 }
 
 - (void)setViewControllers:(NSArray<UIViewController *> *)viewControllers {
-  if (![_viewControllers isEqual:viewControllers]) {
+  NSArray<UIViewController *> *oldViewControllers = _viewControllers;
+  _viewControllers = [viewControllers copy];
+  [self updateOldViewControllers:oldViewControllers to:viewControllers];
+}
+
+- (void)updateOldViewControllers:(NSArray<UIViewController *> *)oldViewControllers
+                              to:(NSArray<UIViewController *> *)viewControllers {
+  if (!self.isViewLoaded || [oldViewControllers isEqual:viewControllers]) {
+    return;
+  }
+
+  if (![oldViewControllers isEqual:viewControllers]) {
     // For all view controllers that this is removing, follow UIViewController.h's rules for
     // for removing a child view controller. See the comments in UIViewController.h for more
     // information.
-    for (UIViewController *viewController in _viewControllers) {
+    for (UIViewController *viewController in oldViewControllers) {
       if (![viewControllers containsObject:viewController]) {
         [viewController willMoveToParentViewController:nil];
-        if (viewController.viewLoaded) {
+        if (viewController.isViewLoaded) {
           [viewController.view removeFromSuperview];
         }
         [viewController removeFromParentViewController];
       }
     }
-    // Update the property.
-    _viewControllers = [viewControllers copy];
     // Show the newly-visible view controller.
     [self updateTabBarItems];
   }
 }
 
-- (void)setSelectedViewController:(nullable UIViewController *)selectedViewController {
-  if (_selectedViewController != selectedViewController) {
-    if (selectedViewController) {
-      NSAssert([_viewControllers containsObject:selectedViewController], @"not one of us.");
-    }
-    BOOL animated = NO;
-    UIView *oldView = _selectedViewController.view;
-    _selectedViewController = selectedViewController;
-    UIViewController *oldController = [self controllerWithView:oldView];
-    [oldController beginAppearanceTransition:NO animated:animated];
-    [selectedViewController beginAppearanceTransition:YES animated:animated];
-
-    [self transitionViewsWithoutAnimationFromViewController:oldController
-                                           toViewController:selectedViewController];
-
-    [oldController endAppearanceTransition];
-    [selectedViewController endAppearanceTransition];
-
-    if (selectedViewController) {
-      self.tabBar.selectedItem = selectedViewController.tabBarItem;
-    }
-    [self setNeedsStatusBarAppearanceUpdate];
+- (void)updateOldSelectedViewController:(nullable UIViewController *)oldSelectedViewController
+                                     to:(nullable UIViewController *)selectedViewController {
+  if (!self.isViewLoaded || oldSelectedViewController == selectedViewController) {
+    return;
   }
+  if (selectedViewController) {
+    NSAssert([_viewControllers containsObject:selectedViewController], @"not one of us.");
+  }
+
+  if (![self.childViewControllers containsObject:selectedViewController]) {
+    [self addChildViewController:selectedViewController];
+    UIView *view = selectedViewController.view;
+    [self.view addSubview:view];
+    [selectedViewController didMoveToParentViewController:self];
+  }
+  [self updateTabBarItems];
+  BOOL animated = NO;
+  [oldSelectedViewController beginAppearanceTransition:NO animated:animated];
+  [selectedViewController beginAppearanceTransition:YES animated:animated];
+
+  [self transitionViewsWithoutAnimationFromViewController:oldSelectedViewController
+                                         toViewController:selectedViewController];
+
+  [oldSelectedViewController endAppearanceTransition];
+  [selectedViewController endAppearanceTransition];
+
+  if (selectedViewController) {
+    self.tabBar.selectedItem = selectedViewController.tabBarItem;
+  }
+  [self setNeedsStatusBarAppearanceUpdate];
+}
+
+- (void)setSelectedViewController:(nullable UIViewController *)selectedViewController {
+  UIViewController *oldSelectedViewController = _selectedViewController;
+  _selectedViewController = selectedViewController;
+  [self updateOldSelectedViewController:oldSelectedViewController to:selectedViewController];
 }
 
 #pragma mark - private
@@ -236,11 +256,6 @@ const CGFloat MDCTabBarViewControllerAnimationDuration = 0.3f;
     if (tabBarItem.image) {
       hasImages = YES;
     }
-    [self addChildViewController:child];
-    UIView *view = child.view;
-    view.hidden = child != _selectedViewController;
-    [self.view addSubview:view];
-    [child didMoveToParentViewController:self];
   }
   // This class preserves the invariant that if the selected controller is not nil, it is contained
   // in the array of viewControllers.
@@ -274,11 +289,9 @@ const CGFloat MDCTabBarViewControllerAnimationDuration = 0.3f;
   CGRect bounds = self.view.bounds;
   CGFloat tabBarHeight = [[_tabBar class] defaultHeightForBarPosition:UIBarPositionBottom
                                                        itemAppearance:_tabBar.itemAppearance];
-#if defined(__IPHONE_11_0) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_11_0)
   if (@available(iOS 11.0, *)) {
     tabBarHeight += self.view.safeAreaInsets.bottom;
   }
-#endif
 
   CGRect currentViewFrame = bounds;
   CGRect tabBarFrame = CGRectMake(bounds.origin.x, bounds.origin.y + bounds.size.height,
@@ -317,7 +330,7 @@ const CGFloat MDCTabBarViewControllerAnimationDuration = 0.3f;
   }
 }
 
-- (UIBarPosition)positionForBar:(id <UIBarPositioning>)bar {
+- (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar {
   if (_tabBar == bar) {
     return UIBarPositionBottom;
   } else {

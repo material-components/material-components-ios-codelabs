@@ -1,18 +1,16 @@
-/*
- Copyright 2016-present the Material Components for iOS authors. All Rights Reserved.
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
- http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- */
+// Copyright 2016-present the Material Components for iOS authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 #import "MDCCollectionViewTextCell.h"
 
@@ -23,10 +21,10 @@
 #include <tgmath.h>
 
 // Default cell heights.
-const CGFloat MDCCellDefaultOneLineHeight = 48.0f;
-const CGFloat MDCCellDefaultOneLineWithAvatarHeight = 56.0f;
-const CGFloat MDCCellDefaultTwoLineHeight = 72.0f;
-const CGFloat MDCCellDefaultThreeLineHeight = 88.0f;
+const CGFloat MDCCellDefaultOneLineHeight = 48;
+const CGFloat MDCCellDefaultOneLineWithAvatarHeight = 56;
+const CGFloat MDCCellDefaultTwoLineHeight = 72;
+const CGFloat MDCCellDefaultThreeLineHeight = 88;
 
 // Default cell fonts.
 static inline UIFont *CellDefaultTextFont(void) {
@@ -58,8 +56,8 @@ static const CGFloat kCellThreeLinePaddingBottom = 20;
 // Cell padding leading/trailing.
 static const CGFloat kCellTextNoImagePaddingLeading = 16;
 static const CGFloat kCellTextNoImagePaddingTrailing = 16;
-static const CGFloat kCellTextWithImagePaddingLeading = kCellImagePaddingLeading + kImageSize +
-  kCellTextNoImagePaddingLeading;
+static const CGFloat kCellTextWithImagePaddingLeading =
+    kCellImagePaddingLeading + kImageSize + kCellTextNoImagePaddingLeading;
 
 // Returns the closest pixel-aligned value higher than |value|, taking the scale factor into
 // account. At a scale of 1, equivalent to Ceil().
@@ -124,9 +122,8 @@ static inline CGRect AlignRectToUpperPixel(CGRect rect) {
 - (void)commonMDCCollectionViewTextCellInit {
   _contentWrapper = [[UIView alloc] initWithFrame:self.contentView.bounds];
   _contentWrapper.autoresizingMask =
-      UIViewAutoresizingFlexibleWidth |
-      MDFTrailingMarginAutoresizingMaskForLayoutDirection(
-          self.mdf_effectiveUserInterfaceLayoutDirection);
+      UIViewAutoresizingFlexibleWidth | MDFTrailingMarginAutoresizingMaskForLayoutDirection(
+                                            self.mdf_effectiveUserInterfaceLayoutDirection);
   _contentWrapper.clipsToBounds = YES;
   [self.contentView addSubview:_contentWrapper];
 
@@ -225,7 +222,7 @@ static inline CGRect AlignRectToUpperPixel(CGRect rect) {
       detailFrame.origin.y = (boundsHeight / 2) - (detailFrame.size.height / 2);
     }
 
-  } else if (numberOfAllVisibleTextLines == 3) {
+  } else if (numberOfAllVisibleTextLines >= 3) {
     if (!CGRectIsEmpty(textFrame) && !CGRectIsEmpty(detailFrame)) {
       // Alignment for three lines.
       textFrame.origin.y =
@@ -256,9 +253,9 @@ static inline CGRect AlignRectToUpperPixel(CGRect rect) {
 
 - (CGSize)frameSizeForLabel:(UILabel *)label {
   CGFloat width = CGRectGetWidth(_contentWrapper.bounds);
-  CGFloat height =
-      [label textRectForBounds:_contentWrapper.bounds limitedToNumberOfLines:label.numberOfLines]
-          .size.height;
+  CGFloat height = [label textRectForBounds:_contentWrapper.bounds
+                       limitedToNumberOfLines:label.numberOfLines]
+                       .size.height;
   return CGSizeMake(width, height);
 }
 

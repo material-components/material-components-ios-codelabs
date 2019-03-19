@@ -1,18 +1,16 @@
-/*
- Copyright 2018-present the Material Components for iOS authors. All Rights Reserved.
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
- http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- */
+// Copyright 2018-present the Material Components for iOS authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 #import <UIKit/UIKit.h>
 #import "MaterialInk.h"
@@ -33,6 +31,19 @@
  */
 @property(nonatomic, readonly, strong, nonnull) MDCInkView *inkView;
 
+/**
+ This property defines if a card as a whole should be interactable or not.
+ What this means is that when isInteractable is set to NO, there will be no ink ripple and
+ no change in shadow elevation when tapped or selected. Also the card container itself will not be
+ tappable, but any of its subviews will still be tappable.
+
+ Default is set to YES.
+
+ Important: Our specification for cards explicitly define a card as being an interactable component.
+ Therefore, this property should be set to NO *only if* there are other interactable items within
+ the card's content, such as buttons or other tappable controls.
+ */
+@property(nonatomic, getter=isInteractable) IBInspectable BOOL interactable;
 
 /**
  Sets the shadow elevation for an UIControlState state
@@ -40,8 +51,8 @@
  @param shadowElevation The shadow elevation
  @param state UIControlState the card state
  */
-- (void)setShadowElevation:(MDCShadowElevation)shadowElevation forState:(UIControlState)state
-    UI_APPEARANCE_SELECTOR;
+- (void)setShadowElevation:(MDCShadowElevation)shadowElevation
+                  forState:(UIControlState)state UI_APPEARANCE_SELECTOR;
 
 /**
  Returns the shadow elevation for an UIControlState state
@@ -61,8 +72,7 @@
  @param borderWidth The border width
  @param state UIControlState the card state
  */
-- (void)setBorderWidth:(CGFloat)borderWidth forState:(UIControlState)state
-    UI_APPEARANCE_SELECTOR;
+- (void)setBorderWidth:(CGFloat)borderWidth forState:(UIControlState)state UI_APPEARANCE_SELECTOR;
 
 /**
  Returns the border width for an UIControlState state
@@ -81,8 +91,8 @@
  @param borderColor The border color
  @param state UIControlState the card state
  */
-- (void)setBorderColor:(nullable UIColor *)borderColor forState:(UIControlState)state
-    UI_APPEARANCE_SELECTOR;
+- (void)setBorderColor:(nullable UIColor *)borderColor
+              forState:(UIControlState)state UI_APPEARANCE_SELECTOR;
 
 /**
  Returns the border color for an UIControlState state
@@ -101,8 +111,8 @@
  @param shadowColor The shadow color
  @param state UIControlState the card state
  */
-- (void)setShadowColor:(nullable UIColor *)shadowColor forState:(UIControlState)state
-    UI_APPEARANCE_SELECTOR;
+- (void)setShadowColor:(nullable UIColor *)shadowColor
+              forState:(UIControlState)state UI_APPEARANCE_SELECTOR;
 
 /**
  Returns the shadow color for an UIControlState state
@@ -123,10 +133,9 @@
 
  When the shapeGenerator is nil, MDCCard will use the default underlying layer with
  its default settings.
- 
+
  Default value for shapeGenerator is nil.
  */
 @property(nullable, nonatomic, strong) id<MDCShapeGenerating> shapeGenerator;
-
 
 @end

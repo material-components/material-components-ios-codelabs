@@ -1,18 +1,16 @@
-/*
- Copyright 2018-present the Material Components for iOS authors. All Rights Reserved.
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
- http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- */
+// Copyright 2018-present the Material Components for iOS authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 #import "MDCTextFieldTypographyThemer.h"
 
@@ -24,7 +22,7 @@
   textInputController.leadingUnderlineLabelFont = typographyScheme.caption;
   textInputController.trailingUnderlineLabelFont = typographyScheme.caption;
   if ([textInputController
-       conformsToProtocol:@protocol(MDCTextInputControllerFloatingPlaceholder)]) {
+          conformsToProtocol:@protocol(MDCTextInputControllerFloatingPlaceholder)]) {
     id<MDCTextInputControllerFloatingPlaceholder> textInputControllerFloatingPlaceholder =
         (id<MDCTextInputControllerFloatingPlaceholder>)textInputController;
 
@@ -32,7 +30,7 @@
     if (typographyScheme.caption.pointSize <= 0) {
       textInputControllerFloatingPlaceholder.floatingPlaceholderScale = nil;
     } else {
-      double ratio = typographyScheme.caption.pointSize/typographyScheme.subtitle1.pointSize;
+      double ratio = typographyScheme.caption.pointSize / typographyScheme.subtitle1.pointSize;
       textInputControllerFloatingPlaceholder.floatingPlaceholderScale =
           [NSNumber numberWithDouble:ratio];
     }
@@ -54,19 +52,19 @@
 #pragma clang diagnostic ignored "-Wobjc-method-access"
 #endif
 + (void)applyTypographyScheme:(id<MDCTypographyScheming>)typographyScheme
-  toAllTextInputControllersOfClass:(Class<MDCTextInputController>)textInputControllerClass {
+    toAllTextInputControllersOfClass:(Class<MDCTextInputController>)textInputControllerClass {
   [textInputControllerClass setInlinePlaceholderFontDefault:typographyScheme.subtitle1];
   [textInputControllerClass setTrailingUnderlineLabelFontDefault:typographyScheme.caption];
   [textInputControllerClass setLeadingUnderlineLabelFontDefault:typographyScheme.caption];
   if ([textInputControllerClass
-       conformsToProtocol:@protocol(MDCTextInputControllerFloatingPlaceholder)]) {
+          conformsToProtocol:@protocol(MDCTextInputControllerFloatingPlaceholder)]) {
     Class<MDCTextInputControllerFloatingPlaceholder> textInputControllerFloatingPlaceholderClass =
         (Class<MDCTextInputControllerFloatingPlaceholder>)textInputControllerClass;
     // if caption.pointSize <= 0 there is no meaningful ratio so we fallback to default.
-  if (typographyScheme.caption.pointSize <= 0) {
+    if (typographyScheme.caption.pointSize <= 0) {
       [textInputControllerFloatingPlaceholderClass setFloatingPlaceholderScaleDefault:0];
     } else {
-      CGFloat scale = typographyScheme.caption.pointSize/typographyScheme.subtitle1.pointSize;
+      CGFloat scale = typographyScheme.caption.pointSize / typographyScheme.subtitle1.pointSize;
       [textInputControllerFloatingPlaceholderClass setFloatingPlaceholderScaleDefault:scale];
     }
   }
@@ -74,6 +72,5 @@
 #if !defined(__IPHONE_11_0)
 #pragma clang diagnostic pop
 #endif
-
 
 @end

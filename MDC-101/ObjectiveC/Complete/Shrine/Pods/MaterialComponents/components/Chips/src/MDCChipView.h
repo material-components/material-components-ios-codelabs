@@ -1,21 +1,19 @@
-/*
- Copyright 2017-present the Material Components for iOS authors. All Rights Reserved.
+// Copyright 2017-present the Material Components for iOS authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
- http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- */
-
-#import <UIKit/UIKit.h>
 #import <CoreGraphics/CoreGraphics.h>
+#import <UIKit/UIKit.h>
 
 #import "MaterialShadowElevations.h"
 #import "MaterialShapes.h"
@@ -29,6 +27,12 @@
 
  Chips contain an optional leading image, a title label and an optional trailing accessory view.
  They can also contain a leading image that appears only when the chip is selected.
+
+ Chips currently support two contentHorizontalAlignment styles: centered
+ (UIControlContentHorizontalAlignmentCenter) and default
+ (any other UIControlContentHorizontalAlignment value). In the default mode, the image and text will
+ be left-aligned, and the accessory view will be right aligned. In the centered mode, all three will
+ appear together in the center of the chip.
  */
 @interface MDCChipView : UIControl
 
@@ -109,8 +113,8 @@
 /*
  The color of the ink ripple.
  */
-@property(nonatomic, strong, null_resettable) UIColor *inkColor UI_APPEARANCE_SELECTOR
-    __deprecated_msg("Use setInkColor:forState:");
+@property(nonatomic, strong, null_resettable)
+    UIColor *inkColor UI_APPEARANCE_SELECTOR __deprecated_msg("Use setInkColor:forState:");
 
 /*
  The shape generator used to define the chip's shape.
@@ -164,8 +168,8 @@
  @param backgroundColor The background color.
  @param state The control state.
  */
-- (void)setBackgroundColor:(nullable UIColor *)backgroundColor forState:(UIControlState)state
-    UI_APPEARANCE_SELECTOR;
+- (void)setBackgroundColor:(nullable UIColor *)backgroundColor
+                  forState:(UIControlState)state UI_APPEARANCE_SELECTOR;
 
 /*
  Returns the border color for a particular control state.
@@ -184,8 +188,8 @@
  @param borderColor The border color.
  @param state The control state.
  */
-- (void)setBorderColor:(nullable UIColor *)borderColor forState:(UIControlState)state
-    UI_APPEARANCE_SELECTOR;
+- (void)setBorderColor:(nullable UIColor *)borderColor
+              forState:(UIControlState)state UI_APPEARANCE_SELECTOR;
 
 /*
  Returns the border width for a particular control state.
@@ -223,8 +227,8 @@
  @param elevation The elevation.
  @param state The control state.
  */
-- (void)setElevation:(MDCShadowElevation)elevation forState:(UIControlState)state
-    UI_APPEARANCE_SELECTOR;
+- (void)setElevation:(MDCShadowElevation)elevation
+            forState:(UIControlState)state UI_APPEARANCE_SELECTOR;
 
 /*
  Returns the ink color for a particular control state.
@@ -243,8 +247,8 @@
  @param inkColor The ink color.
  @param state The control state.
  */
-- (void)setInkColor:(nullable UIColor *)inkColor forState:(UIControlState)state
-    UI_APPEARANCE_SELECTOR;
+- (void)setInkColor:(nullable UIColor *)inkColor
+           forState:(UIControlState)state UI_APPEARANCE_SELECTOR;
 
 /*
  Returns the shadow color for a particular control state.
@@ -263,8 +267,8 @@
  @param elevation The shadow color.
  @param state The control state.
  */
-- (void)setShadowColor:(nullable UIColor *)shadowColor forState:(UIControlState)state
-    UI_APPEARANCE_SELECTOR;
+- (void)setShadowColor:(nullable UIColor *)shadowColor
+              forState:(UIControlState)state UI_APPEARANCE_SELECTOR;
 
 /*
  Returns the title color for a particular control state.
@@ -283,7 +287,7 @@
  @param titleColor The title color.
  @param state The control state.
  */
-- (void)setTitleColor:(nullable UIColor *)titleColor forState:(UIControlState)state
-    UI_APPEARANCE_SELECTOR;
+- (void)setTitleColor:(nullable UIColor *)titleColor
+             forState:(UIControlState)state UI_APPEARANCE_SELECTOR;
 
 @end

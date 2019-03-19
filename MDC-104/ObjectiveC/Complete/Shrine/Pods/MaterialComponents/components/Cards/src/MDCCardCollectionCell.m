@@ -1,55 +1,47 @@
-/*
- Copyright 2018-present the Material Components for iOS authors. All Rights Reserved.
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
- http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- */
+// Copyright 2018-present the Material Components for iOS authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 #import "MDCCardCollectionCell.h"
+#import "private/MDCCardCollectionCell+Private.h"
 
-#import "MaterialMath.h"
 #import "MaterialIcons+ic_check_circle.h"
+#import "MaterialMath.h"
 #import "MaterialShapes.h"
 
-static NSString *const MDCCardCellBackgroundColorsKey = @"MDCCardCellBackgroundColorsKey";
-static NSString *const MDCCardCellBorderWidthsKey = @"MDCCardCellBorderWidthsKey";
-static NSString *const MDCCardCellBorderColorsKey = @"MDCCardCellBorderColorsKey";
-static NSString *const MDCCardCellCornerRadiusKey = @"MDCCardCellCornerRadiusKey";
-static NSString *const MDCCardCellHorizontalImageAlignmentsKey =
-@"MDCCardCellHorizontalImageAlignmentsKey";
-static NSString *const MDCCardCellImageTintColorsKey = @"MDCCardCellImageTintColorsKey";
-static NSString *const MDCCardCellImagesKey = @"MDCCardCellImagesKey";
-static NSString *const MDCCardCellInkViewKey = @"MDCCardCellInkViewKey";
-static NSString *const MDCCardCellSelectableKey = @"MDCCardCellSelectableKey";
-static NSString *const MDCCardCellSelectedImageViewKey = @"MDCCardCellSelectedImageViewKey";
-static NSString *const MDCCardCellShadowElevationsKey = @"MDCCardCellShadowElevationsKey";
-static NSString *const MDCCardCellShadowColorsKey = @"MDCCardCellShadowColorsKey";
-static NSString *const MDCCardCellStateKey = @"MDCCardCellStateKey";
-static NSString *const MDCCardCellVerticalImageAlignmentsKey =
-    @"MDCCardCellVerticalImageAlignmentsKey";
-
-static const CGFloat MDCCardCellCornerRadiusDefault = 4.f;
+static const CGFloat MDCCardCellCornerRadiusDefault = 4;
 static const CGFloat MDCCardCellSelectedImagePadding = 8;
-static const CGFloat MDCCardCellShadowElevationHighlighted = 8.f;
-static const CGFloat MDCCardCellShadowElevationNormal = 1.f;
-static const CGFloat MDCCardCellShadowElevationSelected = 8.f;
-
+static const CGFloat MDCCardCellShadowElevationHighlighted = 8;
+static const CGFloat MDCCardCellShadowElevationNormal = 1;
+static const CGFloat MDCCardCellShadowElevationSelected = 8;
+static const CGFloat MDCCardCellShadowElevationDragged = 8;  // Used for Ripple Beta
+static const BOOL MDCCardCellIsInteractableDefault = YES;
 
 @interface MDCCardCollectionCell ()
 @property(nonatomic, strong, nullable) UIImageView *selectedImageView;
 @property(nonatomic, readonly, strong) MDCShapedShadowLayer *layer;
+
+// Used for Ripple Beta
+@property(nonatomic, strong) UIView *rippleView;
+@property(nonatomic, getter=isDragged) BOOL dragged;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+@property(nonatomic, weak) id<MDCCardCollectionCellRippleDelegate> rippleDelegate;
+#pragma clang diagnostic pop
+@property(nonatomic, assign) BOOL enableBetaBehavior;
 @end
 
-@implementation MDCCardCollectionCell  {
+@implementation MDCCardCollectionCell {
   NSMutableDictionary<NSNumber *, NSNumber *> *_shadowElevations;
   NSMutableDictionary<NSNumber *, UIColor *> *_shadowColors;
   NSMutableDictionary<NSNumber *, NSNumber *> *_borderWidths;
@@ -62,6 +54,7 @@ static const CGFloat MDCCardCellShadowElevationSelected = 8.f;
   CGPoint _lastTouch;
 }
 
+@synthesize state = _state;
 @dynamic layer;
 
 + (Class)layerClass {
@@ -71,38 +64,8 @@ static const CGFloat MDCCardCellShadowElevationSelected = 8.f;
 - (instancetype)initWithCoder:(NSCoder *)coder {
   self = [super initWithCoder:coder];
   if (self) {
-    _shadowElevations = [coder decodeObjectOfClass:[NSMutableDictionary class]
-                                            forKey:MDCCardCellShadowElevationsKey];
-    _shadowColors = [coder decodeObjectOfClass:[NSMutableDictionary class]
-                                        forKey:MDCCardCellShadowColorsKey];
-    _borderWidths = [coder decodeObjectOfClass:[NSMutableDictionary class]
-                                        forKey:MDCCardCellBorderWidthsKey];
-    _borderColors = [coder decodeObjectOfClass:[NSMutableDictionary class]
-                                        forKey:MDCCardCellBorderColorsKey];
-    _inkView = [coder decodeObjectOfClass:[MDCInkView class] forKey:MDCCardCellInkViewKey];
-    _selectedImageView = [coder decodeObjectOfClass:[UIImageView class]
-                                             forKey:MDCCardCellSelectedImageViewKey];
-    _state = [coder decodeIntegerForKey:MDCCardCellStateKey];
-    _selectable = [coder decodeBoolForKey:MDCCardCellSelectableKey];
-    _images = [coder decodeObjectOfClass:[NSMutableDictionary class]
-                                  forKey:MDCCardCellImagesKey];
-    _horizontalImageAlignments =
-        [coder decodeObjectOfClass:[NSMutableDictionary class]
-                            forKey:MDCCardCellHorizontalImageAlignmentsKey];
-    _verticalImageAlignments = [coder decodeObjectOfClass:[NSMutableDictionary class]
-                                                   forKey:MDCCardCellVerticalImageAlignmentsKey];
-    _imageTintColors = [coder decodeObjectOfClass:[NSMutableDictionary class]
-                                           forKey:MDCCardCellImageTintColorsKey];
-    if ([coder containsValueForKey:MDCCardCellCornerRadiusKey]) {
-      self.layer.cornerRadius = (CGFloat)[coder decodeDoubleForKey:MDCCardCellCornerRadiusKey];
-    } else {
-      self.layer.cornerRadius = MDCCardCellCornerRadiusDefault;
-    }
-    if ([coder containsValueForKey:MDCCardCellBackgroundColorsKey]) {
-      [self.layer setShapedBackgroundColor:
-          [coder decodeObjectOfClass:[UIColor class]
-                              forKey:MDCCardCellBackgroundColorsKey]];
-    }
+    self.layer.cornerRadius = MDCCardCellCornerRadiusDefault;
+    _interactable = MDCCardCellIsInteractableDefault;
     [self commonMDCCardCollectionCellInit];
   }
   return self;
@@ -112,6 +75,7 @@ static const CGFloat MDCCardCellShadowElevationSelected = 8.f;
   self = [super initWithFrame:frame];
   if (self) {
     self.layer.cornerRadius = MDCCardCellCornerRadiusDefault;
+    _interactable = MDCCardCellIsInteractableDefault;
     [self commonMDCCardCollectionCellInit];
   }
   return self;
@@ -120,7 +84,8 @@ static const CGFloat MDCCardCellShadowElevationSelected = 8.f;
 - (void)commonMDCCardCollectionCellInit {
   if (_inkView == nil) {
     _inkView = [[MDCInkView alloc] initWithFrame:self.bounds];
-    _inkView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+    _inkView.autoresizingMask =
+        (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
     _inkView.usesLegacyInkRipple = NO;
     _inkView.layer.zPosition = FLT_MAX;
     [self addSubview:_inkView];
@@ -130,8 +95,8 @@ static const CGFloat MDCCardCellShadowElevationSelected = 8.f;
     _selectedImageView = [[UIImageView alloc] init];
     _selectedImageView.layer.zPosition = _inkView.layer.zPosition - 1;
     _selectedImageView.autoresizingMask =
-    (UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin |
-     UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin);
+        (UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin |
+         UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin);
     [self.contentView addSubview:_selectedImageView];
     _selectedImageView.hidden = YES;
   }
@@ -141,6 +106,7 @@ static const CGFloat MDCCardCellShadowElevationSelected = 8.f;
     _shadowElevations[@(MDCCardCellStateNormal)] = @(MDCCardCellShadowElevationNormal);
     _shadowElevations[@(MDCCardCellStateHighlighted)] = @(MDCCardCellShadowElevationHighlighted);
     _shadowElevations[@(MDCCardCellStateSelected)] = @(MDCCardCellShadowElevationSelected);
+    _shadowElevations[@(MDCCardCellStateDragged)] = @(MDCCardCellShadowElevationDragged);
   }
 
   if (_shadowColors == nil) {
@@ -191,24 +157,6 @@ static const CGFloat MDCCardCellShadowElevationSelected = 8.f;
   [self updateBackgroundColor];
 }
 
-- (void)encodeWithCoder:(NSCoder *)coder {
-  [super encodeWithCoder:coder];
-  [coder encodeObject:_shadowElevations forKey:MDCCardCellShadowElevationsKey];
-  [coder encodeObject:_shadowColors forKey:MDCCardCellShadowColorsKey];
-  [coder encodeObject:_borderWidths forKey:MDCCardCellBorderWidthsKey];
-  [coder encodeObject:_borderColors forKey:MDCCardCellBorderColorsKey];
-  [coder encodeObject:_inkView forKey:MDCCardCellInkViewKey];
-  [coder encodeObject:_selectedImageView forKey:MDCCardCellSelectedImageViewKey];
-  [coder encodeInteger:_state forKey:MDCCardCellStateKey];
-  [coder encodeBool:_selectable forKey:MDCCardCellSelectableKey];
-  [coder encodeDouble:self.layer.cornerRadius forKey:MDCCardCellCornerRadiusKey];
-  [coder encodeObject:_images forKey:MDCCardCellImagesKey];
-  [coder encodeObject:_horizontalImageAlignments forKey:MDCCardCellHorizontalImageAlignmentsKey];
-  [coder encodeObject:_verticalImageAlignments forKey:MDCCardCellVerticalImageAlignmentsKey];
-  [coder encodeObject:_imageTintColors forKey:MDCCardCellImageTintColorsKey];
-  [coder encodeObject:self.layer.shapedBackgroundColor forKey:MDCCardCellBackgroundColorsKey];
-}
-
 - (void)layoutSubviews {
   [super layoutSubviews];
   if (!self.layer.shapeGenerator) {
@@ -227,6 +175,10 @@ static const CGFloat MDCCardCellShadowElevationSelected = 8.f;
 }
 
 - (void)setState:(MDCCardCellState)state animated:(BOOL)animated {
+  if (self.rippleDelegate != nil) {
+    // Used for Ripple Beta
+    return;
+  }
   switch (state) {
     case MDCCardCellStateSelected: {
       if (_state != MDCCardCellStateHighlighted) {
@@ -234,27 +186,25 @@ static const CGFloat MDCCardCellShadowElevationSelected = 8.f;
           [self.inkView startTouchBeganAnimationAtPoint:_lastTouch completion:nil];
         } else {
           [self.inkView cancelAllAnimationsAnimated:NO];
-          [self.inkView startTouchBeganAtPoint:self.center
-                                      animated:NO
-                                withCompletion:nil];
+          [self.inkView startTouchBeganAtPoint:self.center animated:NO withCompletion:nil];
         }
       }
       break;
     }
     case MDCCardCellStateNormal: {
-      [self.inkView startTouchEndAtPoint:_lastTouch
-                                animated:animated
-                          withCompletion:nil];
+      [self.inkView startTouchEndAtPoint:_lastTouch animated:animated withCompletion:nil];
       break;
     }
     case MDCCardCellStateHighlighted: {
       // Note: setHighlighted: can get getting more calls with YES than NO when clicking rapidly.
       // To guard against ink never going away and darkening our card we call
       // startTouchEndedAnimationAtPoint:completion:.
-      [self.inkView startTouchEndedAnimationAtPoint:_lastTouch completion:nil];
-      [self.inkView startTouchBeganAnimationAtPoint:_lastTouch completion:nil];
+      [self.inkView startTouchEndAtPoint:_lastTouch animated:animated withCompletion:nil];
+      [self.inkView startTouchBeganAtPoint:_lastTouch animated:animated withCompletion:nil];
       break;
     }
+    default:
+      break;
   }
   _state = state;
   [self updateShadowElevation];
@@ -266,8 +216,16 @@ static const CGFloat MDCCardCellShadowElevationSelected = 8.f;
   [self updateImageTintColor];
 }
 
+- (MDCCardCellState)state {
+  return self.rippleDelegate ? [self.rippleDelegate cardCellRippleDelegateState] : _state;
+}
+
 - (void)setSelected:(BOOL)selected {
   [super setSelected:selected];
+  if (self.rippleDelegate != nil) {
+    [self.rippleDelegate cardCellRippleDelegateSetSelected:selected];
+    return;
+  }
   if (self.selectable) {
     if (selected) {
       [self setState:MDCCardCellStateSelected animated:NO];
@@ -277,9 +235,23 @@ static const CGFloat MDCCardCellShadowElevationSelected = 8.f;
   }
 }
 
+- (void)setHighlighted:(BOOL)highlighted {
+  [super setHighlighted:highlighted];
+  [self.rippleDelegate cardCellRippleDelegateSetHighlighted:highlighted];
+}
+
 - (void)setSelectable:(BOOL)selectable {
   _selectable = selectable;
+  if (self.rippleDelegate != nil) {
+    [self.rippleDelegate cardCellRippleDelegateSetSelectable:selectable];
+    return;
+  }
   self.selectedImageView.hidden = !selectable;
+}
+
+- (void)setDragged:(BOOL)dragged {
+  _dragged = dragged;
+  [self.rippleDelegate cardCellRippleDelegateSetDragged:dragged];
 }
 
 - (UIBezierPath *)boundingPath {
@@ -385,6 +357,9 @@ static const CGFloat MDCCardCellShadowElevationSelected = 8.f;
 
 - (void)updateImage {
   UIImage *image = [self imageForState:self.state];
+  if (self.rippleDelegate != nil) {
+    image = [self.rippleDelegate cardCellRippleDelegateUpdateImage:image];
+  }
   [self.selectedImageView setImage:image];
   [self.selectedImageView sizeToFit];
 }
@@ -445,33 +420,32 @@ static const CGFloat MDCCardCellShadowElevationSelected = 8.f;
   switch (verticalImageAlignment) {
     case MDCCardCellVerticalImageAlignmentTop:
       yAlignment =
-          MDCCardCellSelectedImagePadding + CGRectGetHeight(self.selectedImageView.frame)/2;
+          MDCCardCellSelectedImagePadding + CGRectGetHeight(self.selectedImageView.frame) / 2;
       break;
     case MDCCardCellVerticalImageAlignmentCenter:
-      yAlignment = CGRectGetHeight(self.bounds)/2;
+      yAlignment = CGRectGetHeight(self.bounds) / 2;
       break;
     case MDCCardCellVerticalImageAlignmentBottom:
       yAlignment = CGRectGetHeight(self.bounds) - MDCCardCellSelectedImagePadding -
-          CGRectGetHeight(self.selectedImageView.frame)/2;
+                   CGRectGetHeight(self.selectedImageView.frame) / 2;
       break;
   }
 
   switch (horizontalImageAlignment) {
     case MDCCardCellHorizontalImageAlignmentLeft:
       xAlignment =
-          MDCCardCellSelectedImagePadding + CGRectGetWidth(self.selectedImageView.frame)/2;
+          MDCCardCellSelectedImagePadding + CGRectGetWidth(self.selectedImageView.frame) / 2;
       break;
     case MDCCardCellHorizontalImageAlignmentCenter:
-      xAlignment = CGRectGetWidth(self.bounds)/2;
+      xAlignment = CGRectGetWidth(self.bounds) / 2;
       break;
     case MDCCardCellHorizontalImageAlignmentRight:
       xAlignment = CGRectGetWidth(self.bounds) - MDCCardCellSelectedImagePadding -
-          CGRectGetWidth(self.selectedImageView.frame)/2;
+                   CGRectGetWidth(self.selectedImageView.frame) / 2;
       break;
   }
 
-  self.selectedImageView.center = CGPointMake(xAlignment,
-                                              yAlignment);
+  self.selectedImageView.center = CGPointMake(xAlignment, yAlignment);
 }
 
 - (void)setImageTintColor:(UIColor *)imageTintColor forState:(MDCCardCellState)state {
@@ -482,6 +456,10 @@ static const CGFloat MDCCardCellShadowElevationSelected = 8.f;
 
 - (void)updateImageTintColor {
   UIColor *imageTintColor = [self imageTintColorForState:self.state];
+  if (self.rippleDelegate != nil) {
+    imageTintColor =
+        [self.rippleDelegate cardCellRippleDelegateUpdateImageTintColor:imageTintColor];
+  }
   [self.selectedImageView setTintColor:imageTintColor];
 }
 
@@ -508,7 +486,10 @@ static const CGFloat MDCCardCellShadowElevationSelected = 8.f;
   self.layer.shapeGenerator = shapeGenerator;
   self.layer.shadowMaskEnabled = NO;
   [self updateBackgroundColor];
-  [self updateInkForShape];
+  // Original logic for configuring Ink prior to the Ripple integration.
+  if (self.rippleDelegate == nil) {
+    [self updateInkForShape];
+  }
 }
 
 - (id)shapeGenerator {
@@ -518,7 +499,7 @@ static const CGFloat MDCCardCellShadowElevationSelected = 8.f;
 - (void)updateInkForShape {
   CGRect boundingBox = CGPathGetBoundingBox(self.layer.shapeLayer.path);
   self.inkView.maxRippleRadius =
-  (CGFloat)(MDCHypot(CGRectGetHeight(boundingBox), CGRectGetWidth(boundingBox)) / 2 + 10.f);
+      (CGFloat)(MDCHypot(CGRectGetHeight(boundingBox), CGRectGetWidth(boundingBox)) / 2 + 10);
   self.inkView.layer.masksToBounds = NO;
 }
 
@@ -537,33 +518,68 @@ static const CGFloat MDCCardCellShadowElevationSelected = 8.f;
 
 #pragma mark - UIResponder
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-  [super touchesBegan:touches withEvent:event];
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+  UIView *result = [super hitTest:point withEvent:event];
+  if (!_interactable && (result == self.contentView || result == self)) {
+    return nil;
+  }
+  return result;
+}
 
-  UITouch *touch = [touches anyObject];
-  CGPoint location = [touch locationInView:self];
-  _lastTouch = location;
-  if (!self.selected || !self.selectable) {
-    [self setState:MDCCardCellStateHighlighted animated:YES];
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+  [self.rippleDelegate cardCellRippleDelegateTouchesBegan:touches withEvent:event];
+  [super touchesBegan:touches withEvent:event];
+  if (self.rippleDelegate == nil) {
+    UITouch *touch = [touches anyObject];
+    CGPoint location = [touch locationInView:self];
+    _lastTouch = location;
+    if (!self.selected || !self.selectable) {
+      [self setState:MDCCardCellStateHighlighted animated:YES];
+    }
   }
 }
 
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+  // The ripple invocation must come before touchesMoved of the super, otherwise the setHighlighted
+  // of the UICollectionViewCell will be triggered before the ripple identifies that the highlighted
+  // was trigerred from a long press entering the view and shouldn't invoke a ripple.
+  [self.rippleDelegate cardCellRippleDelegateTouchesMoved:touches withEvent:event];
   [super touchesMoved:touches withEvent:event];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+  [self.rippleDelegate cardCellRippleDelegateTouchesEnded:touches withEvent:event];
   [super touchesEnded:touches withEvent:event];
-  if (!self.selected || !self.selectable) {
-    [self setState:MDCCardCellStateNormal animated:YES];
+  if (self.rippleDelegate == nil) {
+    if (!self.selected || !self.selectable) {
+      [self setState:MDCCardCellStateNormal animated:YES];
+    }
   }
 }
 
 - (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+  [self.rippleDelegate cardCellRippleDelegateTouchesCancelled:touches withEvent:event];
   [super touchesCancelled:touches withEvent:event];
-  if (!self.selected || !self.selectable) {
-    [self setState:MDCCardCellStateNormal animated:YES];
+  if (self.rippleDelegate == nil) {
+    if (!self.selected || !self.selectable) {
+      [self setState:MDCCardCellStateNormal animated:YES];
+    }
   }
 }
 
+- (void)setEnableBetaBehavior:(BOOL)enableBetaBehavior {
+  if (enableBetaBehavior == _enableBetaBehavior) {
+    return;
+  }
+  _enableBetaBehavior = enableBetaBehavior;
+  // TODO: Remove this performSelector code once Ripple is no longer in Beta.
+  SEL cardCellRippleEnableBetaBehavior = NSSelectorFromString(@"cardCellRippleEnableBetaBehavior:");
+  if ([self respondsToSelector:cardCellRippleEnableBetaBehavior]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+    NSNumber *enabled = [NSNumber numberWithBool:enableBetaBehavior];
+    [self performSelector:cardCellRippleEnableBetaBehavior withObject:enabled];
+#pragma clang diagnostic pop
+  }
+}
 @end

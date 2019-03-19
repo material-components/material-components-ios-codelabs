@@ -1,19 +1,50 @@
 {
   "name": "MaterialComponents",
-  "version": "55.0.0",
+  "version": "79.1.0",
   "authors": "The Material Components authors.",
   "summary": "A collection of stand-alone production-ready UI libraries focused on design details.",
   "homepage": "https://github.com/material-components/material-components-ios",
   "license": "Apache 2.0",
   "source": {
     "git": "https://github.com/material-components/material-components-ios.git",
-    "tag": "v55.0.0"
+    "tag": "v79.1.0"
   },
   "platforms": {
     "ios": "8.0"
   },
   "requires_arc": true,
   "subspecs": [
+    {
+      "name": "ActionSheet",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/ActionSheet/src/*.h",
+      "source_files": [
+        "components/ActionSheet/src/*.{h,m}",
+        "components/ActionSheet/src/private/*.{h,m}"
+      ],
+      "dependencies": {
+        "MaterialComponents/BottomSheet": [
+
+        ],
+        "MaterialComponents/Ink": [
+
+        ],
+        "MaterialComponents/Typography": [
+
+        ]
+      },
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/ActionSheet/tests/unit/*.{h,m,swift}"
+          ]
+        }
+      ]
+    },
     {
       "name": "ActivityIndicator",
       "platforms": {
@@ -40,15 +71,35 @@
         "MotionAnimator": [
           "~> 2.0"
         ]
-      }
+      },
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/ActivityIndicator/tests/unit/*.{h,m,swift}",
+            "components/ActivityIndicator/tests/unit/supplemental/*.{h,m,swift}"
+          ],
+          "resources": "components/ActivityIndicator/tests/unit/resources/*",
+          "dependencies": {
+            "MaterialComponents/ActivityIndicator+ColorThemer": [
+
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "ActivityIndicator+ColorThemer",
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/ActivityIndicator/src/ColorThemer/*.h",
-      "source_files": "components/ActivityIndicator/src/ColorThemer/*.{h,m}",
+      "public_header_files": [
+        "components/ActivityIndicator/src/ColorThemer/*.h"
+      ],
+      "source_files": [
+        "components/ActivityIndicator/src/ColorThemer/*.{h,m}"
+      ],
       "dependencies": {
         "MaterialComponents/ActivityIndicator": [
 
@@ -67,6 +118,17 @@
       "source_files": [
         "components/AnimationTiming/src/*.{h,m}",
         "components/AnimationTiming/src/private/*.{h,m}"
+      ],
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/AnimationTiming/tests/unit/*.{h,m,swift}",
+            "components/AnimationTiming/tests/unit/supplemental/*.{h,m,swift}"
+          ],
+          "resources": "components/AnimationTiming/tests/unit/resources/*"
+        }
       ]
     },
     {
@@ -113,14 +175,35 @@
         "MaterialComponents/private/UIMetrics": [
 
         ]
-      }
+      },
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/AppBar/tests/unit/*.{h,m,swift}",
+            "components/AppBar/tests/unit/supplemental/*.{h,m,swift}"
+          ],
+          "resources": "components/AppBar/tests/unit/resources/*",
+          "dependencies": {
+            "MaterialComponents/AppBar+ColorThemer": [
+
+            ],
+            "MaterialComponents/AppBar+TypographyThemer": [
+
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "AppBar+ColorThemer",
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/AppBar/src/ColorThemer/*.h",
+      "public_header_files": [
+        "components/AppBar/src/ColorThemer/*.h"
+      ],
       "source_files": [
         "components/AppBar/src/ColorThemer/*.{h,m}",
         "components/AppBar/src/ColorThemer/private/*.{h,m}"
@@ -145,7 +228,9 @@
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/AppBar/src/TypographyThemer/*.h",
+      "public_header_files": [
+        "components/AppBar/src/TypographyThemer/*.h"
+      ],
       "source_files": [
         "components/AppBar/src/TypographyThemer/*.{h,m}",
         "components/AppBar/src/TypographyThemer/private/*.{h,m}"
@@ -182,15 +267,35 @@
         "MaterialComponents/private/Math": [
 
         ]
-      }
+      },
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/BottomAppBar/tests/unit/*.{h,m,swift}",
+            "components/BottomAppBar/tests/unit/supplemental/*.{h,m,swift}"
+          ],
+          "resources": "components/BottomAppBar/tests/unit/resources/*",
+          "dependencies": {
+            "MaterialComponents/BottomAppBar+ColorThemer": [
+
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "BottomAppBar+ColorThemer",
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/BottomAppBar/src/ColorThemer/*.h",
-      "source_files": "components/BottomAppBar/src/ColorThemer/*.{h,m}",
+      "public_header_files": [
+        "components/BottomAppBar/src/ColorThemer/*.h"
+      ],
+      "source_files": [
+        "components/BottomAppBar/src/ColorThemer/*.{h,m}"
+      ],
       "dependencies": {
         "MaterialComponents/BottomAppBar": [
 
@@ -209,6 +314,10 @@
       "source_files": [
         "components/BottomNavigation/src/*.{h,m}",
         "components/BottomNavigation/src/private/*.{h,m}"
+      ],
+      "exclude_files": [
+        "components/BottomNavigation/src/MDCBottomNavigationBarController.*",
+        "components/BottomNavigation/src/MaterialBottomNavigationBeta.h"
       ],
       "resources": [
         "components/BottomNavigation/src/MaterialBottomNavigation.bundle"
@@ -232,15 +341,41 @@
         "MaterialComponents/private/Math": [
 
         ]
-      }
+      },
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/BottomNavigation/tests/unit/*.{h,m,swift}",
+            "components/BottomNavigation/tests/unit/supplemental/*.{h,m,swift}"
+          ],
+          "exclude_files": [
+            "components/BottomNavigation/tests/unit/MDCBottomNavigationBarControllerTests.m"
+          ],
+          "resources": "components/BottomNavigation/tests/unit/resources/*",
+          "dependencies": {
+            "MaterialComponents/BottomNavigation+ColorThemer": [
+
+            ],
+            "MaterialComponents/BottomNavigation+TypographyThemer": [
+
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "BottomNavigation+ColorThemer",
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/BottomNavigation/src/ColorThemer/*.h",
-      "source_files": "components/BottomNavigation/src/ColorThemer/*.{h,m}",
+      "public_header_files": [
+        "components/BottomNavigation/src/ColorThemer/*.h"
+      ],
+      "source_files": [
+        "components/BottomNavigation/src/ColorThemer/*.{h,m}"
+      ],
       "dependencies": {
         "MaterialComponents/BottomNavigation": [
 
@@ -255,8 +390,12 @@
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/BottomNavigation/src/TypographyThemer/*.h",
-      "source_files": "components/BottomNavigation/src/TypographyThemer/*.{h,m}",
+      "public_header_files": [
+        "components/BottomNavigation/src/TypographyThemer/*.h"
+      ],
+      "source_files": [
+        "components/BottomNavigation/src/TypographyThemer/*.{h,m}"
+      ],
       "dependencies": {
         "MaterialComponents/BottomNavigation": [
 
@@ -277,10 +416,53 @@
         "components/BottomSheet/src/private/*.{h,m}"
       ],
       "dependencies": {
+        "MaterialComponents/ShapeLibrary": [
+
+        ],
+        "MaterialComponents/Shapes": [
+
+        ],
         "MaterialComponents/private/KeyboardWatcher": [
 
         ],
         "MaterialComponents/private/Math": [
+
+        ]
+      },
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/BottomSheet/tests/unit/*.{h,m,swift}",
+            "components/BottomSheet/tests/unit/supplemental/*.{h,m,swift}"
+          ],
+          "resources": "components/BottomSheet/tests/unit/resources/*",
+          "dependencies": {
+            "MaterialComponents/BottomSheet+ShapeThemer": [
+
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "BottomSheet+ShapeThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": [
+        "components/BottomSheet/src/ShapeThemer/*.h"
+      ],
+      "source_files": [
+        "components/BottomSheet/src/ShapeThemer/*.{h,m}",
+        "components/BottomSheet/src/ShapeThemer/private/*.{h,m}"
+      ],
+      "dependencies": {
+        "MaterialComponents/BottomSheet": [
+
+        ],
+        "MaterialComponents/schemes/Shape": [
 
         ]
       }
@@ -311,23 +493,53 @@
         "MaterialComponents/ShadowLayer": [
 
         ],
+        "MaterialComponents/Shapes": [
+
+        ],
         "MaterialComponents/Typography": [
 
         ],
         "MaterialComponents/private/Math": [
 
-        ],
-        "MaterialComponents/private/Shapes": [
-
         ]
-      }
+      },
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/Buttons/tests/unit/*.{h,m,swift}",
+            "components/Buttons/tests/unit/supplemental/*.{h,m,swift}"
+          ],
+          "resources": "components/Buttons/tests/unit/resources/*",
+          "dependencies": {
+            "MaterialComponents/Buttons+ShapeThemer": [
+
+            ],
+            "MaterialComponents/Buttons+ColorThemer": [
+
+            ],
+            "MaterialComponents/Buttons+TypographyThemer": [
+
+            ],
+            "MaterialComponents/Buttons+TitleColorAccessibilityMutator": [
+
+            ],
+            "MaterialComponents/Buttons+ButtonThemer": [
+
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Buttons+ColorThemer",
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/Buttons/src/ColorThemer/*.h",
+      "public_header_files": [
+        "components/Buttons/src/ColorThemer/*.h"
+      ],
       "source_files": [
         "components/Buttons/src/ColorThemer/*.{h,m}",
         "components/Buttons/src/ColorThemer/private/*.{h,m}"
@@ -346,7 +558,9 @@
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/Buttons/src/TitleColorAccessibilityMutator/*.h",
+      "public_header_files": [
+        "components/Buttons/src/TitleColorAccessibilityMutator/*.h"
+      ],
       "source_files": [
         "components/Buttons/src/TitleColorAccessibilityMutator/*.{h,m}",
         "components/Buttons/src/TitleColorAccessibilityMutator/private/*.{h,m}"
@@ -361,12 +575,36 @@
       }
     },
     {
+      "name": "Buttons+ShapeThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": [
+        "components/Buttons/src/ShapeThemer/*.h"
+      ],
+      "source_files": [
+        "components/Buttons/src/ShapeThemer/*.{h,m}"
+      ],
+      "dependencies": {
+        "MaterialComponents/Buttons": [
+
+        ],
+        "MaterialComponents/schemes/Shape": [
+
+        ]
+      }
+    },
+    {
       "name": "Buttons+TypographyThemer",
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/Buttons/src/TypographyThemer/*.h",
-      "source_files": "components/Buttons/src/TypographyThemer/*.{h,m}",
+      "public_header_files": [
+        "components/Buttons/src/TypographyThemer/*.h"
+      ],
+      "source_files": [
+        "components/Buttons/src/TypographyThemer/*.{h,m}"
+      ],
       "dependencies": {
         "MaterialComponents/Buttons": [
 
@@ -381,7 +619,9 @@
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/Buttons/src/ButtonThemer/*.h",
+      "public_header_files": [
+        "components/Buttons/src/ButtonThemer/*.h"
+      ],
       "source_files": [
         "components/Buttons/src/ButtonThemer/*.{h,m}",
         "components/Buttons/src/ButtonThemer/private/*.{h,m}"
@@ -393,7 +633,13 @@
         "MaterialComponents/Buttons+ColorThemer": [
 
         ],
+        "MaterialComponents/Buttons+ShapeThemer": [
+
+        ],
         "MaterialComponents/Buttons+TypographyThemer": [
+
+        ],
+        "MaterialComponents/Palettes": [
 
         ]
       }
@@ -414,16 +660,39 @@
         ],
         "MaterialComponents/Buttons": [
 
+        ],
+        "MaterialComponents/private/Application": [
+
         ]
-      }
+      },
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/ButtonBar/tests/unit/*.{h,m,swift}",
+            "components/ButtonBar/tests/unit/supplemental/*.{h,m,swift}"
+          ],
+          "resources": "components/ButtonBar/tests/unit/resources/*",
+          "dependencies": {
+            "MaterialComponents/ButtonBar+TypographyThemer": [
+
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "ButtonBar+ColorThemer",
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/ButtonBar/src/ColorThemer/*.h",
-      "source_files": "components/ButtonBar/src/ColorThemer/*.{h,m}",
+      "public_header_files": [
+        "components/ButtonBar/src/ColorThemer/*.h"
+      ],
+      "source_files": [
+        "components/ButtonBar/src/ColorThemer/*.{h,m}"
+      ],
       "dependencies": {
         "MaterialComponents/ButtonBar": [
 
@@ -438,8 +707,12 @@
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/ButtonBar/src/TypographyThemer/*.h",
-      "source_files": "components/ButtonBar/src/TypographyThemer/*.{h,m}",
+      "public_header_files": [
+        "components/ButtonBar/src/TypographyThemer/*.h"
+      ],
+      "source_files": [
+        "components/ButtonBar/src/TypographyThemer/*.{h,m}"
+      ],
       "dependencies": {
         "MaterialComponents/ButtonBar": [
 
@@ -456,11 +729,21 @@
       },
       "public_header_files": "components/Cards/src/*.h",
       "source_files": "components/Cards/src/*.{h,m}",
+      "exclude_files": [
+        "components/Cards/src/MDCCard+Ripple.{h,m}",
+        "components/Cards/src/MDCCardCollectionCell+Ripple.{h,m}"
+      ],
       "dependencies": {
+        "MaterialComponents/Cards+Private": [
+
+        ],
         "MaterialComponents/Ink": [
 
         ],
         "MaterialComponents/ShadowLayer": [
+
+        ],
+        "MaterialComponents/Shapes": [
 
         ],
         "MaterialComponents/private/Icons/ic_check_circle": [
@@ -468,19 +751,49 @@
         ],
         "MaterialComponents/private/Math": [
 
-        ],
-        "MaterialComponents/private/Shapes": [
-
         ]
-      }
+      },
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/Cards/tests/unit/*.{h,m,swift}",
+            "components/Cards/tests/unit/supplemental/*.{h,m,swift}"
+          ],
+          "resources": "components/Cards/tests/unit/resources/*",
+          "dependencies": {
+            "MaterialComponents/Cards+ColorThemer": [
+
+            ],
+            "MaterialComponents/Cards+ShapeThemer": [
+
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Cards+Private",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/Cards/src/private/*.h",
+      "source_files": [
+        "components/Cards/src/private/*.{h,m}"
+      ]
     },
     {
       "name": "Cards+ColorThemer",
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/Cards/src/ColorThemer/*.h",
-      "source_files": "components/Cards/src/ColorThemer/*.{h,m}",
+      "public_header_files": [
+        "components/Cards/src/ColorThemer/*.h"
+      ],
+      "source_files": [
+        "components/Cards/src/ColorThemer/*.{h,m}"
+      ],
       "dependencies": {
         "MaterialComponents/Cards": [
 
@@ -491,17 +804,44 @@
       }
     },
     {
+      "name": "Cards+ShapeThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": [
+        "components/Cards/src/ShapeThemer/*.h"
+      ],
+      "source_files": [
+        "components/Cards/src/ShapeThemer/*.{h,m}"
+      ],
+      "dependencies": {
+        "MaterialComponents/Cards": [
+
+        ],
+        "MaterialComponents/schemes/Shape": [
+
+        ]
+      }
+    },
+    {
       "name": "Cards+CardThemer",
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/Cards/src/CardThemer/*.h",
-      "source_files": "components/Cards/src/CardThemer/*.{h,m}",
+      "public_header_files": [
+        "components/Cards/src/CardThemer/*.h"
+      ],
+      "source_files": [
+        "components/Cards/src/CardThemer/*.{h,m}"
+      ],
       "dependencies": {
         "MaterialComponents/Cards": [
 
         ],
         "MaterialComponents/Cards+ColorThemer": [
+
+        ],
+        "MaterialComponents/Cards+ShapeThemer": [
 
         ]
       }
@@ -529,6 +869,12 @@
         "MaterialComponents/ShadowElevations": [
 
         ],
+        "MaterialComponents/ShapeLibrary": [
+
+        ],
+        "MaterialComponents/Shapes": [
+
+        ],
         "MaterialComponents/TextFields": [
 
         ],
@@ -537,27 +883,50 @@
         ],
         "MaterialComponents/private/Math": [
 
-        ],
-        "MaterialComponents/private/ShapeLibrary": [
-
-        ],
-        "MaterialComponents/private/Shapes": [
-
         ]
-      }
+      },
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/Chips/tests/unit/*.{h,m,swift}",
+            "components/Chips/tests/unit/supplemental/*.{h,m,swift}"
+          ],
+          "resources": "components/Chips/tests/unit/resources/*",
+          "dependencies": {
+            "MaterialComponents/Chips+ChipThemer": [
+
+            ],
+            "MaterialComponents/Chips+FontThemer": [
+
+            ],
+            "MaterialComponents/Themes": [
+
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Chips+ChipThemer",
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/Chips/src/ChipThemer/*.h",
-      "source_files": "components/Chips/src/ChipThemer/*.{h,m}",
+      "public_header_files": [
+        "components/Chips/src/ChipThemer/*.h"
+      ],
+      "source_files": [
+        "components/Chips/src/ChipThemer/*.{h,m}"
+      ],
       "dependencies": {
         "MaterialComponents/Chips": [
 
         ],
         "MaterialComponents/Chips+ColorThemer": [
+
+        ],
+        "MaterialComponents/Chips+ShapeThemer": [
 
         ],
         "MaterialComponents/Chips+TypographyThemer": [
@@ -570,8 +939,12 @@
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/Chips/src/ColorThemer/*.h",
-      "source_files": "components/Chips/src/ColorThemer/*.{h,m}",
+      "public_header_files": [
+        "components/Chips/src/ColorThemer/*.h"
+      ],
+      "source_files": [
+        "components/Chips/src/ColorThemer/*.{h,m}"
+      ],
       "dependencies": {
         "MaterialComponents/Chips": [
 
@@ -586,8 +959,12 @@
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/Chips/src/FontThemer/*.h",
-      "source_files": "components/Chips/src/FontThemer/*.{h,m}",
+      "public_header_files": [
+        "components/Chips/src/FontThemer/*.h"
+      ],
+      "source_files": [
+        "components/Chips/src/FontThemer/*.{h,m}"
+      ],
       "dependencies": {
         "MaterialComponents/Chips": [
 
@@ -598,12 +975,36 @@
       }
     },
     {
+      "name": "Chips+ShapeThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": [
+        "components/Chips/src/ShapeThemer/*.h"
+      ],
+      "source_files": [
+        "components/Chips/src/ShapeThemer/*.{h,m}"
+      ],
+      "dependencies": {
+        "MaterialComponents/Chips": [
+
+        ],
+        "MaterialComponents/schemes/Shape": [
+
+        ]
+      }
+    },
+    {
       "name": "Chips+TypographyThemer",
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/Chips/src/TypographyThemer/*.h",
-      "source_files": "components/Chips/src/TypographyThemer/*.{h,m}",
+      "public_header_files": [
+        "components/Chips/src/TypographyThemer/*.h"
+      ],
+      "source_files": [
+        "components/Chips/src/TypographyThemer/*.{h,m}"
+      ],
       "dependencies": {
         "MaterialComponents/Chips": [
 
@@ -667,7 +1068,18 @@
         "MaterialComponents/private/Math": [
 
         ]
-      }
+      },
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/CollectionCells/tests/unit/*.{h,m,swift}",
+            "components/CollectionCells/tests/unit/supplemental/*.{h,m,swift}"
+          ],
+          "resources": "components/CollectionCells/tests/unit/resources/*"
+        }
+      ]
     },
     {
       "name": "CollectionLayoutAttributes",
@@ -675,7 +1087,18 @@
         "ios": "8.0"
       },
       "public_header_files": "components/CollectionLayoutAttributes/src/*.h",
-      "source_files": "components/CollectionLayoutAttributes/src/*.{h,m}"
+      "source_files": "components/CollectionLayoutAttributes/src/*.{h,m}",
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/CollectionLayoutAttributes/tests/unit/*.{h,m,swift}",
+            "components/CollectionLayoutAttributes/tests/unit/supplemental/*.{h,m,swift}"
+          ],
+          "resources": "components/CollectionLayoutAttributes/tests/unit/resources/*"
+        }
+      ]
     },
     {
       "name": "Collections",
@@ -716,7 +1139,18 @@
         "MaterialComponents/Typography": [
 
         ]
-      }
+      },
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/Collections/tests/unit/*.{h,m,swift}",
+            "components/Collections/tests/unit/supplemental/*.{h,m,swift}"
+          ],
+          "resources": "components/Collections/tests/unit/resources/*"
+        }
+      ]
     },
     {
       "name": "Dialogs",
@@ -750,20 +1184,43 @@
         "MDFInternationalization": [
 
         ]
-      }
+      },
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/Dialogs/tests/unit/*.{h,m,swift}",
+            "components/Dialogs/tests/unit/supplemental/*.{h,m,swift}"
+          ],
+          "resources": "components/Dialogs/tests/unit/resources/*",
+          "dependencies": {
+            "MaterialComponents/Dialogs+DialogThemer": [
+
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Dialogs+ColorThemer",
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/Dialogs/src/ColorThemer/*.h",
-      "source_files": "components/Dialogs/src/ColorThemer/*.{h,m}",
+      "public_header_files": [
+        "components/Dialogs/src/ColorThemer/*.h"
+      ],
+      "source_files": [
+        "components/Dialogs/src/ColorThemer/*.{h,m}"
+      ],
       "dependencies": {
         "MaterialComponents/Dialogs": [
 
         ],
         "MaterialComponents/Themes": [
+
+        ],
+        "MaterialComponents/Buttons+ColorThemer": [
 
         ]
       }
@@ -773,13 +1230,46 @@
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/Dialogs/src/TypographyThemer/*.h",
-      "source_files": "components/Dialogs/src/TypographyThemer/*.{h,m}",
+      "public_header_files": [
+        "components/Dialogs/src/TypographyThemer/*.h"
+      ],
+      "source_files": [
+        "components/Dialogs/src/TypographyThemer/*.{h,m}"
+      ],
       "dependencies": {
         "MaterialComponents/Dialogs": [
 
         ],
         "MaterialComponents/schemes/Typography": [
+
+        ],
+        "MaterialComponents/Buttons+TypographyThemer": [
+
+        ]
+      }
+    },
+    {
+      "name": "Dialogs+DialogThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": [
+        "components/Dialogs/src/DialogThemer/*.h"
+      ],
+      "source_files": [
+        "components/Dialogs/src/DialogThemer/*.{h,m}"
+      ],
+      "dependencies": {
+        "MaterialComponents/Dialogs": [
+
+        ],
+        "MaterialComponents/Dialogs+ColorThemer": [
+
+        ],
+        "MaterialComponents/Dialogs+TypographyThemer": [
+
+        ],
+        "MaterialComponents/Buttons+ButtonThemer": [
 
         ]
       }
@@ -807,15 +1297,41 @@
         "MDFTextAccessibility": [
 
         ]
-      }
+      },
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/FeatureHighlight/tests/unit/*.{h,m,swift}",
+            "components/FeatureHighlight/tests/unit/supplemental/*.{h,m,swift}"
+          ],
+          "resources": "components/FeatureHighlight/tests/unit/resources/*",
+          "dependencies": {
+            "MaterialComponents/FeatureHighlight+ColorThemer": [
+
+            ],
+            "MaterialComponents/FeatureHighlight+TypographyThemer": [
+
+            ],
+            "MaterialComponents/FeatureHighlight+FeatureHighlightAccessibilityMutator": [
+
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "FeatureHighlight+ColorThemer",
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/FeatureHighlight/src/ColorThemer/*.h",
-      "source_files": "components/FeatureHighlight/src/ColorThemer/*.{h,m}",
+      "public_header_files": [
+        "components/FeatureHighlight/src/ColorThemer/*.h"
+      ],
+      "source_files": [
+        "components/FeatureHighlight/src/ColorThemer/*.{h,m}"
+      ],
       "dependencies": {
         "MaterialComponents/FeatureHighlight": [
 
@@ -830,8 +1346,12 @@
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/FeatureHighlight/src/FontThemer/*.h",
-      "source_files": "components/FeatureHighlight/src/FontThemer/*.{h,m}",
+      "public_header_files": [
+        "components/FeatureHighlight/src/FontThemer/*.h"
+      ],
+      "source_files": [
+        "components/FeatureHighlight/src/FontThemer/*.{h,m}"
+      ],
       "dependencies": {
         "MaterialComponents/FeatureHighlight": [
 
@@ -846,8 +1366,12 @@
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/FeatureHighlight/src/TypographyThemer/*.h",
-      "source_files": "components/FeatureHighlight/src/TypographyThemer/*.{h,m}",
+      "public_header_files": [
+        "components/FeatureHighlight/src/TypographyThemer/*.h"
+      ],
+      "source_files": [
+        "components/FeatureHighlight/src/TypographyThemer/*.{h,m}"
+      ],
       "dependencies": {
         "MaterialComponents/FeatureHighlight": [
 
@@ -862,8 +1386,12 @@
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/FeatureHighlight/src/FeatureHighlightAccessibilityMutator/*.h",
-      "source_files": "components/FeatureHighlight/src/FeatureHighlightAccessibilityMutator/*.{h,m}",
+      "public_header_files": [
+        "components/FeatureHighlight/src/FeatureHighlightAccessibilityMutator/*.h"
+      ],
+      "source_files": [
+        "components/FeatureHighlight/src/FeatureHighlightAccessibilityMutator/*.{h,m}"
+      ],
       "dependencies": {
         "MaterialComponents/FeatureHighlight": [
 
@@ -893,6 +1421,39 @@
         "MaterialComponents/private/UIMetrics": [
 
         ]
+      },
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/FlexibleHeader/tests/unit/*.{h,m,swift}",
+            "components/FlexibleHeader/tests/unit/supplemental/*.{h,m,swift}"
+          ],
+          "resources": "components/FlexibleHeader/tests/unit/resources/*",
+          "dependencies": {
+            "MaterialComponents/FlexibleHeader+ColorThemer": [
+
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "FlexibleHeader+CanAlwaysExpandToMaximumHeight",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": [
+        "components/FlexibleHeader/src/CanAlwaysExpandToMaximumHeight/*.h"
+      ],
+      "source_files": [
+        "components/FlexibleHeader/src/CanAlwaysExpandToMaximumHeight/*.{h,m}"
+      ],
+      "dependencies": {
+        "MaterialComponents/FlexibleHeader": [
+
+        ]
       }
     },
     {
@@ -900,8 +1461,12 @@
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/FlexibleHeader/src/ColorThemer/*.h",
-      "source_files": "components/FlexibleHeader/src/ColorThemer/*.{h,m}",
+      "public_header_files": [
+        "components/FlexibleHeader/src/ColorThemer/*.h"
+      ],
+      "source_files": [
+        "components/FlexibleHeader/src/ColorThemer/*.{h,m}"
+      ],
       "dependencies": {
         "MaterialComponents/FlexibleHeader": [
 
@@ -917,15 +1482,30 @@
         "ios": "8.0"
       },
       "public_header_files": "components/HeaderStackView/src/*.h",
-      "source_files": "components/HeaderStackView/src/*.{h,m}"
+      "source_files": "components/HeaderStackView/src/*.{h,m}",
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/HeaderStackView/tests/unit/*.{h,m,swift}",
+            "components/HeaderStackView/tests/unit/supplemental/*.{h,m,swift}"
+          ],
+          "resources": "components/HeaderStackView/tests/unit/resources/*"
+        }
+      ]
     },
     {
       "name": "HeaderStackView+ColorThemer",
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/HeaderStackView/src/ColorThemer/*.h",
-      "source_files": "components/HeaderStackView/src/ColorThemer/*.{h,m}",
+      "public_header_files": [
+        "components/HeaderStackView/src/ColorThemer/*.h"
+      ],
+      "source_files": [
+        "components/HeaderStackView/src/ColorThemer/*.{h,m}"
+      ],
       "dependencies": {
         "MaterialComponents/HeaderStackView": [
 
@@ -949,15 +1529,30 @@
         "MaterialComponents/private/Math": [
 
         ]
-      }
+      },
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/Ink/tests/unit/*.{h,m,swift}",
+            "components/Ink/tests/unit/supplemental/*.{h,m,swift}"
+          ],
+          "resources": "components/Ink/tests/unit/resources/*"
+        }
+      ]
     },
     {
       "name": "Ink+ColorThemer",
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/Ink/src/ColorThemer/*.h",
-      "source_files": "components/Ink/src/ColorThemer/*.{h,m}",
+      "public_header_files": [
+        "components/Ink/src/ColorThemer/*.h"
+      ],
+      "source_files": [
+        "components/Ink/src/ColorThemer/*.{h,m}"
+      ],
       "dependencies": {
         "MaterialComponents/Ink": [
 
@@ -976,7 +1571,136 @@
       "source_files": [
         "components/LibraryInfo/src/*.{h,m}",
         "components/LibraryInfo/src/private/*.{h,m}"
+      ],
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/LibraryInfo/tests/unit/*.{h,m,swift}",
+            "components/LibraryInfo/tests/unit/supplemental/*.{h,m,swift}"
+          ],
+          "resources": "components/LibraryInfo/tests/unit/resources/*"
+        }
       ]
+    },
+    {
+      "name": "List",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/List/src/*.h",
+      "source_files": [
+        "components/List/src/*.{h,m}",
+        "components/List/src/private/*.{h,m}"
+      ],
+      "dependencies": {
+        "MaterialComponents/Ink": [
+
+        ],
+        "MaterialComponents/ShadowElevations": [
+
+        ],
+        "MaterialComponents/ShadowLayer": [
+
+        ],
+        "MaterialComponents/Typography": [
+
+        ],
+        "MDFInternationalization": [
+
+        ],
+        "MaterialComponents/private/Math": [
+
+        ]
+      },
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/List/tests/unit/*.{h,m,swift}",
+            "components/List/tests/unit/supplemental/*.{h,m,swift}"
+          ],
+          "resources": "components/List/tests/unit/resources/*",
+          "dependencies": {
+            "MaterialComponents/List+ColorThemer": [
+
+            ],
+            "MaterialComponents/List+TypographyThemer": [
+
+            ],
+            "MaterialComponents/List+ListThemer": [
+
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "List+TypographyThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": [
+        "components/List/src/TypographyThemer/*.h"
+      ],
+      "source_files": [
+        "components/List/src/TypographyThemer/*.{h,m}"
+      ],
+      "dependencies": {
+        "MaterialComponents/List": [
+
+        ],
+        "MaterialComponents/schemes/Typography": [
+
+        ]
+      }
+    },
+    {
+      "name": "List+ColorThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": [
+        "components/List/src/ColorThemer/*.h"
+      ],
+      "source_files": [
+        "components/List/src/ColorThemer/*.{h,m}",
+        "components/List/src/ColorThemer/private/*.{h,m}"
+      ],
+      "dependencies": {
+        "MaterialComponents/List": [
+
+        ],
+        "MaterialComponents/schemes/Color": [
+
+        ]
+      }
+    },
+    {
+      "name": "List+ListThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": [
+        "components/List/src/ListThemer/*.h"
+      ],
+      "source_files": [
+        "components/List/src/ListThemer/*.{h,m}",
+        "components/List/src/ListThemer/private/*.{h,m}"
+      ],
+      "dependencies": {
+        "MaterialComponents/List": [
+
+        ],
+        "MaterialComponents/List+ColorThemer": [
+
+        ],
+        "MaterialComponents/List+TypographyThemer": [
+
+        ]
+      }
     },
     {
       "name": "MaskedTransition",
@@ -998,7 +1722,18 @@
         "MotionInterchange": [
           "~> 1.0"
         ]
-      }
+      },
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/MaskedTransition/tests/unit/*.{h,m,swift}",
+            "components/MaskedTransition/tests/unit/supplemental/*.{h,m,swift}"
+          ],
+          "resources": "components/MaskedTransition/tests/unit/resources/*"
+        }
+      ]
     },
     {
       "name": "NavigationBar",
@@ -1023,15 +1758,38 @@
         "MaterialComponents/private/Math": [
 
         ]
-      }
+      },
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/NavigationBar/tests/unit/*.{h,m,swift}",
+            "components/NavigationBar/tests/unit/supplemental/*.{h,m,swift}"
+          ],
+          "resources": "components/NavigationBar/tests/unit/resources/*",
+          "dependencies": {
+            "MaterialComponents/NavigationBar+ColorThemer": [
+
+            ],
+            "MaterialComponents/NavigationBar+TypographyThemer": [
+
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "NavigationBar+ColorThemer",
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/NavigationBar/src/ColorThemer/*.h",
-      "source_files": "components/NavigationBar/src/ColorThemer/*.{h,m}",
+      "public_header_files": [
+        "components/NavigationBar/src/ColorThemer/*.h"
+      ],
+      "source_files": [
+        "components/NavigationBar/src/ColorThemer/*.{h,m}"
+      ],
       "dependencies": {
         "MaterialComponents/NavigationBar": [
 
@@ -1046,13 +1804,80 @@
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/NavigationBar/src/TypographyThemer/*.h",
-      "source_files": "components/NavigationBar/src/TypographyThemer/*.{h,m}",
+      "public_header_files": [
+        "components/NavigationBar/src/TypographyThemer/*.h"
+      ],
+      "source_files": [
+        "components/NavigationBar/src/TypographyThemer/*.{h,m}"
+      ],
       "dependencies": {
         "MaterialComponents/NavigationBar": [
 
         ],
         "MaterialComponents/schemes/Typography": [
+
+        ]
+      }
+    },
+    {
+      "name": "NavigationDrawer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/NavigationDrawer/src/*.h",
+      "source_files": [
+        "components/NavigationDrawer/src/*.{h,m}",
+        "components/NavigationDrawer/src/private/*.{h,m}"
+      ],
+      "exclude_files": "components/NavigationDrawer/src/private/MDCBottomDrawerContainerViewController+Testing.h",
+      "dependencies": {
+        "MaterialComponents/Palettes": [
+
+        ],
+        "MaterialComponents/ShadowLayer": [
+
+        ],
+        "MaterialComponents/private/Math": [
+
+        ],
+        "MaterialComponents/private/UIMetrics": [
+
+        ]
+      },
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/NavigationDrawer/tests/unit/*.{h,m,swift}",
+            "components/NavigationDrawer/tests/unit/supplemental/*.{h,m,swift}",
+            "components/NavigationDrawer/src/private/MDCBottomDrawerContainerViewController+Testing.h"
+          ],
+          "dependencies": {
+            "MaterialComponents/NavigationDrawer+ColorThemer": [
+
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "NavigationDrawer+ColorThemer",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": [
+        "components/NavigationDrawer/src/ColorThemer/*.h"
+      ],
+      "source_files": [
+        "components/NavigationDrawer/src/ColorThemer/*.{h,m}",
+        "components/NavigationDrawer/src/ColorThemer/private/*.{h,m}"
+      ],
+      "dependencies": {
+        "MaterialComponents/NavigationDrawer": [
+
+        ],
+        "MaterialComponents/schemes/Color": [
 
         ]
       }
@@ -1071,7 +1896,18 @@
         "MaterialComponents/private/Application": [
 
         ]
-      }
+      },
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/OverlayWindow/tests/unit/*.{h,m,swift}",
+            "components/OverlayWindow/tests/unit/supplemental/*.{h,m,swift}"
+          ],
+          "resources": "components/OverlayWindow/tests/unit/resources/*"
+        }
+      ]
     },
     {
       "name": "PageControl",
@@ -1085,6 +1921,22 @@
       ],
       "resources": [
         "components/PageControl/src/MaterialPageControl.bundle"
+      ],
+      "dependencies": {
+        "MDFInternationalization": [
+
+        ]
+      },
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/PageControl/tests/unit/*.{h,m,swift}",
+            "components/PageControl/tests/unit/supplemental/*.{h,m,swift}"
+          ],
+          "resources": "components/PageControl/tests/unit/resources/*"
+        }
       ]
     },
     {
@@ -1092,8 +1944,12 @@
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/PageControl/src/ColorThemer/*.h",
-      "source_files": "components/PageControl/src/ColorThemer/*.{h,m}",
+      "public_header_files": [
+        "components/PageControl/src/ColorThemer/*.h"
+      ],
+      "source_files": [
+        "components/PageControl/src/ColorThemer/*.{h,m}"
+      ],
       "dependencies": {
         "MaterialComponents/PageControl": [
 
@@ -1112,6 +1968,17 @@
       "source_files": [
         "components/Palettes/src/*.{h,m}",
         "components/Palettes/src/private/*.{h,m}"
+      ],
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/Palettes/tests/unit/*.{h,m,swift}",
+            "components/Palettes/tests/unit/supplemental/*.{h,m,swift}"
+          ],
+          "resources": "components/Palettes/tests/unit/resources/*"
+        }
       ]
     },
     {
@@ -1137,15 +2004,30 @@
         "MotionAnimator": [
           "~> 2.1"
         ]
-      }
+      },
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/ProgressView/tests/unit/*.{h,m,swift}",
+            "components/ProgressView/tests/unit/supplemental/*.{h,m,swift}"
+          ],
+          "resources": "components/ProgressView/tests/unit/resources/*"
+        }
+      ]
     },
     {
       "name": "ProgressView+ColorThemer",
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/ProgressView/src/ColorThemer/*.h",
-      "source_files": "components/ProgressView/src/ColorThemer/*.{h,m}",
+      "public_header_files": [
+        "components/ProgressView/src/ColorThemer/*.h"
+      ],
+      "source_files": [
+        "components/ProgressView/src/ColorThemer/*.{h,m}"
+      ],
       "dependencies": {
         "MaterialComponents/ProgressView": [
 
@@ -1161,7 +2043,18 @@
         "ios": "8.0"
       },
       "public_header_files": "components/ShadowElevations/src/*.h",
-      "source_files": "components/ShadowElevations/src/*.{h,m}"
+      "source_files": "components/ShadowElevations/src/*.{h,m}",
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/ShadowElevations/tests/unit/*.{h,m,swift}",
+            "components/ShadowElevations/tests/unit/supplemental/*.{h,m,swift}"
+          ],
+          "resources": "components/ShadowElevations/tests/unit/resources/*"
+        }
+      ]
     },
     {
       "name": "ShadowLayer",
@@ -1174,14 +2067,87 @@
         "MaterialComponents/ShadowElevations": [
 
         ]
-      }
+      },
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/ShadowLayer/tests/unit/*.{h,m,swift}",
+            "components/ShadowLayer/tests/unit/supplemental/*.{h,m,swift}"
+          ],
+          "resources": "components/ShadowLayer/tests/unit/resources/*"
+        }
+      ]
+    },
+    {
+      "name": "ShapeLibrary",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/ShapeLibrary/src/*.h",
+      "source_files": [
+        "components/ShapeLibrary/src/*.{h,m}",
+        "components/ShapeLibrary/src/private/*.{h,m}"
+      ],
+      "dependencies": {
+        "MaterialComponents/Shapes": [
+
+        ],
+        "MaterialComponents/private/Math": [
+
+        ]
+      },
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/ShapeLibrary/tests/unit/*.{h,m,swift}",
+            "components/ShapeLibrary/tests/unit/supplemental/*.{h,m,swift}"
+          ],
+          "resources": "components/ShapeLibrary/tests/unit/resources/*"
+        }
+      ]
+    },
+    {
+      "name": "Shapes",
+      "platforms": {
+        "ios": "8.0"
+      },
+      "public_header_files": "components/Shapes/src/*.h",
+      "source_files": [
+        "components/Shapes/src/*.{h,m}",
+        "components/Shapes/src/private/*.{h,m}"
+      ],
+      "dependencies": {
+        "MaterialComponents/ShadowLayer": [
+
+        ],
+        "MaterialComponents/private/Math": [
+
+        ]
+      },
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/Shapes/tests/unit/*.{h,m,swift}",
+            "components/Shapes/tests/unit/supplemental/*.{h,m,swift}"
+          ],
+          "resources": "components/Shapes/tests/unit/resources/*"
+        }
+      ]
     },
     {
       "name": "Slider",
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/Slider/src/*.h",
+      "public_header_files": [
+        "components/Slider/src/*.h"
+      ],
       "source_files": [
         "components/Slider/src/*.{h,m}",
         "components/Slider/src/private/*.{h,m}"
@@ -1196,15 +2162,30 @@
         "MaterialComponents/private/ThumbTrack": [
 
         ]
-      }
+      },
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/Slider/tests/unit/*.{h,m,swift}",
+            "components/Slider/tests/unit/supplemental/*.{h,m,swift}"
+          ],
+          "resources": "components/Slider/tests/unit/resources/*"
+        }
+      ]
     },
     {
       "name": "Slider+ColorThemer",
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/Slider/src/ColorThemer/*.h",
-      "source_files": "components/Slider/src/ColorThemer/*.{h,m}",
+      "public_header_files": [
+        "components/Slider/src/ColorThemer/*.h"
+      ],
+      "source_files": [
+        "components/Slider/src/ColorThemer/*.{h,m}"
+      ],
       "dependencies": {
         "MaterialComponents/Palettes": [
 
@@ -1226,6 +2207,9 @@
       "source_files": [
         "components/Snackbar/src/*.{h,m}",
         "components/Snackbar/src/private/*.{h,m}"
+      ],
+      "resources": [
+        "components/Snackbar/src/MaterialSnackbar.bundle"
       ],
       "dependencies": {
         "MaterialComponents/AnimationTiming": [
@@ -1249,15 +2233,44 @@
         "MaterialComponents/private/Overlay": [
 
         ]
-      }
+      },
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/Snackbar/tests/unit/*.{h,m,swift}",
+            "components/Snackbar/tests/unit/supplemental/*.{h,m,swift}"
+          ],
+          "resources": "components/Snackbar/tests/unit/resources/*",
+          "dependencies": {
+            "MaterialComponents/Snackbar+ColorThemer": [
+
+            ],
+            "MaterialComponents/Snackbar+FontThemer": [
+
+            ],
+            "MaterialComponents/Snackbar+TypographyThemer": [
+
+            ],
+            "MaterialComponents/Themes": [
+
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Snackbar+ColorThemer",
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/Snackbar/src/ColorThemer/*.h",
-      "source_files": "components/Snackbar/src/ColorThemer/*.{h,m}",
+      "public_header_files": [
+        "components/Snackbar/src/ColorThemer/*.h"
+      ],
+      "source_files": [
+        "components/Snackbar/src/ColorThemer/*.{h,m}"
+      ],
       "dependencies": {
         "MaterialComponents/Snackbar": [
 
@@ -1272,8 +2285,12 @@
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/Snackbar/src/FontThemer/*.h",
-      "source_files": "components/Snackbar/src/FontThemer/*.{h,m}",
+      "public_header_files": [
+        "components/Snackbar/src/FontThemer/*.h"
+      ],
+      "source_files": [
+        "components/Snackbar/src/FontThemer/*.{h,m}"
+      ],
       "dependencies": {
         "MaterialComponents/Snackbar": [
 
@@ -1288,8 +2305,12 @@
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/Snackbar/src/TypographyThemer/*.h",
-      "source_files": "components/Snackbar/src/TypographyThemer/*.{h,m}",
+      "public_header_files": [
+        "components/Snackbar/src/TypographyThemer/*.h"
+      ],
+      "source_files": [
+        "components/Snackbar/src/TypographyThemer/*.{h,m}"
+      ],
       "dependencies": {
         "MaterialComponents/Snackbar": [
 
@@ -1334,15 +2355,44 @@
         "MaterialComponents/private/Math": [
 
         ]
-      }
+      },
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/Tabs/tests/unit/*.{h,m,swift}",
+            "components/Tabs/tests/unit/supplemental/*.{h,m,swift}"
+          ],
+          "resources": "components/Tabs/tests/unit/resources/*",
+          "dependencies": {
+            "MaterialComponents/Tabs+ColorThemer": [
+
+            ],
+            "MaterialComponents/Tabs+FontThemer": [
+
+            ],
+            "MaterialComponents/Tabs+TypographyThemer": [
+
+            ],
+            "MaterialComponents/Themes": [
+
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Tabs+ColorThemer",
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/Tabs/src/ColorThemer/*.h",
-      "source_files": "components/Tabs/src/ColorThemer/*.{h,m}",
+      "public_header_files": [
+        "components/Tabs/src/ColorThemer/*.h"
+      ],
+      "source_files": [
+        "components/Tabs/src/ColorThemer/*.{h,m}"
+      ],
       "dependencies": {
         "MaterialComponents/schemes/Color": [
 
@@ -1357,8 +2407,12 @@
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/Tabs/src/FontThemer/*.h",
-      "source_files": "components/Tabs/src/FontThemer/*.{h,m}",
+      "public_header_files": [
+        "components/Tabs/src/FontThemer/*.h"
+      ],
+      "source_files": [
+        "components/Tabs/src/FontThemer/*.{h,m}"
+      ],
       "dependencies": {
         "MaterialComponents/Tabs": [
 
@@ -1373,8 +2427,12 @@
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/Tabs/src/TypographyThemer/*.h",
-      "source_files": "components/Tabs/src/TypographyThemer/*.{h,m}",
+      "public_header_files": [
+        "components/Tabs/src/TypographyThemer/*.h"
+      ],
+      "source_files": [
+        "components/Tabs/src/TypographyThemer/*.{h,m}"
+      ],
       "dependencies": {
         "MaterialComponents/Tabs": [
 
@@ -1410,15 +2468,44 @@
         "MaterialComponents/private/Math": [
 
         ]
-      }
+      },
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/TextFields/tests/unit/*.{h,m,swift}",
+            "components/TextFields/tests/unit/supplemental/*.{h,m,swift}"
+          ],
+          "resources": "components/TextFields/tests/unit/resources/*",
+          "dependencies": {
+            "MaterialComponents/TextFields+ColorThemer": [
+
+            ],
+            "MaterialComponents/TextFields+FontThemer": [
+
+            ],
+            "MaterialComponents/TextFields+TypographyThemer": [
+
+            ],
+            "MaterialComponents/Themes": [
+
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "TextFields+ColorThemer",
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/TextFields/src/ColorThemer/*.h",
-      "source_files": "components/TextFields/src/ColorThemer/*.{h,m}",
+      "public_header_files": [
+        "components/TextFields/src/ColorThemer/*.h"
+      ],
+      "source_files": [
+        "components/TextFields/src/ColorThemer/*.{h,m}"
+      ],
       "dependencies": {
         "MaterialComponents/TextFields": [
 
@@ -1433,8 +2520,12 @@
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/TextFields/src/FontThemer/*.h",
-      "source_files": "components/TextFields/src/FontThemer/*.{h,m}",
+      "public_header_files": [
+        "components/TextFields/src/FontThemer/*.h"
+      ],
+      "source_files": [
+        "components/TextFields/src/FontThemer/*.{h,m}"
+      ],
       "dependencies": {
         "MaterialComponents/TextFields": [
 
@@ -1449,8 +2540,12 @@
       "platforms": {
         "ios": "8.0"
       },
-      "public_header_files": "components/TextFields/src/TypographyThemer/*.h",
-      "source_files": "components/TextFields/src/TypographyThemer/*.{h,m}",
+      "public_header_files": [
+        "components/TextFields/src/TypographyThemer/*.h"
+      ],
+      "source_files": [
+        "components/TextFields/src/TypographyThemer/*.{h,m}"
+      ],
       "dependencies": {
         "MaterialComponents/TextFields": [
 
@@ -1477,7 +2572,18 @@
         "MaterialComponents/schemes/Typography": [
 
         ]
-      }
+      },
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/Themes/tests/unit/*.{h,m,swift}",
+            "components/Themes/tests/unit/supplemental/*.{h,m,swift}"
+          ],
+          "resources": "components/Themes/tests/unit/resources/*"
+        }
+      ]
     },
     {
       "name": "Typography",
@@ -1492,8 +2598,22 @@
       "dependencies": {
         "MaterialComponents/private/Application": [
 
+        ],
+        "MaterialComponents/private/Math": [
+
         ]
-      }
+      },
+      "testspecs": [
+        {
+          "name": "UnitTests",
+          "test_type": "unit",
+          "source_files": [
+            "components/Typography/tests/unit/*.{h,m,swift}",
+            "components/Typography/tests/unit/supplemental/*.{h,m,swift}"
+          ],
+          "resources": "components/Typography/tests/unit/resources/*"
+        }
+      ]
     },
     {
       "name": "schemes",
@@ -1504,7 +2624,50 @@
             "ios": "8.0"
           },
           "public_header_files": "components/schemes/Color/src/*.h",
-          "source_files": "components/schemes/Color/src/*.{h,m}"
+          "source_files": "components/schemes/Color/src/*.{h,m}",
+          "testspecs": [
+            {
+              "name": "UnitTests",
+              "test_type": "unit",
+              "source_files": [
+                "components/schemes/Color/tests/unit/*.{h,m,swift}",
+                "components/schemes/Color/tests/unit/supplemental/*.{h,m,swift}"
+              ],
+              "resources": "components/schemes/Color/tests/unit/resources/*",
+              "dependencies": {
+                "MaterialComponents/private/Math": [
+
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Shape",
+          "platforms": {
+            "ios": "8.0"
+          },
+          "public_header_files": "components/schemes/Shape/src/*.h",
+          "source_files": "components/schemes/Shape/src/*.{h,m}",
+          "dependencies": {
+            "MaterialComponents/ShapeLibrary": [
+
+            ],
+            "MaterialComponents/Shapes": [
+
+            ]
+          },
+          "testspecs": [
+            {
+              "name": "UnitTests",
+              "test_type": "unit",
+              "source_files": [
+                "components/schemes/Shape/tests/unit/*.{h,m,swift}",
+                "components/schemes/Shape/tests/unit/supplemental/*.{h,m,swift}"
+              ],
+              "resources": "components/schemes/Shape/tests/unit/resources/*"
+            }
+          ]
         },
         {
           "name": "Typography",
@@ -1512,7 +2675,18 @@
             "ios": "8.0"
           },
           "public_header_files": "components/schemes/Typography/src/*.h",
-          "source_files": "components/schemes/Typography/src/*.{h,m}"
+          "source_files": "components/schemes/Typography/src/*.{h,m}",
+          "testspecs": [
+            {
+              "name": "UnitTests",
+              "test_type": "unit",
+              "source_files": [
+                "components/schemes/Typography/tests/unit/*.{h,m,swift}",
+                "components/schemes/Typography/tests/unit/supplemental/*.{h,m,swift}"
+              ],
+              "resources": "components/schemes/Typography/tests/unit/resources/*"
+            }
+          ]
         }
       ]
     },
@@ -1700,7 +2874,18 @@
             "ios": "8.0"
           },
           "public_header_files": "components/private/Application/src/*.h",
-          "source_files": "components/private/Application/src/*.{h,m}"
+          "source_files": "components/private/Application/src/*.{h,m}",
+          "testspecs": [
+            {
+              "name": "UnitTests",
+              "test_type": "unit",
+              "source_files": [
+                "components/private/Application/tests/unit/*.{h,m,swift}",
+                "components/private/Application/tests/unit/supplemental/*.{h,m,swift}"
+              ],
+              "resources": "components/private/Application/tests/unit/resources/*"
+            }
+          ]
         },
         {
           "name": "KeyboardWatcher",
@@ -1713,7 +2898,18 @@
             "MaterialComponents/private/Application": [
 
             ]
-          }
+          },
+          "testspecs": [
+            {
+              "name": "UnitTests",
+              "test_type": "unit",
+              "source_files": [
+                "components/private/KeyboardWatcher/tests/unit/*.{h,m,swift}",
+                "components/private/KeyboardWatcher/tests/unit/supplemental/*.{h,m,swift}"
+              ],
+              "resources": "components/private/KeyboardWatcher/tests/unit/resources/*"
+            }
+          ]
         },
         {
           "name": "Math",
@@ -1721,7 +2917,18 @@
             "ios": "8.0"
           },
           "public_header_files": "components/private/Math/src/*.h",
-          "source_files": "components/private/Math/src/*.{h,m}"
+          "source_files": "components/private/Math/src/*.{h,m}",
+          "testspecs": [
+            {
+              "name": "UnitTests",
+              "test_type": "unit",
+              "source_files": [
+                "components/private/Math/tests/unit/*.{h,m,swift}",
+                "components/private/Math/tests/unit/supplemental/*.{h,m,swift}"
+              ],
+              "resources": "components/private/Math/tests/unit/resources/*"
+            }
+          ]
         },
         {
           "name": "Overlay",
@@ -1732,45 +2939,18 @@
           "source_files": [
             "components/private/Overlay/src/*.{h,m}",
             "components/private/Overlay/src/private/*.{h,m}"
+          ],
+          "testspecs": [
+            {
+              "name": "UnitTests",
+              "test_type": "unit",
+              "source_files": [
+                "components/private/Overlay/tests/unit/*.{h,m,swift}",
+                "components/private/Overlay/tests/unit/supplemental/*.{h,m,swift}"
+              ],
+              "resources": "components/private/Overlay/tests/unit/resources/*"
+            }
           ]
-        },
-        {
-          "name": "ShapeLibrary",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/private/ShapeLibrary/src/*.h",
-          "source_files": [
-            "components/private/ShapeLibrary/src/*.{h,m}",
-            "components/private/ShapeLibrary/src/private/*.{h,m}"
-          ],
-          "dependencies": {
-            "MaterialComponents/private/Shapes": [
-
-            ],
-            "MaterialComponents/private/Math": [
-
-            ]
-          }
-        },
-        {
-          "name": "Shapes",
-          "platforms": {
-            "ios": "8.0"
-          },
-          "public_header_files": "components/private/Shapes/src/*.h",
-          "source_files": [
-            "components/private/Shapes/src/*.{h,m}",
-            "components/private/Shapes/src/private/*.{h,m}"
-          ],
-          "dependencies": {
-            "MaterialComponents/ShadowLayer": [
-
-            ],
-            "MaterialComponents/private/Math": [
-
-            ]
-          }
         },
         {
           "name": "ThumbTrack",
@@ -1801,7 +2981,18 @@
             "MaterialComponents/private/Math": [
 
             ]
-          }
+          },
+          "testspecs": [
+            {
+              "name": "UnitTests",
+              "test_type": "unit",
+              "source_files": [
+                "components/private/ThumbTrack/tests/unit/*.{h,m,swift}",
+                "components/private/ThumbTrack/tests/unit/supplemental/*.{h,m,swift}"
+              ],
+              "resources": "components/private/ThumbTrack/tests/unit/resources/*"
+            }
+          ]
         },
         {
           "name": "UIMetrics",
@@ -1817,7 +3008,18 @@
             "MaterialComponents/private/Application": [
 
             ]
-          }
+          },
+          "testspecs": [
+            {
+              "name": "UnitTests",
+              "test_type": "unit",
+              "source_files": [
+                "components/private/UIMetrics/tests/unit/*.{h,m,swift}",
+                "components/private/UIMetrics/tests/unit/supplemental/*.{h,m,swift}"
+              ],
+              "resources": "components/private/UIMetrics/tests/unit/resources/*"
+            }
+          ]
         }
       ]
     }
