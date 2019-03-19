@@ -21,8 +21,8 @@ import MaterialComponents
 class BackdropViewController: UIViewController {
   var appBar = MDCAppBar()
   
-  //TODO: Change the following two lines from UIView to ShapedShadowedView
-  var containerView: ShapedShadowedView = {
+  var containerView: UIView = {
+    //TODO: Change the following line from UIView to ShapedShadowedView
     let view = ShapedShadowedView(frame: .zero)
     view.translatesAutoresizingMaskIntoConstraints = false
     if let shapedShadowedLayer = view.layer as? MDCShapedShadowLayer {
