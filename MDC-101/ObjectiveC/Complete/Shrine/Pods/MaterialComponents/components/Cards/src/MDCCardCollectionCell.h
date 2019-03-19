@@ -1,18 +1,16 @@
-/*
- Copyright 2018-present the Material Components for iOS authors. All Rights Reserved.
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
- http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- */
+// Copyright 2018-present the Material Components for iOS authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 #import <UIKit/UIKit.h>
 #import "MaterialInk.h"
@@ -34,9 +32,15 @@ typedef NS_ENUM(NSInteger, MDCCardCellState) {
 
   /** The visual state when the cell is in its highlighted state. */
   MDCCardCellStateHighlighted,
-  
+
   /** The visual state when the cell has been selected. */
-  MDCCardCellStateSelected
+  MDCCardCellStateSelected,
+
+  /**
+   The visual state when the cell is being dragged.
+   Currently only used with the Ripple Beta component.
+  */
+  MDCCardCellStateDragged
 };
 
 /**
@@ -51,8 +55,8 @@ typedef NS_ENUM(NSInteger, MDCCardCellHorizontalImageAlignment) {
 
   /** The alignment of the image is to the left of the card. */
   MDCCardCellHorizontalImageAlignmentLeft,
- 
- // TODO: Add AlignmentLeading and AlignmentTrailing. See Github issue #3045
+
+  // TODO: Add AlignmentLeading and AlignmentTrailing. See Github issue #3045
 };
 
 /**
@@ -90,6 +94,20 @@ typedef NS_ENUM(NSInteger, MDCCardCellVerticalImageAlignment) {
  */
 @property(nonatomic, readonly, strong, nonnull) MDCInkView *inkView;
 
+/**
+ This property defines if a card as a whole should be interactable or not.
+ What this means is that when isInteractable is set to NO, there will be no ink ripple and
+ no change in shadow elevation when tapped or selected. Also the card container itself will not be
+ tappable, but any of its subviews will still be tappable.
+
+ Default is set to YES.
+
+ Important: Our specification for cards explicitly define a card as being an interactable component.
+ Therefore, this property should be set to NO *only if* there are other interactable items within
+ the card's content, such as buttons or other tappable controls.
+ */
+@property(nonatomic, getter=isInteractable) IBInspectable BOOL interactable;
+
 /*
  The shape generator used to define the card cell's shape.
  When set, layer properties such as cornerRadius and other layer properties are nullified/zeroed.
@@ -109,8 +127,8 @@ typedef NS_ENUM(NSInteger, MDCCardCellVerticalImageAlignment) {
  @param shadowElevation The shadow elevation
  @param state MDCCardCellState the card state
  */
-- (void)setShadowElevation:(MDCShadowElevation)shadowElevation forState:(MDCCardCellState)state
-    UI_APPEARANCE_SELECTOR;
+- (void)setShadowElevation:(MDCShadowElevation)shadowElevation
+                  forState:(MDCCardCellState)state UI_APPEARANCE_SELECTOR;
 
 /**
  Returns the shadow elevation for an MDCCardViewState state
@@ -131,8 +149,7 @@ typedef NS_ENUM(NSInteger, MDCCardCellVerticalImageAlignment) {
  @param borderWidth The border width
  @param state MDCCardCellState the card state
  */
-- (void)setBorderWidth:(CGFloat)borderWidth forState:(MDCCardCellState)state
-    UI_APPEARANCE_SELECTOR;
+- (void)setBorderWidth:(CGFloat)borderWidth forState:(MDCCardCellState)state UI_APPEARANCE_SELECTOR;
 
 /**
  Returns the border width for an MDCCardCellState state
@@ -151,8 +168,8 @@ typedef NS_ENUM(NSInteger, MDCCardCellVerticalImageAlignment) {
  @param borderColor The border color
  @param state MDCCardCellState the card state
  */
-- (void)setBorderColor:(nullable UIColor *)borderColor forState:(MDCCardCellState)state
-    UI_APPEARANCE_SELECTOR;
+- (void)setBorderColor:(nullable UIColor *)borderColor
+              forState:(MDCCardCellState)state UI_APPEARANCE_SELECTOR;
 
 /**
  Returns the border color for an MDCCardCellStateNormal state
@@ -171,8 +188,8 @@ typedef NS_ENUM(NSInteger, MDCCardCellVerticalImageAlignment) {
  @param shadowColor The shadow color
  @param state MDCCardCellState the card state
  */
-- (void)setShadowColor:(nullable UIColor *)shadowColor forState:(MDCCardCellState)state
-    UI_APPEARANCE_SELECTOR;
+- (void)setShadowColor:(nullable UIColor *)shadowColor
+              forState:(MDCCardCellState)state UI_APPEARANCE_SELECTOR;
 
 /**
  Returns the shadow color for an MDCCardCellStateNormal state
@@ -205,8 +222,7 @@ typedef NS_ENUM(NSInteger, MDCCardCellVerticalImageAlignment) {
  @param image The image
  @param state MDCCardCellState the card state
  */
-- (void)setImage:(nullable UIImage *)image forState:(MDCCardCellState)state
-UI_APPEARANCE_SELECTOR;
+- (void)setImage:(nullable UIImage *)image forState:(MDCCardCellState)state UI_APPEARANCE_SELECTOR;
 
 /**
  Returns the horizontal image alignment for an MDCCardCellStateNormal state
@@ -273,8 +289,8 @@ UI_APPEARANCE_SELECTOR;
  @param imageTintColor The image tint color
  @param state MDCCardCellState the card state
  */
-- (void)setImageTintColor:(nullable UIColor *)imageTintColor forState:(MDCCardCellState)state
-UI_APPEARANCE_SELECTOR;
+- (void)setImageTintColor:(nullable UIColor *)imageTintColor
+                 forState:(MDCCardCellState)state UI_APPEARANCE_SELECTOR;
 
 /**
  The state of the card cell.

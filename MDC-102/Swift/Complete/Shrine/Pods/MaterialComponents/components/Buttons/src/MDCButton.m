@@ -1,18 +1,16 @@
-/*
- Copyright 2016-present the Material Components for iOS authors. All Rights Reserved.
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
- http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- */
+// Copyright 2016-present the Material Components for iOS authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 #import "MDCButton.h"
 
@@ -27,39 +25,6 @@
 // TODO(ajsecord): Animate title color when animating between enabled/disabled states.
 // Non-trivial: http://corecocoa.wordpress.com/2011/10/04/animatable-text-color-of-uilabel/
 
-static NSString *const MDCButtonEnabledBackgroundColorKey = @"MDCButtonEnabledBackgroundColorKey";
-static NSString *const MDCButtonDisabledBackgroundColorLightKey =
-    @"MDCButtonDisabledBackgroundColorLightKey";
-static NSString *const MDCButtonDisabledBackgroundColorDarkKey =
-    @"MDCButtonDisabledBackgroundColorDarkKey";
-static NSString *const MDCButtonInkViewInkStyleKey = @"MDCButtonInkViewInkStyleKey";
-static NSString *const MDCButtonInkViewInkColorKey = @"MDCButtonInkViewInkColorKey";
-static NSString *const MDCButtonInkViewInkMaxRippleRadiusKey =
-    @"MDCButtonInkViewInkMaxRippleRadiusKey";
-static NSString *const MDCButtonShouldRaiseOnTouchKey = @"MDCButtonShouldRaiseOnTouchKey";
-// Previous value kept for backwards compatibility.
-static NSString *const MDCButtonUppercaseTitleKey = @"MDCButtonShouldCapitalizeTitleKey";
-// Previous value kept for backwards compatibility.
-static NSString *const MDCButtonUnderlyingColorHintKey = @"MDCButtonUnderlyingColorKey";
-static NSString *const MDCButtonDisableAlphaKey = @"MDCButtonDisableAlphaKey";
-static NSString *const MDCButtonEnableAlphaKey = @"MDCButtonEnableAlphaKey";
-static NSString *const MDCButtonCustomTitleColorKey = @"MDCButtonCustomTitleColorKey";
-static NSString *const MDCButtonAreaInsetKey = @"MDCButtonAreaInsetKey";
-static NSString *const MDCButtonMinimumSizeKey = @"MDCButtonMinimumSizeKey";
-static NSString *const MDCButtonMaximumSizeKey = @"MDCButtonMaximumSizeKey";
-
-static NSString *const MDCButtonUserElevationsKey = @"MDCButtonUserElevationsKey";
-static NSString *const MDCButtonBackgroundColorsKey = @"MDCButtonBackgroundColorsKey";
-// Previous value kept for backwards compatibility.
-static NSString *const MDCButtonNontransformedTitlesKey = @"MDCButtonAccessibilityLabelsKey";
-
-static NSString *const MDCButtonBorderColorsKey = @"MDCButtonBorderColorsKey";
-static NSString *const MDCButtonBorderWidthsKey = @"MDCButtonBorderWidthsKey";
-
-static NSString *const MDCButtonShadowColorsKey = @"MDCButtonShadowColorsKey";
-
-static NSString *const MDCButtonFontsKey = @"MDCButtonFontsKey";
-
 // Specified in Material Guidelines
 // https://material.io/guidelines/layout/metrics-keylines.html#metrics-keylines-touch-target-size
 static const CGFloat MDCButtonMinimumTouchTargetHeight = 48;
@@ -69,9 +34,9 @@ static const CGFloat MDCButtonDefaultCornerRadius = 2.0;
 static const NSTimeInterval MDCButtonAnimationDuration = 0.2;
 
 // https://material.io/go/design-buttons#buttons-main-buttons
-static const CGFloat MDCButtonDisabledAlpha = 0.12f;
+static const CGFloat MDCButtonDisabledAlpha = (CGFloat)0.12;
 
-// Blue 500 from https://material.io/go/design-theming#color-color-palette .
+// Blue 500 from https://material.io/go/design-color-theming#color-color-palette .
 static const uint32_t MDCButtonDefaultBackgroundColor = 0x191919;
 
 // Creates a UIColor from a 24-bit RGB color encoded as an integer.
@@ -168,126 +133,12 @@ static NSAttributedString *uppercaseAttributedString(NSAttributedString *string)
       _fonts[@(UIControlStateNormal)] = self.titleLabel.font;
     }
 
-    if ([aDecoder containsValueForKey:MDCButtonInkViewInkStyleKey]) {
-      self.inkView.inkStyle = [aDecoder decodeIntegerForKey:MDCButtonInkViewInkStyleKey];
-    }
-
-    if ([aDecoder containsValueForKey:MDCButtonInkViewInkColorKey]) {
-      self.inkView.inkColor = [aDecoder decodeObjectOfClass:[UIColor class]
-                                                     forKey:MDCButtonInkViewInkColorKey];
-    }
-
-    if ([aDecoder containsValueForKey:MDCButtonInkViewInkMaxRippleRadiusKey]) {
-      self.inkView.maxRippleRadius =
-          (CGFloat)[aDecoder decodeDoubleForKey:MDCButtonInkViewInkMaxRippleRadiusKey];
-    }
-
-    if ([aDecoder containsValueForKey:MDCButtonShouldRaiseOnTouchKey]) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-      self.shouldRaiseOnTouch = [aDecoder decodeBoolForKey:MDCButtonShouldRaiseOnTouchKey];
-#pragma clang diagnostic pop
-    }
-
-    if ([aDecoder containsValueForKey:MDCButtonUppercaseTitleKey]) {
-      self.uppercaseTitle = [aDecoder decodeBoolForKey:MDCButtonUppercaseTitleKey];
-    }
-
-    if ([aDecoder containsValueForKey:MDCButtonUnderlyingColorHintKey]) {
-      _underlyingColorHint = [aDecoder decodeObjectOfClass:[UIColor class]
-                                                    forKey:MDCButtonUnderlyingColorHintKey];
-    }
-
-    if ([aDecoder containsValueForKey:MDCButtonDisableAlphaKey]) {
-      _disabledAlpha = (CGFloat)[aDecoder decodeDoubleForKey:MDCButtonDisableAlphaKey];
-    }
-
-    if ([aDecoder containsValueForKey:MDCButtonEnableAlphaKey]) {
-      _enabledAlpha = (CGFloat)[aDecoder decodeDoubleForKey:MDCButtonEnableAlphaKey];
-    }
-
-    if ([aDecoder containsValueForKey:MDCButtonAreaInsetKey]) {
-      self.hitAreaInsets = [aDecoder decodeUIEdgeInsetsForKey:MDCButtonAreaInsetKey];
-    }
-
-    if ([aDecoder containsValueForKey:MDCButtonMinimumSizeKey]) {
-      self.minimumSize = [aDecoder decodeCGSizeForKey:MDCButtonMinimumSizeKey];
-    }
-
-    if ([aDecoder containsValueForKey:MDCButtonMaximumSizeKey]) {
-      self.maximumSize = [aDecoder decodeCGSizeForKey:MDCButtonMaximumSizeKey];
-    }
-
-    if ([aDecoder containsValueForKey:MDCButtonUserElevationsKey]) {
-      _userElevations = [aDecoder decodeObjectOfClass:[NSMutableDictionary class]
-                                               forKey:MDCButtonUserElevationsKey];
-    }
-
-    if ([aDecoder containsValueForKey:MDCButtonBorderColorsKey]) {
-      _borderColors = [aDecoder decodeObjectOfClass:[NSMutableDictionary class]
-                                             forKey:MDCButtonBorderColorsKey];
-    }
-
-    if ([aDecoder containsValueForKey:MDCButtonBorderWidthsKey]) {
-      _borderWidths = [aDecoder  decodeObjectOfClass:[NSMutableDictionary class]
-                                              forKey:MDCButtonBorderWidthsKey];
-    }
-
-    if ([aDecoder containsValueForKey:MDCButtonBackgroundColorsKey]) {
-      _backgroundColors = [aDecoder  decodeObjectOfClass:[NSMutableDictionary class]
-                                                  forKey:MDCButtonBackgroundColorsKey];
-    } else {
-      // Storyboards will set the backgroundColor via the UIView backgroundColor setter, so we have
-      // to write that in to our _backgroundColors dictionary.
-      _backgroundColors[@(UIControlStateNormal)] = self.layer.shapedBackgroundColor;
-    }
+    // Storyboards will set the backgroundColor via the UIView backgroundColor setter, so we have
+    // to write that in to our _backgroundColors dictionary.
+    _backgroundColors[@(UIControlStateNormal)] = self.layer.shapedBackgroundColor;
     [self updateBackgroundColor];
-
-    if ([aDecoder containsValueForKey:MDCButtonFontsKey]) {
-      _fonts = [aDecoder  decodeObjectOfClass:[NSMutableDictionary class] forKey:MDCButtonFontsKey];
-    }
-
-    if ([aDecoder containsValueForKey:MDCButtonNontransformedTitlesKey]) {
-      _nontransformedTitles = [aDecoder  decodeObjectOfClass:[NSMutableDictionary class]
-                                                      forKey:MDCButtonNontransformedTitlesKey];
-    }
-
-    if ([aDecoder containsValueForKey:MDCButtonShadowColorsKey]) {
-      _shadowColors = [aDecoder  decodeObjectOfClass:[NSMutableDictionary class]
-                                              forKey:MDCButtonShadowColorsKey];
-    }
   }
   return self;
-}
-
-- (void)encodeWithCoder:(NSCoder *)aCoder {
-  [super encodeWithCoder:aCoder];
-
-  [aCoder encodeInteger:_inkView.inkStyle forKey:MDCButtonInkViewInkStyleKey];
-  if (_inkView.inkColor) {
-    [aCoder encodeObject:_inkView.inkColor forKey:MDCButtonInkViewInkColorKey];
-  }
-
-  [aCoder encodeDouble:_inkView.maxRippleRadius forKey:MDCButtonInkViewInkMaxRippleRadiusKey];
-  [aCoder encodeBool:_shouldRaiseOnTouch forKey:MDCButtonShouldRaiseOnTouchKey];
-  [aCoder encodeBool:_uppercaseTitle forKey:MDCButtonUppercaseTitleKey];
-  if (_underlyingColorHint) {
-    [aCoder encodeObject:_underlyingColorHint forKey:MDCButtonUnderlyingColorHintKey];
-  }
-  [aCoder encodeDouble:self.disabledAlpha forKey:MDCButtonDisableAlphaKey];
-  [aCoder encodeDouble:_enabledAlpha forKey:MDCButtonEnableAlphaKey];
-  [aCoder encodeUIEdgeInsets:self.hitAreaInsets forKey:MDCButtonAreaInsetKey];
-  [aCoder encodeCGSize:self.minimumSize forKey:MDCButtonMinimumSizeKey];
-  [aCoder encodeCGSize:self.maximumSize forKey:MDCButtonMaximumSizeKey];
-  [aCoder encodeObject:_userElevations forKey:MDCButtonUserElevationsKey];
-  [aCoder encodeObject:_backgroundColors forKey:MDCButtonBackgroundColorsKey];
-  [aCoder encodeObject:_nontransformedTitles forKey:MDCButtonNontransformedTitlesKey];
-  [aCoder encodeObject:_borderColors forKey:MDCButtonBorderColorsKey];
-  [aCoder encodeObject:_borderWidths forKey:MDCButtonBorderWidthsKey];
-  [aCoder encodeObject:_fonts forKey:MDCButtonFontsKey];
-  if (_shadowColors) {
-    [aCoder encodeObject:_shadowColors forKey:MDCButtonShadowColorsKey];
-  }
 }
 
 - (void)commonMDCButtonInit {
@@ -301,6 +152,8 @@ static NSAttributedString *uppercaseAttributedString(NSAttributedString *string)
   _imageTintColors = [NSMutableDictionary dictionary];
   _borderWidths = [NSMutableDictionary dictionary];
   _fonts = [NSMutableDictionary dictionary];
+  _accessibilityTraitsIncludesButton = YES;
+  [super setAccessibilityTraits:[super accessibilityTraits] | UIAccessibilityTraitButton];
 
   if (!_backgroundColors) {
     // _backgroundColors may have already been initialized by setting the backgroundColor setter.
@@ -344,7 +197,7 @@ static NSAttributedString *uppercaseAttributedString(NSAttributedString *string)
   // Block users from activating multiple buttons simultaneously by default.
   self.exclusiveTouch = YES;
 
-  _inkView.inkColor = [UIColor colorWithWhite:1 alpha:0.2f];
+  _inkView.inkColor = [UIColor colorWithWhite:1 alpha:(CGFloat)0.2];
 
   // Uppercase all titles
   if (_uppercaseTitle) {
@@ -400,7 +253,8 @@ static NSAttributedString *uppercaseAttributedString(NSAttributedString *string)
 
     CGFloat offsetX = contentCenterPoint.x - boundsCenterPoint.x;
     CGFloat offsetY = contentCenterPoint.y - boundsCenterPoint.y;
-    _inkView.frame = CGRectMake(offsetX, offsetY, self.bounds.size.width, self.bounds.size.height);
+    _inkView.frame =
+        CGRectMake(offsetX, offsetY, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds));
   } else {
     _inkView.frame = self.bounds;
   }
@@ -423,9 +277,7 @@ static NSAttributedString *uppercaseAttributedString(NSAttributedString *string)
       NSLog(
           @"Button touch target does not meet minimum size guidlines of (%0.f, %0.f). Button: %@, "
           @"Touch Target: %@",
-          MDCButtonMinimumTouchTargetWidth,
-          MDCButtonMinimumTouchTargetHeight,
-          [self description],
+          MDCButtonMinimumTouchTargetWidth, MDCButtonMinimumTouchTargetHeight, [self description],
           NSStringFromCGSize(CGSizeMake(width, height)));
     });
   }
@@ -527,9 +379,10 @@ static NSAttributedString *uppercaseAttributedString(NSAttributedString *string)
 - (void)updateTitleCase {
   // This calls setTitle or setAttributedTitle for every title value we have stored. In each
   // respective setter the title is upcased if _uppercaseTitle is YES.
-  for (NSNumber *key in _nontransformedTitles.keyEnumerator) {
+  NSDictionary<NSNumber *, NSString *> *nontransformedTitles = [_nontransformedTitles copy];
+  for (NSNumber *key in nontransformedTitles.keyEnumerator) {
     UIControlState state = key.unsignedIntegerValue;
-    NSString *title = _nontransformedTitles[key];
+    NSString *title = nontransformedTitles[key];
     if ([title isKindOfClass:[NSAttributedString class]]) {
       [self setAttributedTitle:(NSAttributedString *)title forState:state];
     } else {
@@ -631,7 +484,10 @@ static NSAttributedString *uppercaseAttributedString(NSAttributedString *string)
 }
 
 - (UIAccessibilityTraits)accessibilityTraits {
-  return [super accessibilityTraits] | UIAccessibilityTraitButton;
+  if (self.accessibilityTraitsIncludesButton) {
+    return [super accessibilityTraits] | UIAccessibilityTraitButton;
+  }
+  return [super accessibilityTraits];
 }
 
 #pragma mark - Ink
@@ -684,19 +540,38 @@ static NSAttributedString *uppercaseAttributedString(NSAttributedString *string)
   [self updateBackgroundColor];
 }
 
+- (UIColor *)backgroundColor {
+  return self.layer.shapedBackgroundColor;
+}
+
 - (UIColor *)backgroundColorForState:(UIControlState)state {
-  return _backgroundColors[@(state)];
+  // If the `.highlighted` flag is set, turn off the `.disabled` flag
+  if ((state & UIControlStateHighlighted) == UIControlStateHighlighted) {
+    state = state & ~UIControlStateDisabled;
+  }
+
+  return _backgroundColors[@(state)] ?: _backgroundColors[@(UIControlStateNormal)];
 }
 
 - (void)setBackgroundColor:(UIColor *)backgroundColor forState:(UIControlState)state {
-  _backgroundColors[@(state)] = backgroundColor;
-  [self updateAlphaAndBackgroundColorAnimated:NO];
+  UIControlState storageState = state;
+  // If the `.highlighted` flag is set, turn off the `.disabled` flag
+  if ((state & UIControlStateHighlighted) == UIControlStateHighlighted) {
+    storageState = state & ~UIControlStateDisabled;
+  }
+
+  // Only update the backing dictionary if:
+  // 1. The `state` argument is the same as the "storage" state, OR
+  // 2. There is already a value in the "storage" state.
+  if (storageState == state || _backgroundColors[@(storageState)] != nil) {
+    _backgroundColors[@(storageState)] = backgroundColor;
+    [self updateAlphaAndBackgroundColorAnimated:NO];
+  }
 }
 
 #pragma mark - Image Tint Color
 
 - (nullable UIColor *)imageTintColorForState:(UIControlState)state {
-
   return _imageTintColors[@(state)] ?: _imageTintColors[@(UIControlStateNormal)];
 }
 
@@ -758,17 +633,29 @@ static NSAttributedString *uppercaseAttributedString(NSAttributedString *string)
 #pragma mark - Border Width
 
 - (CGFloat)borderWidthForState:(UIControlState)state {
+  // If the `.highlighted` flag is set, turn off the `.disabled` flag
+  if ((state & UIControlStateHighlighted) == UIControlStateHighlighted) {
+    state = state & ~UIControlStateDisabled;
+  }
   NSNumber *borderWidth = _borderWidths[@(state)];
   if (borderWidth != nil) {
     return (CGFloat)borderWidth.doubleValue;
   }
-  return 0;
+  return (CGFloat)[_borderWidths[@(UIControlStateNormal)] doubleValue];
 }
 
 - (void)setBorderWidth:(CGFloat)borderWidth forState:(UIControlState)state {
-  _borderWidths[@(state)] = @(borderWidth);
-
-  [self updateBorderWidth];
+  UIControlState storageState = state;
+  if ((state & UIControlStateHighlighted) == UIControlStateHighlighted) {
+    storageState = state & ~UIControlStateDisabled;
+  }
+  // Only update the backing dictionary if:
+  // 1. The `state` argument is the same as the "storage" state, OR
+  // 2. There is already a value in the "storage" state.
+  if (storageState == state || _backgroundColors[@(storageState)] != nil) {
+    _borderWidths[@(state)] = @(borderWidth);
+    [self updateBorderWidth];
+  }
 }
 
 - (void)updateBorderWidth {
@@ -794,22 +681,15 @@ static NSAttributedString *uppercaseAttributedString(NSAttributedString *string)
 
 #pragma mark - Private methods
 
-- (UIColor *)currentBackgroundColor {
-  UIColor *color = _backgroundColors[@(self.state)];
-  if (color) {
-    return color;
-  }
-  return [self backgroundColorForState:UIControlStateNormal];
-}
-
 /**
  The background color that a user would see for this button. If self.backgroundColor is not
  transparent, then returns that. Otherwise, returns self.underlyingColorHint.
  @note If self.underlyingColorHint is not set, then this method will return nil.
  */
 - (UIColor *)effectiveBackgroundColor {
-  if (![self isTransparentColor:self.currentBackgroundColor]) {
-    return self.currentBackgroundColor;
+  UIColor *backgroundColor = [self backgroundColorForState:self.state];
+  if (![self isTransparentColor:backgroundColor]) {
+    return backgroundColor;
   } else {
     return self.underlyingColorHint;
   }
@@ -818,13 +698,13 @@ static NSAttributedString *uppercaseAttributedString(NSAttributedString *string)
 /** Returns YES if the color is not transparent and is a "dark" color. */
 - (BOOL)isDarkColor:(UIColor *)color {
   // TODO: have a components/private/ColorCalculations/MDCColorCalculations.h|m
-  //  return ![self isTransparentColor:color] && [QTMColorGroup luminanceOfColor:color] < 0.5f;
+  //  return ![self isTransparentColor:color] && [QTMColorGroup luminanceOfColor:color] < 0.5;
   return ![self isTransparentColor:color];
 }
 
 /** Returns YES if the color is transparent (including a nil color). */
 - (BOOL)isTransparentColor:(UIColor *)color {
-  return !color || [color isEqual:[UIColor clearColor]] || CGColorGetAlpha(color.CGColor) == 0.0f;
+  return !color || [color isEqual:[UIColor clearColor]] || CGColorGetAlpha(color.CGColor) == 0;
 }
 
 - (void)touchDragEnter:(__unused MDCButton *)button forEvent:(UIEvent *)event {
@@ -886,7 +766,7 @@ static NSAttributedString *uppercaseAttributedString(NSAttributedString *string)
 - (void)updateBackgroundColor {
   // When shapeGenerator is unset then self.layer.shapedBackgroundColor sets the layer's
   // backgroundColor. Whereas when shapeGenerator is set the sublayer's fillColor is set.
-  self.layer.shapedBackgroundColor = self.currentBackgroundColor;
+  self.layer.shapedBackgroundColor = [self backgroundColorForState:self.state];
   [self updateDisabledTitleColor];
 }
 
@@ -940,8 +820,7 @@ static NSAttributedString *uppercaseAttributedString(NSAttributedString *string)
 
   if (_mdc_adjustsFontForContentSizeCategory) {
     // Dynamic type is enabled so apply scaling
-    font = [font mdc_fontSizedForMaterialTextStyle:MDCFontTextStyleButton
-                              scaledForDynamicType:YES];
+    font = [font mdc_fontSizedForMaterialTextStyle:MDCFontTextStyleButton scaledForDynamicType:YES];
   }
 
   self.titleLabel.font = font;
@@ -973,7 +852,7 @@ static NSAttributedString *uppercaseAttributedString(NSAttributedString *string)
 - (void)updateInkForShape {
   CGRect boundingBox = CGPathGetBoundingBox(self.layer.shapeLayer.path);
   self.inkView.maxRippleRadius =
-      (CGFloat)(MDCHypot(CGRectGetHeight(boundingBox), CGRectGetWidth(boundingBox)) / 2 + 10.f);
+      (CGFloat)(MDCHypot(CGRectGetHeight(boundingBox), CGRectGetWidth(boundingBox)) / 2 + 10);
   self.inkView.layer.masksToBounds = NO;
 }
 

@@ -1,18 +1,16 @@
-/*
- Copyright 2017-present the Material Components for iOS authors. All Rights Reserved.
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
- http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- */
+// Copyright 2017-present the Material Components for iOS authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 #import <CoreGraphics/CoreGraphics.h>
 #import <QuartzCore/QuartzCore.h>
@@ -36,9 +34,7 @@ static inline CGPoint AnchorPointFromPosition(CGPoint position, CGRect bounds) {
 }
 
 static inline CGRect FrameCenteredAround(CGPoint position, CGSize size) {
-  return CGRectMake(position.x - size.width / 2,
-                    position.y - size.height / 2,
-                    size.width,
+  return CGRectMake(position.x - size.width / 2, position.y - size.height / 2, size.width,
                     size.height);
 }
 
@@ -47,9 +43,8 @@ static inline CGFloat LengthOfVector(CGVector vector) {
 }
 
 // TODO: Pull this out to MotionTransitioning.
-static void
-PrepareTransitionWithContext(id<UIViewControllerContextTransitioning> transitionContext,
-                             MDMTransitionDirection direction) {
+static void PrepareTransitionWithContext(id<UIViewControllerContextTransitioning> transitionContext,
+                                         MDMTransitionDirection direction) {
   UIViewController *fromViewController =
       [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
   UIView *fromView = [transitionContext viewForKey:UITransitionContextFromViewKey];
@@ -90,19 +85,17 @@ PrepareTransitionWithContext(id<UIViewControllerContextTransitioning> transition
 }
 
 // TODO: Pull this out to MotionTransitioning.
-static NSArray <UIViewController *> *
-OrderedViewControllersWithTransitionContext(id<UIViewControllerContextTransitioning> transitionContext,
-                                            MDMTransitionDirection direction) {
-  
+static NSArray<UIViewController *> *OrderedViewControllersWithTransitionContext(
+    id<UIViewControllerContextTransitioning> transitionContext, MDMTransitionDirection direction) {
   UIViewController *fromViewController =
       [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
   UIViewController *toViewController =
       [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
 
   if (direction == MDMTransitionDirectionForward) {
-    return @[fromViewController, toViewController];
+    return @[ fromViewController, toViewController ];
   } else {
-    return @[toViewController, fromViewController];
+    return @[ toViewController, fromViewController ];
   }
 }
 
@@ -133,13 +126,12 @@ OrderedViewControllersWithTransitionContext(id<UIViewControllerContextTransition
     return 0;
   }
   UIViewController *presentedViewController = viewControllers[1];
-  MDCMaskedTransitionMotionSpec motionSpecification =
-      MDCMaskedTransitionMotionSpecForContext(transitionContext.containerView,
-                                              presentedViewController);
+  MDCMaskedTransitionMotionSpec motionSpecification = MDCMaskedTransitionMotionSpecForContext(
+      transitionContext.containerView, presentedViewController);
 
-  MDCMaskedTransitionMotionTiming motion = ((_direction == MDMTransitionDirectionForward)
-                                            ? motionSpecification.expansion
-                                            : motionSpecification.collapse);
+  MDCMaskedTransitionMotionTiming motion =
+      ((_direction == MDMTransitionDirectionForward) ? motionSpecification.expansion
+                                                     : motionSpecification.collapse);
 
   return motion.overallDuration;
 }
@@ -156,9 +148,8 @@ OrderedViewControllersWithTransitionContext(id<UIViewControllerContextTransition
   }
   UIViewController *presentedViewController = viewControllers[1];
 
-  MDCMaskedTransitionMotionSpec motionSpecification =
-      MDCMaskedTransitionMotionSpecForContext(transitionContext.containerView,
-                                              presentedViewController);
+  MDCMaskedTransitionMotionSpec motionSpecification = MDCMaskedTransitionMotionSpecForContext(
+      transitionContext.containerView, presentedViewController);
 
   // Cache original state.
   // We're going to reparent the fore view, so keep this information for later.
@@ -203,8 +194,7 @@ OrderedViewControllersWithTransitionContext(id<UIViewControllerContextTransition
   } else {
     initialMaskedFrame = CGRectMake(CGRectGetMinX(transitionContext.containerView.bounds),
                                     CGRectGetMinY(initialSourceFrame) - 20,
-                                    CGRectGetWidth(originalFrame),
-                                    CGRectGetHeight(originalFrame));
+                                    CGRectGetWidth(originalFrame), CGRectGetHeight(originalFrame));
     if (CGRectGetMidX(initialSourceFrame) < CGRectGetMidX(initialMaskedFrame)) {
       // Middle-right
       corner = CGPointMake(CGRectGetMaxX(initialMaskedFrame), CGRectGetMidY(initialMaskedFrame));
@@ -219,15 +209,15 @@ OrderedViewControllersWithTransitionContext(id<UIViewControllerContextTransition
                                                          fromView:transitionContext.containerView];
 
   const CGFloat initialRadius = CGRectGetWidth(_sourceView.bounds) / 2;
-  const CGFloat finalRadius = LengthOfVector(CGVectorMake(initialSourceCenter.x - corner.x,
-                                                          initialSourceCenter.y - corner.y));
+  const CGFloat finalRadius = LengthOfVector(
+      CGVectorMake(initialSourceCenter.x - corner.x, initialSourceCenter.y - corner.y));
   const CGFloat finalScale = finalRadius / initialRadius;
 
   CAShapeLayer *shapeLayer = [[CAShapeLayer alloc] init];
   {
     // Ensures that we transform from the center of the source view's frame.
-    shapeLayer.anchorPoint = AnchorPointFromPosition(CenterOfFrame(initialSourceFrameInMask),
-                                                     maskedView.layer.bounds);
+    shapeLayer.anchorPoint =
+        AnchorPointFromPosition(CenterOfFrame(initialSourceFrameInMask), maskedView.layer.bounds);
     shapeLayer.frame = maskedView.layer.bounds;
     shapeLayer.path = [[UIBezierPath bezierPathWithOvalInRect:initialSourceFrameInMask] CGPath];
   }
@@ -244,8 +234,8 @@ OrderedViewControllersWithTransitionContext(id<UIViewControllerContextTransition
 
     self->_sourceView.frame = originalSourceFrame;
     self->_sourceView.backgroundColor = originalSourceBackgroundColor;
-    if (motionSpecification.shouldSlideWhenCollapsed
-        && transitionContext.presentationStyle != UIModalPresentationCustom) {
+    if (motionSpecification.shouldSlideWhenCollapsed &&
+        transitionContext.presentationStyle != UIModalPresentationCustom) {
       // If we're going to slide when collapsed then this transition won't be invoked. If we also
       // don't have a presentation controller (because of the presentation style) then we need to
       // restore the source view's visibility somehow. This is the only place I could think of to
@@ -258,12 +248,12 @@ OrderedViewControllersWithTransitionContext(id<UIViewControllerContextTransition
 
     [maskedView removeFromSuperview];
 
-    [transitionContext completeTransition:YES]; // Hand off back to UIKit
+    [transitionContext completeTransition:YES];  // Hand off back to UIKit
   }];
 
-  MDCMaskedTransitionMotionTiming motion = ((_direction == MDMTransitionDirectionForward)
-                                            ? motionSpecification.expansion
-                                            : motionSpecification.collapse);
+  MDCMaskedTransitionMotionTiming motion =
+      ((_direction == MDMTransitionDirectionForward) ? motionSpecification.expansion
+                                                     : motionSpecification.collapse);
 
   MDMMotionAnimator *animator = [[MDMMotionAnimator alloc] init];
   animator.shouldReverseValues = _direction == MDMTransitionDirectionBackward;
@@ -306,8 +296,8 @@ OrderedViewControllersWithTransitionContext(id<UIViewControllerContextTransition
         // Upon completion of the animation we want all of the content to be visible, so we jump
         // to a full bounds mask.
         shapeLayer.transform = CATransform3DIdentity;
-        shapeLayer.path = [[UIBezierPath bezierPathWithRect:presentedViewController.view.bounds]
-                           CGPath];
+        shapeLayer.path =
+            [[UIBezierPath bezierPathWithRect:presentedViewController.view.bounds] CGPath];
       };
     }
     [animator animateWithTiming:motion.maskTransformation
@@ -319,14 +309,16 @@ OrderedViewControllersWithTransitionContext(id<UIViewControllerContextTransition
 
   [animator animateWithTiming:motion.horizontalMovement
                       toLayer:maskedView.layer
-                   withValues:@[ @(CGRectGetMidX(initialMaskedFrame)),
-                                 @(CGRectGetMidX(finalMaskedFrame)) ]
+                   withValues:@[
+                     @(CGRectGetMidX(initialMaskedFrame)), @(CGRectGetMidX(finalMaskedFrame))
+                   ]
                       keyPath:MDMKeyPathX];
 
   [animator animateWithTiming:motion.verticalMovement
                       toLayer:maskedView.layer
-                   withValues:@[ @(CGRectGetMidY(initialMaskedFrame)),
-                                 @(CGRectGetMidY(finalMaskedFrame)) ]
+                   withValues:@[
+                     @(CGRectGetMidY(initialMaskedFrame)), @(CGRectGetMidY(finalMaskedFrame))
+                   ]
                       keyPath:MDMKeyPathY];
 
   [CATransaction commit];

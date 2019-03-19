@@ -1,62 +1,63 @@
-/*
- Copyright 2017-present the Material Components for iOS authors. All Rights Reserved.
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
- http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- */
+// Copyright 2017-present the Material Components for iOS authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 #import "MDCChipField.h"
 
 #import <MDFInternationalization/MDFInternationalization.h>
 
+#import "MaterialMath.h"
 #import "MaterialTextFields.h"
 
-static NSString *const MDCChipFieldTextFieldKey = @"textField";
-static NSString *const MDCChipFieldDelegateKey = @"delegate";
-static NSString *const MDCChipFieldChipsKey = @"chips";
-static NSString *const MDCChipFieldDelimiterKey = @"delimiter";
-static NSString *const MDCChipFieldMinTextFieldWidthKey = @"minTextFieldWidth";
-static NSString *const MDCChipFieldContentEdgeInsetsKey = @"contentEdgeInsets";
-static NSString *const MDCChipFieldShowPlaceholderWithChipsKey = @"showPlaceholderWithChips";
-static NSString *const MDCChipFieldChipHeightKey = @"chipHeight";
+NSString *const MDCEmptyTextString = @"";
+NSString *const MDCChipDelimiterSpace = @" ";
 
-NSString * const MDCEmptyTextString = @"";
-NSString * const MDCChipDelimiterSpace = @" ";
-
-static const CGFloat MDCChipFieldHorizontalInset = 15.f;
-static const CGFloat MDCChipFieldVerticalInset = 8.f;
-static const CGFloat MDCChipFieldIndent = 4.f;
-static const CGFloat MDCChipFieldHorizontalMargin = 4.f;
-static const CGFloat MDCChipFieldVerticalMargin = 5.f;
+static const CGFloat MDCChipFieldHorizontalInset = 15;
+static const CGFloat MDCChipFieldVerticalInset = 8;
+static const CGFloat MDCChipFieldIndent = 4;
+static const CGFloat MDCChipFieldHorizontalMargin = 4;
+static const CGFloat MDCChipFieldVerticalMargin = 5;
+static const CGFloat MDCChipFieldClearButtonSquareWidthHeight = 24;
+static const CGFloat MDCChipFieldClearImageSquareWidthHeight = 18;
 static const UIKeyboardType MDCChipFieldDefaultKeyboardType = UIKeyboardTypeEmailAddress;
 
-const CGFloat MDCChipFieldDefaultMinTextFieldWidth = 60.f;
+const CGFloat MDCChipFieldDefaultMinTextFieldWidth = 60;
 const UIEdgeInsets MDCChipFieldDefaultContentEdgeInsets = {
     MDCChipFieldVerticalInset, MDCChipFieldHorizontalInset, MDCChipFieldVerticalInset,
     MDCChipFieldHorizontalInset};
 
-@protocol MDCChipTextFieldDelegate <NSObject>
+@protocol MDCChipFieldTextFieldDelegate <NSObject>
 
 - (void)textFieldShouldRespondToDeleteBackward:(UITextField *)textField;
 
 @end
 
-@interface MDCChipTextField : MDCTextField
+@interface MDCChipFieldTextField : MDCTextField
 
-@property(nonatomic, weak) id<MDCChipTextFieldDelegate> deletionDelegate;
+@property(nonatomic, weak) id<MDCChipFieldTextFieldDelegate> deletionDelegate;
 
 @end
 
-@implementation MDCChipTextField
+@implementation MDCChipFieldTextField
+
+- (CGRect)textRectForBounds:(CGRect)bounds {
+  CGRect textRect = [super textRectForBounds:bounds];
+  if (self.mdf_effectiveUserInterfaceLayoutDirection == UIUserInterfaceLayoutDirectionRightToLeft) {
+    textRect = MDFRectFlippedHorizontally(textRect, CGRectGetWidth(self.bounds));
+    textRect.origin.x += 5;
+  }
+  return textRect;
+}
 
 #pragma mark UIKeyInput
 
@@ -67,7 +68,8 @@ const UIEdgeInsets MDCChipFieldDefaultContentEdgeInsets = {
   }
 }
 
-#if MDC_CHIPFIELD_PRIVATE_API_BUG_FIX && !(defined(__IPHONE_8_3) && (__IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_8_3))
+#if MDC_CHIPFIELD_PRIVATE_API_BUG_FIX && \
+    !(defined(__IPHONE_8_3) && (__IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_8_3))
 
 // WARNING: This is a private method, see the warning in MDCChipField.h.
 // This is only compiled if you explicitly defined MDC_CHIPFIELD_PRIVATE_API_BUG_FIX yourself, and
@@ -75,8 +77,10 @@ const UIEdgeInsets MDCChipFieldDefaultContentEdgeInsets = {
 - (BOOL)keyboardInputShouldDelete:(UITextField *)textField {
   BOOL shouldDelete = YES;
   if ([UITextField instancesRespondToSelector:_cmd]) {
+    // clang-format off
     BOOL (*keyboardInputShouldDelete)(id, SEL, UITextField *) =
-        (BOOL (*)(id, SEL, UITextField *))[UITextField instanceMethodForSelector:_cmd];
+        (BOOL(*)(id, SEL, UITextField *))[UITextField instanceMethodForSelector:_cmd];
+    // clang-format on
     if (keyboardInputShouldDelete) {
       shouldDelete = keyboardInputShouldDelete(self, _cmd, textField);
       NSOperatingSystemVersion minimumVersion = {8, 0, 0};
@@ -98,16 +102,15 @@ const UIEdgeInsets MDCChipFieldDefaultContentEdgeInsets = {
 
 - (CGRect)accessibilityFrame {
   CGRect frame = [super accessibilityFrame];
-  return CGRectMake(frame.origin.x + self.textInsets.left,
-                    frame.origin.y,
-                    frame.size.width - self.textInsets.left,
-                    frame.size.height);
+  return CGRectMake(frame.origin.x + self.textInsets.left, frame.origin.y,
+                    frame.size.width - self.textInsets.left, frame.size.height);
 }
 
 @end
 
-@interface MDCChipField ()
-    <MDCChipTextFieldDelegate, MDCTextInputPositioningDelegate, UITextFieldDelegate>
+@interface MDCChipField () <MDCChipFieldTextFieldDelegate,
+                            MDCTextInputPositioningDelegate,
+                            UITextFieldDelegate>
 @end
 
 @implementation MDCChipField {
@@ -121,27 +124,28 @@ const UIEdgeInsets MDCChipFieldDefaultContentEdgeInsets = {
 
     _chips = [NSMutableArray array];
 
-    MDCChipTextField *chipTextField = [[MDCChipTextField alloc] initWithFrame:self.bounds];
-    chipTextField.underline.hidden = YES;
-    chipTextField.delegate = self;
-    chipTextField.deletionDelegate = self;
-    chipTextField.positioningDelegate = self;
-    chipTextField.accessibilityTraits = UIAccessibilityTraitNone;
-    chipTextField.autocorrectionType = UITextAutocorrectionTypeNo;
-    chipTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    chipTextField.keyboardType = MDCChipFieldDefaultKeyboardType;
+    MDCChipFieldTextField *chipFieldTextField =
+        [[MDCChipFieldTextField alloc] initWithFrame:self.bounds];
+    chipFieldTextField.underline.hidden = YES;
+    chipFieldTextField.delegate = self;
+    chipFieldTextField.deletionDelegate = self;
+    chipFieldTextField.positioningDelegate = self;
+    chipFieldTextField.accessibilityTraits = UIAccessibilityTraitNone;
+    chipFieldTextField.autocorrectionType = UITextAutocorrectionTypeNo;
+    chipFieldTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    chipFieldTextField.keyboardType = MDCChipFieldDefaultKeyboardType;
     // Listen for notifications posted when the text field is the first responder.
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(textFieldDidChange)
                                                  name:UITextFieldTextDidChangeNotification
-                                               object:chipTextField];
+                                               object:chipFieldTextField];
     // Also listen for notifications posted when the text field is not the first responder.
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(textFieldDidChange)
                                                  name:MDCTextFieldTextDidSetTextNotification
-                                               object:chipTextField];
-    [self addSubview:chipTextField];
-    _textField = chipTextField;
+                                               object:chipFieldTextField];
+    [self addSubview:chipFieldTextField];
+    _textField = chipFieldTextField;
   }
   return self;
 }
@@ -150,31 +154,6 @@ const UIEdgeInsets MDCChipFieldDefaultContentEdgeInsets = {
   self = [super initWithCoder:aDecoder];
   if (self) {
     [self commonMDCChipFieldInit];
-
-    _textField = [aDecoder decodeObjectForKey:MDCChipFieldTextFieldKey];
-
-    if ([aDecoder containsValueForKey:MDCChipFieldDelegateKey]) {
-      _delegate = [aDecoder decodeObjectForKey:MDCChipFieldDelegateKey];
-    }
-    if ([aDecoder containsValueForKey:MDCChipFieldChipsKey]) {
-      _chips = [aDecoder decodeObjectForKey:MDCChipFieldChipsKey];
-    }
-    if ([aDecoder containsValueForKey:MDCChipFieldDelimiterKey]) {
-      _delimiter = (NSUInteger)[aDecoder decodeIntegerForKey:MDCChipFieldDelimiterKey];
-    }
-    if ([aDecoder containsValueForKey:MDCChipFieldMinTextFieldWidthKey]) {
-      _minTextFieldWidth = (CGFloat)[aDecoder decodeDoubleForKey:MDCChipFieldMinTextFieldWidthKey];
-    }
-    if ([aDecoder containsValueForKey:MDCChipFieldContentEdgeInsetsKey]) {
-      _contentEdgeInsets = [aDecoder decodeUIEdgeInsetsForKey:MDCChipFieldContentEdgeInsetsKey];
-    }
-    if ([aDecoder containsValueForKey:MDCChipFieldShowPlaceholderWithChipsKey]) {
-      _showPlaceholderWithChips =
-          [aDecoder decodeBoolForKey:MDCChipFieldShowPlaceholderWithChipsKey];
-    }
-    if ([aDecoder containsValueForKey:MDCChipFieldChipHeightKey]) {
-      _chipHeight = (CGFloat)[aDecoder decodeDoubleForKey:MDCChipFieldChipHeightKey];
-    }
   }
   return self;
 }
@@ -189,20 +168,7 @@ const UIEdgeInsets MDCChipFieldDefaultContentEdgeInsets = {
   _minTextFieldWidth = MDCChipFieldDefaultMinTextFieldWidth;
   _contentEdgeInsets = MDCChipFieldDefaultContentEdgeInsets;
   _showPlaceholderWithChips = YES;
-  _chipHeight = 32.0f;
-}
-
-- (void)encodeWithCoder:(NSCoder *)aCoder {
-  [super encodeWithCoder:aCoder];
-
-  [aCoder encodeObject:_textField forKey:MDCChipFieldTextFieldKey];
-  [aCoder encodeObject:_delegate forKey:MDCChipFieldDelegateKey];
-  [aCoder encodeObject:_chips forKey:MDCChipFieldChipHeightKey];
-  [aCoder encodeInteger:(NSInteger)_delimiter forKey:MDCChipFieldDelimiterKey];
-  [aCoder encodeDouble:(double)_minTextFieldWidth forKey:MDCChipFieldMinTextFieldWidthKey];
-  [aCoder encodeUIEdgeInsets:_contentEdgeInsets forKey:MDCChipFieldContentEdgeInsetsKey];
-  [aCoder encodeBool:_showPlaceholderWithChips forKey:MDCChipFieldShowPlaceholderWithChipsKey];
-  [aCoder encodeDouble:(double)_chipHeight forKey:MDCChipFieldChipHeightKey];
+  _chipHeight = 32;
 }
 
 - (void)layoutSubviews {
@@ -258,14 +224,13 @@ const UIEdgeInsets MDCChipFieldDefaultContentEdgeInsets = {
 - (CGSize)sizeThatFits:(CGSize)size {
   NSArray *chipFrames = [self chipFramesForSize:size];
   CGRect lastChipFrame = [chipFrames.lastObject CGRectValue];
-  CGRect textFieldFrame = [self frameForTextFieldForLastChipFrame:lastChipFrame
-                                                    chipFieldSize:size];
+  CGRect textFieldFrame = [self frameForTextFieldForLastChipFrame:lastChipFrame chipFieldSize:size];
 
   // Calculate the required size off the text field.
   // To properly apply bottom inset: Calculate what would be the height if there were a chip
   // instead of the text field. Then add the bottom inset.
   CGFloat height = CGRectGetMaxY(textFieldFrame) + self.contentEdgeInsets.bottom +
-      (self.chipHeight - textFieldFrame.size.height) / 2;
+                   (self.chipHeight - textFieldFrame.size.height) / 2;
   CGFloat width = MAX(size.width, self.minTextFieldWidth);
 
   return CGSizeMake(width, height);
@@ -317,6 +282,8 @@ const UIEdgeInsets MDCChipFieldDefaultContentEdgeInsets = {
   if ([self.delegate respondsToSelector:@selector(chipField:didAddChip:)]) {
     [self.delegate chipField:self didAddChip:chip];
   }
+
+  [self.textField setNeedsLayout];
   [self notifyDelegateIfSizeNeedsToBeUpdated];
   [self invalidateIntrinsicContentSize];
   [self setNeedsLayout];
@@ -329,6 +296,7 @@ const UIEdgeInsets MDCChipFieldDefaultContentEdgeInsets = {
     [self.delegate chipField:self didRemoveChip:chip];
   }
   [self notifyDelegateIfSizeNeedsToBeUpdated];
+  [self.textField setNeedsLayout];
   [self invalidateIntrinsicContentSize];
   [self setNeedsLayout];
 }
@@ -398,6 +366,9 @@ const UIEdgeInsets MDCChipFieldDefaultContentEdgeInsets = {
   if (strippedTitle.length > 0) {
     MDCChipView *chip = [[MDCChipView alloc] init];
     chip.titleLabel.text = strippedTitle;
+    if (self.showChipsDeleteButton) {
+      [self addClearButtonToChip:chip];
+    }
     BOOL shouldAddChip = YES;
     if ([self.delegate respondsToSelector:@selector(chipField:shouldAddChip:)]) {
       shouldAddChip = [self.delegate chipField:self shouldAddChip:chip];
@@ -409,6 +380,155 @@ const UIEdgeInsets MDCChipFieldDefaultContentEdgeInsets = {
   } else {
     [self clearTextInput];
   }
+}
+
+- (void)addClearButtonToChip:(MDCChipView *)chip {
+  UIControl *clearButton = [[UIControl alloc] init];
+  CGFloat clearButtonWidthAndHeight = MDCChipFieldClearButtonSquareWidthHeight;
+  clearButton.frame = CGRectMake(0, 0, clearButtonWidthAndHeight, clearButtonWidthAndHeight);
+  clearButton.layer.cornerRadius = clearButtonWidthAndHeight / 2;
+  UIImageView *clearImageView = [[UIImageView alloc] initWithImage:[self drawClearButton]];
+  CGFloat widthAndHeight = MDCChipFieldClearImageSquareWidthHeight;
+  CGFloat padding =
+      (MDCChipFieldClearButtonSquareWidthHeight - MDCChipFieldClearImageSquareWidthHeight) / 2;
+  clearImageView.frame = CGRectMake(padding, padding, widthAndHeight, widthAndHeight);
+  clearButton.tintColor = [UIColor.blackColor colorWithAlphaComponent:(CGFloat)0.6];
+  [clearButton addSubview:clearImageView];
+  chip.accessoryView = clearButton;
+  [clearButton addTarget:self
+                  action:@selector(deleteChip:)
+        forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (UIImage *)drawClearButton {
+  CGSize clearButtonSize =
+      CGSizeMake(MDCChipFieldClearImageSquareWidthHeight, MDCChipFieldClearImageSquareWidthHeight);
+
+  CGRect bounds = CGRectMake(0, 0, clearButtonSize.width, clearButtonSize.height);
+  UIGraphicsBeginImageContextWithOptions(bounds.size, false, 0);
+  [UIColor.grayColor setFill];
+  [MDCPathForClearButtonImageFrame(bounds) fill];
+  UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+  UIGraphicsEndImageContext();
+
+  image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+  return image;
+}
+
+static inline UIBezierPath *MDCPathForClearButtonImageFrame(CGRect frame) {
+  // GENERATED CODE
+
+  CGRect innerBounds =
+      CGRectMake(CGRectGetMinX(frame) + 2, CGRectGetMinY(frame) + 2,
+                 MDCFloor((frame.size.width - 2) * (CGFloat)0.90909 + (CGFloat)0.5),
+                 MDCFloor((frame.size.height - 2) * (CGFloat)0.90909 + (CGFloat)0.5));
+  UIBezierPath *ic_clear_path = [UIBezierPath bezierPath];
+  [ic_clear_path moveToPoint:CGPointMake(CGRectGetMinX(innerBounds) +
+                                             (CGFloat)0.50000 * innerBounds.size.width,
+                                         CGRectGetMinY(innerBounds) + 0 * innerBounds.size.height)];
+  [ic_clear_path
+      addCurveToPoint:CGPointMake(
+                          CGRectGetMinX(innerBounds) + 1 * innerBounds.size.width,
+                          CGRectGetMinY(innerBounds) + (CGFloat)0.50000 * innerBounds.size.height)
+        controlPoint1:CGPointMake(
+                          CGRectGetMinX(innerBounds) + (CGFloat)0.77600 * innerBounds.size.width,
+                          CGRectGetMinY(innerBounds) + 0 * innerBounds.size.height)
+        controlPoint2:CGPointMake(
+                          CGRectGetMinX(innerBounds) + 1 * innerBounds.size.width,
+                          CGRectGetMinY(innerBounds) + (CGFloat)0.22400 * innerBounds.size.height)];
+  [ic_clear_path
+      addCurveToPoint:CGPointMake(
+                          CGRectGetMinX(innerBounds) + (CGFloat)0.50000 * innerBounds.size.width,
+                          CGRectGetMinY(innerBounds) + 1 * innerBounds.size.height)
+        controlPoint1:CGPointMake(
+                          CGRectGetMinX(innerBounds) + 1 * innerBounds.size.width,
+                          CGRectGetMinY(innerBounds) + (CGFloat)0.77600 * innerBounds.size.height)
+        controlPoint2:CGPointMake(
+                          CGRectGetMinX(innerBounds) + (CGFloat)0.77600 * innerBounds.size.width,
+                          CGRectGetMinY(innerBounds) + 1 * innerBounds.size.height)];
+  [ic_clear_path
+      addCurveToPoint:CGPointMake(
+                          CGRectGetMinX(innerBounds) + 0 * innerBounds.size.width,
+                          CGRectGetMinY(innerBounds) + (CGFloat)0.50000 * innerBounds.size.height)
+        controlPoint1:CGPointMake(
+                          CGRectGetMinX(innerBounds) + (CGFloat)0.22400 * innerBounds.size.width,
+                          CGRectGetMinY(innerBounds) + 1 * innerBounds.size.height)
+        controlPoint2:CGPointMake(
+                          CGRectGetMinX(innerBounds) + 0 * innerBounds.size.width,
+                          CGRectGetMinY(innerBounds) + (CGFloat)0.77600 * innerBounds.size.height)];
+  [ic_clear_path
+      addCurveToPoint:CGPointMake(
+                          CGRectGetMinX(innerBounds) + (CGFloat)0.50000 * innerBounds.size.width,
+                          CGRectGetMinY(innerBounds) + 0 * innerBounds.size.height)
+        controlPoint1:CGPointMake(
+                          CGRectGetMinX(innerBounds) + 0 * innerBounds.size.width,
+                          CGRectGetMinY(innerBounds) + (CGFloat)0.22400 * innerBounds.size.height)
+        controlPoint2:CGPointMake(
+                          CGRectGetMinX(innerBounds) + (CGFloat)0.22400 * innerBounds.size.width,
+                          CGRectGetMinY(innerBounds) + 0 * innerBounds.size.height)];
+  [ic_clear_path closePath];
+  [ic_clear_path
+      moveToPoint:CGPointMake(
+                      CGRectGetMinX(innerBounds) + (CGFloat)0.73417 * innerBounds.size.width,
+                      CGRectGetMinY(innerBounds) + (CGFloat)0.31467 * innerBounds.size.height)];
+  [ic_clear_path
+      addLineToPoint:CGPointMake(
+                         CGRectGetMinX(innerBounds) + (CGFloat)0.68700 * innerBounds.size.width,
+                         CGRectGetMinY(innerBounds) + (CGFloat)0.26750 * innerBounds.size.height)];
+  [ic_clear_path
+      addLineToPoint:CGPointMake(
+                         CGRectGetMinX(innerBounds) + (CGFloat)0.50083 * innerBounds.size.width,
+                         CGRectGetMinY(innerBounds) + (CGFloat)0.45367 * innerBounds.size.height)];
+  [ic_clear_path
+      addLineToPoint:CGPointMake(
+                         CGRectGetMinX(innerBounds) + (CGFloat)0.31467 * innerBounds.size.width,
+                         CGRectGetMinY(innerBounds) + (CGFloat)0.26750 * innerBounds.size.height)];
+  [ic_clear_path
+      addLineToPoint:CGPointMake(
+                         CGRectGetMinX(innerBounds) + (CGFloat)0.26750 * innerBounds.size.width,
+                         CGRectGetMinY(innerBounds) + (CGFloat)0.31467 * innerBounds.size.height)];
+  [ic_clear_path
+      addLineToPoint:CGPointMake(
+                         CGRectGetMinX(innerBounds) + (CGFloat)0.45367 * innerBounds.size.width,
+                         CGRectGetMinY(innerBounds) + (CGFloat)0.50083 * innerBounds.size.height)];
+  [ic_clear_path
+      addLineToPoint:CGPointMake(
+                         CGRectGetMinX(innerBounds) + (CGFloat)0.26750 * innerBounds.size.width,
+                         CGRectGetMinY(innerBounds) + (CGFloat)0.68700 * innerBounds.size.height)];
+  [ic_clear_path
+      addLineToPoint:CGPointMake(
+                         CGRectGetMinX(innerBounds) + (CGFloat)0.31467 * innerBounds.size.width,
+                         CGRectGetMinY(innerBounds) + (CGFloat)0.73417 * innerBounds.size.height)];
+  [ic_clear_path
+      addLineToPoint:CGPointMake(
+                         CGRectGetMinX(innerBounds) + (CGFloat)0.50083 * innerBounds.size.width,
+                         CGRectGetMinY(innerBounds) + (CGFloat)0.54800 * innerBounds.size.height)];
+  [ic_clear_path
+      addLineToPoint:CGPointMake(
+                         CGRectGetMinX(innerBounds) + (CGFloat)0.68700 * innerBounds.size.width,
+                         CGRectGetMinY(innerBounds) + (CGFloat)0.73417 * innerBounds.size.height)];
+  [ic_clear_path
+      addLineToPoint:CGPointMake(
+                         CGRectGetMinX(innerBounds) + (CGFloat)0.73417 * innerBounds.size.width,
+                         CGRectGetMinY(innerBounds) + (CGFloat)0.68700 * innerBounds.size.height)];
+  [ic_clear_path
+      addLineToPoint:CGPointMake(
+                         CGRectGetMinX(innerBounds) + (CGFloat)0.54800 * innerBounds.size.width,
+                         CGRectGetMinY(innerBounds) + (CGFloat)0.50083 * innerBounds.size.height)];
+  [ic_clear_path
+      addLineToPoint:CGPointMake(
+                         CGRectGetMinX(innerBounds) + (CGFloat)0.73417 * innerBounds.size.width,
+                         CGRectGetMinY(innerBounds) + (CGFloat)0.31467 * innerBounds.size.height)];
+  [ic_clear_path closePath];
+
+  return ic_clear_path;
+}
+
+- (void)deleteChip:(id)sender {
+  UIControl *deleteButton = (UIControl *)sender;
+  MDCChipView *chip = (MDCChipView *)deleteButton.superview;
+  [self removeChip:chip];
+  [self clearTextInput];
 }
 
 - (void)notifyDelegateIfSizeNeedsToBeUpdated {
@@ -435,7 +555,7 @@ const UIEdgeInsets MDCChipFieldDefaultContentEdgeInsets = {
   }
 }
 
-#pragma mark - MDCChipTextFieldDelegate
+#pragma mark - MDCChipFieldTextFieldDelegate
 
 - (void)textFieldShouldRespondToDeleteBackward:(UITextField *)textField {
   if ([self isAnyChipSelected]) {
@@ -491,8 +611,7 @@ const UIEdgeInsets MDCChipFieldDefaultContentEdgeInsets = {
   [self createNewChipWithTextField:self.textField delimiter:MDCChipFieldDelimiterSpace];
 
   if ([self.delegate respondsToSelector:@selector(chipField:didChangeInput:)]) {
-    [self.delegate chipField:self
-              didChangeInput:[self.textField.text copy]];
+    [self.delegate chipField:self didChangeInput:[self.textField.text copy]];
   }
 }
 
@@ -501,15 +620,15 @@ const UIEdgeInsets MDCChipFieldDefaultContentEdgeInsets = {
 - (void)removeChipSubview:(MDCChipView *)chip {
   [chip removeFromSuperview];
   [chip removeTarget:chip.superview
-              action:@selector(chipTapped:)
-    forControlEvents:UIControlEventTouchUpInside];
+                action:@selector(chipTapped:)
+      forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)addChipSubview:(MDCChipView *)chip {
   if (chip.superview != self) {
     [chip addTarget:self
-             action:@selector(chipTapped:)
-   forControlEvents:UIControlEventTouchUpInside];
+                  action:@selector(chipTapped:)
+        forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:chip];
   }
 }
@@ -564,8 +683,7 @@ const UIEdgeInsets MDCChipFieldDefaultContentEdgeInsets = {
     }
     CGFloat currentOriginY =
         self.contentEdgeInsets.top + (row * (self.chipHeight + MDCChipFieldVerticalMargin));
-    CGRect chipFrame =
-        CGRectMake(currentOriginX, currentOriginY, chipSize.width, chipSize.height);
+    CGRect chipFrame = CGRectMake(currentOriginX, currentOriginY, chipSize.width, chipSize.height);
     [chipFrames addObject:[NSValue valueWithCGRect:chipFrame]];
     currentOriginX = CGRectGetMaxX(chipFrame) + MDCChipFieldHorizontalMargin;
   }
@@ -577,7 +695,7 @@ const UIEdgeInsets MDCChipFieldDefaultContentEdgeInsets = {
   CGFloat textFieldWidth =
       chipFieldSize.width - self.contentEdgeInsets.left - self.contentEdgeInsets.right;
   CGFloat textFieldHeight = [self.textField sizeThatFits:chipFieldSize].height;
-  CGFloat originY = lastChipFrame.origin.y + (self.chipHeight - textFieldHeight) / 2.f;
+  CGFloat originY = lastChipFrame.origin.y + (self.chipHeight - textFieldHeight) / 2;
 
   // If no chip exists, make the text field the full width minus padding.
   if (CGRectIsEmpty(lastChipFrame)) {
@@ -587,7 +705,7 @@ const UIEdgeInsets MDCChipFieldDefaultContentEdgeInsets = {
   }
 
   CGFloat availableWidth = chipFieldSize.width - self.contentEdgeInsets.right -
-      CGRectGetMaxX(lastChipFrame) - MDCChipFieldHorizontalMargin;
+                           CGRectGetMaxX(lastChipFrame) - MDCChipFieldHorizontalMargin;
   CGFloat placeholderDesiredWidth = [self placeholderDesiredWidth];
   if (availableWidth < placeholderDesiredWidth) {
     // The text field doesn't fit on the line with the last chip.
@@ -607,7 +725,9 @@ const UIEdgeInsets MDCChipFieldDefaultContentEdgeInsets = {
   CGRect placeholderDesiredRect =
       [placeholder boundingRectWithSize:CGRectStandardize(self.bounds).size
                                 options:NSStringDrawingUsesLineFragmentOrigin
-                             attributes:@{ NSFontAttributeName : placeholderFont, }
+                             attributes:@{
+                               NSFontAttributeName : placeholderFont,
+                             }
                                 context:nil];
   return MAX(CGRectGetWidth(placeholderDesiredRect), self.minTextFieldWidth);
 }
@@ -621,7 +741,7 @@ const UIEdgeInsets MDCChipFieldDefaultContentEdgeInsets = {
   }
 
   CGFloat availableWidth = CGRectGetWidth(self.bounds) - self.contentEdgeInsets.right -
-      CGRectGetMaxX(lastChipFrame) - MDCChipFieldHorizontalMargin;
+                           CGRectGetMaxX(lastChipFrame) - MDCChipFieldHorizontalMargin;
 
   CGFloat leftInset = MDCChipFieldIndent;
   if (!CGRectIsEmpty(lastChipFrame) && availableWidth >= [self placeholderDesiredWidth]) {

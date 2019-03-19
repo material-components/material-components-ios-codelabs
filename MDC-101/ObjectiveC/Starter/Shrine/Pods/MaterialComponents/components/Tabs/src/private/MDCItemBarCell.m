@@ -1,18 +1,16 @@
-/*
- Copyright 2016-present the Material Components for iOS authors. All Rights Reserved.
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
- http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- */
+// Copyright 2016-present the Material Components for iOS authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 #import "MDCItemBarCell.h"
 #import "MDCItemBarCell+Private.h"
@@ -35,8 +33,12 @@ static const CGFloat kBadgeFontSize = 12;
 /// Padding between top of the cell and the badge.
 static const CGFloat kBadgeTopPadding = 6;
 
-/// Maximum width of a badge. This allows for 3 characters before truncation.
-static const CGFloat kBadgeMaxWidth = 22;
+/// Maximum badge text character length. Badge text longer than this number of characters will
+/// truncate.
+static const NSUInteger kBadgeMaxTextComposedCharacterLength = 4;
+
+/// Outer edge padding from spec: https://material.io/go/design-tabs#spec.
+static const UIEdgeInsets kEdgeInsets = {.top = 0, .right = 16, .bottom = 0, .left = 16};
 
 /// File name of the bundle (without the '.bundle' extension) containing resources.
 static NSString *const kResourceBundleName = @"MaterialTabs";
@@ -51,7 +53,7 @@ const CGFloat kSelectedNavigationTitleScaleFactor = (16.0f / 14.0f);
 const CGFloat kSelectedNavigationImageYOffset = -2;
 
 /// Duration of selection animations in applicable content styles.
-static const NSTimeInterval kSelectionAnimationDuration = 0.3f;
+static const NSTimeInterval kSelectionAnimationDuration = 0.3;
 
 @implementation MDCItemBarCell {
   UIImageView *_imageView;
@@ -80,7 +82,7 @@ static const NSTimeInterval kSelectionAnimationDuration = 0.3f;
 
     // Set up ink controller to splash ink on taps.
     _inkTouchController = [[MDCInkTouchController alloc] initWithView:self];
-    [_inkTouchController addInkView];   // Ink should always be on top of other views
+    [_inkTouchController addInkView];  // Ink should always be on top of other views
 
     [self updateInk];
     [self updateColors];
@@ -91,17 +93,7 @@ static const NSTimeInterval kSelectionAnimationDuration = 0.3f;
 
 #pragma mark - Public
 
-+ (UIEdgeInsets)edgeInsetsForHorizontalSizeClass:(UIUserInterfaceSizeClass)sizeClass {
-  // Padding from spec: https://material.io/go/design-tabs
-  CGFloat outerPadding = (sizeClass == UIUserInterfaceSizeClassRegular) ? 24.0f : 12.0f;
-  return UIEdgeInsetsMake(0.0, outerPadding, 0.0, outerPadding);
-}
-
-+ (CGSize)sizeThatFits:(CGSize)size
-    horizontalSizeClass:(UIUserInterfaceSizeClass)sizeClass
-                   item:(UITabBarItem *)item
-                  style:(MDCItemBarStyle *)style {
-  UIEdgeInsets insets = [self edgeInsetsForHorizontalSizeClass:sizeClass];
++ (CGSize)sizeThatFits:(CGSize)size item:(UITabBarItem *)item style:(MDCItemBarStyle *)style {
   NSString *title = [self displayedTitleForTitle:item.title style:style];
 
   CGRect textBounds = CGRectZero;
@@ -155,6 +147,7 @@ static const NSTimeInterval kSelectionAnimationDuration = 0.3f;
   bounds.size.width = MIN(bounds.size.width, size.width);
 
   // Add insets.
+  UIEdgeInsets insets = kEdgeInsets;
   bounds.size.width += insets.left + insets.right;
   bounds.size.height += insets.top + insets.bottom;
 
@@ -257,11 +250,11 @@ static const NSTimeInterval kSelectionAnimationDuration = 0.3f;
   titleCenter.x = CGRectGetMidX(contentBounds);
   titleBounds.size = titleSize;
 
-  // Horizontally align the badge.
-  CGSize badgeSize = [_badgeLabel sizeThatFits:contentBounds.size];
-  badgeSize.width = MIN(kBadgeMaxWidth, badgeSize.width);
+  // Size badge
+  CGSize badgeSize = [self badgeLabelSizeWithText:_badgeLabel.text font:_badgeLabel.font];
   badgeBounds.size = badgeSize;
 
+  // Determine badge center
   if (_style.shouldDisplayBadge) {
     CGFloat badgeOffset = (imageBounds.size.width / 2) + (badgeSize.width / 2);
     if (self.mdf_effectiveUserInterfaceLayoutDirection ==
@@ -296,7 +289,8 @@ static const NSTimeInterval kSelectionAnimationDuration = 0.3f;
     }
   }
 
-  CGFloat scale = self.window.screen.scale;
+  UIScreen *screen = self.window.screen ?: UIScreen.mainScreen;
+  CGFloat scale = screen.scale;
   _imageView.bounds = imageBounds;
   _imageView.center = MDCRoundCenterWithBoundsAndScale(imageCenter, _imageView.bounds, scale);
 
@@ -304,9 +298,8 @@ static const NSTimeInterval kSelectionAnimationDuration = 0.3f;
   _badgeLabel.center = MDCRoundCenterWithBoundsAndScale(badgeCenter, _badgeLabel.bounds, scale);
 
   self.titleLabel.bounds = MDCRectAlignToScale(titleBounds, scale);
-  self.titleLabel.center = MDCRoundCenterWithBoundsAndScale(titleCenter,
-                                                            self.titleLabel.bounds,
-                                                            scale);
+  self.titleLabel.center =
+      MDCRoundCenterWithBoundsAndScale(titleCenter, self.titleLabel.bounds, scale);
 }
 
 - (void)tintColorDidChange {
@@ -319,12 +312,9 @@ static const NSTimeInterval kSelectionAnimationDuration = 0.3f;
 - (void)didMoveToWindow {
   [super didMoveToWindow];
 
-  if (self.window) {
-    [self updateTransformsAnimated:NO];
+  [self updateTransformsAnimated:NO];
 
-    // Layout depends on window scale.
-    [self setNeedsLayout];
-  }
+  [self setNeedsLayout];
 }
 
 #pragma mark - UICollectionReusableView
@@ -397,14 +387,14 @@ static const NSTimeInterval kSelectionAnimationDuration = 0.3f;
 #pragma mark - Private
 
 + (UIEdgeInsets)minimumEdgeInsets {
-  const CGFloat outerPadding = 2.0f;
+  const CGFloat outerPadding = 2;
   return UIEdgeInsetsMake(0.0, outerPadding, 0.0, outerPadding);
 }
 
 + (NSString *)localizedStringWithKey:(NSString *)key {
   NSBundle *containingBundle = [NSBundle bundleForClass:self];
-  NSURL *resourceBundleURL =
-      [containingBundle URLForResource:kResourceBundleName withExtension:@"bundle"];
+  NSURL *resourceBundleURL = [containingBundle URLForResource:kResourceBundleName
+                                                withExtension:@"bundle"];
   NSBundle *resourceBundle = [NSBundle bundleWithURL:resourceBundleURL];
   return [resourceBundle localizedStringForKey:key value:nil table:kStringTableName];
 }
@@ -415,10 +405,6 @@ static const NSTimeInterval kSelectionAnimationDuration = 0.3f;
     displayedTitle = [displayedTitle uppercaseStringWithLocale:nil];
   }
   return displayedTitle;
-}
-
-- (UIUserInterfaceSizeClass)horizontalSizeClass {
-  return self.traitCollection.horizontalSizeClass;
 }
 
 /// Ensures that subviews exist and have the correct visibility for the current content style.
@@ -507,7 +493,7 @@ static const NSTimeInterval kSelectionAnimationDuration = 0.3f;
   CGAffineTransform titleTransform = CGAffineTransformIdentity;
   CGAffineTransform imageTransform = CGAffineTransformIdentity;
 
-  UIScreen *screen = self.window.screen;
+  UIScreen *screen = self.window.screen ?: UIScreen.mainScreen;
   const CGFloat screenScale = (screen ? screen.scale : 1);
   CGFloat titleContentsScale = screenScale;
 
@@ -595,6 +581,32 @@ static const NSTimeInterval kSelectionAnimationDuration = 0.3f;
 
 - (void)updateDisplayedTitle {
   _titleLabel.text = [[self class] displayedTitleForTitle:_title style:_style];
+}
+
+- (CGSize)badgeLabelSizeWithText:(NSString *)string font:(UIFont *)font {
+  if (string.length <= 0) {
+    return CGSizeZero;
+  }
+
+  NSMutableString *longestAllowableBadgeString = [[NSMutableString alloc] init];
+  __block NSUInteger composedCharacterIndex = 0;
+  [string enumerateSubstringsInRange:NSMakeRange(0, string.length)
+                             options:NSStringEnumerationByComposedCharacterSequences
+                          usingBlock:^(NSString *substring, NSRange substringRange,
+                                       NSRange enclosingRange, BOOL *stop) {
+                            [longestAllowableBadgeString appendString:substring];
+                            composedCharacterIndex++;
+                            if (composedCharacterIndex == kBadgeMaxTextComposedCharacterLength) {
+                              *stop = YES;
+                            }
+                          }];
+
+  CGRect largestAllowableBadgeRect =
+      [[longestAllowableBadgeString copy] boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)
+                                                       options:NSStringDrawingUsesLineFragmentOrigin
+                                                    attributes:@{NSFontAttributeName : font}
+                                                       context:nil];
+  return largestAllowableBadgeRect.size;
 }
 
 @end

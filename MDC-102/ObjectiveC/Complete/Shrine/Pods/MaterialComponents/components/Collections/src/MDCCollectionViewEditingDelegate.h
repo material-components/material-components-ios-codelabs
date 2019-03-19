@@ -1,18 +1,16 @@
-/*
- Copyright 2016-present the Material Components for iOS authors. All Rights Reserved.
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
- http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- */
+// Copyright 2016-present the Material Components for iOS authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 #import <Foundation/Foundation.h>
 
@@ -244,6 +242,24 @@
  */
 - (BOOL)collectionView:(nonnull UICollectionView *)collectionView
     canSwipeToDismissItemAtIndexPath:(nonnull NSIndexPath *)indexPath;
+
+/**
+ Sent to the receiver when a collection view index path begins to swipe for dismissal. The
+ delegate method -collectionViewAllowsSwipeToDismissItem must return true in order for this
+ subsequent delegate method to be called. The collection view is NOT required to be in
+ edit mode to allow swipe-to-dismiss items. If only one swiping direction should be allowed, this
+ method should return YES when the swiping direction is the allowed one. Returning NO here will
+ prevent swiping the designated item at index path. If not implemented, will default to NO.
+
+
+ @param collectionView The collection view being swiped for dismissal.
+ @param swipeDirection The direction the user swiped for dismissal.
+ @param indexPath The index path of the collection view being swiped for dismissal.
+ @return if the collection view index path can be swiped for dismissal.
+ */
+- (BOOL)collectionView:(nonnull UICollectionView *)collectionView
+         canSwipeInDirection:(UISwipeGestureRecognizerDirection)swipeDirection
+    toDismissItemAtIndexPath:(nonnull NSIndexPath *)indexPath;
 
 /**
  Sent to the receiver when the collection view index path begins to swipe for dismissal.

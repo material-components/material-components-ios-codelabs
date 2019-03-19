@@ -1,18 +1,16 @@
-/*
- Copyright 2016-present the Material Components for iOS authors. All Rights Reserved.
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
- http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- */
+// Copyright 2016-present the Material Components for iOS authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 #import "MDCCollectionInfoBarView.h"
 
@@ -20,11 +18,11 @@
 #import "MaterialShadowLayer.h"
 #import "MaterialTypography.h"
 
-const CGFloat MDCCollectionInfoBarAnimationDuration = 0.3f;
-const CGFloat MDCCollectionInfoBarHeaderHeight = 48.0f;
-const CGFloat MDCCollectionInfoBarFooterHeight = 48.0f;
+const CGFloat MDCCollectionInfoBarAnimationDuration = (CGFloat)0.3;
+const CGFloat MDCCollectionInfoBarHeaderHeight = 48;
+const CGFloat MDCCollectionInfoBarFooterHeight = 48;
 
-static const CGFloat MDCCollectionInfoBarLabelHorizontalPadding = 16.0f;
+static const CGFloat MDCCollectionInfoBarLabelHorizontalPadding = 16;
 
 static inline UIColor *CollectionInfoBarBlueColor(void) {
   return MDCPalette.bluePalette.accent200;
@@ -82,8 +80,8 @@ static inline UIColor *CollectionInfoBarRedColor(void) {
 
   [self addSubview:_backgroundView];
 
-  _tapGesture =
-      [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
+  _tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                        action:@selector(handleTapGesture:)];
   [_backgroundView addGestureRecognizer:_tapGesture];
 }
 
@@ -91,19 +89,18 @@ static inline UIColor *CollectionInfoBarRedColor(void) {
   [super layoutSubviews];
 
   UIEdgeInsets collectionViewSafeAreaInsets = UIEdgeInsetsZero;
-#if defined(__IPHONE_11_0) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_11_0)
-    if (@available(iOS 11.0, *)) {
-      if (self.superview) {
-        collectionViewSafeAreaInsets = self.superview.safeAreaInsets;
-      }
+  if (@available(iOS 11.0, *)) {
+    if (self.superview) {
+      collectionViewSafeAreaInsets = self.superview.safeAreaInsets;
     }
-#endif
-  CGFloat leftInset = MAX(MDCCollectionInfoBarLabelHorizontalPadding,
-                          collectionViewSafeAreaInsets.left);
-  CGFloat rightInset = MAX(MDCCollectionInfoBarLabelHorizontalPadding,
-                           collectionViewSafeAreaInsets.right);
-  CGFloat height = [_kind isEqualToString:MDCCollectionInfoBarKindHeader] ?
-      MDCCollectionInfoBarHeaderHeight : MDCCollectionInfoBarFooterHeight;
+  }
+  CGFloat leftInset =
+      MAX(MDCCollectionInfoBarLabelHorizontalPadding, collectionViewSafeAreaInsets.left);
+  CGFloat rightInset =
+      MAX(MDCCollectionInfoBarLabelHorizontalPadding, collectionViewSafeAreaInsets.right);
+  CGFloat height = [_kind isEqualToString:MDCCollectionInfoBarKindHeader]
+                       ? MDCCollectionInfoBarHeaderHeight
+                       : MDCCollectionInfoBarFooterHeight;
   _titleLabel.frame =
       CGRectMake(leftInset, 0, CGRectGetWidth(self.bounds) - (leftInset + rightInset), height);
 
@@ -162,16 +159,16 @@ static inline UIColor *CollectionInfoBarRedColor(void) {
     self.textAlignment = NSTextAlignmentLeft;
     self.tintColor = CollectionInfoBarBlueColor();
     self.titleLabel.textColor = [UIColor whiteColor];
-    self.autoDismissAfterDuration = 1.0f;
-    self.backgroundView.alpha = 0.9f;
+    self.autoDismissAfterDuration = 1;
+    self.backgroundView.alpha = (CGFloat)0.9;
   } else if (style == MDCCollectionInfoBarViewStyleActionable) {
     self.allowsTap = YES;
     self.shouldApplyBackgroundViewShadow = YES;
     self.textAlignment = NSTextAlignmentCenter;
     self.tintColor = [UIColor whiteColor];
     self.titleLabel.textColor = CollectionInfoBarRedColor();
-    self.autoDismissAfterDuration = 0.0f;
-    self.backgroundView.alpha = 1.0f;
+    self.autoDismissAfterDuration = 0;
+    self.backgroundView.alpha = 1;
     self.isAccessibilityElement = YES;
     self.accessibilityTraits = UIAccessibilityTraitButton;
     self.accessibilityLabel = self.message;
@@ -180,8 +177,8 @@ static inline UIColor *CollectionInfoBarRedColor(void) {
     self.backgroundView.clipsToBounds = YES;
     if (!_backgroundBorderLayer) {
       _backgroundBorderLayer = [CALayer layer];
-      _backgroundBorderLayer.borderColor = [UIColor colorWithWhite:0 alpha:0.1f].CGColor;
-      _backgroundBorderLayer.borderWidth = 1.0f / [[UIScreen mainScreen] scale];
+      _backgroundBorderLayer.borderColor = [UIColor colorWithWhite:0 alpha:(CGFloat)0.1].CGColor;
+      _backgroundBorderLayer.borderWidth = 1 / [[UIScreen mainScreen] scale];
       [self.backgroundView.layer addSublayer:_backgroundBorderLayer];
     }
   }
@@ -200,7 +197,7 @@ static inline UIColor *CollectionInfoBarRedColor(void) {
     [_delegate infoBar:self willShowAnimated:animated willAutoDismiss:[self shouldAutoDismiss]];
   }
 
-  NSTimeInterval duration = (animated) ? MDCCollectionInfoBarAnimationDuration : 0.0f;
+  NSTimeInterval duration = (animated) ? MDCCollectionInfoBarAnimationDuration : 0;
   [UIView animateWithDuration:duration
       delay:0
       options:UIViewAnimationOptionCurveEaseOut
@@ -211,7 +208,8 @@ static inline UIColor *CollectionInfoBarRedColor(void) {
         self.userInteractionEnabled = self.allowsTap;
 
         // Notify delegate.
-        if ([self.delegate respondsToSelector:@selector(infoBar:didShowAnimated:willAutoDismiss:)]) {
+        if ([self.delegate respondsToSelector:@selector(infoBar:
+                                                  didShowAnimated:willAutoDismiss:)]) {
           [self.delegate infoBar:self
                  didShowAnimated:animated
                  willAutoDismiss:[self shouldAutoDismiss]];
@@ -227,7 +225,7 @@ static inline UIColor *CollectionInfoBarRedColor(void) {
     [_delegate infoBar:self willDismissAnimated:animated willAutoDismiss:[self shouldAutoDismiss]];
   }
 
-  NSTimeInterval duration = (animated) ? MDCCollectionInfoBarAnimationDuration : 0.0f;
+  NSTimeInterval duration = (animated) ? MDCCollectionInfoBarAnimationDuration : 0;
   [UIView animateWithDuration:duration
       delay:0
       options:UIViewAnimationOptionCurveEaseIn
@@ -240,10 +238,11 @@ static inline UIColor *CollectionInfoBarRedColor(void) {
         self.backgroundView.hidden = YES;
 
         // Notify delegate.
-        if ([self.delegate respondsToSelector:@selector(infoBar:didDismissAnimated:didAutoDismiss:)]) {
+        if ([self.delegate respondsToSelector:@selector(infoBar:
+                                                  didDismissAnimated:didAutoDismiss:)]) {
           [self.delegate infoBar:self
-                didDismissAnimated:animated
-                    didAutoDismiss:[self shouldAutoDismiss]];
+              didDismissAnimated:animated
+                  didAutoDismiss:[self shouldAutoDismiss]];
         }
       }];
 }

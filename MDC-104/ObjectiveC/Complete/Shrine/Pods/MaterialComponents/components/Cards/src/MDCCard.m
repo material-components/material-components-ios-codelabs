@@ -1,39 +1,38 @@
-/*
- Copyright 2018-present the Material Components for iOS authors. All Rights Reserved.
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
- http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- */
+// Copyright 2018-present the Material Components for iOS authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 #import "MDCCard.h"
+#import "private/MDCCard+Private.h"
 
 #import "MaterialMath.h"
 #import "MaterialShapes.h"
 
-static NSString *const MDCCardBackgroundColorsKey = @"MDCCardBackgroundColorsKey";
-static NSString *const MDCCardBorderColorsKey = @"MDCCardBorderColorsKey";
-static NSString *const MDCCardBorderWidthsKey = @"MDCCardBorderWidthsKey";
-static NSString *const MDCCardCornerRadiusKey = @"MDCCardCornerRadiusKey";
-static NSString *const MDCCardInkViewKey = @"MDCCardInkViewKey";
-static NSString *const MDCCardShadowColorsKey = @"MDCCardShadowColorsKey";
-static NSString *const MDCCardShadowElevationsKey = @"MDCCardShadowElevationsKey";
-
-static const CGFloat MDCCardShadowElevationNormal = 1.f;
-static const CGFloat MDCCardShadowElevationHighlighted = 8.f;
-static const CGFloat MDCCardCornerRadiusDefault = 4.f;
-
+static const CGFloat MDCCardShadowElevationNormal = 1;
+static const CGFloat MDCCardShadowElevationHighlighted = 8;
+static const CGFloat MDCCardCornerRadiusDefault = 4;
+static const BOOL MDCCardIsInteractableDefault = YES;
 
 @interface MDCCard ()
 @property(nonatomic, readonly, strong) MDCShapedShadowLayer *layer;
+
+// Used for Ripple Beta
+@property(nonatomic, strong) UIView *rippleView;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+@property(nonatomic, weak) id<MDCCardRippleDelegate> rippleDelegate;
+#pragma clang diagnostic pop
+@property(nonatomic, assign) BOOL enableBetaBehavior;
 @end
 
 @implementation MDCCard {
@@ -54,24 +53,6 @@ static const CGFloat MDCCardCornerRadiusDefault = 4.f;
 - (instancetype)initWithCoder:(NSCoder *)coder {
   self = [super initWithCoder:coder];
   if (self) {
-    _shadowElevations = [coder decodeObjectOfClass:[NSMutableDictionary class]
-                                            forKey:MDCCardShadowElevationsKey];
-    _shadowColors = [coder decodeObjectOfClass:[NSMutableDictionary class]
-                                        forKey:MDCCardShadowColorsKey];
-    _borderWidths = [coder decodeObjectOfClass:[NSMutableDictionary class]
-                                        forKey:MDCCardBorderWidthsKey];
-    _borderColors = [coder decodeObjectOfClass:[NSMutableDictionary class]
-                                        forKey:MDCCardBorderColorsKey];
-    _inkView = [coder decodeObjectOfClass:[MDCInkView class] forKey:MDCCardInkViewKey];
-    if ([coder containsValueForKey:MDCCardCornerRadiusKey]) {
-      self.layer.cornerRadius = (CGFloat)[coder decodeDoubleForKey:MDCCardCornerRadiusKey];
-    } else {
-      self.layer.cornerRadius = MDCCardCornerRadiusDefault;
-    }
-    if ([coder containsValueForKey:MDCCardBackgroundColorsKey]) {
-      [self.layer setShapedBackgroundColor:[coder decodeObjectOfClass:[UIColor class]
-                                                               forKey:MDCCardBackgroundColorsKey]];
-    }
     [self commonMDCCardInit];
   }
   return self;
@@ -80,17 +61,19 @@ static const CGFloat MDCCardCornerRadiusDefault = 4.f;
 - (instancetype)initWithFrame:(CGRect)frame {
   self = [super initWithFrame:frame];
   if (self) {
-    self.layer.cornerRadius = MDCCardCornerRadiusDefault;
     [self commonMDCCardInit];
   }
   return self;
 }
 
 - (void)commonMDCCardInit {
+  self.layer.cornerRadius = MDCCardCornerRadiusDefault;
+  _interactable = MDCCardIsInteractableDefault;
+
   if (_inkView == nil) {
     _inkView = [[MDCInkView alloc] initWithFrame:self.bounds];
-    _inkView.autoresizingMask = (UIViewAutoresizingFlexibleWidth |
-                                 UIViewAutoresizingFlexibleHeight);
+    _inkView.autoresizingMask =
+        (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
     _inkView.usesLegacyInkRipple = NO;
     _inkView.layer.zPosition = FLT_MAX;
     [self addSubview:_inkView];
@@ -124,17 +107,6 @@ static const CGFloat MDCCardCornerRadiusDefault = 4.f;
   [self updateBorderWidth];
   [self updateBorderColor];
   [self updateBackgroundColor];
-}
-
-- (void)encodeWithCoder:(NSCoder *)coder {
-  [super encodeWithCoder:coder];
-  [coder encodeObject:_shadowElevations forKey:MDCCardShadowElevationsKey];
-  [coder encodeObject:_shadowColors forKey:MDCCardShadowColorsKey];
-  [coder encodeObject:_borderWidths forKey:MDCCardBorderWidthsKey];
-  [coder encodeObject:_borderColors forKey:MDCCardBorderColorsKey];
-  [coder encodeObject:_inkView forKey:MDCCardInkViewKey];
-  [coder encodeDouble:self.layer.cornerRadius forKey:MDCCardCornerRadiusKey];
-  [coder encodeObject:self.layer.shapedBackgroundColor forKey:MDCCardBackgroundColorsKey];
 }
 
 - (void)layoutSubviews {
@@ -250,12 +222,18 @@ static const CGFloat MDCCardCornerRadiusDefault = 4.f;
 }
 
 - (void)setHighlighted:(BOOL)highlighted {
-  if (highlighted && !self.highlighted) {
-    [self.inkView startTouchBeganAnimationAtPoint:_lastTouch completion:nil];
-  } else if (!highlighted && self.highlighted) {
-    [self.inkView startTouchEndedAnimationAtPoint:_lastTouch completion:nil];
+  // Original logic for changing the state to highlighted.
+  if (self.rippleDelegate == nil) {
+    if (highlighted && !self.highlighted) {
+      [self.inkView startTouchBeganAnimationAtPoint:_lastTouch completion:nil];
+    } else if (!highlighted && self.highlighted) {
+      [self.inkView startTouchEndedAnimationAtPoint:_lastTouch completion:nil];
+    }
   }
   [super setHighlighted:highlighted];
+  // Updated logic using Ripple for changing the state to highlighted.
+  [self.rippleDelegate cardRippleDelegateSetHighlighted:highlighted];
+
   [self updateShadowElevation];
   [self updateBorderColor];
   [self updateBorderWidth];
@@ -270,14 +248,16 @@ static const CGFloat MDCCardCornerRadiusDefault = 4.f;
 }
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+  UIView *result = [super hitTest:point withEvent:event];
+  if (!_interactable && result == self) {
+    return nil;
+  }
   if (self.layer.shapeGenerator) {
-    if (CGPathContainsPoint(self.layer.shapeLayer.path, nil, point, true)) {
-      return self;
-    } else {
+    if (!CGPathContainsPoint(self.layer.shapeLayer.path, nil, point, true)) {
       return nil;
     }
   }
-  return [super hitTest:point withEvent:event];
+  return result;
 }
 
 - (void)setShapeGenerator:(id<MDCShapeGenerating>)shapeGenerator {
@@ -290,7 +270,10 @@ static const CGFloat MDCCardCornerRadiusDefault = 4.f;
   self.layer.shapeGenerator = shapeGenerator;
   self.layer.shadowMaskEnabled = NO;
   [self updateBackgroundColor];
-  [self updateInkForShape];
+  // Original logic for configuring Ink prior to the Ripple integration.
+  if (self.rippleDelegate == nil) {
+    [self updateInkForShape];
+  }
 }
 
 - (id<MDCShapeGenerating>)shapeGenerator {
@@ -300,7 +283,7 @@ static const CGFloat MDCCardCornerRadiusDefault = 4.f;
 - (void)updateInkForShape {
   CGRect boundingBox = CGPathGetBoundingBox(self.layer.shapeLayer.path);
   self.inkView.maxRippleRadius =
-      (CGFloat)(MDCHypot(CGRectGetHeight(boundingBox), CGRectGetWidth(boundingBox)) / 2 + 10.f);
+      (CGFloat)(MDCHypot(CGRectGetHeight(boundingBox), CGRectGetWidth(boundingBox)) / 2 + 10);
   self.inkView.layer.masksToBounds = NO;
 }
 
@@ -317,4 +300,42 @@ static const CGFloat MDCCardCornerRadiusDefault = 4.f;
   self.layer.shapedBackgroundColor = _backgroundColor;
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+  [self.rippleDelegate cardRippleDelegateTouchesBegan:touches withEvent:event];
+  [super touchesBegan:touches withEvent:event];
+}
+
+- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+  // The ripple invocation must come before touchesMoved of the super, otherwise the setHighlighted
+  // of the UIControl will be triggered before the ripple identifies that the highlighted was
+  // trigerred from a long press entering the view and shouldn't invoke a ripple.
+  [self.rippleDelegate cardRippleDelegateTouchesMoved:touches withEvent:event];
+  [super touchesMoved:touches withEvent:event];
+}
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+  [self.rippleDelegate cardRippleDelegateTouchesEnded:touches withEvent:event];
+  [super touchesEnded:touches withEvent:event];
+}
+
+- (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+  [self.rippleDelegate cardRippleDelegateTouchesCancelled:touches withEvent:event];
+  [super touchesCancelled:touches withEvent:event];
+}
+
+- (void)setEnableBetaBehavior:(BOOL)enableBetaBehavior {
+  if (enableBetaBehavior == _enableBetaBehavior) {
+    return;
+  }
+  _enableBetaBehavior = enableBetaBehavior;
+  // TODO: Remove this performSelector code once Ripple is no longer in Beta.
+  SEL cardRippleEnableBetaBehavior = NSSelectorFromString(@"cardRippleEnableBetaBehavior:");
+  if ([self respondsToSelector:cardRippleEnableBetaBehavior]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+    NSNumber *enabled = [NSNumber numberWithBool:enableBetaBehavior];
+    [self performSelector:cardRippleEnableBetaBehavior withObject:enabled];
+#pragma clang diagnostic pop
+  }
+}
 @end

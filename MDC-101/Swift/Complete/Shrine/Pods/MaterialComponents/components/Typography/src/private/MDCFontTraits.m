@@ -1,15 +1,16 @@
-/*
- Copyright 2017-present the Material Components for iOS authors. All Rights Reserved.
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
- http://www.apache.org/licenses/LICENSE-2.0
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- */
+// Copyright 2017-present the Material Components for iOS authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 #import "MDCFontTraits.h"
 
@@ -47,24 +48,38 @@ static NSDictionary<NSNumber *, NSDictionary *> *_styleTable;
 #pragma clang diagnostic ignored "-Wpartial-availability"
 + (void)initialize {
   _body1Traits = @{
-    UIContentSizeCategoryExtraSmall :
-        [MDCFontTraits traitsWithPointSize:11 weight:UIFontWeightRegular leading:0.0 tracking:0.0],
-    UIContentSizeCategorySmall :
-        [MDCFontTraits traitsWithPointSize:12 weight:UIFontWeightRegular leading:0.0 tracking:0.0],
-    UIContentSizeCategoryMedium :
-        [MDCFontTraits traitsWithPointSize:13 weight:UIFontWeightRegular leading:0.0 tracking:0.0],
-    UIContentSizeCategoryLarge :
-        [MDCFontTraits traitsWithPointSize:14 weight:UIFontWeightRegular leading:0.0 tracking:0.0],
-    UIContentSizeCategoryExtraLarge :
-        [MDCFontTraits traitsWithPointSize:16 weight:UIFontWeightRegular leading:0.0 tracking:0.0],
-    UIContentSizeCategoryExtraExtraLarge :
-        [MDCFontTraits traitsWithPointSize:18 weight:UIFontWeightRegular leading:0.0 tracking:0.0],
+    UIContentSizeCategoryExtraSmall : [MDCFontTraits traitsWithPointSize:11
+                                                                  weight:UIFontWeightRegular
+                                                                 leading:0.0
+                                                                tracking:0.0],
+    UIContentSizeCategorySmall : [MDCFontTraits traitsWithPointSize:12
+                                                             weight:UIFontWeightRegular
+                                                            leading:0.0
+                                                           tracking:0.0],
+    UIContentSizeCategoryMedium : [MDCFontTraits traitsWithPointSize:13
+                                                              weight:UIFontWeightRegular
+                                                             leading:0.0
+                                                            tracking:0.0],
+    UIContentSizeCategoryLarge : [MDCFontTraits traitsWithPointSize:14
+                                                             weight:UIFontWeightRegular
+                                                            leading:0.0
+                                                           tracking:0.0],
+    UIContentSizeCategoryExtraLarge : [MDCFontTraits traitsWithPointSize:16
+                                                                  weight:UIFontWeightRegular
+                                                                 leading:0.0
+                                                                tracking:0.0],
+    UIContentSizeCategoryExtraExtraLarge : [MDCFontTraits traitsWithPointSize:18
+                                                                       weight:UIFontWeightRegular
+                                                                      leading:0.0
+                                                                     tracking:0.0],
     UIContentSizeCategoryExtraExtraExtraLarge :
         [MDCFontTraits traitsWithPointSize:20 weight:UIFontWeightRegular leading:0.0 tracking:0.0],
     UIContentSizeCategoryAccessibilityMedium :
         [MDCFontTraits traitsWithPointSize:25 weight:UIFontWeightRegular leading:0.0 tracking:0.0],
-    UIContentSizeCategoryAccessibilityLarge :
-        [MDCFontTraits traitsWithPointSize:30 weight:UIFontWeightRegular leading:0.0 tracking:0.0],
+    UIContentSizeCategoryAccessibilityLarge : [MDCFontTraits traitsWithPointSize:30
+                                                                          weight:UIFontWeightRegular
+                                                                         leading:0.0
+                                                                        tracking:0.0],
     UIContentSizeCategoryAccessibilityExtraLarge :
         [MDCFontTraits traitsWithPointSize:37 weight:UIFontWeightRegular leading:0.0 tracking:0.0],
     UIContentSizeCategoryAccessibilityExtraExtraLarge :

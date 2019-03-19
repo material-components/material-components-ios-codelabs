@@ -1,18 +1,16 @@
-/*
- Copyright 2016-present the Material Components for iOS authors. All Rights Reserved.
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
- http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- */
+// Copyright 2016-present the Material Components for iOS authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 #import "MDCCollectionViewFlowLayout.h"
 
@@ -92,7 +90,7 @@ static const NSInteger kSupplementaryViewZIndex = 99;
 #pragma mark - UICollectionViewLayout (SubclassingHooks)
 
 - (NSArray<__kindof UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:
-        (CGRect)rect {
+    (CGRect)rect {
   // If performing appearance animation, increase bounds height in order to retrieve additional
   // offscreen attributes needed during animation.
   rect = [self boundsForAppearanceAnimationWithInitialBounds:rect];
@@ -182,21 +180,17 @@ static const NSInteger kSupplementaryViewZIndex = 99;
       attr.size = CGSizeMake(CGRectGetWidth(currentBounds), MDCCollectionInfoBarHeaderHeight);
       // Allow header to move upwards with scroll, but prevent from moving downwards with scroll.
       CGFloat insetTop = self.collectionView.contentInset.top;
-#if defined(__IPHONE_11_0) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_11_0)
       if (@available(iOS 11.0, *)) {
         insetTop = self.collectionView.adjustedContentInset.top;
       }
-#endif
       CGFloat boundsY = currentBounds.origin.y;
       CGFloat maxOffsetY = MAX(boundsY + insetTop, 0);
       offsetY = boundsY + (attr.size.height / 2) + insetTop - maxOffsetY;
     } else if ([kind isEqualToString:MDCCollectionInfoBarKindFooter]) {
       CGFloat height = MDCCollectionInfoBarFooterHeight;
-#if defined(__IPHONE_11_0) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_11_0)
       if (@available(iOS 11.0, *)) {
         height += self.collectionView.safeAreaInsets.bottom;
       }
-#endif
       attr.size = CGSizeMake(CGRectGetWidth(currentBounds), height);
       offsetY = currentBounds.origin.y + currentBounds.size.height - (attr.size.height / 2);
     }
@@ -279,7 +273,7 @@ static const NSInteger kSupplementaryViewZIndex = 99;
 }
 
 - (UICollectionViewLayoutAttributes *)initialLayoutAttributesForAppearingItemAtIndexPath:
-        (NSIndexPath *)itemIndexPath {
+    (NSIndexPath *)itemIndexPath {
   UICollectionViewLayoutAttributes *attr =
       [[super initialLayoutAttributesForAppearingItemAtIndexPath:itemIndexPath] copy];
   // Adding new section or item.
@@ -311,7 +305,7 @@ static const NSInteger kSupplementaryViewZIndex = 99;
 }
 
 - (UICollectionViewLayoutAttributes *)finalLayoutAttributesForDisappearingItemAtIndexPath:
-        (NSIndexPath *)itemIndexPath {
+    (NSIndexPath *)itemIndexPath {
   UICollectionViewLayoutAttributes *attr =
       [[super finalLayoutAttributesForDisappearingItemAtIndexPath:itemIndexPath] copy];
   // Deleting section or item.
@@ -345,7 +339,7 @@ static const NSInteger kSupplementaryViewZIndex = 99;
 #pragma mark - Header/Footer Caching
 
 - (void)storeSupplementaryViewsWithAttributes:
-        (NSArray<__kindof UICollectionViewLayoutAttributes *> *)attributes {
+    (NSArray<__kindof UICollectionViewLayoutAttributes *> *)attributes {
   _headerSections = [NSMutableIndexSet indexSet];
   _footerSections = [NSMutableIndexSet indexSet];
 
@@ -398,7 +392,7 @@ static const NSInteger kSupplementaryViewZIndex = 99;
 }
 
 - (MDCCollectionViewLayoutAttributes *)updateSupplementaryViewAttribute:
-        (MDCCollectionViewLayoutAttributes *)attr {
+    (MDCCollectionViewLayoutAttributes *)attr {
   // In vertical scrolling, supplementary views only respect their height and ignore their width
   // value. The opposite is true for horizontal scrolling. Therefore we must manually set insets
   // on both the backgroundView and contentView in order to match the insets of the collection
@@ -450,14 +444,14 @@ static const NSInteger kSupplementaryViewZIndex = 99;
   }
   // Set top/bottom insets.
   if (isCardStyle || isGroupedStyle) {
-    insets.top = (CGFloat)floor((isTop) ? inset : inset / 2.0f);
-    insets.bottom = (CGFloat)floor((isBottom) ? inset : inset / 2.0f);
+    insets.top = (CGFloat)floor((isTop) ? inset : inset / 2);
+    insets.bottom = (CGFloat)floor((isBottom) ? inset : inset / 2);
   }
   return insets;
 }
 
 - (MDCCollectionViewOrdinalPosition)ordinalPositionForListElementWithAttribute:
-        (MDCCollectionViewLayoutAttributes *)attr {
+    (MDCCollectionViewLayoutAttributes *)attr {
   // Returns the ordinal position of cells and supplementary views within a list layout. This is
   // used to determine the layout attributes applied to their styling.
   MDCCollectionViewOrdinalPosition position = 0;
@@ -470,15 +464,15 @@ static const NSInteger kSupplementaryViewZIndex = 99;
   BOOL hasSectionItems = [self numberOfItemsInSection:indexPath.section] > 0;
 
   BOOL hidesHeaderBackground = NO;
-  if ([self.styler.delegate
-          respondsToSelector:@selector(collectionView:shouldHideHeaderBackgroundForSection:)]) {
+  if ([self.styler.delegate respondsToSelector:@selector(collectionView:
+                                                   shouldHideHeaderBackgroundForSection:)]) {
     hidesHeaderBackground = [self.styler.delegate collectionView:self.styler.collectionView
                             shouldHideHeaderBackgroundForSection:indexPath.section];
   }
 
   BOOL hidesFooterBackground = NO;
-  if ([self.styler.delegate
-          respondsToSelector:@selector(collectionView:shouldHideFooterBackgroundForSection:)]) {
+  if ([self.styler.delegate respondsToSelector:@selector(collectionView:
+                                                   shouldHideFooterBackgroundForSection:)]) {
     hidesFooterBackground = [self.styler.delegate collectionView:self.styler.collectionView
                             shouldHideFooterBackgroundForSection:indexPath.section];
   }
@@ -510,7 +504,7 @@ static const NSInteger kSupplementaryViewZIndex = 99;
 }
 
 - (MDCCollectionViewOrdinalPosition)ordinalPositionForGridElementWithAttribute:
-        (MDCCollectionViewLayoutAttributes *)attr {
+    (MDCCollectionViewLayoutAttributes *)attr {
   // Returns the ordinal position of cells and supplementary views within a grid layout. This is
   // used to determine the layout attributes applied to their styling.
   MDCCollectionViewOrdinalPosition position = 0;
@@ -558,8 +552,8 @@ static const NSInteger kSupplementaryViewZIndex = 99;
           (id<MDCCollectionViewEditingDelegate>)self.collectionView.dataSource;
 
       // Check if delegate can select during editing.
-      if ([editingDelegate respondsToSelector:@selector
-                           (collectionView:canSelectItemDuringEditingAtIndexPath:)]) {
+      if ([editingDelegate respondsToSelector:@selector(collectionView:
+                                                  canSelectItemDuringEditingAtIndexPath:)]) {
         attr.shouldShowSelectorStateMask = [editingDelegate collectionView:self.collectionView
                                      canSelectItemDuringEditingAtIndexPath:attr.indexPath];
       }
@@ -654,7 +648,7 @@ static const NSInteger kSupplementaryViewZIndex = 99;
 }
 
 - (void)addInfoBarAttributesIfNecessary:
-        (NSMutableArray<__kindof UICollectionViewLayoutAttributes *> *)attributes {
+    (NSMutableArray<__kindof UICollectionViewLayoutAttributes *> *)attributes {
   if (self.editor.isEditing && [attributes count] > 0) {
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
 
@@ -674,7 +668,7 @@ static const NSInteger kSupplementaryViewZIndex = 99;
 }
 
 - (void)addDecorationViewIfNecessary:
-        (NSMutableArray<__kindof UICollectionViewLayoutAttributes *> *)attributes {
+    (NSMutableArray<__kindof UICollectionViewLayoutAttributes *> *)attributes {
   // If necessary, adds a decoration view to a section drawn below its items. This will only happen
   // for a grid layout when it is either A) grouped-style or B) card-style with zero padding. When
   // this happens, the background for those items will not be drawn, and instead this decoration
@@ -741,7 +735,7 @@ static const NSInteger kSupplementaryViewZIndex = 99;
 }
 
 - (void)beginCellAppearanceAnimationIfNecessary:
-        (NSMutableArray<__kindof UICollectionViewLayoutAttributes *> *)attributes {
+    (NSMutableArray<__kindof UICollectionViewLayoutAttributes *> *)attributes {
   // Here we want to assign a delay to each attribute such that the animation will fade-in from the
   // top downwards in a staggered manner. However, the array of attributes we receive here are not
   // in the correct order and must be sorted and re-ordered to properly assign these delays.
