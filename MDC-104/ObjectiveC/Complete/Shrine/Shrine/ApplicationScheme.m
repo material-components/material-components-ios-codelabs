@@ -68,11 +68,10 @@
     _buttonScheme.colorScheme = _colorScheme;
     _buttonScheme.typographyScheme = _typographyScheme;
 
+    // Instantiate a MDCShapeScheme object and modify it to our chosen shapes
     _shapeScheme = [[MDCShapeScheme alloc] initWithDefaults:MDCShapeSchemeDefaultsMaterial201809];
-    //TODO: Change the corner treatment to be cut @ 20px
-    MDCShapeCategory *largeComponentShape = [[MDCShapeCategory alloc] init];
-    largeComponentShape.topLeftCorner = [MDCCornerTreatment cornerWithCut:20];
-    _shapeScheme.largeComponentShape = largeComponentShape;
+    _shapeScheme.largeComponentShape =
+        [[MDCShapeCategory alloc] initCornersWithFamily:MDCShapeCornerFamilyCut andSize:20];
   }
   return self;
 }

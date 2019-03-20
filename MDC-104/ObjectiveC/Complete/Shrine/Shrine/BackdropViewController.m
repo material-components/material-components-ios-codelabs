@@ -50,7 +50,7 @@
 // Is embedded controller in the foreground / focused
 @property(nonatomic, getter=isFocusedEmbeddedController) BOOL focusedEmbeddedController;
 
-@property(nonatomic) MDCShapedView *containerView;
+@property(nonatomic) UIView *containerView;
 
 @property(nonatomic) UIViewController *embeddedViewController;
 @property(nonatomic) UIView *embeddedView;
@@ -177,13 +177,13 @@
       [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapFilterItem:)];
   [self.view addGestureRecognizer:recognizer];
 
-  //TODO: Change the container view into a MDCShapedView.
+  //TODO: Change the container view into a ShapedShadowView.
   self.containerView = [[ShapedShadowedView alloc] initWithFrame:CGRectZero];
-  self.containerView.translatesAutoresizingMaskIntoConstraints = NO;
   MDCRectangleShapeGenerator *shapeGenerator = [[MDCRectangleShapeGenerator alloc] init];
   shapeGenerator.topLeftCorner =
       [ApplicationScheme sharedInstance].shapeScheme.largeComponentShape.topLeftCorner;
-  self.containerView.shapeGenerator = shapeGenerator;
+  ((ShapedShadowedView *)self.containerView).shapeGenerator = shapeGenerator;
+  self.containerView.translatesAutoresizingMaskIntoConstraints = NO;
   self.containerView.backgroundColor = [ApplicationScheme sharedInstance].colorScheme.surfaceColor;
   [self.view addSubview:self.containerView];
 
