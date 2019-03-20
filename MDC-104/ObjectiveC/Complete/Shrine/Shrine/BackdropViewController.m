@@ -19,7 +19,6 @@
 #import <MaterialComponents/MaterialAppBar.h>
 #import <MaterialComponents/MaterialButtons.h>
 #import <MaterialComponents/MaterialNavigationBar.h>
-#import <MaterialComponents/MaterialShapes.h>
 #import <MaterialComponents/MDCAppBarColorThemer.h>
 #import <MaterialComponents/MDCTextButtonThemer.h>
 #import <MaterialComponents/MDCContainedButtonThemer.h>
@@ -179,17 +178,13 @@
   [self.view addGestureRecognizer:recognizer];
 
   //TODO: Change the container view into a MDCShapedView.
-  self.containerView = [[MDCShapedView alloc] initWithFrame:CGRectZero];
+  self.containerView = [[ShapedShadowedView alloc] initWithFrame:CGRectZero];
   self.containerView.translatesAutoresizingMaskIntoConstraints = NO;
   MDCRectangleShapeGenerator *shapeGenerator = [[MDCRectangleShapeGenerator alloc] init];
   shapeGenerator.topLeftCorner =
       [ApplicationScheme sharedInstance].shapeScheme.largeComponentShape.topLeftCorner;
   self.containerView.shapeGenerator = shapeGenerator;
   self.containerView.backgroundColor = [ApplicationScheme sharedInstance].colorScheme.surfaceColor;
-  CALayer *containerViewLayer = self.containerView.layer;
-  containerViewLayer.shadowOffset = CGSizeMake(0.0, 0.0);
-  containerViewLayer.shadowRadius = 4.0;
-  containerViewLayer.shadowOpacity = 0.8;
   [self.view addSubview:self.containerView];
 
   //TODO: Instantiate and embed the catalog view controller in the BackdropViewController

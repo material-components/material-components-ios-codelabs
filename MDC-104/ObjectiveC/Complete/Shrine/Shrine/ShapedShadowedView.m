@@ -46,12 +46,9 @@
 }
 
 - (void)commonShapedShadowedViewInit {
-
-}
-
-- (void)setBackgroundColor:(UIColor *)backgroundColor {
-  MDCShapedShadowLayer *shapedShadowedLayer = (MDCShapedShadowLayer *)self.layer;
-  shapedShadowedLayer.shapedBackgroundColor = backgroundColor;
+  self.layer.shadowOffset = CGSizeMake(0.0, 0.0);
+  self.layer.shadowRadius = 4.0;
+  self.layer.shadowOpacity = 0.8;
 }
 
 @end
