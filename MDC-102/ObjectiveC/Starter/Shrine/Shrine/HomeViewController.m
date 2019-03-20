@@ -28,7 +28,7 @@
 @property (nonatomic) BOOL shouldDisplayLogin;
 
 // AppBar Property
-//TODO: Add AppBar Property
+//TODO: Add AppBarViewController Property
 
 @end
 

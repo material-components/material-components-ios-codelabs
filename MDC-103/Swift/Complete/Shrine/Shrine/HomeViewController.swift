@@ -20,7 +20,7 @@ import MaterialComponents
 
 class HomeViewController: UICollectionViewController {
   var shouldDisplayLogin = true
-  var appBar = MDCAppBar()
+  var appBarViewController = MDCAppBarViewController()
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -33,9 +33,12 @@ class HomeViewController: UICollectionViewController {
     self.collectionView?.backgroundColor = .white
 
     // AppBar Init
-    self.addChildViewController(appBar.headerViewController)
-    self.appBar.headerViewController.headerView.trackingScrollView = self.collectionView
-    appBar.addSubviewsToParent()
+    self.addChildViewController(self.appBarViewController)
+    self.view.addSubview(self.appBarViewController.view)
+    self.appBarViewController.didMove(toParentViewController: self)
+
+    // Set the tracking scroll view.
+    self.appBarViewController.headerView.trackingScrollView = self.collectionView
 
     // Setup Navigation Items
     let menuItemImage = UIImage(named: "MenuItem")
@@ -63,10 +66,12 @@ class HomeViewController: UICollectionViewController {
     // TODO: Theme our interface with our colors
     self.view.backgroundColor = ApplicationScheme.shared.colorScheme.surfaceColor
     self.collectionView?.backgroundColor = ApplicationScheme.shared.colorScheme.surfaceColor
-    MDCAppBarColorThemer.applySemanticColorScheme(ApplicationScheme.shared.colorScheme, to:self.appBar)
+    MDCAppBarColorThemer.applyColorScheme(ApplicationScheme.shared.colorScheme,
+                                          to: self.appBarViewController)
 
     // TODO: Theme our interface with our typography
-    MDCAppBarTypographyThemer.applyTypographyScheme(ApplicationScheme.shared.typographyScheme, to: self.appBar)
+    MDCAppBarTypographyThemer.applyTypographyScheme(ApplicationScheme.shared.typographyScheme,
+                                                    to: self.appBarViewController)
 
     // TODO: Set layout to our custom layout
     self.collectionView?.collectionViewLayout = CustomLayout()
@@ -124,20 +129,20 @@ class HomeViewController: UICollectionViewController {
 extension HomeViewController {
 
   override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    if (scrollView == self.appBar.headerViewController.headerView.trackingScrollView) {
-      self.appBar.headerViewController.headerView.trackingScrollDidScroll()
+    if (scrollView == self.appBarViewController.headerView.trackingScrollView) {
+      self.appBarViewController.headerView.trackingScrollDidScroll()
     }
   }
 
   override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-    if (scrollView == self.appBar.headerViewController.headerView.trackingScrollView) {
-      self.appBar.headerViewController.headerView.trackingScrollDidEndDecelerating()
+    if (scrollView == self.appBarViewController.headerView.trackingScrollView) {
+      self.appBarViewController.headerView.trackingScrollDidEndDecelerating()
     }
   }
 
   override func scrollViewDidEndDragging(_ scrollView: UIScrollView,
                                          willDecelerate decelerate: Bool) {
-    let headerView = self.appBar.headerViewController.headerView
+    let headerView = self.appBarViewController.headerView
     if (scrollView == headerView.trackingScrollView) {
       headerView.trackingScrollDidEndDraggingWillDecelerate(decelerate)
     }
@@ -146,7 +151,7 @@ extension HomeViewController {
   override func scrollViewWillEndDragging(_ scrollView: UIScrollView,
                                           withVelocity velocity: CGPoint,
                                           targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-    let headerView = self.appBar.headerViewController.headerView
+    let headerView = self.appBarViewController.headerView
     if (scrollView == headerView.trackingScrollView) {
       headerView.trackingScrollWillEndDragging(withVelocity: velocity,
                                                targetContentOffset: targetContentOffset)

@@ -31,8 +31,8 @@
 
 @property (nonatomic) BOOL shouldDisplayLogin;
 
-// AppBar Property
-@property(nonatomic, strong) MDCAppBar *appBar;
+// AppBarViewController Property
+@property(nonatomic, strong) MDCAppBarViewController *appBarViewController;
 
 @end
 
@@ -47,12 +47,14 @@
   self.title = @"Shrine";
 
   // AppBar Init
-  //TODO: Remove the following five lines to remove the App Bar
-//  _appBar = [[MDCAppBar alloc] init];
-//  [self addChildViewController:_appBar.headerViewController];
-//  // Set the tracking scroll view.
-//  self.appBar.headerViewController.headerView.trackingScrollView = self.collectionView;
-//  [self.appBar addSubviewsToParent];
+  //TODO: Remove the following seven lines to remove the App Bar
+//  self.appBarViewController = [[MDCAppBarViewController alloc] init];
+//  [self addChildViewController:self.appBarViewController];
+//  [self.view addSubview:self.appBarViewController.view];
+//  [self.appBarViewController didMoveToParentViewController:self];
+//
+//  Set the tracking scroll view.
+//  self.appBarViewController.headerView.trackingScrollView = self.collectionView;
 
   // Setup Navigation Items
   UIImage *menuItemImage = [UIImage imageNamed:@"MenuItem"];
