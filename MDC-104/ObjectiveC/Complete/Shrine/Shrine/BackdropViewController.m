@@ -75,7 +75,7 @@
   [[UIBarButtonItem alloc] initWithImage:templatedMenuItemImage
                                    style:UIBarButtonItemStylePlain
                                   target:self
-                                  action:@selector(menuItemTapped:)];
+                                  action:@selector(didTapMenuItem:)];
   self.navigationItem.leftBarButtonItem = menuItem;
 
   UIImage *searchItemImage = [UIImage imageNamed:@"SearchItem"];
@@ -84,7 +84,7 @@
   [[UIBarButtonItem alloc] initWithImage:templateSearchItemImage
                                    style:UIBarButtonItemStylePlain
                                   target:self
-                                  action:@selector(filterItemTapped:)];
+                                  action:@selector(didTapFilterItem:)];
 
   UIImage *tuneItemImage = [UIImage imageNamed:@"TuneItem"];
   UIImage *templateTuneItemImage = [tuneItemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
@@ -92,7 +92,7 @@
   [[UIBarButtonItem alloc] initWithImage:templateTuneItemImage
                                    style:UIBarButtonItemStylePlain
                                   target:self
-                                  action:@selector(filterItemTapped:)];
+                                  action:@selector(didTapFilterItem:)];
   self.navigationItem.rightBarButtonItems = @[ tuneItem, searchItem ];
 
   // NavigationBar Init
@@ -108,7 +108,7 @@
   self.featuredButton.translatesAutoresizingMaskIntoConstraints = NO;
   [self.featuredButton setTitle:@"FEATURED" forState:UIControlStateNormal];
   [self.featuredButton addTarget:self
-                          action:@selector(categoryTapped:)
+                          action:@selector(didTapCategory:)
                 forControlEvents:UIControlEventTouchUpInside];
   [MDCTextButtonThemer applyScheme:[ApplicationScheme sharedInstance].buttonScheme
                           toButton:self.featuredButton];
@@ -118,7 +118,7 @@
   self.clothingButton.translatesAutoresizingMaskIntoConstraints = NO;
   [self.clothingButton setTitle:@"CLOTHING" forState:UIControlStateNormal];
   [self.clothingButton addTarget:self
-                          action:@selector(categoryTapped:)
+                          action:@selector(didTapCategory:)
                 forControlEvents:UIControlEventTouchUpInside];
   [MDCTextButtonThemer applyScheme:[ApplicationScheme sharedInstance].buttonScheme
                           toButton:self.clothingButton];
@@ -128,7 +128,7 @@
   self.homeButton.translatesAutoresizingMaskIntoConstraints = NO;
   [self.homeButton setTitle:@"HOME" forState:UIControlStateNormal];
   [self.homeButton addTarget:self
-                           action:@selector(categoryTapped:)
+                           action:@selector(didTapCategory:)
                  forControlEvents:UIControlEventTouchUpInside];
   [MDCTextButtonThemer applyScheme:[ApplicationScheme sharedInstance].buttonScheme
                           toButton:self.homeButton];
@@ -138,7 +138,7 @@
   self.accessoriesButton.translatesAutoresizingMaskIntoConstraints = NO;
   [self.accessoriesButton setTitle:@"ACCESSORIES" forState:UIControlStateNormal];
   [self.accessoriesButton addTarget:self
-                             action:@selector(categoryTapped:)
+                             action:@selector(didTapCategory:)
                    forControlEvents:UIControlEventTouchUpInside];
   [MDCTextButtonThemer applyScheme:[ApplicationScheme sharedInstance].buttonScheme
                           toButton:self.accessoriesButton];
@@ -148,7 +148,7 @@
   self.accountButton.translatesAutoresizingMaskIntoConstraints = NO;
   [self.accountButton setTitle:@"MY ACCOUNT" forState:UIControlStateNormal];
   [self.accountButton addTarget:self
-                         action:@selector(accountTapped:)
+                         action:@selector(didTapAccount:)
                forControlEvents:UIControlEventTouchUpInside];
   [MDCTextButtonThemer applyScheme:[ApplicationScheme sharedInstance].buttonScheme
                           toButton:self.accountButton];
@@ -174,7 +174,7 @@
   [NSLayoutConstraint activateConstraints:constraints];
 
   UITapGestureRecognizer *recognizer =
-      [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(filterItemTapped:)];
+      [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapFilterItem:)];
   [self.view addGestureRecognizer:recognizer];
 
   //TODO: Change the container view into a ShapedShadowedView
@@ -237,18 +237,18 @@
 
 #pragma mark - Action Methods
 
-- (void)menuItemTapped:(id)selector {
+- (void)didTapMenuItem:(id)selector {
   LoginViewController *loginViewController =
       [[LoginViewController alloc] initWithNibName:nil bundle:nil];
   [self presentViewController:loginViewController animated:YES completion:NULL];
 }
 
-- (void)filterItemTapped:(id)selector {
+- (void)didTapFilterItem:(id)selector {
   // Toggle CatalogView
   self.focusedEmbeddedController = !self.isFocusedEmbeddedController;
 }
 
-- (void)categoryTapped:(id)selector {
+- (void)didTapCategory:(id)selector {
   NSString *filter = @"";
   if (selector == self.featuredButton) {
     filter = @"Featured";
@@ -267,7 +267,7 @@
   self.focusedEmbeddedController = !self.isFocusedEmbeddedController;
 }
 
-- (void)accountTapped:(id)selector {
+- (void)didTapAccount:(id)selector {
   LoginViewController *loginViewController =
   [[LoginViewController alloc] initWithNibName:nil bundle:nil];
   [self presentViewController:loginViewController animated:YES completion:NULL];
