@@ -28,8 +28,8 @@
 @property (nonatomic) BOOL shouldDisplayLogin;
 
 // AppBar Property
-//TODO: Add AppBar Property
-@property(nonatomic, strong) MDCAppBar *appBar;
+//TODO: Add AppBarViewController Property
+@property(nonatomic, strong) MDCAppBarViewController *appBarViewController;
 
 @end
 
@@ -47,12 +47,14 @@
   [self displayLogin];
 
   // AppBar Init
-  //TODO: Instantiate and add the AppBar
-  self.appBar = [[MDCAppBar alloc] init];
-  [self addChildViewController:_appBar.headerViewController];
+  //TODO: Instantiate and add the AppBarViewController
+  self.appBarViewController = [[MDCAppBarViewController alloc] init];
+  [self addChildViewController:self.appBarViewController];
+  [self.view addSubview:self.appBarViewController.view];
+  [self.appBarViewController didMoveToParentViewController:self];
+
   // Set the tracking scroll view.
-  self.appBar.headerViewController.headerView.trackingScrollView = self.collectionView;
-  [self.appBar addSubviewsToParent];
+  self.appBarViewController.headerView.trackingScrollView = self.collectionView;
 
   // Setup Navigation Items
   //TODO: Add navigation items
@@ -154,19 +156,19 @@
 
 // TODO: Add scrollview delegate methods to forward scrolling messages
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-  if (scrollView == self.appBar.headerViewController.headerView.trackingScrollView) {
-    [self.appBar.headerViewController.headerView trackingScrollViewDidScroll];
+  if (scrollView == self.appBarViewController.headerView.trackingScrollView) {
+    [self.appBarViewController.headerView trackingScrollViewDidScroll];
   }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-  if (scrollView == self.appBar.headerViewController.headerView.trackingScrollView) {
-    [self.appBar.headerViewController.headerView trackingScrollViewDidEndDecelerating];
+  if (scrollView == self.appBarViewController.headerView.trackingScrollView) {
+    [self.appBarViewController.headerView trackingScrollViewDidEndDecelerating];
   }
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-  MDCFlexibleHeaderView *headerView = self.appBar.headerViewController.headerView;
+  MDCFlexibleHeaderView *headerView = self.appBarViewController.headerView;
   if (scrollView == headerView.trackingScrollView) {
     [headerView trackingScrollViewDidEndDraggingWillDecelerate:decelerate];
   }
@@ -175,7 +177,7 @@
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
                      withVelocity:(CGPoint)velocity
               targetContentOffset:(inout CGPoint *)targetContentOffset {
-  MDCFlexibleHeaderView *headerView = self.appBar.headerViewController.headerView;
+  MDCFlexibleHeaderView *headerView = self.appBarViewController.headerView;
   if (scrollView == headerView.trackingScrollView) {
     [headerView trackingScrollViewWillEndDraggingWithVelocity:velocity
                                           targetContentOffset:targetContentOffset];

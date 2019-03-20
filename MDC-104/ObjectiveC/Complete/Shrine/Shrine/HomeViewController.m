@@ -31,8 +31,8 @@
 
 @property (nonatomic) BOOL shouldDisplayLogin;
 
-// AppBar Property
-@property(nonatomic, strong) MDCAppBar *appBar;
+// AppBarViewController Property
+@property(nonatomic, strong) MDCAppBarViewController *appBarViewController;
 
 @end
 
@@ -47,12 +47,14 @@
   self.title = @"Shrine";
 
   // AppBar Init
-  //TODO: Remove the following five lines to remove the App Bar
-//  _appBar = [[MDCAppBar alloc] init];
-//  [self addChildViewController:_appBar.headerViewController];
-//  // Set the tracking scroll view.
-//  self.appBar.headerViewController.headerView.trackingScrollView = self.collectionView;
-//  [self.appBar addSubviewsToParent];
+  //TODO: Remove the following seven lines to remove the App Bar
+//  self.appBarViewController = [[MDCAppBarViewController alloc] init];
+//  [self addChildViewController:self.appBarViewController];
+//  [self.view addSubview:self.appBarViewController.view];
+//  [self.appBarViewController didMoveToParentViewController:self];
+//
+//  Set the tracking scroll view.
+//  self.appBarViewController.headerView.trackingScrollView = self.collectionView;
 
   // Setup Navigation Items
   UIImage *menuItemImage = [UIImage imageNamed:@"MenuItem"];
@@ -82,11 +84,11 @@
   self.navigationItem.rightBarButtonItems = @[ tuneItem, searchItem ];
 
     self.view.backgroundColor = [ApplicationScheme sharedInstance].colorScheme.surfaceColor;
-  [MDCAppBarColorThemer applySemanticColorScheme:[ApplicationScheme sharedInstance].colorScheme
-                                        toAppBar:self.appBar];
+  [MDCAppBarColorThemer applyColorScheme:[ApplicationScheme sharedInstance].colorScheme
+                  toAppBarViewController:self.appBarViewController];
 
   [MDCAppBarTypographyThemer applyTypographyScheme:[ApplicationScheme sharedInstance].typographyScheme
-                                          toAppBar:self.appBar];
+                            toAppBarViewController:self.appBarViewController];
 
   self.collectionView.collectionViewLayout = [[CustomLayout alloc] init];
 
@@ -142,19 +144,19 @@
 // the Flexible Header's behavior.
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-  if (scrollView == self.appBar.headerViewController.headerView.trackingScrollView) {
-    [self.appBar.headerViewController.headerView trackingScrollViewDidScroll];
+  if (scrollView == self.appBarViewController.headerView.trackingScrollView) {
+    [self.appBarViewController.headerView trackingScrollViewDidScroll];
   }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-  if (scrollView == self.appBar.headerViewController.headerView.trackingScrollView) {
-    [self.appBar.headerViewController.headerView trackingScrollViewDidEndDecelerating];
+  if (scrollView == self.appBarViewController.headerView.trackingScrollView) {
+    [self.appBarViewController.headerView trackingScrollViewDidEndDecelerating];
   }
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-  MDCFlexibleHeaderView *headerView = self.appBar.headerViewController.headerView;
+  MDCFlexibleHeaderView *headerView = self.appBarViewController.headerView;
   if (scrollView == headerView.trackingScrollView) {
     [headerView trackingScrollViewDidEndDraggingWillDecelerate:decelerate];
   }
@@ -163,7 +165,7 @@
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
                      withVelocity:(CGPoint)velocity
               targetContentOffset:(inout CGPoint *)targetContentOffset {
-  MDCFlexibleHeaderView *headerView = self.appBar.headerViewController.headerView;
+  MDCFlexibleHeaderView *headerView = self.appBarViewController.headerView;
   if (scrollView == headerView.trackingScrollView) {
     [headerView trackingScrollViewWillEndDraggingWithVelocity:velocity
                                           targetContentOffset:targetContentOffset];

@@ -20,8 +20,8 @@ import MaterialComponents
 
 class HomeViewController: UICollectionViewController {
   var shouldDisplayLogin = true
-  //TODO: Add an appBar property
-  var appBar = MDCAppBar()
+  //TODO: Add an appBarViewController property
+  var appBarViewController = MDCAppBarViewController()
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -35,9 +35,12 @@ class HomeViewController: UICollectionViewController {
 
     // AppBar Setup
     //TODO: Add the appBar controller and views
-    self.addChildViewController(appBar.headerViewController)
-    self.appBar.headerViewController.headerView.trackingScrollView = self.collectionView
-    appBar.addSubviewsToParent()
+    self.addChildViewController(self.appBarViewController)
+    self.view.addSubview(self.appBarViewController.view)
+    self.appBarViewController.didMove(toParentViewController: self)
+
+    // Set the tracking scroll view.
+    self.appBarViewController.headerView.trackingScrollView = self.collectionView
 
     // Setup Navigation Items
     //TODO: Create the items and set them on the view controller's navigationItems properties
@@ -121,20 +124,20 @@ class HomeViewController: UICollectionViewController {
 extension HomeViewController {
 
   override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    if (scrollView == self.appBar.headerViewController.headerView.trackingScrollView) {
-      self.appBar.headerViewController.headerView.trackingScrollDidScroll()
+    if (scrollView == self.appBarViewController.headerView.trackingScrollView) {
+      self.appBarViewController.headerView.trackingScrollDidScroll()
     }
   }
 
   override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-    if (scrollView == self.appBar.headerViewController.headerView.trackingScrollView) {
-      self.appBar.headerViewController.headerView.trackingScrollDidEndDecelerating()
+    if (scrollView == self.appBarViewController.headerView.trackingScrollView) {
+      self.appBarViewController.headerView.trackingScrollDidEndDecelerating()
     }
   }
 
   override func scrollViewDidEndDragging(_ scrollView: UIScrollView,
                                          willDecelerate decelerate: Bool) {
-    let headerView = self.appBar.headerViewController.headerView
+    let headerView = self.appBarViewController.headerView
     if (scrollView == headerView.trackingScrollView) {
       headerView.trackingScrollDidEndDraggingWillDecelerate(decelerate)
     }
@@ -143,7 +146,7 @@ extension HomeViewController {
   override func scrollViewWillEndDragging(_ scrollView: UIScrollView,
                                           withVelocity velocity: CGPoint,
                                           targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-    let headerView = self.appBar.headerViewController.headerView
+    let headerView = self.appBarViewController.headerView
     if (scrollView == headerView.trackingScrollView) {
       headerView.trackingScrollWillEndDragging(withVelocity: velocity,
                                                targetContentOffset: targetContentOffset)

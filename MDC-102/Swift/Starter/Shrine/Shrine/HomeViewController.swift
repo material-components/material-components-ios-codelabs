@@ -20,7 +20,7 @@ import MaterialComponents
 
 class HomeViewController: UICollectionViewController {
   var shouldDisplayLogin = true
-  //TODO: Add an appBar property
+  //TODO: Add an appBarViewController property
 
   override func viewDidLoad() {
     super.viewDidLoad()
