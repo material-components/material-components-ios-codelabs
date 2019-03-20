@@ -15,6 +15,7 @@
  */
 
 #import "ApplicationScheme.h"
+#import <MaterialComponents/MaterialShapeLibrary.h>
 
 @implementation ApplicationScheme {
   MDCSemanticColorScheme *_colorScheme;
@@ -66,6 +67,12 @@
     _buttonScheme = [[MDCButtonScheme alloc] init];
     _buttonScheme.colorScheme = _colorScheme;
     _buttonScheme.typographyScheme = _typographyScheme;
+
+    _shapeScheme = [[MDCShapeScheme alloc] initWithDefaults:MDCShapeSchemeDefaultsMaterial201809];
+    //TODO: Change the corner treatment to be cut @ 20px
+    MDCShapeCategory *largeComponentShape = [[MDCShapeCategory alloc] init];
+    largeComponentShape.topLeftCorner = [MDCCornerTreatment cornerWithCut:20];
+    _shapeScheme.largeComponentShape = largeComponentShape;
   }
   return self;
 }
