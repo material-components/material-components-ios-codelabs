@@ -89,8 +89,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
       self.zip.text = nil
     }))
     alert.addAction(MDCAlertAction(title: "Cancel", handler: nil))
-    MDCAlertColorThemer.applySemanticColorScheme(self.buttonScheme.colorScheme, to: alert)
-    MDCAlertTypographyThemer.applyTypographyScheme(self.buttonScheme.typographyScheme, to: alert)
+    MDCAlertControllerThemer.applyScheme(MDCAlertScheme(), to: alert)
     present(alert, animated: true, completion: nil)
   }
 }
