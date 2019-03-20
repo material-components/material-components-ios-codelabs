@@ -177,7 +177,7 @@
       [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapFilterItem:)];
   [self.view addGestureRecognizer:recognizer];
 
-  //TODO: Change the container view into a ShapedShadowView.
+  //TODO: Change the container view into a ShapedShadowedView and apply the shape.
   self.containerView = [[ShapedShadowedView alloc] initWithFrame:CGRectZero];
   MDCRectangleShapeGenerator *shapeGenerator = [[MDCRectangleShapeGenerator alloc] init];
   shapeGenerator.topLeftCorner =

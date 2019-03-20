@@ -15,6 +15,7 @@
  */
 
 #import "ApplicationScheme.h"
+#import <MaterialComponents/MaterialShapeLibrary.h>
 
 @implementation ApplicationScheme {
   MDCSemanticColorScheme *_colorScheme;
@@ -66,6 +67,9 @@
     _buttonScheme = [[MDCButtonScheme alloc] init];
     _buttonScheme.colorScheme = _colorScheme;
     _buttonScheme.typographyScheme = _typographyScheme;
+
+    // Instantiate a MDCShapeScheme object and modify it to our chosen shapes
+    _shapeScheme = [[MDCShapeScheme alloc] initWithDefaults:MDCShapeSchemeDefaultsMaterial201809];
   }
   return self;
 }
