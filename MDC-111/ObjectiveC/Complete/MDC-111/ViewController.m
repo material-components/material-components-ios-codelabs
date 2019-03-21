@@ -17,6 +17,7 @@
 #import "MaterialButtons.h"
 #import "MaterialButtons+ButtonThemer.h"
 #import "MaterialDialogs.h"
+#import "MaterialDialogs+DialogThemer.h"
 
 @interface ViewController () <UITextFieldDelegate>
 
@@ -94,6 +95,8 @@
   }]];
   [saveAlert addAction:[MDCAlertAction actionWithTitle:@"Cancel" handler:^(MDCAlertAction * _Nonnull action) {
   }]];
+  MDCAlertScheme *alertScheme = [[MDCAlertScheme alloc] init];
+  [MDCAlertControllerThemer applyScheme:alertScheme toAlertController:saveAlert];
   [self presentViewController:saveAlert animated:YES completion:nil];
 }
 
