@@ -14,6 +14,8 @@
 #import "ViewController.h"
 #import "Lorem.h"
 #import "MaterialTextFields.h"
+#import "MaterialTextFields+ColorThemer.h"
+#import "MaterialTextFields+TypographyThemer.h"
 #import "MaterialButtons.h"
 #import "MaterialButtons+ButtonThemer.h"
 #import "MaterialDialogs.h"
@@ -51,6 +53,19 @@
   self.zipController = [[MDCTextInputControllerOutlined alloc] initWithTextInput:self.zip];
 
   [MDCContainedButtonThemer applyScheme:[[MDCButtonScheme alloc] init] toButton:self.saveButton];
+
+  MDCSemanticColorScheme *colorScheme = [[MDCSemanticColorScheme alloc] init];
+  [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme toTextInputController:self.nameController];
+  [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme toTextInputController:self.addressController];
+  [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme toTextInputController:self.cityController];
+  [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme toTextInputController:self.stateController];
+  [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme toTextInputController:self.zipController];
+  MDCTypographyScheme *typographyScheme = [[MDCTypographyScheme alloc] init];
+  [MDCTextFieldTypographyThemer applyTypographyScheme:typographyScheme toTextInputController:self.nameController];
+  [MDCTextFieldTypographyThemer applyTypographyScheme:typographyScheme toTextInputController:self.addressController];
+  [MDCTextFieldTypographyThemer applyTypographyScheme:typographyScheme toTextInputController:self.cityController];
+  [MDCTextFieldTypographyThemer applyTypographyScheme:typographyScheme toTextInputController:self.stateController];
+  [MDCTextFieldTypographyThemer applyTypographyScheme:typographyScheme toTextInputController:self.zipController];
 
   self.zip.delegate = self;
 }
