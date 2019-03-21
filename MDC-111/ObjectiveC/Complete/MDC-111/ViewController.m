@@ -20,7 +20,6 @@
 #import "MaterialButtons+ButtonThemer.h"
 #import "MaterialDialogs.h"
 
-
 @interface ViewController () <UITextFieldDelegate>
 
 @property (nonatomic) MDCTextInputControllerOutlined *nameController;
