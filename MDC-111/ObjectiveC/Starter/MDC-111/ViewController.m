@@ -16,14 +16,13 @@
 
 @interface ViewController () <UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextField *name;
-@property (weak, nonatomic) IBOutlet UITextField *address;
-@property (weak, nonatomic) IBOutlet UITextField *city;
-@property (weak, nonatomic) IBOutlet UITextField *state;
-@property (weak, nonatomic) IBOutlet UITextField *zip;
+@property(weak, nonatomic) IBOutlet UITextField *name;
+@property(weak, nonatomic) IBOutlet UITextField *address;
+@property(weak, nonatomic) IBOutlet UITextField *city;
+@property(weak, nonatomic) IBOutlet UITextField *state;
+@property(weak, nonatomic) IBOutlet UITextField *zip;
 
-@property (weak, nonatomic) IBOutlet UIButton *saveButton;
-
+@property(weak, nonatomic) IBOutlet UIButton *saveButton;
 
 @end
 
@@ -44,16 +43,23 @@
 - (IBAction)saveDidTouch:(id)sender {
   [self.view endEditing:YES];
 
-  UIAlertController *saveAlert = [UIAlertController alertControllerWithTitle:@"Do you accept these terms?" message:kLorem preferredStyle:UIAlertControllerStyleAlert];
-  [saveAlert addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-    self.name.text = nil;
-    self.address.text = nil;
-    self.city.text = nil;
-    self.state.text = nil;
-    self.zip.text = nil;
-  }]];
-  [saveAlert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-  }]];
+  UIAlertController *saveAlert =
+      [UIAlertController alertControllerWithTitle:@"Do you accept these terms?"
+                                          message:kLorem
+                                   preferredStyle:UIAlertControllerStyleAlert];
+  [saveAlert addAction:[UIAlertAction actionWithTitle:@"Yes"
+                                                style:UIAlertActionStyleDefault
+                                              handler:^(UIAlertAction *_Nonnull action) {
+                                                self.name.text = nil;
+                                                self.address.text = nil;
+                                                self.city.text = nil;
+                                                self.state.text = nil;
+                                                self.zip.text = nil;
+                                              }]];
+  [saveAlert addAction:[UIAlertAction actionWithTitle:@"Cancel"
+                                                style:UIAlertActionStyleCancel
+                                              handler:^(UIAlertAction *_Nonnull action){
+                                              }]];
   [self presentViewController:saveAlert animated:YES completion:nil];
 }
 

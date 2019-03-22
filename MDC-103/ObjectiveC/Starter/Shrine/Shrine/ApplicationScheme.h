@@ -20,7 +20,6 @@
 #import <MaterialComponents/MaterialColorScheme.h>
 #import <MaterialComponents/MaterialTypographyScheme.h>
 
-
 /**
  ApplicationScheme is a central object for setting the application's colors and typography.
  */

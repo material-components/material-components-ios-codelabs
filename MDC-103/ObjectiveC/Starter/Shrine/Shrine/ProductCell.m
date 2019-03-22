@@ -24,12 +24,12 @@
   // Configure the cell properties
   self.backgroundColor = [UIColor whiteColor];
 
-  //TODO: Set custom font based on our ApplicationScheme and center align text
+  // TODO: Set custom font based on our ApplicationScheme and center align text
 
-  //TODO: Set to 0 to disable the curved corners
+  // TODO: Set to 0 to disable the curved corners
   self.cornerRadius = 8.0;
 
-  //TODO: Set Border Width to 0 to disable the stroke outline
+  // TODO: Set Border Width to 0 to disable the stroke outline
   [self setBorderWidth:1.0 forState:MDCCardCellStateNormal];
   [self setBorderColor:[UIColor lightGrayColor] forState:MDCCardCellStateNormal];
 }
