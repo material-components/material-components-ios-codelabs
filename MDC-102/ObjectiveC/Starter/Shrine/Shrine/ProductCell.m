@@ -16,15 +16,14 @@
 
 #import "ProductCell.h"
 
-
 @implementation ProductCell
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    //TODO: Configure the cell properties
+    // TODO: Configure the cell properties
 
-    //TODO: Add MDCCardCollectionCell specific properties
+    // TODO: Add MDCCardCollectionCell specific properties
   }
   return self;
 }

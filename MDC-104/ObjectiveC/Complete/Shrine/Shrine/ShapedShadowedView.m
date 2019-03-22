@@ -16,10 +16,10 @@
 
 #import "ShapedShadowedView.h"
 
-#import <MaterialComponents/MDCRoundedCornerTreatment.h>
 #import <MaterialComponents/MDCCutCornerTreatment.h>
-#import <MaterialComponents/MDCShapedShadowLayer.h>
 #import <MaterialComponents/MDCRectangleShapeGenerator.h>
+#import <MaterialComponents/MDCRoundedCornerTreatment.h>
+#import <MaterialComponents/MDCShapedShadowLayer.h>
 
 #import "ApplicationScheme.h"
 
@@ -48,7 +48,7 @@
 - (void)commonShapedShadowedViewInit {
   MDCShapedShadowLayer *shapedShadowedLayer = (MDCShapedShadowLayer *)self.layer;
   MDCRectangleShapeGenerator *shapeGenerator = [[MDCRectangleShapeGenerator alloc] init];
-  //TODO: Change the corner treatment to be cut @ 20px
+  // TODO: Change the corner treatment to be cut @ 20px
   shapeGenerator.topLeftCorner = [[MDCCutCornerTreatment alloc] initWithCut:20.0];
   shapedShadowedLayer.shapeGenerator = shapeGenerator;
   shapedShadowedLayer.shadowOffset = CGSizeMake(0.0, 0.0);

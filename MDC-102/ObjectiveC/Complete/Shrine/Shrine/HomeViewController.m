@@ -22,13 +22,12 @@
 #import "LoginViewController.h"
 #import "ProductCell.h"
 
-
 @interface HomeViewController ()
 
-@property (nonatomic) BOOL shouldDisplayLogin;
+@property(nonatomic) BOOL shouldDisplayLogin;
 
 // AppBar Property
-//TODO: Add AppBarViewController Property
+// TODO: Add AppBarViewController Property
 @property(nonatomic, strong) MDCAppBarViewController *appBarViewController;
 
 @end
@@ -36,7 +35,7 @@
 @implementation HomeViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+  [super viewDidLoad];
 
   self.view.tintColor = [UIColor blackColor];
   self.view.backgroundColor = [UIColor whiteColor];
@@ -47,7 +46,7 @@
   [self displayLogin];
 
   // AppBar Init
-  //TODO: Instantiate and add the AppBarViewController
+  // TODO: Instantiate and add the AppBarViewController
   self.appBarViewController = [[MDCAppBarViewController alloc] init];
   [self addChildViewController:self.appBarViewController];
   [self.view addSubview:self.appBarViewController.view];
@@ -57,33 +56,33 @@
   self.appBarViewController.headerView.trackingScrollView = self.collectionView;
 
   // Setup Navigation Items
-  //TODO: Add navigation items
+  // TODO: Add navigation items
   UIImage *menuItemImage = [UIImage imageNamed:@"MenuItem"];
-  UIImage *templatedMenuItemImage = [menuItemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-  UIBarButtonItem *menuItem =
-  [[UIBarButtonItem alloc] initWithImage:templatedMenuItemImage
-                                   style:UIBarButtonItemStylePlain
-                                  target:self
-                                  action:@selector(menuItemTapped:)];
+  UIImage *templatedMenuItemImage =
+      [menuItemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+  UIBarButtonItem *menuItem = [[UIBarButtonItem alloc] initWithImage:templatedMenuItemImage
+                                                               style:UIBarButtonItemStylePlain
+                                                              target:self
+                                                              action:@selector(menuItemTapped:)];
   self.navigationItem.leftBarButtonItem = menuItem;
 
   UIImage *searchItemImage = [UIImage imageNamed:@"SearchItem"];
-  UIImage *templateSearchItemImage = [searchItemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-  UIBarButtonItem *searchItem =
-  [[UIBarButtonItem alloc] initWithImage:templateSearchItemImage
-                                   style:UIBarButtonItemStylePlain
-                                  target:nil
-                                  action:nil];
+  UIImage *templateSearchItemImage =
+      [searchItemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+  UIBarButtonItem *searchItem = [[UIBarButtonItem alloc] initWithImage:templateSearchItemImage
+                                                                 style:UIBarButtonItemStylePlain
+                                                                target:nil
+                                                                action:nil];
 
   UIImage *tuneItemImage = [UIImage imageNamed:@"TuneItem"];
-  UIImage *templateTuneItemImage = [tuneItemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-  UIBarButtonItem *tuneItem =
-  [[UIBarButtonItem alloc] initWithImage:templateTuneItemImage
-                                   style:UIBarButtonItemStylePlain
-                                  target:nil
-                                  action:nil];
+  UIImage *templateTuneItemImage =
+      [tuneItemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+  UIBarButtonItem *tuneItem = [[UIBarButtonItem alloc] initWithImage:templateTuneItemImage
+                                                               style:UIBarButtonItemStylePlain
+                                                              target:nil
+                                                              action:nil];
   self.navigationItem.rightBarButtonItems = @[ tuneItem, searchItem ];
-  
+
   // Done Label
   UILabel *doneLabel = [[UILabel alloc] initWithFrame:CGRectZero];
   doneLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -96,18 +95,19 @@
                                   toItem:self.view
                                attribute:NSLayoutAttributeCenterX
                               multiplier:1
-                                constant:0].active = YES;
+                                constant:0]
+      .active = YES;
   [NSLayoutConstraint constraintWithItem:doneLabel
                                attribute:NSLayoutAttributeCenterY
                                relatedBy:NSLayoutRelationEqual
                                   toItem:self.view
                                attribute:NSLayoutAttributeCenterY
                               multiplier:1
-                                constant:0].active = YES;
+                                constant:0]
+      .active = YES;
 
-  //TODO: Hide the "You did it!" text
+  // TODO: Hide the "You did it!" text
   doneLabel.hidden = YES;
-
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -115,7 +115,7 @@
 
   if ([self.collectionViewLayout isKindOfClass:[UICollectionViewFlowLayout class]]) {
     UICollectionViewFlowLayout *flowLayout =
-    (UICollectionViewFlowLayout *)self.collectionViewLayout;
+        (UICollectionViewFlowLayout *)self.collectionViewLayout;
     CGFloat HORIZONTAL_SPACING = 8;  // Spacing between the edges of cards
     CGFloat itemDimension = (CGRectGetWidth(self.view.frame) - 3 * HORIZONTAL_SPACING) * 0.5;
     CGSize itemSize = CGSizeMake(itemDimension, itemDimension);
@@ -123,8 +123,8 @@
   }
 
   if (self.shouldDisplayLogin) {
-    LoginViewController *loginViewController =
-        [[LoginViewController alloc] initWithNibName:nil bundle:nil];
+    LoginViewController *loginViewController = [[LoginViewController alloc] initWithNibName:nil
+                                                                                     bundle:nil];
     loginViewController.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:loginViewController animated:NO completion:NULL];
     self.shouldDisplayLogin = NO;
@@ -136,16 +136,16 @@
 - (void)displayLogin {
   self.shouldDisplayLogin = YES;
   if (self.isViewLoaded && self.isBeingPresented) {
-    LoginViewController *loginViewController =
-        [[LoginViewController alloc] initWithNibName:nil bundle:nil];
+    LoginViewController *loginViewController = [[LoginViewController alloc] initWithNibName:nil
+                                                                                     bundle:nil];
     [self presentViewController:loginViewController animated:YES completion:NULL];
     self.shouldDisplayLogin = NO;
   }
 }
 
 - (void)menuItemTapped:(id)selector {
-  LoginViewController *loginViewController =
-  [[LoginViewController alloc] initWithNibName:nil bundle:nil];
+  LoginViewController *loginViewController = [[LoginViewController alloc] initWithNibName:nil
+                                                                                   bundle:nil];
   [self presentViewController:loginViewController animated:YES completion:NULL];
 }
 
@@ -186,21 +186,24 @@
 
 #pragma mark - UICollectionViewDataSource
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-  //TODO: Update the following line to return the number of items in the catalog instead of 0
+- (NSInteger)collectionView:(UICollectionView *)collectionView
+     numberOfItemsInSection:(NSInteger)section {
+  // TODO: Update the following line to return the number of items in the catalog instead of 0
   return [Catalog productCatalog].count;
 }
 
-- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-  ProductCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"ProductCell" forIndexPath:indexPath];
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
+                           cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+  ProductCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"ProductCell"
+                                                                     forIndexPath:indexPath];
 
-  //TODO: Set the properties of the cell to reflect the product from the model
+  // TODO: Set the properties of the cell to reflect the product from the model
   Product *product = [[Catalog productCatalog] productAtIndex:indexPath.row];
   UIImage *productImage = [UIImage imageNamed:product.imageName];
   cell.imageView.image = productImage;
   cell.nameLabel.text = product.productName;
   cell.priceLabel.text = product.price;
-  
+
   return cell;
 }
 
