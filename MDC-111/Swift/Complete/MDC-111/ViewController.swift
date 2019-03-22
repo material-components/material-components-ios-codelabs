@@ -35,13 +35,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-
+    
     nameController = MDCTextInputControllerOutlined(textInput: name)
     addressController = MDCTextInputControllerOutlined(textInput: address)
     cityController = MDCTextInputControllerOutlined(textInput: city)
     stateController = MDCTextInputControllerOutlined(textInput: state)
     zipController = MDCTextInputControllerOutlined(textInput: zip)
+
     MDCContainedButtonThemer.applyScheme(buttonScheme, to: saveButton)
+    saveButton.setTitle("Save", for: .normal)
 
     zip.delegate = self
   }
