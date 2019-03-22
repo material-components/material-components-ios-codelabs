@@ -19,7 +19,6 @@
 #import <MaterialComponents/MaterialButtons.h>
 #import <MaterialComponents/MaterialTextFields.h>
 
-
 @interface LoginViewController () <UITextFieldDelegate>
 
 @property(nonatomic) UIScrollView *scrollView;
@@ -60,30 +59,26 @@
   [self.view addSubview:self.scrollView];
 
   [NSLayoutConstraint
-   activateConstraints:[NSLayoutConstraint
-                        constraintsWithVisualFormat:@"V:|[scrollView]|"
-                        options:0
-                        metrics:nil
-                        views:@{
-                                @"scrollView" : self.scrollView
-                                }]];
+      activateConstraints:[NSLayoutConstraint
+                              constraintsWithVisualFormat:@"V:|[scrollView]|"
+                                                  options:0
+                                                  metrics:nil
+                                                    views:@{@"scrollView" : self.scrollView}]];
   [NSLayoutConstraint
-   activateConstraints:[NSLayoutConstraint
-                        constraintsWithVisualFormat:@"H:|[scrollView]|"
-                        options:0
-                        metrics:nil
-                        views:@{
-                                @"scrollView" : self.scrollView
-                                }]];
+      activateConstraints:[NSLayoutConstraint
+                              constraintsWithVisualFormat:@"H:|[scrollView]|"
+                                                  options:0
+                                                  metrics:nil
+                                                    views:@{@"scrollView" : self.scrollView}]];
 
   UITapGestureRecognizer *tapGestureRecognizer =
-  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapDidTouch:)];
+      [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapDidTouch:)];
   [self.scrollView addGestureRecognizer:tapGestureRecognizer];
 
   // Logo Init
   UIImage *logoImage = [UIImage imageNamed:@"ShrineLogo"];
   UIImage *templatedLogoImage =
-  [logoImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+      [logoImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
   self.logoImageView = [[UIImageView alloc] initWithImage:templatedLogoImage];
   self.logoImageView.translatesAutoresizingMaskIntoConstraints = NO;
   [self.scrollView addSubview:self.logoImageView];
@@ -96,7 +91,7 @@
   [self.scrollView addSubview:self.titleLabel];
 
   // Text Field Init
-  //TODO: Instantiate Text Fields
+  // TODO: Instantiate Text Fields
   self.usernameTextField = [[MDCTextField alloc] initWithFrame:CGRectZero];
   self.usernameTextField.translatesAutoresizingMaskIntoConstraints = NO;
   self.usernameTextField.delegate = self;
@@ -105,7 +100,7 @@
   [self.scrollView addSubview:self.usernameTextField];
 
   self.usernameTextFieldController =
-  [[MDCTextInputControllerOutlined alloc] initWithTextInput:self.usernameTextField];
+      [[MDCTextInputControllerOutlined alloc] initWithTextInput:self.usernameTextField];
   self.usernameTextFieldController.placeholderText = @"Username";
 
   self.passwordTextField = [[MDCTextField alloc] initWithFrame:CGRectZero];
@@ -117,11 +112,11 @@
   [self.scrollView addSubview:self.passwordTextField];
 
   self.passwordTextFieldController =
-  [[MDCTextInputControllerOutlined alloc] initWithTextInput:self.passwordTextField];
+      [[MDCTextInputControllerOutlined alloc] initWithTextInput:self.passwordTextField];
   self.passwordTextFieldController.placeholderText = @"Password";
 
   // Button Init
-  //TODO: Instantiate Buttons
+  // TODO: Instantiate Buttons
   self.cancelButton = [[MDCButton alloc] init];
   self.cancelButton.translatesAutoresizingMaskIntoConstraints = NO;
   [self.cancelButton setTitle:@"CANCEL" forState:UIControlStateNormal];
@@ -139,136 +134,141 @@
   [self.scrollView addSubview:self.nextButton];
 
   // Layout Constraints
-  NSMutableArray <NSLayoutConstraint *> *constraints = [[NSMutableArray alloc] init];
+  NSMutableArray<NSLayoutConstraint *> *constraints = [[NSMutableArray alloc] init];
 
   NSLayoutConstraint *logoTopConstraint =
-  [NSLayoutConstraint constraintWithItem:self.logoImageView
-                               attribute:NSLayoutAttributeTop
-                               relatedBy:NSLayoutRelationEqual
-                                  toItem:self.scrollView.contentLayoutGuide
-                               attribute:NSLayoutAttributeTop
-                              multiplier:1
-                                constant:49];
+      [NSLayoutConstraint constraintWithItem:self.logoImageView
+                                   attribute:NSLayoutAttributeTop
+                                   relatedBy:NSLayoutRelationEqual
+                                      toItem:self.scrollView.contentLayoutGuide
+                                   attribute:NSLayoutAttributeTop
+                                  multiplier:1
+                                    constant:49];
   [constraints addObject:logoTopConstraint];
 
   NSLayoutConstraint *centerLogoConstraint =
-  [NSLayoutConstraint constraintWithItem:self.logoImageView
-                               attribute:NSLayoutAttributeCenterX
-                               relatedBy:NSLayoutRelationEqual
-                                  toItem:self.scrollView
-                               attribute:NSLayoutAttributeCenterX
-                              multiplier:1.f constant:0.f];
+      [NSLayoutConstraint constraintWithItem:self.logoImageView
+                                   attribute:NSLayoutAttributeCenterX
+                                   relatedBy:NSLayoutRelationEqual
+                                      toItem:self.scrollView
+                                   attribute:NSLayoutAttributeCenterX
+                                  multiplier:1.f
+                                    constant:0.f];
   [constraints addObject:centerLogoConstraint];
 
   NSLayoutConstraint *titleTopConstraint =
-  [NSLayoutConstraint constraintWithItem:self.titleLabel
-                               attribute:NSLayoutAttributeTop
-                               relatedBy:NSLayoutRelationEqual
-                                  toItem:self.logoImageView
-                               attribute:NSLayoutAttributeBottom
-                              multiplier:1
-                                constant:22];
+      [NSLayoutConstraint constraintWithItem:self.titleLabel
+                                   attribute:NSLayoutAttributeTop
+                                   relatedBy:NSLayoutRelationEqual
+                                      toItem:self.logoImageView
+                                   attribute:NSLayoutAttributeBottom
+                                  multiplier:1
+                                    constant:22];
   [constraints addObject:titleTopConstraint];
 
   NSLayoutConstraint *centerTitleConstraint =
-  [NSLayoutConstraint constraintWithItem:self.titleLabel
-                               attribute:NSLayoutAttributeCenterX
-                               relatedBy:NSLayoutRelationEqual
-                                  toItem:self.scrollView
-                               attribute:NSLayoutAttributeCenterX
-                              multiplier:1.f constant:0.f];
+      [NSLayoutConstraint constraintWithItem:self.titleLabel
+                                   attribute:NSLayoutAttributeCenterX
+                                   relatedBy:NSLayoutRelationEqual
+                                      toItem:self.scrollView
+                                   attribute:NSLayoutAttributeCenterX
+                                  multiplier:1.f
+                                    constant:0.f];
   [constraints addObject:centerTitleConstraint];
 
   // Text Field Constraints
-  //TODO: Add Text Field Constraints
+  // TODO: Add Text Field Constraints
   NSLayoutConstraint *usernameTopConstraint =
-  [NSLayoutConstraint constraintWithItem:self.usernameTextField
-                               attribute:NSLayoutAttributeTop
-                               relatedBy:NSLayoutRelationEqual
-                                  toItem:self.titleLabel
-                               attribute:NSLayoutAttributeBottom
-                              multiplier:1
-                                constant:22];
+      [NSLayoutConstraint constraintWithItem:self.usernameTextField
+                                   attribute:NSLayoutAttributeTop
+                                   relatedBy:NSLayoutRelationEqual
+                                      toItem:self.titleLabel
+                                   attribute:NSLayoutAttributeBottom
+                                  multiplier:1
+                                    constant:22];
   [constraints addObject:usernameTopConstraint];
 
   NSLayoutConstraint *centerUsernameConstraint =
-  [NSLayoutConstraint constraintWithItem:self.usernameTextField
-                               attribute:NSLayoutAttributeCenterX
-                               relatedBy:NSLayoutRelationEqual
-                                  toItem:self.scrollView
-                               attribute:NSLayoutAttributeCenterX
-                              multiplier:1.f constant:0.f];
+      [NSLayoutConstraint constraintWithItem:self.usernameTextField
+                                   attribute:NSLayoutAttributeCenterX
+                                   relatedBy:NSLayoutRelationEqual
+                                      toItem:self.scrollView
+                                   attribute:NSLayoutAttributeCenterX
+                                  multiplier:1.f
+                                    constant:0.f];
   [constraints addObject:centerUsernameConstraint];
 
-  NSArray <NSLayoutConstraint *> *horizontalUsernameConstraints =
-  [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[username]-|"
-                                          options:0
-                                          metrics:nil
-                                            views:@{ @"username" : self.usernameTextField }];
+  NSArray<NSLayoutConstraint *> *horizontalUsernameConstraints =
+      [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[username]-|"
+                                              options:0
+                                              metrics:nil
+                                                views:@{@"username" : self.usernameTextField}];
   [constraints addObjectsFromArray:horizontalUsernameConstraints];
 
   NSLayoutConstraint *passwordTopConstraint =
-  [NSLayoutConstraint constraintWithItem:self.passwordTextField
-                               attribute:NSLayoutAttributeTop
-                               relatedBy:NSLayoutRelationEqual
-                                  toItem:self.usernameTextField
-                               attribute:NSLayoutAttributeBottom
-                              multiplier:1
-                                constant:8];
+      [NSLayoutConstraint constraintWithItem:self.passwordTextField
+                                   attribute:NSLayoutAttributeTop
+                                   relatedBy:NSLayoutRelationEqual
+                                      toItem:self.usernameTextField
+                                   attribute:NSLayoutAttributeBottom
+                                  multiplier:1
+                                    constant:8];
   [constraints addObject:passwordTopConstraint];
 
   NSLayoutConstraint *centerPasswordConstraint =
-  [NSLayoutConstraint constraintWithItem:self.passwordTextField
-                               attribute:NSLayoutAttributeCenterX
-                               relatedBy:NSLayoutRelationEqual
-                                  toItem:self.scrollView
-                               attribute:NSLayoutAttributeCenterX
-                              multiplier:1.f constant:0.f];
+      [NSLayoutConstraint constraintWithItem:self.passwordTextField
+                                   attribute:NSLayoutAttributeCenterX
+                                   relatedBy:NSLayoutRelationEqual
+                                      toItem:self.scrollView
+                                   attribute:NSLayoutAttributeCenterX
+                                  multiplier:1.f
+                                    constant:0.f];
   [constraints addObject:centerPasswordConstraint];
 
-  NSArray <NSLayoutConstraint *> *horizontalPasswordConstraints =
-  [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[password]-|"
-                                          options:0
-                                          metrics:nil
-                                            views:@{ @"password" : self.passwordTextField }];
+  NSArray<NSLayoutConstraint *> *horizontalPasswordConstraints =
+      [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[password]-|"
+                                              options:0
+                                              metrics:nil
+                                                views:@{@"password" : self.passwordTextField}];
   [constraints addObjectsFromArray:horizontalPasswordConstraints];
 
   // Button Constraints
-  //TODO: Add Button Constraints
+  // TODO: Add Button Constraints
   NSLayoutConstraint *cancelTopConstraint =
-  [NSLayoutConstraint constraintWithItem:self.cancelButton
-                               attribute:NSLayoutAttributeTop
-                               relatedBy:NSLayoutRelationEqual
-                                  toItem:self.passwordTextField
-                               attribute:NSLayoutAttributeBottom
-                              multiplier:1
-                                constant:8];
+      [NSLayoutConstraint constraintWithItem:self.cancelButton
+                                   attribute:NSLayoutAttributeTop
+                                   relatedBy:NSLayoutRelationEqual
+                                      toItem:self.passwordTextField
+                                   attribute:NSLayoutAttributeBottom
+                                  multiplier:1
+                                    constant:8];
   [constraints addObject:cancelTopConstraint];
 
   NSLayoutConstraint *centerButtonsConstraint =
-  [NSLayoutConstraint constraintWithItem:self.cancelButton
-                               attribute:NSLayoutAttributeCenterY
-                               relatedBy:NSLayoutRelationEqual
-                                  toItem:self.nextButton
-                               attribute:NSLayoutAttributeCenterY
-                              multiplier:1.f constant:0.f];
+      [NSLayoutConstraint constraintWithItem:self.cancelButton
+                                   attribute:NSLayoutAttributeCenterY
+                                   relatedBy:NSLayoutRelationEqual
+                                      toItem:self.nextButton
+                                   attribute:NSLayoutAttributeCenterY
+                                  multiplier:1.f
+                                    constant:0.f];
   [constraints addObject:centerButtonsConstraint];
 
-  NSArray <NSLayoutConstraint *> *horizontalButtonConstraints =
-  [NSLayoutConstraint constraintsWithVisualFormat:@"H:[cancel]-[next]-|"
-                                          options:0
-                                          metrics:nil
-                                            views:@{ @"cancel" : self.cancelButton, @"next" : self.nextButton }];
+  NSArray<NSLayoutConstraint *> *horizontalButtonConstraints = [NSLayoutConstraint
+      constraintsWithVisualFormat:@"H:[cancel]-[next]-|"
+                          options:0
+                          metrics:nil
+                            views:@{@"cancel" : self.cancelButton, @"next" : self.nextButton}];
   [constraints addObjectsFromArray:horizontalButtonConstraints];
 
   NSLayoutConstraint *scrollContentBottomConstraint =
-  [NSLayoutConstraint constraintWithItem:self.nextButton
-                               attribute:NSLayoutAttributeBottom
-                               relatedBy:NSLayoutRelationEqual
-                                  toItem:self.scrollView.contentLayoutGuide
-                               attribute:NSLayoutAttributeBottomMargin
-                              multiplier:1
-                                constant:-20];
+      [NSLayoutConstraint constraintWithItem:self.nextButton
+                                   attribute:NSLayoutAttributeBottom
+                                   relatedBy:NSLayoutRelationEqual
+                                      toItem:self.scrollView.contentLayoutGuide
+                                   attribute:NSLayoutAttributeBottomMargin
+                                  multiplier:1
+                                    constant:-20];
   [constraints addObject:scrollContentBottomConstraint];
 
   [NSLayoutConstraint activateConstraints:constraints];
@@ -276,14 +276,15 @@
 
 #pragma mark - UITextFieldDelegate
 
-//TODO: Add Text Field Validation
+// TODO: Add Text Field Validation
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
   [textField resignFirstResponder];
 
   // Text Field Validation
   if (textField == (UITextField *)self.passwordTextField &&
       self.passwordTextField.text.length < 8) {
-    [self.passwordTextFieldController setErrorText:@"Password is too short" errorAccessibilityValue:nil];
+    [self.passwordTextFieldController setErrorText:@"Password is too short"
+                           errorAccessibilityValue:nil];
   }
 
   return NO;
@@ -334,4 +335,3 @@
 }
 
 @end
-

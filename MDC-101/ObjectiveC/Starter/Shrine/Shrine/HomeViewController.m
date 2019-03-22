@@ -18,17 +18,16 @@
 
 #import "LoginViewController.h"
 
-
 @interface HomeViewController ()
 
-@property (nonatomic) BOOL shouldDisplayLogin;
+@property(nonatomic) BOOL shouldDisplayLogin;
 
 @end
 
 @implementation HomeViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+  [super viewDidLoad];
 
   self.view.tintColor = [UIColor blackColor];
   self.view.backgroundColor = [UIColor whiteColor];
@@ -47,14 +46,16 @@
                                   toItem:self.view
                                attribute:NSLayoutAttributeCenterX
                               multiplier:1
-                                constant:0].active = YES;
+                                constant:0]
+      .active = YES;
   [NSLayoutConstraint constraintWithItem:doneLabel
                                attribute:NSLayoutAttributeCenterY
                                relatedBy:NSLayoutRelationEqual
                                   toItem:self.view
                                attribute:NSLayoutAttributeCenterY
                               multiplier:1
-                                constant:0].active = YES;
+                                constant:0]
+      .active = YES;
 
   // Display the Login Screen the first time this controller is shown
   [self displayLogin];
@@ -64,8 +65,8 @@
   [super viewDidAppear:animated];
 
   if (self.shouldDisplayLogin) {
-    LoginViewController *loginViewController =
-        [[LoginViewController alloc] initWithNibName:nil bundle:nil];
+    LoginViewController *loginViewController = [[LoginViewController alloc] initWithNibName:nil
+                                                                                     bundle:nil];
     loginViewController.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:loginViewController animated:NO completion:NULL];
     self.shouldDisplayLogin = NO;
@@ -77,8 +78,8 @@
 - (void)displayLogin {
   self.shouldDisplayLogin = YES;
   if (self.isViewLoaded && self.isBeingPresented) {
-    LoginViewController *loginViewController =
-        [[LoginViewController alloc] initWithNibName:nil bundle:nil];
+    LoginViewController *loginViewController = [[LoginViewController alloc] initWithNibName:nil
+                                                                                     bundle:nil];
     [self presentViewController:loginViewController animated:YES completion:NULL];
     self.shouldDisplayLogin = NO;
   }

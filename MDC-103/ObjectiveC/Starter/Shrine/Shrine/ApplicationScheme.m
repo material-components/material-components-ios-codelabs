@@ -25,7 +25,7 @@
   static ApplicationScheme *scheme;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
-    //TODO: Change scheme to initialize with initAlternativeSingleton
+    // TODO: Change scheme to initialize with initAlternativeSingleton
     scheme = [[ApplicationScheme alloc] initStandardSingleton];
   });
   return scheme;
@@ -37,11 +37,12 @@
     // Instantiate a MDCSemanticColorScheme object and modify it to our chosen colors
     _colorScheme =
         [[MDCSemanticColorScheme alloc] initWithDefaults:MDCColorSchemeDefaultsMaterial201804];
-    //TODO: Add our custom colors after this line
+    // TODO: Add our custom colors after this line
 
     // Instantiate a MDCSemanticColorScheme object and modify it to our chosen colors
-    _typographyScheme = [[MDCTypographyScheme alloc] initWithDefaults:MDCTypographySchemeDefaultsMaterial201804];
-    //TODO: Add our custom fonts after this line
+    _typographyScheme =
+        [[MDCTypographyScheme alloc] initWithDefaults:MDCTypographySchemeDefaultsMaterial201804];
+    // TODO: Add our custom fonts after this line
   }
   return self;
 }
@@ -51,14 +52,21 @@
   if (self) {
     _colorScheme =
         [[MDCSemanticColorScheme alloc] initWithDefaults:MDCColorSchemeDefaultsMaterial201804];
-    _colorScheme.primaryColor =
-        [UIColor colorWithRed:254.0/255.0 green:206.0/255.0 blue:82.0/255.0 alpha:1.0];
-    _colorScheme.onPrimaryColor =
-        [UIColor colorWithRed:76.0/255.0 green:73.0/255.0 blue:73.0/255.0 alpha:1.0];
-    _colorScheme.surfaceColor =
-        [UIColor colorWithRed:65.0/255.0 green:65.0/255.0 blue:73.0/255.0 alpha:1.0];
+    _colorScheme.primaryColor = [UIColor colorWithRed:254.0 / 255.0
+                                                green:206.0 / 255.0
+                                                 blue:82.0 / 255.0
+                                                alpha:1.0];
+    _colorScheme.onPrimaryColor = [UIColor colorWithRed:76.0 / 255.0
+                                                  green:73.0 / 255.0
+                                                   blue:73.0 / 255.0
+                                                  alpha:1.0];
+    _colorScheme.surfaceColor = [UIColor colorWithRed:65.0 / 255.0
+                                                green:65.0 / 255.0
+                                                 blue:73.0 / 255.0
+                                                alpha:1.0];
     _colorScheme.onSurfaceColor = [UIColor whiteColor];
-    _typographyScheme = [[MDCTypographyScheme alloc] initWithDefaults:MDCTypographySchemeDefaultsMaterial201804];
+    _typographyScheme =
+        [[MDCTypographyScheme alloc] initWithDefaults:MDCTypographySchemeDefaultsMaterial201804];
     NSString *fontName = @"Chalkduster";
     _typographyScheme.headline5 = [UIFont fontWithName:fontName size:24.0];
     _typographyScheme.headline6 = [UIFont fontWithName:fontName size:20.0];
@@ -76,39 +84,39 @@
   return _colorScheme.primaryColor;
 }
 
-- (UIColor *)primaryColorVariant{
+- (UIColor *)primaryColorVariant {
   return _colorScheme.primaryColorVariant;
 }
 
-- (UIColor *)secondaryColor{
+- (UIColor *)secondaryColor {
   return _colorScheme.secondaryColor;
 }
 
-- (UIColor *)errorColor{
+- (UIColor *)errorColor {
   return _colorScheme.errorColor;
 }
 
-- (UIColor *)surfaceColor{
+- (UIColor *)surfaceColor {
   return _colorScheme.surfaceColor;
 }
 
-- (UIColor *)backgroundColor{
+- (UIColor *)backgroundColor {
   return _colorScheme.backgroundColor;
 }
 
-- (UIColor *)onPrimaryColor{
+- (UIColor *)onPrimaryColor {
   return _colorScheme.onPrimaryColor;
 }
 
-- (UIColor *)onSecondaryColor{
+- (UIColor *)onSecondaryColor {
   return _colorScheme.onSecondaryColor;
 }
 
-- (UIColor *)onSurfaceColor{
+- (UIColor *)onSurfaceColor {
   return _colorScheme.onSurfaceColor;
 }
 
-- (UIColor *)onBackgroundColor{
+- (UIColor *)onBackgroundColor {
   return _colorScheme.onBackgroundColor;
 }
 

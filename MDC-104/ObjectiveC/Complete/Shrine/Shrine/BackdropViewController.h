@@ -16,8 +16,8 @@
 
 #import <UIKit/UIKit.h>
 
-#import <MaterialComponents/MaterialNavigationBar.h>
 #import <MaterialComponents/MDCNavigationBarColorThemer.h>
+#import <MaterialComponents/MaterialNavigationBar.h>
 
 @interface BackdropViewController : UIViewController
 

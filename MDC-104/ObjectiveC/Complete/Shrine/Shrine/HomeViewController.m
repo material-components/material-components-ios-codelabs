@@ -16,9 +16,9 @@
 
 #import "HomeViewController.h"
 
-#import <MaterialComponents/MaterialAppBar.h>
 #import <MaterialComponents/MDCAppBarColorThemer.h>
 #import <MaterialComponents/MDCAppBarTypographyThemer.h>
+#import <MaterialComponents/MaterialAppBar.h>
 
 #import "ApplicationScheme.h"
 #import "Catalog.h"
@@ -26,10 +26,9 @@
 #import "LoginViewController.h"
 #import "ProductCell.h"
 
-
 @interface HomeViewController ()
 
-@property (nonatomic) BOOL shouldDisplayLogin;
+@property(nonatomic) BOOL shouldDisplayLogin;
 
 // AppBarViewController Property
 @property(nonatomic, strong) MDCAppBarViewController *appBarViewController;
@@ -39,7 +38,7 @@
 @implementation HomeViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+  [super viewDidLoad];
 
   self.view.tintColor = [UIColor blackColor];
   self.view.backgroundColor = [UIColor whiteColor];
@@ -47,52 +46,53 @@
   self.title = @"Shrine";
 
   // AppBar Init
-  //TODO: Remove the following seven lines to remove the App Bar
-//  self.appBarViewController = [[MDCAppBarViewController alloc] init];
-//  [self addChildViewController:self.appBarViewController];
-//  [self.view addSubview:self.appBarViewController.view];
-//  [self.appBarViewController didMoveToParentViewController:self];
-//
-//  Set the tracking scroll view.
-//  self.appBarViewController.headerView.trackingScrollView = self.collectionView;
+  // TODO: Remove the following seven lines to remove the App Bar
+  //  self.appBarViewController = [[MDCAppBarViewController alloc] init];
+  //  [self addChildViewController:self.appBarViewController];
+  //  [self.view addSubview:self.appBarViewController.view];
+  //  [self.appBarViewController didMoveToParentViewController:self];
+  //
+  //  Set the tracking scroll view.
+  //  self.appBarViewController.headerView.trackingScrollView = self.collectionView;
 
   // Setup Navigation Items
   UIImage *menuItemImage = [UIImage imageNamed:@"MenuItem"];
-  UIImage *templatedMenuItemImage = [menuItemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-  UIBarButtonItem *menuItem =
-    [[UIBarButtonItem alloc] initWithImage:templatedMenuItemImage
-                                     style:UIBarButtonItemStylePlain
-                                    target:self
-                                    action:@selector(menuItemTapped:)];
+  UIImage *templatedMenuItemImage =
+      [menuItemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+  UIBarButtonItem *menuItem = [[UIBarButtonItem alloc] initWithImage:templatedMenuItemImage
+                                                               style:UIBarButtonItemStylePlain
+                                                              target:self
+                                                              action:@selector(menuItemTapped:)];
   self.navigationItem.leftBarButtonItem = menuItem;
 
   UIImage *searchItemImage = [UIImage imageNamed:@"SearchItem"];
-  UIImage *templateSearchItemImage = [searchItemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-  UIBarButtonItem *searchItem =
-  [[UIBarButtonItem alloc] initWithImage:templateSearchItemImage
-                                   style:UIBarButtonItemStylePlain
-                                  target:nil
-                                  action:nil];
+  UIImage *templateSearchItemImage =
+      [searchItemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+  UIBarButtonItem *searchItem = [[UIBarButtonItem alloc] initWithImage:templateSearchItemImage
+                                                                 style:UIBarButtonItemStylePlain
+                                                                target:nil
+                                                                action:nil];
 
   UIImage *tuneItemImage = [UIImage imageNamed:@"TuneItem"];
-  UIImage *templateTuneItemImage = [tuneItemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-  UIBarButtonItem *tuneItem =
-  [[UIBarButtonItem alloc] initWithImage:templateTuneItemImage
-                                   style:UIBarButtonItemStylePlain
-                                  target:nil
-                                  action:nil];
+  UIImage *templateTuneItemImage =
+      [tuneItemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+  UIBarButtonItem *tuneItem = [[UIBarButtonItem alloc] initWithImage:templateTuneItemImage
+                                                               style:UIBarButtonItemStylePlain
+                                                              target:nil
+                                                              action:nil];
   self.navigationItem.rightBarButtonItems = @[ tuneItem, searchItem ];
 
-    self.view.backgroundColor = [ApplicationScheme sharedInstance].colorScheme.surfaceColor;
+  self.view.backgroundColor = [ApplicationScheme sharedInstance].colorScheme.surfaceColor;
   [MDCAppBarColorThemer applyColorScheme:[ApplicationScheme sharedInstance].colorScheme
                   toAppBarViewController:self.appBarViewController];
 
-  [MDCAppBarTypographyThemer applyTypographyScheme:[ApplicationScheme sharedInstance].typographyScheme
-                            toAppBarViewController:self.appBarViewController];
+  [MDCAppBarTypographyThemer
+       applyTypographyScheme:[ApplicationScheme sharedInstance].typographyScheme
+      toAppBarViewController:self.appBarViewController];
 
   self.collectionView.collectionViewLayout = [[CustomLayout alloc] init];
 
-  //TODO: Register for the catalog changed notification
+  // TODO: Register for the catalog changed notification
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(respondToCatalogNotification:)
                                                name:CatalogFilterDidChangeNotification
@@ -104,7 +104,7 @@
 
   if ([self.collectionViewLayout isKindOfClass:[UICollectionViewFlowLayout class]]) {
     UICollectionViewFlowLayout *flowLayout =
-    (UICollectionViewFlowLayout *)self.collectionViewLayout;
+        (UICollectionViewFlowLayout *)self.collectionViewLayout;
     CGFloat HORIZONTAL_SPACING = 8;  // Spacing between the edges of cards
     CGFloat itemDimension = (CGRectGetWidth(self.view.frame) - 3 * HORIZONTAL_SPACING) * 0.5;
     CGSize itemSize = CGSizeMake(itemDimension, itemDimension);
@@ -112,8 +112,8 @@
   }
 
   if (self.shouldDisplayLogin) {
-    LoginViewController *loginViewController =
-        [[LoginViewController alloc] initWithNibName:nil bundle:nil];
+    LoginViewController *loginViewController = [[LoginViewController alloc] initWithNibName:nil
+                                                                                     bundle:nil];
     loginViewController.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:loginViewController animated:NO completion:NULL];
     self.shouldDisplayLogin = NO;
@@ -125,16 +125,16 @@
 - (void)displayLogin {
   self.shouldDisplayLogin = YES;
   if (self.isViewLoaded && self.isBeingPresented) {
-    LoginViewController *loginViewController =
-        [[LoginViewController alloc] initWithNibName:nil bundle:nil];
+    LoginViewController *loginViewController = [[LoginViewController alloc] initWithNibName:nil
+                                                                                     bundle:nil];
     [self presentViewController:loginViewController animated:YES completion:NULL];
     self.shouldDisplayLogin = NO;
   }
 }
 
 - (void)menuItemTapped:(id)selector {
-  LoginViewController *loginViewController =
-      [[LoginViewController alloc] initWithNibName:nil bundle:nil];
+  LoginViewController *loginViewController = [[LoginViewController alloc] initWithNibName:nil
+                                                                                   bundle:nil];
   [self presentViewController:loginViewController animated:YES completion:NULL];
 }
 
@@ -174,12 +174,15 @@
 
 #pragma mark - UICollectionViewDataSource
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+- (NSInteger)collectionView:(UICollectionView *)collectionView
+     numberOfItemsInSection:(NSInteger)section {
   return [Catalog productCatalog].count;
 }
 
-- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-  ProductCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"ProductCell" forIndexPath:indexPath];
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
+                           cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+  ProductCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"ProductCell"
+                                                                     forIndexPath:indexPath];
 
   // Set the properties of the cell to reflect the product from the model
   Product *product = [[Catalog productCatalog] productAtIndex:indexPath.row];
@@ -193,7 +196,7 @@
 
 #pragma mark - Catalog Notification Handler
 
-//TODO: Add notification Handler
+// TODO: Add notification Handler
 - (void)respondToCatalogNotification:(NSNotification *)notification {
   [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
 }
