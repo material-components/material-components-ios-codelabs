@@ -41,7 +41,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     cityController = MDCTextInputControllerOutlined(textInput: city)
     stateController = MDCTextInputControllerOutlined(textInput: state)
     zipController = MDCTextInputControllerOutlined(textInput: zip)
+
     MDCContainedButtonThemer.applyScheme(buttonScheme, to: saveButton)
+    saveButton.setTitle("Save", for: .normal)
 
     zip.delegate = self
   }

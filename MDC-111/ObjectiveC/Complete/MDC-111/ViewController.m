@@ -52,6 +52,7 @@
   self.zipController = [[MDCTextInputControllerOutlined alloc] initWithTextInput:self.zip];
 
   [MDCContainedButtonThemer applyScheme:[[MDCButtonScheme alloc] init] toButton:self.saveButton];
+  [self.saveButton setTitle:@"Save" forState:UIControlStateNormal];
 
   MDCSemanticColorScheme *colorScheme = [[MDCSemanticColorScheme alloc] init];
   [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme
