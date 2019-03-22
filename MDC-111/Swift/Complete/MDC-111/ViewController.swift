@@ -35,7 +35,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     nameController = MDCTextInputControllerOutlined(textInput: name)
     addressController = MDCTextInputControllerOutlined(textInput: address)
     cityController = MDCTextInputControllerOutlined(textInput: city)
