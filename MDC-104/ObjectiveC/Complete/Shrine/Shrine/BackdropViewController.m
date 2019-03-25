@@ -188,10 +188,14 @@
       [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapFilterItem:)];
   [self.view addGestureRecognizer:recognizer];
 
-  // TODO: Change the container view into a ShapedShadowedView
+  // TODO: Change the container view into a ShapedShadowedView and apply the shape.
   self.containerView = [[ShapedShadowedView alloc] initWithFrame:CGRectZero];
+  MDCRectangleShapeGenerator *shapeGenerator = [[MDCRectangleShapeGenerator alloc] init];
+  shapeGenerator.topLeftCorner =
+      [ApplicationScheme sharedInstance].shapeScheme.largeComponentShape.topLeftCorner;
+  ((ShapedShadowedView *)self.containerView).shapeGenerator = shapeGenerator;
   self.containerView.translatesAutoresizingMaskIntoConstraints = NO;
-  self.containerView.backgroundColor = UIColor.whiteColor;
+  self.containerView.backgroundColor = [ApplicationScheme sharedInstance].colorScheme.surfaceColor;
   [self.view addSubview:self.containerView];
 
   // TODO: Instantiate and embed the catalog view controller in the BackdropViewController

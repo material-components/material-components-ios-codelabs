@@ -22,14 +22,14 @@ class BackdropViewController: UIViewController {
   var appBar = MDCAppBar()
   
   var containerView: UIView = {
-    //TODO: Change the following line from UIView to ShapedShadowedView
+    //TODO: Change the following line from UIView to ShapedShadowedView and apply the shape.
     let view = ShapedShadowedView(frame: .zero)
+    let shapeGenerator = MDCRectangleShapeGenerator()
+    shapeGenerator.topLeftCorner =
+      ApplicationScheme.shared.shapeScheme.largeComponentShape.topLeftCorner
+    view.shapeGenerator = shapeGenerator
     view.translatesAutoresizingMaskIntoConstraints = false
-    if let shapedShadowedLayer = view.layer as? MDCShapedShadowLayer {
-      shapedShadowedLayer.shapedBackgroundColor = .white
-    } else {
-      view.backgroundColor = .white
-    }
+    view.backgroundColor = ApplicationScheme.shared.colorScheme.surfaceColor
     return view
   }()
 

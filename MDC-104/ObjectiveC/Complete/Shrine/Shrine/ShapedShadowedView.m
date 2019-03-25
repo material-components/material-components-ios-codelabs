@@ -46,21 +46,9 @@
 }
 
 - (void)commonShapedShadowedViewInit {
-  MDCShapedShadowLayer *shapedShadowedLayer = (MDCShapedShadowLayer *)self.layer;
-  MDCRectangleShapeGenerator *shapeGenerator = [[MDCRectangleShapeGenerator alloc] init];
-  // TODO: Change the corner treatment to be cut @ 20px
-  shapeGenerator.topLeftCorner = [[MDCCutCornerTreatment alloc] initWithCut:20.0];
-  shapedShadowedLayer.shapeGenerator = shapeGenerator;
-  shapedShadowedLayer.shadowOffset = CGSizeMake(0.0, 0.0);
-  shapedShadowedLayer.shadowRadius = 4.0;
-  shapedShadowedLayer.shadowOpacity = 0.8;
-  shapedShadowedLayer.shapedBackgroundColor =
-      [ApplicationScheme sharedInstance].colorScheme.surfaceColor;
-}
-
-- (void)setBackgroundColor:(UIColor *)backgroundColor {
-  MDCShapedShadowLayer *shapedShadowedLayer = (MDCShapedShadowLayer *)self.layer;
-  shapedShadowedLayer.shapedBackgroundColor = backgroundColor;
+  self.layer.shadowOffset = CGSizeMake(0.0, 0.0);
+  self.layer.shadowRadius = 4.0;
+  self.layer.shadowOpacity = 0.8;
 }
 
 @end

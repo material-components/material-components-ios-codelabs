@@ -18,7 +18,7 @@ import UIKit
 
 import MaterialComponents
 
-class ShapedShadowedView: UIView {
+class ShapedShadowedView: MDCShapedView {
 
   override class var layerClass: Swift.AnyClass {
     get {
@@ -26,27 +26,17 @@ class ShapedShadowedView: UIView {
     }
   }
 
-  override init(frame: CGRect) {
-    super.init(frame: frame)
-    let shapeGenerator = MDCRectangleShapeGenerator()
-    shapeGenerator.topLeftCorner = MDCCutCornerTreatment(cut: 20.0)
-    let shapedShadowedLayer = self.layer as! MDCShapedShadowLayer
-    shapedShadowedLayer.shapeGenerator = shapeGenerator
-    shapedShadowedLayer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-    shapedShadowedLayer.shadowRadius = 4.0
-    shapedShadowedLayer.shadowOpacity = 0.8
-    shapedShadowedLayer.shapedBackgroundColor = ApplicationScheme.shared.colorScheme.surfaceColor
+  override init(frame: CGRect, shapeGenerator: MDCShapeGenerating?) {
+    super.init(frame: frame, shapeGenerator: shapeGenerator)
+    self.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+    self.layer.shadowRadius = 4.0
+    self.layer.shadowOpacity = 0.8
   }
 
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
-    let shapeGenerator = MDCRectangleShapeGenerator()
-    shapeGenerator.topLeftCorner = MDCCutCornerTreatment(cut: 20.0)
-    let shapedShadowedLayer = self.layer as! MDCShapedShadowLayer
-    shapedShadowedLayer.shapeGenerator = shapeGenerator
-    shapedShadowedLayer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-    shapedShadowedLayer.shadowRadius = 4.0
-    shapedShadowedLayer.shadowOpacity = 0.8
-    shapedShadowedLayer.shapedBackgroundColor = ApplicationScheme.shared.colorScheme.surfaceColor
+    self.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+    self.layer.shadowRadius = 4.0
+    self.layer.shadowOpacity = 0.8
   }
 }

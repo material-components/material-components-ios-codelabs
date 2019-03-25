@@ -68,4 +68,10 @@ class ApplicationScheme: NSObject {
     scheme.button = UIFont(name: fontName, size: 14)!
     return scheme
   }()
+
+  public let shapeScheme: MDCShapeScheming = {
+    let scheme = MDCShapeScheme()
+    scheme.largeComponentShape = MDCShapeCategory(cornersWith: .cut, andSize: 20)
+    return scheme
+  }()
 }
