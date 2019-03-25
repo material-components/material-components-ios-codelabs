@@ -16,10 +16,10 @@
 
 #import "ShapedShadowedView.h"
 
-#import <MaterialComponents/MDCRoundedCornerTreatment.h>
 #import <MaterialComponents/MDCCutCornerTreatment.h>
-#import <MaterialComponents/MDCShapedShadowLayer.h>
 #import <MaterialComponents/MDCRectangleShapeGenerator.h>
+#import <MaterialComponents/MDCRoundedCornerTreatment.h>
+#import <MaterialComponents/MDCShapedShadowLayer.h>
 
 #import "ApplicationScheme.h"
 

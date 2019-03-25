@@ -16,12 +16,11 @@
 
 #import <MaterialComponents/MaterialCards.h>
 
-
-//TODO: Change the superclass from UICollectionViewCell to MDCCardCollectionCell
+// TODO: Change the superclass from UICollectionViewCell to MDCCardCollectionCell
 @interface ProductCell : UICollectionViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+@property(weak, nonatomic) IBOutlet UIImageView *imageView;
+@property(weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property(weak, nonatomic) IBOutlet UILabel *priceLabel;
 
 @end

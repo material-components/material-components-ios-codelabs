@@ -18,17 +18,17 @@
 
 @interface CustomLayout ()
 
-@property (nonatomic) CGSize itemASize;
-@property (nonatomic) CGSize itemBSize;
-@property (nonatomic) CGSize itemCSize;
+@property(nonatomic) CGSize itemASize;
+@property(nonatomic) CGSize itemBSize;
+@property(nonatomic) CGSize itemCSize;
 
-@property (nonatomic) CGPoint itemAOffset;
-@property (nonatomic) CGPoint itemBOffset;
-@property (nonatomic) CGPoint itemCOffset;
+@property(nonatomic) CGPoint itemAOffset;
+@property(nonatomic) CGPoint itemBOffset;
+@property(nonatomic) CGPoint itemCOffset;
 
-@property (nonatomic) CGSize tripleSize;
+@property(nonatomic) CGSize tripleSize;
 
-@property (nonatomic) NSMutableArray<NSValue *> *frameCache;
+@property(nonatomic) NSMutableArray<NSValue *> *frameCache;
 
 @end
 
@@ -57,8 +57,8 @@ static CGFloat HORIZONTAL_PADDING = .10;
 
   CGRect parentFrame = CGRectStandardize(self.collectionView.bounds);
   parentFrame = UIEdgeInsetsInsetRect(parentFrame, self.collectionView.adjustedContentInset);
-  CGFloat contentHeight = CGRectGetHeight(parentFrame) -
-      (self.collectionView.contentInset.top + self.collectionView.contentInset.bottom);
+  CGFloat contentHeight = CGRectGetHeight(parentFrame) - (self.collectionView.contentInset.top +
+                                                          self.collectionView.contentInset.bottom);
   CGFloat contentWidth = CGRectGetWidth(parentFrame);
 
   CGSize landscapeItemSize = CGSizeMake(contentWidth * .46, contentHeight * .32);
@@ -70,12 +70,15 @@ static CGFloat HORIZONTAL_PADDING = .10;
 
   self.itemAOffset = CGPointMake(contentWidth * HORIZONTAL_PADDING, contentHeight * .66);
   self.itemBOffset = CGPointMake(contentWidth * .3, contentHeight * .16);
-  self.itemCOffset = CGPointMake(self.itemBOffset.x + self.itemBSize.width + contentWidth * HORIZONTAL_PADDING, contentHeight * .2);
+  self.itemCOffset =
+      CGPointMake(self.itemBOffset.x + self.itemBSize.width + contentWidth * HORIZONTAL_PADDING,
+                  contentHeight * .2);
 
   self.tripleSize = CGSizeMake(self.itemCOffset.x + self.itemCSize.width, contentHeight);
 
   [self.frameCache removeAllObjects];
-  for (NSInteger itemIndex = 0; itemIndex < [self.collectionView numberOfItemsInSection:0]; itemIndex++) {
+  for (NSInteger itemIndex = 0; itemIndex < [self.collectionView numberOfItemsInSection:0];
+       itemIndex++) {
     NSInteger tripleCount = itemIndex / 3;
     NSInteger internalIndex = itemIndex % 3;
 
@@ -109,13 +112,14 @@ static CGFloat HORIZONTAL_PADDING = .10;
   contentSize.height = self.tripleSize.height;
   NSValue *lastItemFrameValue = self.frameCache.lastObject;
   CGRect lastItemFrame = lastItemFrameValue.CGRectValue;
-  contentSize.width = CGRectGetMaxX(lastItemFrame) +
-    HORIZONTAL_PADDING * CGRectGetWidth(self.collectionView.frame);
+  contentSize.width =
+      CGRectGetMaxX(lastItemFrame) + HORIZONTAL_PADDING * CGRectGetWidth(self.collectionView.frame);
 
   return contentSize;
 }
 
-- (NSArray<__kindof UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
+- (NSArray<__kindof UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:
+    (CGRect)rect {
   NSMutableArray<UICollectionViewLayoutAttributes *> *visibleLayoutAttributes =
       [[NSMutableArray alloc] init];
 
@@ -125,7 +129,7 @@ static CGFloat HORIZONTAL_PADDING = .10;
     if (CGRectIntersectsRect(itemFrame, rect)) {
       NSIndexPath *indexPath = [NSIndexPath indexPathForRow:itemIndex inSection:0];
       UICollectionViewLayoutAttributes *attributes =
-        [self.collectionView layoutAttributesForItemAtIndexPath:indexPath];
+          [self.collectionView layoutAttributesForItemAtIndexPath:indexPath];
       attributes.frame = itemFrame;
       [visibleLayoutAttributes addObject:attributes];
     }
@@ -160,7 +164,7 @@ static CGFloat HORIZONTAL_PADDING = .10;
   }
 
   UICollectionViewLayoutAttributes *attributes =
-    [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
+      [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
   attributes.frame = itemFrame;
 
   return attributes;

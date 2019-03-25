@@ -13,26 +13,29 @@
 
 #import "ViewController.h"
 #import "Lorem.h"
-#import "MaterialTextFields.h"
+#import "MaterialButtons+ButtonThemer.h"
 #import "MaterialButtons.h"
+#import "MaterialDialogs+DialogThemer.h"
 #import "MaterialDialogs.h"
+#import "MaterialTextFields+ColorThemer.h"
+#import "MaterialTextFields+TypographyThemer.h"
+#import "MaterialTextFields.h"
 
 @interface ViewController () <UITextFieldDelegate>
 
-@property (nonatomic) MDCTextInputControllerOutlined *nameController;
-@property (nonatomic) MDCTextInputControllerOutlined *addressController;
-@property (nonatomic) MDCTextInputControllerOutlined *cityController;
-@property (nonatomic) MDCTextInputControllerOutlined *stateController;
-@property (nonatomic) MDCTextInputControllerOutlined *zipController;
+@property(nonatomic) MDCTextInputControllerOutlined *nameController;
+@property(nonatomic) MDCTextInputControllerOutlined *addressController;
+@property(nonatomic) MDCTextInputControllerOutlined *cityController;
+@property(nonatomic) MDCTextInputControllerOutlined *stateController;
+@property(nonatomic) MDCTextInputControllerOutlined *zipController;
 
-@property (weak, nonatomic) IBOutlet MDCTextField *name;
-@property (weak, nonatomic) IBOutlet MDCTextField *address;
-@property (weak, nonatomic) IBOutlet MDCTextField *city;
-@property (weak, nonatomic) IBOutlet MDCTextField *state;
-@property (weak, nonatomic) IBOutlet MDCTextField *zip;
+@property(weak, nonatomic) IBOutlet MDCTextField *name;
+@property(weak, nonatomic) IBOutlet MDCTextField *address;
+@property(weak, nonatomic) IBOutlet MDCTextField *city;
+@property(weak, nonatomic) IBOutlet MDCTextField *state;
+@property(weak, nonatomic) IBOutlet MDCTextField *zip;
 
-@property (weak, nonatomic) IBOutlet MDCButton *saveButton;
-
+@property(weak, nonatomic) IBOutlet MDCButton *saveButton;
 
 @end
 
@@ -48,12 +51,40 @@
   self.stateController = [[MDCTextInputControllerOutlined alloc] initWithTextInput:self.state];
   self.zipController = [[MDCTextInputControllerOutlined alloc] initWithTextInput:self.zip];
 
+  [MDCContainedButtonThemer applyScheme:[[MDCButtonScheme alloc] init] toButton:self.saveButton];
+  [self.saveButton setTitle:@"Save" forState:UIControlStateNormal];
+
+  MDCSemanticColorScheme *colorScheme = [[MDCSemanticColorScheme alloc] init];
+  [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme
+                              toTextInputController:self.nameController];
+  [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme
+                              toTextInputController:self.addressController];
+  [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme
+                              toTextInputController:self.cityController];
+  [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme
+                              toTextInputController:self.stateController];
+  [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme
+                              toTextInputController:self.zipController];
+  MDCTypographyScheme *typographyScheme = [[MDCTypographyScheme alloc] init];
+  [MDCTextFieldTypographyThemer applyTypographyScheme:typographyScheme
+                                toTextInputController:self.nameController];
+  [MDCTextFieldTypographyThemer applyTypographyScheme:typographyScheme
+                                toTextInputController:self.addressController];
+  [MDCTextFieldTypographyThemer applyTypographyScheme:typographyScheme
+                                toTextInputController:self.cityController];
+  [MDCTextFieldTypographyThemer applyTypographyScheme:typographyScheme
+                                toTextInputController:self.stateController];
+  [MDCTextFieldTypographyThemer applyTypographyScheme:typographyScheme
+                                toTextInputController:self.zipController];
+
   self.zip.delegate = self;
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-  NSString *finishedString =
-  [textField.text stringByReplacingCharactersInRange:range withString:string];
+- (BOOL)textField:(UITextField *)textField
+    shouldChangeCharactersInRange:(NSRange)range
+                replacementString:(NSString *)string {
+  NSString *finishedString = [textField.text stringByReplacingCharactersInRange:range
+                                                                     withString:string];
 
   if (textField == self.zip) {
     if ([finishedString rangeOfCharacterFromSet:[NSCharacterSet letterCharacterSet]].length > 0) {
@@ -81,16 +112,21 @@
 - (IBAction)saveDidTouch:(id)sender {
   [self.view endEditing:YES];
 
-  MDCAlertController *saveAlert = [MDCAlertController alertControllerWithTitle:@"Do you accept these terms?" message:kLorem];
-  [saveAlert addAction:[MDCAlertAction actionWithTitle:@"Yes" handler:^(MDCAlertAction * _Nonnull action) {
-    self.name.text = nil;
-    self.address.text = nil;
-    self.city.text = nil;
-    self.state.text = nil;
-    self.zip.text = nil;
-  }]];
-  [saveAlert addAction:[MDCAlertAction actionWithTitle:@"Cancel" handler:^(MDCAlertAction * _Nonnull action) {
-  }]];
+  MDCAlertController *saveAlert =
+      [MDCAlertController alertControllerWithTitle:@"Do you accept these terms?" message:kLorem];
+  [saveAlert addAction:[MDCAlertAction actionWithTitle:@"Yes"
+                                               handler:^(MDCAlertAction *_Nonnull action) {
+                                                 self.name.text = nil;
+                                                 self.address.text = nil;
+                                                 self.city.text = nil;
+                                                 self.state.text = nil;
+                                                 self.zip.text = nil;
+                                               }]];
+  [saveAlert addAction:[MDCAlertAction actionWithTitle:@"Cancel"
+                                               handler:^(MDCAlertAction *_Nonnull action){
+                                               }]];
+  MDCAlertScheme *alertScheme = [[MDCAlertScheme alloc] init];
+  [MDCAlertControllerThemer applyScheme:alertScheme toAlertController:saveAlert];
   [self presentViewController:saveAlert animated:YES completion:nil];
 }
 

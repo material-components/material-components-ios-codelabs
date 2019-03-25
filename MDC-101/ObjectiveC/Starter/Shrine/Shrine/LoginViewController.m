@@ -16,8 +16,8 @@
 
 #import "LoginViewController.h"
 
-//TODO: Add MaterialButtons #import
-//TODO: Add MaterialTextFields #import
+// TODO: Add MaterialButtons #import
+// TODO: Add MaterialTextFields #import
 
 @interface LoginViewController () <UITextFieldDelegate>
 
@@ -27,10 +27,10 @@
 @property(nonatomic) UIImageView *logoImageView;
 
 // Text Field Properties
-//TODO: Add Text Field Properties
+// TODO: Add Text Field Properties
 
 // Button Properties
-//TODO: Add Button Properties
+// TODO: Add Button Properties
 
 @end
 
@@ -54,30 +54,26 @@
   [self.view addSubview:self.scrollView];
 
   [NSLayoutConstraint
-   activateConstraints:[NSLayoutConstraint
-                        constraintsWithVisualFormat:@"V:|[scrollView]|"
-                        options:0
-                        metrics:nil
-                        views:@{
-                                @"scrollView" : self.scrollView
-                                }]];
+      activateConstraints:[NSLayoutConstraint
+                              constraintsWithVisualFormat:@"V:|[scrollView]|"
+                                                  options:0
+                                                  metrics:nil
+                                                    views:@{@"scrollView" : self.scrollView}]];
   [NSLayoutConstraint
-   activateConstraints:[NSLayoutConstraint
-                        constraintsWithVisualFormat:@"H:|[scrollView]|"
-                        options:0
-                        metrics:nil
-                        views:@{
-                                @"scrollView" : self.scrollView
-                                }]];
+      activateConstraints:[NSLayoutConstraint
+                              constraintsWithVisualFormat:@"H:|[scrollView]|"
+                                                  options:0
+                                                  metrics:nil
+                                                    views:@{@"scrollView" : self.scrollView}]];
 
   UITapGestureRecognizer *tapGestureRecognizer =
-  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapDidTouch:)];
+      [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapDidTouch:)];
   [self.scrollView addGestureRecognizer:tapGestureRecognizer];
 
   // Logo Init
   UIImage *logoImage = [UIImage imageNamed:@"ShrineLogo"];
   UIImage *templatedLogoImage =
-  [logoImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+      [logoImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
   self.logoImageView = [[UIImageView alloc] initWithImage:templatedLogoImage];
   self.logoImageView.translatesAutoresizingMaskIntoConstraints = NO;
   [self.scrollView addSubview:self.logoImageView];
@@ -90,64 +86,66 @@
   [self.scrollView addSubview:self.titleLabel];
 
   // Text Field Init
-  //TODO: Instantiate Text Fields
+  // TODO: Instantiate Text Fields
 
   // Button Init
-  //TODO: Instantiate Buttons
+  // TODO: Instantiate Buttons
 
   // Layout Constraints
-  NSMutableArray <NSLayoutConstraint *> *constraints = [[NSMutableArray alloc] init];
+  NSMutableArray<NSLayoutConstraint *> *constraints = [[NSMutableArray alloc] init];
 
   NSLayoutConstraint *logoTopConstraint =
-  [NSLayoutConstraint constraintWithItem:self.logoImageView
-                               attribute:NSLayoutAttributeTop
-                               relatedBy:NSLayoutRelationEqual
-                                  toItem:self.scrollView.contentLayoutGuide
-                               attribute:NSLayoutAttributeTop
-                              multiplier:1
-                                constant:49];
+      [NSLayoutConstraint constraintWithItem:self.logoImageView
+                                   attribute:NSLayoutAttributeTop
+                                   relatedBy:NSLayoutRelationEqual
+                                      toItem:self.scrollView.contentLayoutGuide
+                                   attribute:NSLayoutAttributeTop
+                                  multiplier:1
+                                    constant:49];
   [constraints addObject:logoTopConstraint];
 
   NSLayoutConstraint *centerLogoConstraint =
-  [NSLayoutConstraint constraintWithItem:self.logoImageView
-                               attribute:NSLayoutAttributeCenterX
-                               relatedBy:NSLayoutRelationEqual
-                                  toItem:self.scrollView
-                               attribute:NSLayoutAttributeCenterX
-                              multiplier:1.f constant:0.f];
+      [NSLayoutConstraint constraintWithItem:self.logoImageView
+                                   attribute:NSLayoutAttributeCenterX
+                                   relatedBy:NSLayoutRelationEqual
+                                      toItem:self.scrollView
+                                   attribute:NSLayoutAttributeCenterX
+                                  multiplier:1.f
+                                    constant:0.f];
   [constraints addObject:centerLogoConstraint];
 
   NSLayoutConstraint *titleTopConstraint =
-  [NSLayoutConstraint constraintWithItem:self.titleLabel
-                               attribute:NSLayoutAttributeTop
-                               relatedBy:NSLayoutRelationEqual
-                                  toItem:self.logoImageView
-                               attribute:NSLayoutAttributeBottom
-                              multiplier:1
-                                constant:22];
+      [NSLayoutConstraint constraintWithItem:self.titleLabel
+                                   attribute:NSLayoutAttributeTop
+                                   relatedBy:NSLayoutRelationEqual
+                                      toItem:self.logoImageView
+                                   attribute:NSLayoutAttributeBottom
+                                  multiplier:1
+                                    constant:22];
   [constraints addObject:titleTopConstraint];
 
   NSLayoutConstraint *centerTitleConstraint =
-  [NSLayoutConstraint constraintWithItem:self.titleLabel
-                               attribute:NSLayoutAttributeCenterX
-                               relatedBy:NSLayoutRelationEqual
-                                  toItem:self.scrollView
-                               attribute:NSLayoutAttributeCenterX
-                              multiplier:1.f constant:0.f];
+      [NSLayoutConstraint constraintWithItem:self.titleLabel
+                                   attribute:NSLayoutAttributeCenterX
+                                   relatedBy:NSLayoutRelationEqual
+                                      toItem:self.scrollView
+                                   attribute:NSLayoutAttributeCenterX
+                                  multiplier:1.f
+                                    constant:0.f];
   [constraints addObject:centerTitleConstraint];
 
   // Text Field Constraints
-  //TODO: Add Text Field Constraints
+  // TODO: Add Text Field Constraints
 
   // Button Constraints
-  //TODO: Add Button Constraints
+  // TODO: Add Button Constraints
 
   [NSLayoutConstraint activateConstraints:constraints];
 }
 
 #pragma mark - UITextFieldDelegate
 
-//TODO: Add Text Field Validation
+// TODO: Add Text Field Validation
 
 #pragma mark - Gesture Handling
 
@@ -158,7 +156,7 @@
 #pragma mark - Action Handling
 
 // Button Action Handlers
-//TODO: Add Action Handlers
+// TODO: Add Action Handlers
 
 #pragma mark - Keyboard Handling
 
@@ -188,4 +186,3 @@
 }
 
 @end
-

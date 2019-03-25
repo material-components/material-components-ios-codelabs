@@ -16,16 +16,15 @@
 
 #import "ProductCell.h"
 
-
 @implementation ProductCell
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    //TODO: Configure the cell properties
+    // TODO: Configure the cell properties
     self.backgroundColor = [UIColor whiteColor];
 
-    //TODO: Add MDCCardCollectionCell specific properties
+    // TODO: Add MDCCardCollectionCell specific properties
     self.cornerRadius = 8.0;
     [self setBorderWidth:1.0 forState:MDCCardCellStateNormal];
     [self setBorderColor:[UIColor lightGrayColor] forState:MDCCardCellStateNormal];

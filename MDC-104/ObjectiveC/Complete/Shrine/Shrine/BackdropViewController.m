@@ -16,15 +16,15 @@
 
 #import "BackdropViewController.h"
 
-#import <MaterialComponents/MaterialAppBar.h>
-#import <MaterialComponents/MaterialButtons.h>
-#import <MaterialComponents/MaterialNavigationBar.h>
 #import <MaterialComponents/MDCAppBarColorThemer.h>
-#import <MaterialComponents/MDCTextButtonThemer.h>
 #import <MaterialComponents/MDCContainedButtonThemer.h>
 #import <MaterialComponents/MDCNavigationBarColorThemer.h>
 #import <MaterialComponents/MDCNavigationBarTypographyThemer.h>
 #import <MaterialComponents/MDCShapedShadowLayer.h>
+#import <MaterialComponents/MDCTextButtonThemer.h>
+#import <MaterialComponents/MaterialAppBar.h>
+#import <MaterialComponents/MaterialButtons.h>
+#import <MaterialComponents/MaterialNavigationBar.h>
 
 #import "ApplicationScheme.h"
 #import "Catalog.h"
@@ -70,37 +70,39 @@
 
   // Setup Navigation Items
   UIImage *menuItemImage = [UIImage imageNamed:@"MenuItem"];
-  UIImage *templatedMenuItemImage = [menuItemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-  UIBarButtonItem *menuItem =
-  [[UIBarButtonItem alloc] initWithImage:templatedMenuItemImage
-                                   style:UIBarButtonItemStylePlain
-                                  target:self
-                                  action:@selector(didTapMenuItem:)];
+  UIImage *templatedMenuItemImage =
+      [menuItemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+  UIBarButtonItem *menuItem = [[UIBarButtonItem alloc] initWithImage:templatedMenuItemImage
+                                                               style:UIBarButtonItemStylePlain
+                                                              target:self
+                                                              action:@selector(didTapMenuItem:)];
   self.navigationItem.leftBarButtonItem = menuItem;
 
   UIImage *searchItemImage = [UIImage imageNamed:@"SearchItem"];
-  UIImage *templateSearchItemImage = [searchItemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+  UIImage *templateSearchItemImage =
+      [searchItemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
   UIBarButtonItem *searchItem =
-  [[UIBarButtonItem alloc] initWithImage:templateSearchItemImage
-                                   style:UIBarButtonItemStylePlain
-                                  target:self
-                                  action:@selector(didTapFilterItem:)];
+      [[UIBarButtonItem alloc] initWithImage:templateSearchItemImage
+                                       style:UIBarButtonItemStylePlain
+                                      target:self
+                                      action:@selector(didTapFilterItem:)];
 
   UIImage *tuneItemImage = [UIImage imageNamed:@"TuneItem"];
-  UIImage *templateTuneItemImage = [tuneItemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-  UIBarButtonItem *tuneItem =
-  [[UIBarButtonItem alloc] initWithImage:templateTuneItemImage
-                                   style:UIBarButtonItemStylePlain
-                                  target:self
-                                  action:@selector(didTapFilterItem:)];
+  UIImage *templateTuneItemImage =
+      [tuneItemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+  UIBarButtonItem *tuneItem = [[UIBarButtonItem alloc] initWithImage:templateTuneItemImage
+                                                               style:UIBarButtonItemStylePlain
+                                                              target:self
+                                                              action:@selector(didTapFilterItem:)];
   self.navigationItem.rightBarButtonItems = @[ tuneItem, searchItem ];
 
   // NavigationBar Init
   _appBar = [[MDCAppBar alloc] init];
   [self addChildViewController:_appBar.headerViewController];
   [self.appBar addSubviewsToParent];
-    self.view.backgroundColor = [ApplicationScheme sharedInstance].colorScheme.surfaceColor;
-[MDCAppBarColorThemer applySemanticColorScheme:[ApplicationScheme sharedInstance].colorScheme toAppBar:_appBar];
+  self.view.backgroundColor = [ApplicationScheme sharedInstance].colorScheme.surfaceColor;
+  [MDCAppBarColorThemer applySemanticColorScheme:[ApplicationScheme sharedInstance].colorScheme
+                                        toAppBar:_appBar];
   self.appBar.navigationBar.translatesAutoresizingMaskIntoConstraints = NO;
 
   // Button Init
@@ -128,8 +130,8 @@
   self.homeButton.translatesAutoresizingMaskIntoConstraints = NO;
   [self.homeButton setTitle:@"HOME" forState:UIControlStateNormal];
   [self.homeButton addTarget:self
-                           action:@selector(didTapCategory:)
-                 forControlEvents:UIControlEventTouchUpInside];
+                      action:@selector(didTapCategory:)
+            forControlEvents:UIControlEventTouchUpInside];
   [MDCTextButtonThemer applyScheme:[ApplicationScheme sharedInstance].buttonScheme
                           toButton:self.homeButton];
   [self.view addSubview:self.homeButton];
@@ -154,22 +156,31 @@
                           toButton:self.accountButton];
   [self.view addSubview:self.accountButton];
 
-  NSMutableArray <NSLayoutConstraint *> *constraints = [[NSMutableArray alloc] init];
+  NSMutableArray<NSLayoutConstraint *> *constraints = [[NSMutableArray alloc] init];
 
-  [constraints addObject:[NSLayoutConstraint constraintWithItem:self.featuredButton attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
+  [constraints addObject:[NSLayoutConstraint constraintWithItem:self.featuredButton
+                                                      attribute:NSLayoutAttributeCenterX
+                                                      relatedBy:NSLayoutRelationEqual
+                                                         toItem:self.view
+                                                      attribute:NSLayoutAttributeCenterX
+                                                     multiplier:1
+                                                       constant:0]];
 
   NSDictionary *nameView = @{
-                             @"navigationbar" : self.appBar.navigationBar,
-                             @"featured" : self.featuredButton,
-                             @"clothing" : self.clothingButton,
-                             @"home" : self.homeButton,
-                             @"accessories" : self.accessoriesButton,
-                             @"account" : self.accountButton,
-                             };
-  [constraints addObjectsFromArray:[NSLayoutConstraint
-                                    constraintsWithVisualFormat:@"V:|[navigationbar]-[featured]-[clothing]-[home]-[accessories]-[account]"
-                                    options:NSLayoutFormatAlignAllCenterX
-                                    metrics:nil
+    @"navigationbar" : self.appBar.navigationBar,
+    @"featured" : self.featuredButton,
+    @"clothing" : self.clothingButton,
+    @"home" : self.homeButton,
+    @"accessories" : self.accessoriesButton,
+    @"account" : self.accountButton,
+  };
+  [constraints
+      addObjectsFromArray:
+          [NSLayoutConstraint
+              constraintsWithVisualFormat:
+                  @"V:|[navigationbar]-[featured]-[clothing]-[home]-[accessories]-[account]"
+                                  options:NSLayoutFormatAlignAllCenterX
+                                  metrics:nil
                                     views:nameView]];
   [NSLayoutConstraint activateConstraints:constraints];
 
@@ -177,7 +188,7 @@
       [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapFilterItem:)];
   [self.view addGestureRecognizer:recognizer];
 
-  //TODO: Change the container view into a ShapedShadowedView and apply the shape.
+  // TODO: Change the container view into a ShapedShadowedView and apply the shape.
   self.containerView = [[ShapedShadowedView alloc] initWithFrame:CGRectZero];
   MDCRectangleShapeGenerator *shapeGenerator = [[MDCRectangleShapeGenerator alloc] init];
   shapeGenerator.topLeftCorner =
@@ -187,7 +198,7 @@
   self.containerView.backgroundColor = [ApplicationScheme sharedInstance].colorScheme.surfaceColor;
   [self.view addSubview:self.containerView];
 
-  //TODO: Instantiate and embed the catalog view controller in the BackdropViewController
+  // TODO: Instantiate and embed the catalog view controller in the BackdropViewController
   UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
   UIViewController *viewController =
       [storyboard instantiateViewControllerWithIdentifier:@"HomeViewController"];
@@ -214,9 +225,10 @@
 
 - (void)setFocusedEmbeddedController:(BOOL)focusedEmbeddedController {
   _focusedEmbeddedController = focusedEmbeddedController;
-  [UIView animateWithDuration:0.20 animations:^(){
-    self.containerView.frame = [self frameForEmbeddedController];
-  }];
+  [UIView animateWithDuration:0.20
+                   animations:^() {
+                     self.containerView.frame = [self frameForEmbeddedController];
+                   }];
 }
 
 - (CGRect)frameForEmbeddedController {
@@ -228,7 +240,7 @@
   // If the embedded controller is not focused, move to the bottom of the interface
   if (!self.isFocusedEmbeddedController) {
     embeddedFrame.origin.y = CGRectStandardize(self.view.bounds).size.height -
-        CGRectGetHeight(self.appBar.navigationBar.frame);
+                             CGRectGetHeight(self.appBar.navigationBar.frame);
   }
 
   // If we don't have an embedded view, locate the view offscreen
@@ -242,8 +254,8 @@
 #pragma mark - Action Methods
 
 - (void)didTapMenuItem:(id)selector {
-  LoginViewController *loginViewController =
-      [[LoginViewController alloc] initWithNibName:nil bundle:nil];
+  LoginViewController *loginViewController = [[LoginViewController alloc] initWithNibName:nil
+                                                                                   bundle:nil];
   [self presentViewController:loginViewController animated:YES completion:NULL];
 }
 
@@ -264,7 +276,7 @@
     filter = @"Accessories";
   }
 
-  //TODO: Set the catalog filter based on the button pressed
+  // TODO: Set the catalog filter based on the button pressed
   [Catalog productCatalog].categoryFilter = filter;
 
   // Toggle CatalogView
@@ -272,8 +284,8 @@
 }
 
 - (void)didTapAccount:(id)selector {
-  LoginViewController *loginViewController =
-  [[LoginViewController alloc] initWithNibName:nil bundle:nil];
+  LoginViewController *loginViewController = [[LoginViewController alloc] initWithNibName:nil
+                                                                                   bundle:nil];
   [self presentViewController:loginViewController animated:YES completion:NULL];
 }
 
