@@ -15,7 +15,8 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <MaterialComponents/MaterialShapes.h>
 
-@interface ShapedShadowedView : UIView
+@interface ShapedShadowedView : MDCShapedView
 
 @end
