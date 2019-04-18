@@ -98,19 +98,19 @@
   if (self) {
     _colorScheme =
         [[MDCSemanticColorScheme alloc] initWithDefaults:MDCColorSchemeDefaultsMaterial201804];
-    _colorScheme.primaryColor = [UIColor colorWithRed:254.0 / 255.0
-                                                green:206.0 / 255.0
-                                                 blue:82.0 / 255.0
-                                                alpha:1.0];
-    _colorScheme.onPrimaryColor = [UIColor colorWithRed:76.0 / 255.0
-                                                  green:73.0 / 255.0
-                                                   blue:73.0 / 255.0
-                                                  alpha:1.0];
-    _colorScheme.surfaceColor = [UIColor colorWithRed:65.0 / 255.0
-                                                green:65.0 / 255.0
-                                                 blue:73.0 / 255.0
-                                                alpha:1.0];
-    _colorScheme.onSurfaceColor = [UIColor whiteColor];
+    _colorScheme.primaryColor =
+        [UIColor colorWithRed:0.36f green:0.06f blue:0.29f alpha:1];
+    _colorScheme.onPrimaryColor = [UIColor whiteColor];
+    _colorScheme.secondaryColor =
+        [UIColor colorWithRed:0.89f green:0.02f blue:0.15f alpha:1];
+    _colorScheme.onSecondaryColor = [UIColor whiteColor];
+    _colorScheme.surfaceColor = [UIColor whiteColor];
+    _colorScheme.onSurfaceColor = [UIColor blackColor];
+    _colorScheme.backgroundColor =
+        [UIColor colorWithRed:0.96f green:0.89f blue:0.93f alpha:1];
+    _colorScheme.onBackgroundColor = [UIColor blackColor];
+    _colorScheme.errorColor =
+        [UIColor colorWithRed:0.99f green:0.59f blue:0.15f alpha:1];
     _typographyScheme =
         [[MDCTypographyScheme alloc] initWithDefaults:MDCTypographySchemeDefaultsMaterial201804];
     NSString *fontName = @"Chalkduster";
