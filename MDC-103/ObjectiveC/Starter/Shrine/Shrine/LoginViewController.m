@@ -284,10 +284,13 @@
   [textField resignFirstResponder];
 
   // Text Field Validation
-  if (textField == (UITextField *)self.passwordTextField &&
-      self.passwordTextField.text.length < 8) {
-    [self.passwordTextFieldController setErrorText:@"Password is too short"
-                           errorAccessibilityValue:nil];
+  if (textField == (UITextField *)self.passwordTextField) {
+    if (self.passwordTextField.text.length < 8) {
+      [self.passwordTextFieldController setErrorText:@"Password is too short"
+                             errorAccessibilityValue:nil];
+    } else {
+      [self.passwordTextFieldController setErrorText:nil errorAccessibilityValue:nil];
+    }
   }
 
   return NO;

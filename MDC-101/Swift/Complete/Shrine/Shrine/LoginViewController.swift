@@ -290,11 +290,14 @@ extension LoginViewController: UITextFieldDelegate {
     textField.resignFirstResponder();
 
     // TextField
-    if (textField == passwordTextField &&
-      passwordTextField.text != nil &&
-      passwordTextField.text!.count < 8) {
-      passwordTextFieldController.setErrorText("Password is too short",
-                                               errorAccessibilityValue: nil)
+    if (textField == passwordTextField) {
+      let textFieldCharacterCount = textField.text?.count ?? 0
+      if (textFieldCharacterCount < 8) {
+        passwordTextFieldController.setErrorText("Password is too short",
+                                                 errorAccessibilityValue: nil)
+      } else {
+        passwordTextFieldController.setErrorText(nil, errorAccessibilityValue: nil)
+      }
     }
 
     return false
