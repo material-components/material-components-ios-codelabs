@@ -30,7 +30,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
     // TODO: Instantiate controllers
   }
 
-  // TODO: Override viewDidLayoutSubviews()
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+
+    // TODO: Update `hitAreaInsets`.
+  }
 
   // MARK: UITextFieldDelegate methods
 
