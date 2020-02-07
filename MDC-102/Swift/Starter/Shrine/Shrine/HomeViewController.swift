@@ -64,15 +64,21 @@ class HomeViewController: UICollectionViewController {
     self.present(loginViewController, animated: true, completion: nil)
   }
 
+  func collection
+
   // MARK - UICollectionViewDataSource'
+
+  // TODO: Implement the following methods
+  //  func collectionView(_ collectionView: UICollectionView,
+  //                      numberOfItemsInSection section: Int) -> Int {
   //
-  // TODO: Add
+  //  }
   //
-  // collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
   //
-  // and
+  //  func collectionView(_ collectionView: UICollectionView,
+  //                      cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
   //
-  // collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+  //  }
 
 }
 
