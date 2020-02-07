@@ -124,20 +124,16 @@
 
 #pragma mark - UICollectionViewDataSource
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView
-     numberOfItemsInSection:(NSInteger)section {
-  // TODO: Update the following line to return the number of items in the catalog instead of 0
-  return 0;
-}
-
-- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
-                           cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-  ProductCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"ProductCell"
-                                                                     forIndexPath:indexPath];
-
-  // TODO: Set the properties of the cell to reflect the product from the model
-
-  return cell;
-}
+// TODO: Implement the following methods.
+//
+// - (NSInteger)collectionView:(UICollectionView *)collectionView
+//      numberOfItemsInSection:(NSInteger)section {
+// }
+//
+// - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
+//                            cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+//   ProductCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"ProductCell"
+//                                                                     forIndexPath:indexPath];
+// }
 
 @end
