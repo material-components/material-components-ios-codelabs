@@ -58,27 +58,21 @@ class HomeViewController: UICollectionViewController {
     }
   }
 
-  //MARK - Methods
+  // MARK - Methods
   @objc func menuItemTapped(sender: Any) {
     let loginViewController = LoginViewController(nibName: nil, bundle: nil)
     self.present(loginViewController, animated: true, completion: nil)
   }
 
-  //MARK - UICollectionViewDataSource
-  override func collectionView(_ collectionView: UICollectionView,
-                               numberOfItemsInSection section: Int) -> Int {
-    //TODO: Set the number of cells to be equal to the number of products in the catalog
-    return 0
-  }
-
-  override func collectionView(_ collectionView: UICollectionView,
-                               cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = self.collectionView?.dequeueReusableCell(withReuseIdentifier: "ProductCell",
-                                                        for: indexPath) as! ProductCell
-    //TODO: Set the properties of the cell to reflect to product from the model
-
-    return cell
-  }
+  // MARK - UICollectionViewDataSource'
+  //
+  // TODO: Add
+  //
+  // collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+  //
+  // and
+  //
+  // collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
 
 }
 
