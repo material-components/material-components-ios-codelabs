@@ -34,7 +34,11 @@
   // TODO: Instantiate controllers
 }
 
-// TODO: Override viewDidLayoutSubviews()
+- (void)viewDidLayoutSubviews {
+  [super viewDidLayoutSubviews];
+
+  // TODO: Update @c hitAreaInsets.
+}
 
 #pragma mark - UITextFieldDelegate methods
 
