@@ -64,8 +64,6 @@ class HomeViewController: UICollectionViewController {
     self.present(loginViewController, animated: true, completion: nil)
   }
 
-  func collection
-
   // MARK - UICollectionViewDataSource'
 
   // TODO: Implement the following methods
