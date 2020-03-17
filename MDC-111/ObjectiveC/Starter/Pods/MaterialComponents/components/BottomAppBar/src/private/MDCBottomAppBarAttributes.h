@@ -19,7 +19,7 @@ static const CGFloat kMDCBottomAppBarHeight = 96;
 
 // The offset from the top of the navigation view of the bottom app bar to the
 // bottom app bar position
-static const CGFloat kMDCBottomAppBarNavigationViewYOffset = 38;
+static const CGFloat kMDCBottomAppBarNavigationViewYOffset = 0;
 
 // The horizontal position of the center of the floating button when in leading or trailing state.
 static const CGFloat kMDCBottomAppBarFloatingButtonPositionX = 64;
